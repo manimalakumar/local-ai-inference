@@ -1,0 +1,204 @@
+subject_id,site_id,treatment_arm,screening_status,enrollment_date
+SUBJ-0001,SITE-001,Placebo,Randomized,2025-12-31
+SUBJ-0002,SITE-001,Investigational Drug Low Dose,Enrolled,2025-10-04
+SUBJ-0003,SITE-001,Standard of Care,Enrolled,2025-09-13
+SUBJ-0004,SITE-001,Investigational Drug Low Dose,Enrolled,2025-09-30
+SUBJ-0005,SITE-001,Investigational Drug High Dose,Randomized,2025-07-17
+SUBJ-0006,SITE-001,Investigational Drug High Dose,Withdrawn,2025-11-27
+SUBJ-0007,SITE-001,Investigational Drug Low Dose,Enrolled,2025-11-25
+SUBJ-0008,SITE-001,Placebo,Enrolled,2025-07-07
+SUBJ-0009,SITE-001,Investigational Drug Low Dose,Randomized,2025-09-06
+SUBJ-0010,SITE-001,Placebo,Enrolled,2025-10-22
+SUBJ-0011,SITE-001,Standard of Care,Randomized,2025-11-04
+SUBJ-0012,SITE-001,Not Assigned,Screen Failed,
+SUBJ-0013,SITE-001,Not Assigned,Screen Failed,
+SUBJ-0014,SITE-002,Standard of Care,Randomized,2026-01-19
+SUBJ-0015,SITE-002,Placebo,Randomized,2026-02-12
+SUBJ-0016,SITE-002,Investigational Drug High Dose,Randomized,2026-01-16
+SUBJ-0017,SITE-002,Placebo,Randomized,2025-12-15
+SUBJ-0018,SITE-002,Standard of Care,Enrolled,2026-04-02
+SUBJ-0019,SITE-002,Not Assigned,Screen Failed,
+SUBJ-0020,SITE-002,Placebo,Enrolled,2026-02-27
+SUBJ-0021,SITE-002,Investigational Drug Low Dose,Enrolled,2025-10-13
+SUBJ-0022,SITE-002,Investigational Drug Low Dose,Enrolled,2026-03-25
+SUBJ-0023,SITE-002,Placebo,Enrolled,2025-10-09
+SUBJ-0024,SITE-003,Placebo,Enrolled,2026-01-31
+SUBJ-0025,SITE-003,Investigational Drug High Dose,Enrolled,2025-10-05
+SUBJ-0026,SITE-003,Standard of Care,Randomized,2026-02-18
+SUBJ-0027,SITE-003,Investigational Drug Low Dose,Enrolled,2026-04-05
+SUBJ-0028,SITE-003,Placebo,Enrolled,2025-10-11
+SUBJ-0029,SITE-003,Placebo,Enrolled,2025-11-18
+SUBJ-0030,SITE-003,Investigational Drug Low Dose,Enrolled,2026-01-27
+SUBJ-0031,SITE-003,Not Assigned,Screen Failed,
+SUBJ-0032,SITE-003,Not Assigned,Screen Failed,
+SUBJ-0033,SITE-003,Investigational Drug Low Dose,Enrolled,2025-12-12
+SUBJ-0034,SITE-003,Investigational Drug Low Dose,Enrolled,2026-01-25
+SUBJ-0035,SITE-003,Investigational Drug High Dose,Randomized,2026-02-16
+SUBJ-0036,SITE-003,Investigational Drug High Dose,Enrolled,2026-01-09
+SUBJ-0037,SITE-004,Placebo,Randomized,2025-12-15
+SUBJ-0038,SITE-004,Not Assigned,Screen Failed,
+SUBJ-0039,SITE-004,Standard of Care,Enrolled,2026-01-11
+SUBJ-0040,SITE-004,Investigational Drug Low Dose,Randomized,2026-01-05
+SUBJ-0041,SITE-004,Investigational Drug Low Dose,Randomized,2025-09-26
+SUBJ-0042,SITE-004,Investigational Drug Low Dose,Enrolled,2026-01-27
+SUBJ-0043,SITE-004,Standard of Care,Randomized,2026-01-10
+SUBJ-0044,SITE-004,Placebo,Enrolled,2025-11-03
+SUBJ-0045,SITE-004,Placebo,Enrolled,2025-12-18
+SUBJ-0046,SITE-004,Investigational Drug Low Dose,Randomized,2026-01-12
+SUBJ-0047,SITE-004,Investigational Drug High Dose,Randomized,2025-10-05
+SUBJ-0048,SITE-004,Investigational Drug High Dose,Enrolled,2026-02-17
+SUBJ-0049,SITE-005,Investigational Drug High Dose,Enrolled,2026-02-13
+SUBJ-0050,SITE-005,Standard of Care,Enrolled,2026-01-22
+SUBJ-0051,SITE-005,Investigational Drug Low Dose,Randomized,2026-03-09
+SUBJ-0052,SITE-005,Placebo,Enrolled,2025-11-06
+SUBJ-0053,SITE-005,Investigational Drug Low Dose,Enrolled,2025-10-20
+SUBJ-0054,SITE-005,Investigational Drug Low Dose,Randomized,2025-12-12
+SUBJ-0055,SITE-005,Investigational Drug Low Dose,Randomized,2025-12-22
+SUBJ-0056,SITE-005,Placebo,Randomized,2025-11-24
+SUBJ-0057,SITE-005,Not Assigned,Screen Failed,
+SUBJ-0058,SITE-005,Placebo,Enrolled,2026-02-07
+SUBJ-0059,SITE-006,Standard of Care,Randomized,2025-01-08
+SUBJ-0060,SITE-006,Not Assigned,Screen Failed,
+SUBJ-0061,SITE-006,Investigational Drug High Dose,Enrolled,2025-05-19
+SUBJ-0062,SITE-006,Investigational Drug High Dose,Enrolled,2025-04-06
+SUBJ-0063,SITE-006,Placebo,Enrolled,2025-04-20
+SUBJ-0064,SITE-006,Standard of Care,Enrolled,2025-06-28
+SUBJ-0065,SITE-006,Not Assigned,Screen Failed,
+SUBJ-0066,SITE-006,Placebo,Randomized,2025-03-10
+SUBJ-0067,SITE-007,Standard of Care,Randomized,2025-03-23
+SUBJ-0068,SITE-007,Placebo,Enrolled,2024-12-29
+SUBJ-0069,SITE-007,Standard of Care,Withdrawn,2025-05-27
+SUBJ-0070,SITE-007,Investigational Drug Low Dose,Randomized,2025-05-16
+SUBJ-0071,SITE-007,Investigational Drug Low Dose,Enrolled,2025-04-29
+SUBJ-0072,SITE-007,Investigational Drug High Dose,Enrolled,2025-06-18
+SUBJ-0073,SITE-007,Investigational Drug Low Dose,Randomized,2025-01-23
+SUBJ-0074,SITE-007,Standard of Care,Randomized,2025-03-15
+SUBJ-0075,SITE-008,Not Assigned,Screen Failed,
+SUBJ-0076,SITE-008,Not Assigned,Screen Failed,
+SUBJ-0077,SITE-008,Standard of Care,Randomized,2025-03-16
+SUBJ-0078,SITE-008,Investigational Drug High Dose,Randomized,2025-03-30
+SUBJ-0079,SITE-008,Investigational Drug Low Dose,Enrolled,2024-12-04
+SUBJ-0080,SITE-008,Placebo,Withdrawn,2024-09-30
+SUBJ-0081,SITE-008,Standard of Care,Randomized,2025-03-05
+SUBJ-0082,SITE-008,Standard of Care,Enrolled,2025-03-20
+SUBJ-0083,SITE-008,Not Assigned,Screen Failed,
+SUBJ-0084,SITE-008,Investigational Drug High Dose,Enrolled,2024-11-07
+SUBJ-0085,SITE-009,Standard of Care,Randomized,2025-05-24
+SUBJ-0086,SITE-009,Standard of Care,Enrolled,2025-04-21
+SUBJ-0087,SITE-009,Not Assigned,Screen Failed,
+SUBJ-0088,SITE-009,Investigational Drug Low Dose,Randomized,2025-01-12
+SUBJ-0089,SITE-009,Placebo,Enrolled,2025-01-27
+SUBJ-0090,SITE-009,Investigational Drug Low Dose,Enrolled,2025-06-29
+SUBJ-0091,SITE-009,Investigational Drug Low Dose,Enrolled,2024-12-31
+SUBJ-0092,SITE-009,Investigational Drug Low Dose,Randomized,2025-03-11
+SUBJ-0093,SITE-009,Standard of Care,Randomized,2025-03-06
+SUBJ-0094,SITE-009,Investigational Drug High Dose,Enrolled,2025-06-06
+SUBJ-0095,SITE-009,Investigational Drug High Dose,Enrolled,2025-03-02
+SUBJ-0096,SITE-009,Placebo,Enrolled,2025-01-06
+SUBJ-0097,SITE-010,Standard of Care,Randomized,2024-12-20
+SUBJ-0098,SITE-010,Investigational Drug High Dose,Randomized,2025-04-11
+SUBJ-0099,SITE-010,Investigational Drug High Dose,Enrolled,2024-12-08
+SUBJ-0100,SITE-010,Placebo,Enrolled,2025-06-10
+SUBJ-0101,SITE-010,Standard of Care,Randomized,2025-02-21
+SUBJ-0102,SITE-010,Standard of Care,Randomized,2025-04-05
+SUBJ-0103,SITE-010,Not Assigned,Screen Failed,
+SUBJ-0104,SITE-010,Investigational Drug High Dose,Enrolled,2025-04-26
+SUBJ-0105,SITE-010,Investigational Drug High Dose,Withdrawn,2025-01-10
+SUBJ-0106,SITE-011,Placebo,Randomized,2025-03-29
+SUBJ-0107,SITE-011,Investigational Drug Low Dose,Enrolled,2025-05-22
+SUBJ-0108,SITE-011,Investigational Drug High Dose,Randomized,2025-02-05
+SUBJ-0109,SITE-011,Investigational Drug High Dose,Randomized,2024-12-10
+SUBJ-0110,SITE-011,Investigational Drug Low Dose,Randomized,2025-03-11
+SUBJ-0111,SITE-011,Standard of Care,Randomized,2025-05-08
+SUBJ-0112,SITE-011,Investigational Drug Low Dose,Enrolled,2025-01-26
+SUBJ-0113,SITE-011,Placebo,Enrolled,2025-03-03
+SUBJ-0114,SITE-011,Investigational Drug Low Dose,Enrolled,2024-12-09
+SUBJ-0115,SITE-011,Standard of Care,Withdrawn,2025-06-01
+SUBJ-0116,SITE-011,Placebo,Withdrawn,2025-01-24
+SUBJ-0117,SITE-011,Placebo,Enrolled,2025-06-13
+SUBJ-0118,SITE-012,Placebo,Randomized,2025-02-17
+SUBJ-0119,SITE-012,Placebo,Enrolled,2024-12-15
+SUBJ-0120,SITE-012,Investigational Drug Low Dose,Randomized,2025-03-06
+SUBJ-0121,SITE-012,Investigational Drug Low Dose,Randomized,2025-04-19
+SUBJ-0122,SITE-012,Placebo,Randomized,2025-02-24
+SUBJ-0123,SITE-012,Investigational Drug Low Dose,Enrolled,2025-04-15
+SUBJ-0124,SITE-012,Investigational Drug Low Dose,Enrolled,2025-06-15
+SUBJ-0125,SITE-012,Investigational Drug Low Dose,Randomized,2024-12-12
+SUBJ-0126,SITE-012,Investigational Drug Low Dose,Enrolled,2024-12-19
+SUBJ-0127,SITE-012,Investigational Drug High Dose,Enrolled,2024-12-29
+SUBJ-0128,SITE-012,Not Assigned,Screen Failed,
+SUBJ-0129,SITE-013,Placebo,Randomized,2025-04-20
+SUBJ-0130,SITE-013,Investigational Drug High Dose,Enrolled,2025-03-19
+SUBJ-0131,SITE-013,Investigational Drug High Dose,Randomized,2025-09-15
+SUBJ-0132,SITE-013,Not Assigned,Screen Failed,
+SUBJ-0133,SITE-013,Placebo,Randomized,2025-02-19
+SUBJ-0134,SITE-013,Standard of Care,Enrolled,2025-08-15
+SUBJ-0135,SITE-013,Not Assigned,Screen Failed,
+SUBJ-0136,SITE-013,Investigational Drug Low Dose,Randomized,2025-09-09
+SUBJ-0137,SITE-013,Placebo,Enrolled,2025-07-09
+SUBJ-0138,SITE-013,Investigational Drug High Dose,Enrolled,2025-03-28
+SUBJ-0139,SITE-013,Standard of Care,Randomized,2025-06-15
+SUBJ-0140,SITE-014,Placebo,Enrolled,2025-02-12
+SUBJ-0141,SITE-014,Standard of Care,Withdrawn,2025-06-27
+SUBJ-0142,SITE-014,Investigational Drug Low Dose,Withdrawn,2025-06-16
+SUBJ-0143,SITE-014,Placebo,Enrolled,2025-08-07
+SUBJ-0144,SITE-014,Standard of Care,Randomized,2025-02-14
+SUBJ-0145,SITE-014,Standard of Care,Withdrawn,2025-06-02
+SUBJ-0146,SITE-014,Investigational Drug Low Dose,Enrolled,2025-07-20
+SUBJ-0147,SITE-014,Investigational Drug High Dose,Withdrawn,2025-03-24
+SUBJ-0148,SITE-014,Investigational Drug Low Dose,Enrolled,2025-07-24
+SUBJ-0149,SITE-014,Investigational Drug High Dose,Enrolled,2025-04-11
+SUBJ-0150,SITE-014,Investigational Drug High Dose,Randomized,2025-08-10
+SUBJ-0151,SITE-014,Placebo,Randomized,2025-07-24
+SUBJ-0152,SITE-015,Investigational Drug Low Dose,Enrolled,2024-08-30
+SUBJ-0153,SITE-015,Not Assigned,Screen Failed,
+SUBJ-0154,SITE-015,Investigational Drug Low Dose,Randomized,2024-11-30
+SUBJ-0155,SITE-015,Placebo,Enrolled,2024-08-16
+SUBJ-0156,SITE-015,Standard of Care,Randomized,2024-12-05
+SUBJ-0157,SITE-015,Investigational Drug High Dose,Enrolled,2024-08-12
+SUBJ-0158,SITE-015,Investigational Drug Low Dose,Enrolled,2024-12-05
+SUBJ-0159,SITE-015,Investigational Drug High Dose,Enrolled,2024-08-11
+SUBJ-0160,SITE-015,Standard of Care,Enrolled,2024-07-12
+SUBJ-0161,SITE-016,Not Assigned,Screen Failed,
+SUBJ-0162,SITE-016,Placebo,Enrolled,2025-01-04
+SUBJ-0163,SITE-016,Placebo,Randomized,2024-12-16
+SUBJ-0164,SITE-016,Investigational Drug High Dose,Enrolled,2024-10-06
+SUBJ-0165,SITE-016,Investigational Drug High Dose,Randomized,2024-11-11
+SUBJ-0166,SITE-016,Investigational Drug High Dose,Randomized,2024-12-15
+SUBJ-0167,SITE-016,Standard of Care,Enrolled,2025-02-09
+SUBJ-0168,SITE-016,Investigational Drug Low Dose,Enrolled,2024-08-10
+SUBJ-0169,SITE-016,Placebo,Randomized,2024-11-05
+SUBJ-0170,SITE-016,Investigational Drug High Dose,Randomized,2024-09-27
+SUBJ-0171,SITE-016,Standard of Care,Randomized,2024-11-20
+SUBJ-0172,SITE-016,Investigational Drug High Dose,Enrolled,2025-01-26
+SUBJ-0173,SITE-016,Standard of Care,Randomized,2024-11-16
+SUBJ-0174,SITE-017,Investigational Drug High Dose,Randomized,2024-12-06
+SUBJ-0175,SITE-017,Investigational Drug High Dose,Enrolled,2024-08-13
+SUBJ-0176,SITE-017,Standard of Care,Enrolled,2024-08-29
+SUBJ-0177,SITE-017,Standard of Care,Randomized,2024-10-16
+SUBJ-0178,SITE-017,Investigational Drug Low Dose,Enrolled,2024-10-21
+SUBJ-0179,SITE-017,Placebo,Randomized,2025-01-16
+SUBJ-0180,SITE-017,Placebo,Randomized,2024-10-21
+SUBJ-0181,SITE-017,Investigational Drug High Dose,Enrolled,2024-12-09
+SUBJ-0182,SITE-017,Standard of Care,Randomized,2024-07-24
+SUBJ-0183,SITE-017,Investigational Drug Low Dose,Randomized,2024-11-24
+SUBJ-0184,SITE-017,Standard of Care,Randomized,2024-11-17
+SUBJ-0185,SITE-017,Standard of Care,Enrolled,2025-01-15
+SUBJ-0186,SITE-017,Investigational Drug Low Dose,Randomized,2024-11-03
+SUBJ-0187,SITE-018,Not Assigned,Screen Failed,
+SUBJ-0188,SITE-018,Standard of Care,Enrolled,2024-05-23
+SUBJ-0189,SITE-018,Investigational Drug High Dose,Enrolled,2024-05-04
+SUBJ-0190,SITE-018,Standard of Care,Randomized,2024-06-18
+SUBJ-0191,SITE-018,Investigational Drug Low Dose,Enrolled,2024-11-09
+SUBJ-0192,SITE-018,Placebo,Randomized,2024-05-09
+SUBJ-0193,SITE-018,Placebo,Enrolled,2024-10-16
+SUBJ-0194,SITE-018,Investigational Drug High Dose,Enrolled,2024-09-02
+SUBJ-0195,SITE-018,Placebo,Enrolled,2024-06-28
+SUBJ-0196,SITE-019,Investigational Drug High Dose,Randomized,2024-10-19
+SUBJ-0197,SITE-019,Standard of Care,Randomized,2024-09-03
+SUBJ-0198,SITE-019,Placebo,Enrolled,2024-12-18
+SUBJ-0199,SITE-019,Not Assigned,Screen Failed,
+SUBJ-0200,SITE-019,Not Assigned,Screen Failed,
+SUBJ-0201,SITE-019,Standard of Care,Withdrawn,2024-12-21
+SUBJ-0202,SITE-019,Investigational Drug Low Dose,Randomized,2024-09-01
+SUBJ-0203,SITE-019,Investigational Drug High Dose,Randomized,2024-08-09

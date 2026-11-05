@@ -1,0 +1,56 @@
+{
+  "format": "tutorial-notebook-summary-v1",
+  "run_id": "notebook-59a8ea0bece1921f-vllm-c4",
+  "experiment": "MVP3/vllm/c4",
+  "runtime": "vllm",
+  "hardware": "Dell Precision 7740 / Quadro RTX 5000 16 GB",
+  "status": "completed",
+  "evidence": "notebook_output",
+  "configuration": {
+    "hardware": "Dell Precision 7740 / Quadro RTX 5000 16 GB",
+    "dtype": "float16",
+    "provenance": "experiment-tracker/tutorial/provenance/vllm-dell-02.json",
+    "runtime": "vllm",
+    "concurrency": 4
+  },
+  "quality": {
+    "cases": 4,
+    "sql_executed": 3,
+    "reference_scored": 4,
+    "result_equivalent": 2,
+    "semantic": {
+      "correct": 0,
+      "reviewed": 0,
+      "total": 4
+    }
+  },
+  "serving": {
+    "ttft_p50_seconds": 0.37,
+    "e2e_p50_seconds": 3.48,
+    "e2e_p95_seconds": 4.37,
+    "output_tokens_per_second": 105.37,
+    "mean_prompt_tokens": 462.0,
+    "requests": null,
+    "successful": null,
+    "failed": null
+  },
+  "memory": {
+    "peak_bytes": null,
+    "scope": "displayed source notebook; sampler details unavailable"
+  },
+  "server": null,
+  "database_sha256": null,
+  "evaluation_date": null,
+  "records": null,
+  "source": {
+    "kind": "executed_notebook_output",
+    "filename": "clinical_trial_inference_tutorial-vLLM ran.ipynb",
+    "original_sha256": "59a8ea0bece1921f01d7d21d1a8fe4baedddefeb95d0c641a55c246c8d7a9a8a",
+    "cell_index": 12,
+    "execution_count": 6,
+    "displayed_row": "| MVP3/vllm/c4 | 3/4 | 2/4 | 0/0 reviewed; 4 total | 462 | 0.37 | 3.48/4.37 | 105.37 | — GiB |",
+    "archive": "tutorial/history/gpu/vllm-59a8ea0bece1921f.ipynb",
+    "archived_sha256": "318101915d81e9631dffa2fc063986d3e18ff0f16c56c1bada5869e82b483433"
+  },
+  "limitations": "Displayed values only, rounded by the source notebook. Raw requests, SQL, launch provenance, model/database fingerprints and run date are unavailable. Not independently paired with other runtime records."
+}

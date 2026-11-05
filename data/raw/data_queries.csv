@@ -1,0 +1,801 @@
+query_id,subject_id,site_id,visit_id,opened_date,query_type,field_name,priority,query_text,status,response_date,closed_date,resolution_hours
+DQ-000001,SUBJ-0149,SITE-014,VISIT-000808,2025-07-22,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000002,SUBJ-0146,SITE-014,VISIT-000786,2025-08-15,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-08-22,2025-08-26,264
+DQ-000003,SUBJ-0152,SITE-015,VISIT-000827,2025-01-14,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-01-21,,
+DQ-000004,SUBJ-0060,SITE-006,VISIT-000320,2024-12-07,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-12-19,2024-12-22,360
+DQ-000005,SUBJ-0027,SITE-003,VISIT-000145,2026-06-06,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2026-06-11,,
+DQ-000006,SUBJ-0045,SITE-004,VISIT-000235,2025-12-26,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2026-01-05,2026-01-05,240
+DQ-000007,SUBJ-0185,SITE-017,,2025-01-17,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000008,SUBJ-0092,SITE-009,VISIT-000487,2025-07-14,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-07-17,,
+DQ-000009,SUBJ-0020,SITE-002,VISIT-000102,2026-03-28,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2026-04-03,2026-04-04,168
+DQ-000010,SUBJ-0056,SITE-005,VISIT-000302,2025-12-10,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-12-11,2025-12-17,168
+DQ-000011,SUBJ-0110,SITE-011,VISIT-000587,2025-05-04,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-05-05,2025-05-05,24
+DQ-000012,SUBJ-0199,SITE-019,VISIT-001089,2024-11-12,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2024-11-14,2024-11-17,120
+DQ-000013,SUBJ-0142,SITE-014,,2025-07-09,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-07-22,,
+DQ-000014,SUBJ-0090,SITE-009,VISIT-000475,2025-11-13,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-11-25,2025-12-01,432
+DQ-000015,SUBJ-0008,SITE-001,VISIT-000046,2025-09-13,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-22,2025-09-28,360
+DQ-000016,SUBJ-0065,SITE-006,VISIT-000345,2025-03-30,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-04-03,2025-04-07,192
+DQ-000017,SUBJ-0094,SITE-009,VISIT-000497,2025-08-14,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-08-17,,
+DQ-000018,SUBJ-0192,SITE-018,,2024-05-14,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2024-05-21,2024-05-26,288
+DQ-000019,SUBJ-0176,SITE-017,,2024-09-22,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-10-03,2024-10-03,264
+DQ-000020,SUBJ-0127,SITE-012,,2025-01-24,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-01-28,,
+DQ-000021,SUBJ-0191,SITE-018,VISIT-001042,2024-11-07,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-11-15,2024-11-16,216
+DQ-000022,SUBJ-0019,SITE-002,VISIT-000099,2026-02-07,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-02-14,2026-02-20,312
+DQ-000023,SUBJ-0123,SITE-012,VISIT-000665,2025-06-02,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-06-03,2025-06-08,144
+DQ-000024,SUBJ-0197,SITE-019,VISIT-001081,2024-11-30,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-12-03,2024-12-09,216
+DQ-000025,SUBJ-0053,SITE-005,VISIT-000284,2025-11-17,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-11-21,2025-11-25,192
+DQ-000026,SUBJ-0063,SITE-006,VISIT-000336,2025-07-16,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000027,SUBJ-0198,SITE-019,VISIT-001087,2025-03-14,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2025-03-18,2025-03-19,120
+DQ-000028,SUBJ-0033,SITE-003,,2025-12-19,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-12-31,2026-01-03,360
+DQ-000029,SUBJ-0086,SITE-009,,2025-05-02,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-05-13,2025-05-16,336
+DQ-000030,SUBJ-0195,SITE-018,,2024-07-17,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Answered,2024-07-28,,
+DQ-000031,SUBJ-0109,SITE-011,,2024-12-13,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-12-27,2024-12-28,360
+DQ-000032,SUBJ-0181,SITE-017,VISIT-000987,2025-01-02,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-01-06,,
+DQ-000033,SUBJ-0138,SITE-013,VISIT-000741,2025-06-05,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-06-09,2025-06-16,264
+DQ-000034,SUBJ-0029,SITE-003,VISIT-000158,2026-02-11,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-02-22,2026-02-23,288
+DQ-000035,SUBJ-0123,SITE-012,VISIT-000663,2025-04-29,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-04-30,,
+DQ-000036,SUBJ-0044,SITE-004,VISIT-000229,2025-11-22,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-12-02,2025-12-02,240
+DQ-000037,SUBJ-0097,SITE-010,,2024-12-31,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-01-03,2025-01-03,72
+DQ-000038,SUBJ-0043,SITE-004,VISIT-000226,2026-03-16,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-03-24,2026-03-24,192
+DQ-000039,SUBJ-0058,SITE-005,,2026-03-02,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2026-03-06,2026-03-07,120
+DQ-000040,SUBJ-0125,SITE-012,VISIT-000676,2024-12-22,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Answered,2024-12-28,,
+DQ-000041,SUBJ-0171,SITE-016,VISIT-000926,2024-12-05,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-12-13,2024-12-16,264
+DQ-000042,SUBJ-0147,SITE-014,VISIT-000793,2025-04-25,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-30,2025-05-04,216
+DQ-000043,SUBJ-0120,SITE-012,VISIT-000650,2025-07-17,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-07-22,,
+DQ-000044,SUBJ-0085,SITE-009,VISIT-000447,2025-07-18,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-07-30,,
+DQ-000045,SUBJ-0016,SITE-002,VISIT-000082,2026-02-06,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-02-17,2026-02-23,408
+DQ-000046,SUBJ-0132,SITE-013,VISIT-000712,2025-06-18,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Answered,2025-06-22,,
+DQ-000047,SUBJ-0102,SITE-010,,2025-04-28,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-05-10,2025-05-13,360
+DQ-000048,SUBJ-0168,SITE-016,VISIT-000911,2024-10-12,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000049,SUBJ-0197,SITE-019,,2024-09-13,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Answered,2024-09-25,,
+DQ-000050,SUBJ-0161,SITE-016,,2024-08-06,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-08-12,2024-08-16,240
+DQ-000051,SUBJ-0180,SITE-017,VISIT-000981,2024-11-08,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000052,SUBJ-0043,SITE-004,VISIT-000224,2026-01-14,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-01-20,2026-01-24,240
+DQ-000053,SUBJ-0060,SITE-006,,2024-12-08,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000054,SUBJ-0168,SITE-016,VISIT-000911,2024-10-27,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-11-03,2024-11-05,216
+DQ-000055,SUBJ-0080,SITE-008,VISIT-000420,2024-10-19,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-11-03,2024-11-09,504
+DQ-000056,SUBJ-0107,SITE-011,VISIT-000568,2025-06-18,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000057,SUBJ-0003,SITE-001,VISIT-000016,2025-11-16,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-11-26,2025-11-29,312
+DQ-000058,SUBJ-0015,SITE-002,VISIT-000077,2026-03-23,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-03-26,2026-03-29,144
+DQ-000059,SUBJ-0006,SITE-001,VISIT-000031,2025-12-08,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-12-11,,
+DQ-000060,SUBJ-0090,SITE-009,VISIT-000471,2025-07-28,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000061,SUBJ-0013,SITE-001,VISIT-000068,2025-10-01,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-10-03,2025-10-07,144
+DQ-000062,SUBJ-0108,SITE-011,VISIT-000578,2025-06-27,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-11,2025-07-18,504
+DQ-000063,SUBJ-0116,SITE-011,VISIT-000625,2025-05-04,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-05-10,2025-05-11,168
+DQ-000064,SUBJ-0075,SITE-008,VISIT-000400,2025-01-13,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-01-19,2025-01-20,168
+DQ-000065,SUBJ-0069,SITE-007,VISIT-000366,2025-07-12,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Answered,2025-07-15,,
+DQ-000066,SUBJ-0098,SITE-010,VISIT-000519,2025-04-28,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-05-07,2025-05-09,264
+DQ-000067,SUBJ-0127,SITE-012,VISIT-000688,2025-02-01,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-02-03,2025-02-08,168
+DQ-000068,SUBJ-0113,SITE-011,VISIT-000605,2025-04-25,Inconsistent,treatment_arm,High,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-05-09,2025-05-13,432
+DQ-000069,SUBJ-0062,SITE-006,VISIT-000327,2025-04-06,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000070,SUBJ-0148,SITE-014,,2025-08-04,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-08-12,,
+DQ-000071,SUBJ-0020,SITE-002,,2026-03-10,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000072,SUBJ-0194,SITE-018,,2024-09-02,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000073,SUBJ-0135,SITE-013,VISIT-000725,2025-09-17,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-09-28,,
+DQ-000074,SUBJ-0058,SITE-005,,2026-02-13,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-02-28,2026-03-03,432
+DQ-000075,SUBJ-0072,SITE-007,,2025-07-01,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-07-03,2025-07-09,192
+DQ-000076,SUBJ-0063,SITE-006,,2025-05-02,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-05-17,2025-05-17,360
+DQ-000077,SUBJ-0067,SITE-007,VISIT-000357,2025-08-11,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-13,2025-08-17,144
+DQ-000078,SUBJ-0189,SITE-018,VISIT-001032,2024-07-09,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2024-07-15,2024-07-20,264
+DQ-000079,SUBJ-0059,SITE-006,VISIT-000315,2025-01-13,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-01-23,,
+DQ-000080,SUBJ-0101,SITE-010,VISIT-000536,2025-02-19,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-02-26,2025-03-03,288
+DQ-000081,SUBJ-0190,SITE-018,VISIT-001040,2024-10-26,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-11-09,2024-11-11,384
+DQ-000082,SUBJ-0132,SITE-013,VISIT-000712,2025-06-14,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-06-24,2025-06-27,312
+DQ-000083,SUBJ-0178,SITE-017,VISIT-000973,2025-02-27,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-08,2025-03-09,240
+DQ-000084,SUBJ-0164,SITE-016,VISIT-000888,2025-01-14,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000085,SUBJ-0044,SITE-004,VISIT-000229,2025-11-20,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-11-22,,
+DQ-000086,SUBJ-0103,SITE-010,VISIT-000548,2024-12-30,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000087,SUBJ-0184,SITE-017,VISIT-001005,2024-12-10,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2024-12-13,2024-12-15,120
+DQ-000088,SUBJ-0197,SITE-019,,2024-09-11,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000089,SUBJ-0078,SITE-008,,2025-04-27,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-05-10,2025-05-13,384
+DQ-000090,SUBJ-0091,SITE-009,VISIT-000478,2025-02-01,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-02-15,2025-02-15,336
+DQ-000091,SUBJ-0121,SITE-012,VISIT-000656,2025-08-25,Inconsistent,treatment_arm,High,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-09-02,,
+DQ-000092,SUBJ-0028,SITE-003,VISIT-000153,2026-02-25,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2026-03-04,2026-03-05,192
+DQ-000093,SUBJ-0067,SITE-007,,2025-03-29,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-04-06,2025-04-12,336
+DQ-000094,SUBJ-0005,SITE-001,VISIT-000025,2025-07-16,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2025-07-28,2025-08-02,408
+DQ-000095,SUBJ-0068,SITE-007,VISIT-000362,2025-04-13,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-04-20,2025-04-21,192
+DQ-000096,SUBJ-0183,SITE-017,VISIT-001002,2025-02-21,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-02-26,,
+DQ-000097,SUBJ-0089,SITE-009,VISIT-000468,2025-05-07,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-05-16,,
+DQ-000098,SUBJ-0064,SITE-006,VISIT-000343,2025-09-30,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-10-11,2025-10-12,288
+DQ-000099,SUBJ-0201,SITE-019,VISIT-001095,2025-03-27,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000100,SUBJ-0012,SITE-001,VISIT-000067,2025-12-25,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2026-01-02,2026-01-06,288
+DQ-000101,SUBJ-0063,SITE-006,VISIT-000338,2025-09-04,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-09-05,,
+DQ-000102,SUBJ-0149,SITE-014,VISIT-000806,2025-06-06,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-06-09,2025-06-15,216
+DQ-000103,SUBJ-0056,SITE-005,,2025-12-23,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-01-06,2026-01-08,384
+DQ-000104,SUBJ-0107,SITE-011,VISIT-000567,2025-05-30,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-06-07,,
+DQ-000105,SUBJ-0078,SITE-008,VISIT-000408,2025-04-17,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000106,SUBJ-0087,SITE-009,VISIT-000457,2025-02-03,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-02-11,2025-02-13,240
+DQ-000107,SUBJ-0179,SITE-017,VISIT-000974,2025-01-20,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-01-28,2025-01-29,216
+DQ-000108,SUBJ-0098,SITE-010,,2025-05-02,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-05-10,2025-05-12,240
+DQ-000109,SUBJ-0017,SITE-002,VISIT-000091,2026-03-20,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2026-03-31,,
+DQ-000110,SUBJ-0080,SITE-008,VISIT-000420,2024-10-01,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-10-13,2024-10-20,456
+DQ-000111,SUBJ-0009,SITE-001,,2025-09-17,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-09-26,2025-09-29,288
+DQ-000112,SUBJ-0078,SITE-008,VISIT-000408,2025-03-23,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-03-24,2025-03-27,96
+DQ-000113,SUBJ-0078,SITE-008,VISIT-000413,2025-08-05,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-08-13,2025-08-18,312
+DQ-000114,SUBJ-0174,SITE-017,,2024-12-07,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2024-12-12,2024-12-14,168
+DQ-000115,SUBJ-0191,SITE-018,VISIT-001044,2025-01-11,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-01-17,2025-01-22,264
+DQ-000116,SUBJ-0178,SITE-017,VISIT-000973,2025-03-08,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000117,SUBJ-0065,SITE-006,VISIT-000345,2025-03-25,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-02,2025-04-09,360
+DQ-000118,SUBJ-0038,SITE-004,VISIT-000198,2025-12-04,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-12-10,2025-12-11,168
+DQ-000119,SUBJ-0020,SITE-002,,2026-03-16,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000120,SUBJ-0192,SITE-018,VISIT-001052,2024-09-12,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-09-27,2024-10-01,456
+DQ-000121,SUBJ-0013,SITE-001,VISIT-000068,2025-09-24,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-10-08,2025-10-08,336
+DQ-000122,SUBJ-0171,SITE-016,VISIT-000928,2025-01-08,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-01-17,2025-01-22,336
+DQ-000123,SUBJ-0013,SITE-001,VISIT-000068,2025-10-11,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-10-21,,
+DQ-000124,SUBJ-0192,SITE-018,,2024-06-01,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2024-06-09,,
+DQ-000125,SUBJ-0158,SITE-015,VISIT-000857,2025-03-25,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000126,SUBJ-0099,SITE-010,,2024-12-08,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Answered,2024-12-21,,
+DQ-000127,SUBJ-0161,SITE-016,,2024-07-16,Inconsistent,treatment_arm,High,Please reconcile the recorded treatment arm with the randomization record.,Answered,2024-07-20,,
+DQ-000128,SUBJ-0187,SITE-018,VISIT-001022,2024-05-15,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000129,SUBJ-0037,SITE-004,VISIT-000194,2026-02-10,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000130,SUBJ-0023,SITE-002,VISIT-000118,2025-10-27,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-10-29,2025-11-04,192
+DQ-000131,SUBJ-0140,SITE-014,VISIT-000750,2025-02-12,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-02-27,,
+DQ-000132,SUBJ-0065,SITE-006,VISIT-000345,2025-03-22,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-03-29,2025-04-01,240
+DQ-000133,SUBJ-0054,SITE-005,VISIT-000289,2025-12-08,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-12-13,2025-12-16,192
+DQ-000134,SUBJ-0010,SITE-001,VISIT-000058,2026-01-08,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-01-17,,
+DQ-000135,SUBJ-0080,SITE-008,VISIT-000423,2024-12-11,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2024-12-13,,
+DQ-000136,SUBJ-0141,SITE-014,,2025-07-15,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000137,SUBJ-0190,SITE-018,VISIT-001037,2024-07-25,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2024-07-26,2024-07-30,120
+DQ-000138,SUBJ-0106,SITE-011,,2025-04-19,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000139,SUBJ-0052,SITE-005,VISIT-000278,2025-11-13,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-11-17,,
+DQ-000140,SUBJ-0007,SITE-001,VISIT-000042,2026-04-10,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-04-16,,
+DQ-000141,SUBJ-0122,SITE-012,,2025-03-19,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-03-28,2025-03-31,288
+DQ-000142,SUBJ-0063,SITE-006,VISIT-000335,2025-05-21,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000143,SUBJ-0071,SITE-007,VISIT-000381,2025-08-24,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Answered,2025-09-06,,
+DQ-000144,SUBJ-0131,SITE-013,VISIT-000710,2025-12-05,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-12-13,2025-12-13,192
+DQ-000145,SUBJ-0166,SITE-016,VISIT-000897,2025-01-17,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000146,SUBJ-0177,SITE-017,VISIT-000964,2024-12-18,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000147,SUBJ-0147,SITE-014,VISIT-000796,2025-06-18,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-06-24,2025-06-24,144
+DQ-000148,SUBJ-0092,SITE-009,,2025-03-24,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-03-25,2025-03-31,168
+DQ-000149,SUBJ-0197,SITE-019,VISIT-001080,2024-11-10,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000150,SUBJ-0077,SITE-008,VISIT-000403,2025-03-26,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-04,2025-04-06,264
+DQ-000151,SUBJ-0025,SITE-003,,2025-10-11,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-10-20,2025-10-24,312
+DQ-000152,SUBJ-0176,SITE-017,VISIT-000959,2024-10-28,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2024-11-03,,
+DQ-000153,SUBJ-0078,SITE-008,VISIT-000410,2025-04-27,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-05-04,2025-05-08,264
+DQ-000154,SUBJ-0055,SITE-005,VISIT-000295,2026-01-12,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-01-13,2026-01-18,144
+DQ-000155,SUBJ-0136,SITE-013,VISIT-000731,2026-01-27,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000156,SUBJ-0043,SITE-004,VISIT-000226,2026-03-13,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2026-03-18,2026-03-21,192
+DQ-000157,SUBJ-0011,SITE-001,VISIT-000065,2026-02-14,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-02-18,,
+DQ-000158,SUBJ-0099,SITE-010,,2024-12-30,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Answered,2025-01-03,,
+DQ-000159,SUBJ-0191,SITE-018,VISIT-001043,2024-12-25,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2025-01-07,2025-01-08,336
+DQ-000160,SUBJ-0143,SITE-014,VISIT-000771,2025-10-20,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000161,SUBJ-0072,SITE-007,VISIT-000383,2025-07-21,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-22,2025-07-28,168
+DQ-000162,SUBJ-0039,SITE-004,VISIT-000202,2026-04-04,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2026-04-05,,
+DQ-000163,SUBJ-0200,SITE-019,VISIT-001090,2024-08-31,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-09-12,2024-09-15,360
+DQ-000164,SUBJ-0098,SITE-010,VISIT-000522,2025-07-19,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-07-20,2025-07-21,48
+DQ-000165,SUBJ-0154,SITE-015,VISIT-000833,2025-03-07,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000166,SUBJ-0052,SITE-005,VISIT-000281,2026-02-07,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-02-12,2026-02-17,240
+DQ-000167,SUBJ-0200,SITE-019,,2024-07-09,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-07-21,2024-07-24,360
+DQ-000168,SUBJ-0051,SITE-005,VISIT-000274,2026-06-07,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2026-06-18,2026-06-21,336
+DQ-000169,SUBJ-0189,SITE-018,VISIT-001029,2024-05-15,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000170,SUBJ-0087,SITE-009,VISIT-000457,2025-02-02,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-07,2025-02-13,264
+DQ-000171,SUBJ-0013,SITE-001,VISIT-000068,2025-09-22,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-09-29,2025-10-01,216
+DQ-000172,SUBJ-0127,SITE-012,VISIT-000690,2025-03-05,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-09,2025-03-09,96
+DQ-000173,SUBJ-0137,SITE-013,VISIT-000735,2025-09-11,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-09-16,2025-09-21,240
+DQ-000174,SUBJ-0094,SITE-009,VISIT-000497,2025-08-23,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-04,2025-09-07,360
+DQ-000175,SUBJ-0005,SITE-001,VISIT-000028,2025-09-10,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-11,2025-09-13,72
+DQ-000176,SUBJ-0059,SITE-006,VISIT-000319,2025-05-09,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-05-13,,
+DQ-000177,SUBJ-0170,SITE-016,VISIT-000921,2024-10-14,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-10-17,2024-10-17,72
+DQ-000178,SUBJ-0041,SITE-004,VISIT-000211,2025-09-24,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2025-09-25,2025-10-01,168
+DQ-000179,SUBJ-0038,SITE-004,VISIT-000198,2025-12-28,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-01-03,,
+DQ-000180,SUBJ-0197,SITE-019,VISIT-001080,2024-11-17,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-11-28,2024-12-01,336
+DQ-000181,SUBJ-0082,SITE-008,VISIT-000436,2025-07-14,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000182,SUBJ-0181,SITE-017,VISIT-000991,2025-04-03,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-04-07,,
+DQ-000183,SUBJ-0179,SITE-017,,2025-01-28,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000184,SUBJ-0011,SITE-001,VISIT-000063,2025-12-08,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-12-23,2025-12-23,360
+DQ-000185,SUBJ-0080,SITE-008,VISIT-000425,2025-01-29,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-02-03,,
+DQ-000186,SUBJ-0007,SITE-001,VISIT-000040,2026-01-24,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2026-01-28,2026-01-28,96
+DQ-000187,SUBJ-0191,SITE-018,VISIT-001041,2024-12-07,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2024-12-11,,
+DQ-000188,SUBJ-0067,SITE-007,,2025-04-14,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-04-19,,
+DQ-000189,SUBJ-0199,SITE-019,VISIT-001089,2024-11-04,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000190,SUBJ-0012,SITE-001,VISIT-000067,2026-01-11,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000191,SUBJ-0071,SITE-007,VISIT-000376,2025-04-20,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000192,SUBJ-0202,SITE-019,VISIT-001101,2024-12-03,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-12-09,2024-12-16,312
+DQ-000193,SUBJ-0027,SITE-003,VISIT-000142,2026-04-04,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000194,SUBJ-0036,SITE-003,,2026-01-23,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000195,SUBJ-0200,SITE-019,VISIT-001090,2024-09-07,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-09-11,2024-09-13,144
+DQ-000196,SUBJ-0140,SITE-014,VISIT-000754,2025-05-26,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000197,SUBJ-0181,SITE-017,VISIT-000990,2025-03-24,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-25,2025-03-31,168
+DQ-000198,SUBJ-0024,SITE-003,VISIT-000128,2026-05-04,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-05-19,2026-05-21,408
+DQ-000199,SUBJ-0139,SITE-013,VISIT-000748,2025-09-08,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-09-11,2025-09-17,216
+DQ-000200,SUBJ-0177,SITE-017,VISIT-000963,2024-10-13,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-10-28,2024-11-03,504
+DQ-000201,SUBJ-0109,SITE-011,VISIT-000582,2025-02-10,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000202,SUBJ-0067,SITE-007,,2025-04-03,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-04-12,2025-04-19,384
+DQ-000203,SUBJ-0184,SITE-017,VISIT-001008,2025-02-16,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-20,2025-02-22,144
+DQ-000204,SUBJ-0112,SITE-011,VISIT-000597,2025-02-14,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-02-27,2025-02-27,312
+DQ-000205,SUBJ-0082,SITE-008,VISIT-000435,2025-06-10,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000206,SUBJ-0179,SITE-017,VISIT-000978,2025-04-22,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000207,SUBJ-0064,SITE-006,VISIT-000341,2025-08-04,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-08-15,2025-08-16,288
+DQ-000208,SUBJ-0130,SITE-013,,2025-04-09,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000209,SUBJ-0135,SITE-013,VISIT-000725,2025-09-09,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-09-17,2025-09-22,312
+DQ-000210,SUBJ-0184,SITE-017,VISIT-001007,2025-02-05,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-02-19,2025-02-22,408
+DQ-000211,SUBJ-0003,SITE-001,,2025-10-06,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-10-21,2025-10-23,408
+DQ-000212,SUBJ-0066,SITE-006,VISIT-000348,2025-05-02,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-05-04,2025-05-05,72
+DQ-000213,SUBJ-0080,SITE-008,VISIT-000424,2025-01-18,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-01-29,2025-01-30,288
+DQ-000214,SUBJ-0180,SITE-017,VISIT-000981,2024-11-10,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-11-13,2024-11-20,240
+DQ-000215,SUBJ-0024,SITE-003,,2026-02-05,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-02-19,2026-02-22,408
+DQ-000216,SUBJ-0096,SITE-009,VISIT-000506,2025-01-04,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-01-12,2025-01-19,360
+DQ-000217,SUBJ-0001,SITE-001,VISIT-000002,2026-01-27,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-02-07,2026-02-14,432
+DQ-000218,SUBJ-0192,SITE-018,VISIT-001051,2024-08-12,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-08-16,2024-08-22,240
+DQ-000219,SUBJ-0158,SITE-015,VISIT-000853,2024-12-15,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2024-12-24,2024-12-24,216
+DQ-000220,SUBJ-0027,SITE-003,VISIT-000143,2026-04-30,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2026-05-13,,
+DQ-000221,SUBJ-0185,SITE-017,VISIT-001012,2025-02-27,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000222,SUBJ-0031,SITE-003,VISIT-000166,2025-10-31,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-11-05,,
+DQ-000223,SUBJ-0178,SITE-017,VISIT-000969,2024-11-08,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-11-16,2024-11-23,360
+DQ-000224,SUBJ-0015,SITE-002,VISIT-000080,2026-06-23,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2026-07-01,,
+DQ-000225,SUBJ-0172,SITE-016,VISIT-000932,2025-01-27,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-01-31,2025-02-06,240
+DQ-000226,SUBJ-0094,SITE-009,VISIT-000494,2025-06-23,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000227,SUBJ-0003,SITE-001,,2025-09-18,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-09-29,2025-10-05,408
+DQ-000228,SUBJ-0125,SITE-012,VISIT-000679,2025-03-21,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-03-30,2025-04-05,360
+DQ-000229,SUBJ-0179,SITE-017,VISIT-000974,2025-02-04,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-02-08,,
+DQ-000230,SUBJ-0034,SITE-003,VISIT-000177,2026-04-14,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-04-15,2026-04-17,72
+DQ-000231,SUBJ-0124,SITE-012,VISIT-000674,2025-10-15,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-10-23,,
+DQ-000232,SUBJ-0120,SITE-012,VISIT-000647,2025-04-19,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000233,SUBJ-0180,SITE-017,VISIT-000984,2025-01-23,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-01,2025-02-08,384
+DQ-000234,SUBJ-0199,SITE-019,VISIT-001089,2024-11-06,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000235,SUBJ-0198,SITE-019,VISIT-001085,2025-02-02,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-02-08,2025-02-09,168
+DQ-000236,SUBJ-0107,SITE-011,VISIT-000570,2025-07-23,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-01,2025-08-04,288
+DQ-000237,SUBJ-0003,SITE-001,VISIT-000016,2025-11-09,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-11-14,2025-11-18,216
+DQ-000238,SUBJ-0046,SITE-004,,2026-01-27,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000239,SUBJ-0067,SITE-007,VISIT-000356,2025-07-06,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2025-07-20,2025-07-24,432
+DQ-000240,SUBJ-0113,SITE-011,VISIT-000603,2025-03-19,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-23,2025-03-30,264
+DQ-000241,SUBJ-0159,SITE-015,VISIT-000863,2024-12-02,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2024-12-07,2024-12-14,288
+DQ-000242,SUBJ-0202,SITE-019,,2024-09-01,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-09-08,2024-09-11,240
+DQ-000243,SUBJ-0147,SITE-014,VISIT-000793,2025-04-12,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000244,SUBJ-0152,SITE-015,VISIT-000824,2024-10-22,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2024-10-30,2024-11-03,288
+DQ-000245,SUBJ-0143,SITE-014,VISIT-000771,2025-10-12,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-10-22,,
+DQ-000246,SUBJ-0003,SITE-001,VISIT-000013,2025-09-15,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2025-09-20,,
+DQ-000247,SUBJ-0061,SITE-006,VISIT-000325,2025-08-23,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-08-29,2025-08-30,168
+DQ-000248,SUBJ-0007,SITE-001,VISIT-000037,2025-12-17,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-12-26,2026-01-01,360
+DQ-000249,SUBJ-0083,SITE-008,VISIT-000438,2024-10-02,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-10-15,2024-10-21,456
+DQ-000250,SUBJ-0073,SITE-007,VISIT-000389,2025-01-31,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-09,2025-02-10,240
+DQ-000251,SUBJ-0046,SITE-004,VISIT-000246,2026-05-17,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-05-29,2026-06-03,408
+DQ-000252,SUBJ-0027,SITE-003,VISIT-000142,2026-04-19,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000253,SUBJ-0154,SITE-015,VISIT-000832,2025-01-26,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000254,SUBJ-0202,SITE-019,,2024-09-20,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2024-09-30,,
+DQ-000255,SUBJ-0009,SITE-001,VISIT-000053,2025-12-08,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-12-20,2025-12-22,336
+DQ-000256,SUBJ-0184,SITE-017,VISIT-001007,2025-01-22,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000257,SUBJ-0075,SITE-008,VISIT-000400,2025-01-19,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-01-23,,
+DQ-000258,SUBJ-0142,SITE-014,,2025-06-18,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-06-19,,
+DQ-000259,SUBJ-0149,SITE-014,VISIT-000807,2025-07-03,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-07,2025-07-14,264
+DQ-000260,SUBJ-0097,SITE-010,,2024-12-23,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-12-30,2024-12-31,192
+DQ-000261,SUBJ-0061,SITE-006,VISIT-000322,2025-05-22,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000262,SUBJ-0085,SITE-009,VISIT-000447,2025-06-26,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-06-28,2025-06-29,72
+DQ-000263,SUBJ-0161,SITE-016,,2024-07-26,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2024-08-06,,
+DQ-000264,SUBJ-0192,SITE-018,VISIT-001051,2024-08-23,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-08-25,2024-08-28,120
+DQ-000265,SUBJ-0009,SITE-001,,2025-10-01,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-10-14,2025-10-19,432
+DQ-000266,SUBJ-0015,SITE-002,VISIT-000080,2026-06-14,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2026-06-26,,
+DQ-000267,SUBJ-0145,SITE-014,VISIT-000785,2025-10-03,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-10-07,2025-10-07,96
+DQ-000268,SUBJ-0130,SITE-013,,2025-04-12,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-04-27,,
+DQ-000269,SUBJ-0066,SITE-006,VISIT-000347,2025-03-29,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-04-05,2025-04-10,288
+DQ-000270,SUBJ-0016,SITE-002,,2026-01-26,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000271,SUBJ-0089,SITE-009,,2025-02-12,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Answered,2025-02-23,,
+DQ-000272,SUBJ-0065,SITE-006,VISIT-000345,2025-03-29,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2025-04-10,2025-04-12,336
+DQ-000273,SUBJ-0099,SITE-010,VISIT-000529,2025-04-23,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000274,SUBJ-0035,SITE-003,VISIT-000182,2026-03-23,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-03-30,2026-04-06,336
+DQ-000275,SUBJ-0096,SITE-009,VISIT-000509,2025-03-22,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-03-23,2025-03-29,168
+DQ-000276,SUBJ-0166,SITE-016,VISIT-000900,2025-03-20,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-03-30,2025-04-04,360
+DQ-000277,SUBJ-0137,SITE-013,VISIT-000736,2025-10-03,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-10-10,2025-10-12,216
+DQ-000278,SUBJ-0162,SITE-016,VISIT-000877,2025-05-12,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Answered,2025-05-18,,
+DQ-000279,SUBJ-0112,SITE-011,VISIT-000597,2025-02-07,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-10,2025-02-15,192
+DQ-000280,SUBJ-0085,SITE-009,VISIT-000446,2025-06-10,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-06-21,2025-06-23,312
+DQ-000281,SUBJ-0121,SITE-012,,2025-05-02,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000282,SUBJ-0169,SITE-016,VISIT-000919,2025-03-17,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000283,SUBJ-0128,SITE-012,VISIT-000693,2025-03-28,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000284,SUBJ-0090,SITE-009,VISIT-000470,2025-07-19,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Answered,2025-07-23,,
+DQ-000285,SUBJ-0088,SITE-009,VISIT-000458,2025-01-09,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-01-10,2025-01-16,168
+DQ-000286,SUBJ-0096,SITE-009,VISIT-000510,2025-03-29,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-31,2025-04-07,216
+DQ-000287,SUBJ-0021,SITE-002,VISIT-000109,2025-12-10,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-12-22,2025-12-26,384
+DQ-000288,SUBJ-0032,SITE-003,VISIT-000167,2026-03-01,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-03-05,,
+DQ-000289,SUBJ-0079,SITE-008,VISIT-000418,2025-03-20,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-02,2025-04-05,384
+DQ-000290,SUBJ-0124,SITE-012,VISIT-000669,2025-06-21,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-07-04,2025-07-05,336
+DQ-000291,SUBJ-0049,SITE-005,VISIT-000262,2026-04-28,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-05-13,2026-05-16,432
+DQ-000292,SUBJ-0199,SITE-019,VISIT-001089,2024-11-09,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Closed,2024-11-16,2024-11-23,336
+DQ-000293,SUBJ-0171,SITE-016,VISIT-000929,2025-01-27,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-02-10,2025-02-14,432
+DQ-000294,SUBJ-0040,SITE-004,VISIT-000210,2026-05-24,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000295,SUBJ-0149,SITE-014,,2025-04-23,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-24,2025-04-26,72
+DQ-000296,SUBJ-0112,SITE-011,VISIT-000598,2025-02-03,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-02-12,,
+DQ-000297,SUBJ-0022,SITE-002,VISIT-000116,2026-06-27,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-07-04,2026-07-04,168
+DQ-000298,SUBJ-0042,SITE-004,,2026-02-07,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2026-02-12,2026-02-16,216
+DQ-000299,SUBJ-0104,SITE-010,VISIT-000549,2025-05-19,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-05-23,2025-05-28,216
+DQ-000300,SUBJ-0115,SITE-011,VISIT-000617,2025-07-05,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-07-18,2025-07-19,336
+DQ-000301,SUBJ-0008,SITE-001,VISIT-000046,2025-09-06,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-08,2025-09-13,168
+DQ-000302,SUBJ-0141,SITE-014,,2025-07-12,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-07-20,2025-07-27,360
+DQ-000303,SUBJ-0185,SITE-017,VISIT-001013,2025-03-21,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-03-22,2025-03-23,48
+DQ-000304,SUBJ-0091,SITE-009,VISIT-000477,2025-01-06,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-18,2025-01-21,360
+DQ-000305,SUBJ-0198,SITE-019,VISIT-001084,2025-01-06,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-14,2025-01-17,264
+DQ-000306,SUBJ-0012,SITE-001,VISIT-000067,2025-12-29,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-01-09,2026-01-13,360
+DQ-000307,SUBJ-0125,SITE-012,VISIT-000679,2025-04-05,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-04-12,2025-04-18,312
+DQ-000308,SUBJ-0185,SITE-017,VISIT-001013,2025-03-19,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-03-28,2025-03-28,216
+DQ-000309,SUBJ-0120,SITE-012,VISIT-000646,2025-03-11,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-03-13,2025-03-17,144
+DQ-000310,SUBJ-0203,SITE-019,VISIT-001105,2024-09-23,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Answered,2024-09-30,,
+DQ-000311,SUBJ-0189,SITE-018,VISIT-001034,2024-08-24,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2024-08-31,2024-09-02,216
+DQ-000312,SUBJ-0062,SITE-006,VISIT-000331,2025-07-23,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-04,2025-08-09,408
+DQ-000313,SUBJ-0131,SITE-013,VISIT-000711,2026-01-17,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-01-25,2026-01-29,288
+DQ-000314,SUBJ-0164,SITE-016,VISIT-000884,2024-10-15,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2024-10-22,2024-10-25,240
+DQ-000315,SUBJ-0049,SITE-005,VISIT-000263,2026-05-28,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-06-10,2026-06-10,312
+DQ-000316,SUBJ-0083,SITE-008,VISIT-000438,2024-10-16,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2024-10-25,2024-10-29,312
+DQ-000317,SUBJ-0049,SITE-005,VISIT-000261,2026-03-31,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-04-05,2026-04-05,120
+DQ-000318,SUBJ-0118,SITE-012,,2025-02-23,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000319,SUBJ-0089,SITE-009,VISIT-000467,2025-04-19,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-05-01,2025-05-06,408
+DQ-000320,SUBJ-0061,SITE-006,VISIT-000322,2025-06-03,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-06-15,,
+DQ-000321,SUBJ-0089,SITE-009,VISIT-000465,2025-02-06,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-02-09,2025-02-14,192
+DQ-000322,SUBJ-0138,SITE-013,VISIT-000742,2025-06-30,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-02,2025-07-02,48
+DQ-000323,SUBJ-0067,SITE-007,VISIT-000357,2025-07-24,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-03,2025-08-05,288
+DQ-000324,SUBJ-0191,SITE-018,VISIT-001044,2025-01-06,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-09,2025-01-16,240
+DQ-000325,SUBJ-0123,SITE-012,VISIT-000666,2025-07-08,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-13,2025-07-13,120
+DQ-000326,SUBJ-0156,SITE-015,VISIT-000845,2025-03-06,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-03-14,,
+DQ-000327,SUBJ-0078,SITE-008,,2025-04-11,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-04-24,,
+DQ-000328,SUBJ-0022,SITE-002,VISIT-000114,2026-05-06,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-05-21,2026-05-25,456
+DQ-000329,SUBJ-0030,SITE-003,VISIT-000163,2026-04-15,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2026-04-19,2026-04-23,192
+DQ-000330,SUBJ-0007,SITE-001,VISIT-000037,2025-12-15,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000331,SUBJ-0094,SITE-009,,2025-06-24,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000332,SUBJ-0144,SITE-014,,2025-02-14,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-02-23,2025-03-02,384
+DQ-000333,SUBJ-0190,SITE-018,VISIT-001037,2024-07-28,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-08-11,2024-08-13,384
+DQ-000334,SUBJ-0128,SITE-012,VISIT-000693,2025-04-08,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-12,2025-04-15,168
+DQ-000335,SUBJ-0087,SITE-009,VISIT-000457,2025-01-25,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-02-09,2025-02-13,456
+DQ-000336,SUBJ-0092,SITE-009,,2025-04-01,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-04-12,,
+DQ-000337,SUBJ-0141,SITE-014,VISIT-000761,2025-10-28,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-11-04,,
+DQ-000338,SUBJ-0088,SITE-009,VISIT-000461,2025-03-29,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2025-04-10,,
+DQ-000339,SUBJ-0003,SITE-001,VISIT-000017,2025-12-29,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-01-13,2026-01-14,384
+DQ-000340,SUBJ-0068,SITE-007,VISIT-000359,2025-01-05,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-01-14,2025-01-21,384
+DQ-000341,SUBJ-0026,SITE-003,,2026-03-02,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-03-17,2026-03-21,456
+DQ-000342,SUBJ-0010,SITE-001,VISIT-000059,2026-01-25,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-01-30,2026-02-02,192
+DQ-000343,SUBJ-0023,SITE-002,VISIT-000122,2026-01-20,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-02-02,2026-02-05,384
+DQ-000344,SUBJ-0186,SITE-017,VISIT-001017,2024-11-18,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-12-02,2024-12-04,384
+DQ-000345,SUBJ-0008,SITE-001,VISIT-000044,2025-07-22,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-01,2025-08-05,336
+DQ-000346,SUBJ-0041,SITE-004,VISIT-000212,2025-10-14,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-10-19,2025-10-21,168
+DQ-000347,SUBJ-0096,SITE-009,VISIT-000507,2025-01-16,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-18,2025-01-21,120
+DQ-000348,SUBJ-0049,SITE-005,VISIT-000260,2026-02-23,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2026-03-04,2026-03-07,288
+DQ-000349,SUBJ-0183,SITE-017,VISIT-001003,2025-04-10,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-18,2025-04-18,192
+DQ-000350,SUBJ-0192,SITE-018,VISIT-001050,2024-07-17,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-07-20,2024-07-24,168
+DQ-000351,SUBJ-0174,SITE-017,VISIT-000944,2024-12-04,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Answered,2024-12-09,,
+DQ-000352,SUBJ-0104,SITE-010,VISIT-000551,2025-06-21,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-06-26,,
+DQ-000353,SUBJ-0174,SITE-017,VISIT-000948,2025-03-17,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-21,2025-03-26,216
+DQ-000354,SUBJ-0055,SITE-005,VISIT-000296,2026-01-26,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000355,SUBJ-0140,SITE-014,VISIT-000753,2025-04-28,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-05-10,,
+DQ-000356,SUBJ-0141,SITE-014,VISIT-000761,2025-11-04,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-11-17,2025-11-20,384
+DQ-000357,SUBJ-0013,SITE-001,,2025-06-14,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-06-21,2025-06-27,312
+DQ-000358,SUBJ-0134,SITE-013,VISIT-000720,2025-09-02,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-09,2025-09-13,264
+DQ-000359,SUBJ-0113,SITE-011,VISIT-000605,2025-04-27,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-05-01,2025-05-07,240
+DQ-000360,SUBJ-0157,SITE-015,VISIT-000851,2024-12-08,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Answered,2024-12-09,,
+DQ-000361,SUBJ-0106,SITE-011,VISIT-000563,2025-05-09,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-05-16,2025-05-20,264
+DQ-000362,SUBJ-0009,SITE-001,,2025-09-18,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-09-24,2025-09-27,216
+DQ-000363,SUBJ-0099,SITE-010,VISIT-000524,2024-12-11,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-12-13,2024-12-18,168
+DQ-000364,SUBJ-0068,SITE-007,VISIT-000363,2025-05-15,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000365,SUBJ-0132,SITE-013,VISIT-000712,2025-06-20,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000366,SUBJ-0084,SITE-008,VISIT-000440,2024-11-09,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-11-16,2024-11-20,264
+DQ-000367,SUBJ-0006,SITE-001,,2025-12-10,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-12-19,2025-12-20,240
+DQ-000368,SUBJ-0080,SITE-008,VISIT-000423,2024-12-26,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000369,SUBJ-0055,SITE-005,,2026-01-15,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Answered,2026-01-23,,
+DQ-000370,SUBJ-0119,SITE-012,VISIT-000640,2024-12-24,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Answered,2024-12-31,,
+DQ-000371,SUBJ-0103,SITE-010,VISIT-000548,2025-01-12,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000372,SUBJ-0033,SITE-003,VISIT-000173,2026-04-13,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2026-04-27,2026-04-30,408
+DQ-000373,SUBJ-0135,SITE-013,VISIT-000725,2025-08-30,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-14,2025-09-19,480
+DQ-000374,SUBJ-0184,SITE-017,VISIT-001005,2024-11-28,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000375,SUBJ-0119,SITE-012,VISIT-000641,2025-02-07,Inconsistent,treatment_arm,High,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-02-15,,
+DQ-000376,SUBJ-0118,SITE-012,VISIT-000638,2025-07-11,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000377,SUBJ-0199,SITE-019,VISIT-001089,2024-10-19,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2024-10-22,2024-10-28,216
+DQ-000378,SUBJ-0003,SITE-001,VISIT-000017,2025-12-15,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000379,SUBJ-0033,SITE-003,VISIT-000172,2026-03-27,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Answered,2026-04-09,,
+DQ-000380,SUBJ-0022,SITE-002,VISIT-000116,2026-06-24,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-07-07,2026-07-11,408
+DQ-000381,SUBJ-0014,SITE-002,VISIT-000070,2026-02-02,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000382,SUBJ-0194,SITE-018,,2024-09-03,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-09-08,2024-09-13,240
+DQ-000383,SUBJ-0030,SITE-003,VISIT-000161,2026-03-01,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2026-03-06,,
+DQ-000384,SUBJ-0076,SITE-008,VISIT-000401,2025-04-14,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-04-26,,
+DQ-000385,SUBJ-0079,SITE-008,VISIT-000419,2025-04-05,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-04-15,2025-04-20,360
+DQ-000386,SUBJ-0188,SITE-018,,2024-06-04,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2024-06-12,2024-06-18,336
+DQ-000387,SUBJ-0014,SITE-002,VISIT-000073,2026-04-13,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-04-21,2026-04-23,240
+DQ-000388,SUBJ-0008,SITE-001,,2025-08-02,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-08-08,2025-08-10,192
+DQ-000389,SUBJ-0027,SITE-003,VISIT-000144,2026-05-07,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-05-12,2026-05-18,264
+DQ-000390,SUBJ-0035,SITE-003,VISIT-000181,2026-03-11,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-03-21,2026-03-26,360
+DQ-000391,SUBJ-0057,SITE-005,VISIT-000307,2025-11-02,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-11-05,2025-11-06,96
+DQ-000392,SUBJ-0172,SITE-016,VISIT-000936,2025-05-05,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-05-16,2025-05-18,312
+DQ-000393,SUBJ-0001,SITE-001,VISIT-000006,2026-05-11,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2026-05-26,2026-06-02,528
+DQ-000394,SUBJ-0094,SITE-009,VISIT-000496,2025-07-30,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-07,2025-08-12,312
+DQ-000395,SUBJ-0068,SITE-007,VISIT-000362,2025-04-14,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-20,2025-04-20,144
+DQ-000396,SUBJ-0052,SITE-005,VISIT-000279,2025-12-06,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-12-11,2025-12-17,264
+DQ-000397,SUBJ-0065,SITE-006,VISIT-000345,2025-04-03,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-04-17,2025-04-24,504
+DQ-000398,SUBJ-0120,SITE-012,VISIT-000648,2025-05-23,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-06-04,2025-06-08,384
+DQ-000399,SUBJ-0138,SITE-013,VISIT-000741,2025-05-29,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000400,SUBJ-0176,SITE-017,VISIT-000956,2024-09-01,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-09-13,2024-09-16,360
+DQ-000401,SUBJ-0104,SITE-010,VISIT-000553,2025-08-15,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-08-21,2025-08-21,144
+DQ-000402,SUBJ-0035,SITE-003,VISIT-000180,2026-02-11,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2026-02-24,2026-02-28,408
+DQ-000403,SUBJ-0096,SITE-009,VISIT-000507,2025-02-03,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000404,SUBJ-0070,SITE-007,VISIT-000375,2025-09-19,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000405,SUBJ-0171,SITE-016,VISIT-000931,2025-03-24,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-02,2025-04-08,360
+DQ-000406,SUBJ-0096,SITE-009,VISIT-000511,2025-05-11,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-05-15,2025-05-22,264
+DQ-000407,SUBJ-0002,SITE-001,VISIT-000011,2026-01-07,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-01-12,2026-01-12,120
+DQ-000408,SUBJ-0116,SITE-011,VISIT-000621,2025-01-16,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-29,2025-01-29,312
+DQ-000409,SUBJ-0146,SITE-014,VISIT-000790,2025-11-08,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-11-16,2025-11-22,336
+DQ-000410,SUBJ-0137,SITE-013,,2025-07-25,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-31,2025-08-06,288
+DQ-000411,SUBJ-0181,SITE-017,VISIT-000990,2025-03-22,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000412,SUBJ-0041,SITE-004,VISIT-000211,2025-09-28,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-10-06,,
+DQ-000413,SUBJ-0089,SITE-009,VISIT-000467,2025-04-22,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-05-04,2025-05-05,312
+DQ-000414,SUBJ-0180,SITE-017,,2024-11-02,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2024-11-15,2024-11-18,384
+DQ-000415,SUBJ-0158,SITE-015,VISIT-000855,2025-01-16,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-25,2025-01-25,216
+DQ-000416,SUBJ-0191,SITE-018,VISIT-001041,2024-11-20,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-11-29,2024-11-30,240
+DQ-000417,SUBJ-0024,SITE-003,,2026-02-07,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2026-02-12,,
+DQ-000418,SUBJ-0140,SITE-014,,2025-03-09,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000419,SUBJ-0076,SITE-008,VISIT-000401,2025-04-11,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-04-26,2025-04-28,408
+DQ-000420,SUBJ-0089,SITE-009,VISIT-000465,2025-02-06,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-10,2025-02-10,96
+DQ-000421,SUBJ-0025,SITE-003,VISIT-000130,2025-10-03,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000422,SUBJ-0029,SITE-003,VISIT-000156,2025-12-16,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000423,SUBJ-0099,SITE-010,VISIT-000525,2024-12-15,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2024-12-16,,
+DQ-000424,SUBJ-0044,SITE-004,,2025-11-27,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2025-12-11,2025-12-16,456
+DQ-000425,SUBJ-0098,SITE-010,VISIT-000523,2025-08-20,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000426,SUBJ-0097,SITE-010,,2024-12-22,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-12-28,2024-12-29,168
+DQ-000427,SUBJ-0051,SITE-005,VISIT-000276,2026-07-12,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-07-13,2026-07-16,96
+DQ-000428,SUBJ-0174,SITE-017,VISIT-000945,2024-12-09,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-12-17,2024-12-20,264
+DQ-000429,SUBJ-0171,SITE-016,VISIT-000928,2025-01-03,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-01-04,,
+DQ-000430,SUBJ-0046,SITE-004,VISIT-000243,2026-02-27,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2026-03-12,2026-03-15,384
+DQ-000431,SUBJ-0088,SITE-009,VISIT-000463,2025-05-17,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-05-21,2025-05-22,120
+DQ-000432,SUBJ-0100,SITE-010,VISIT-000532,2025-07-31,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000433,SUBJ-0140,SITE-014,VISIT-000752,2025-03-20,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-03-31,,
+DQ-000434,SUBJ-0172,SITE-016,VISIT-000937,2025-06-03,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-06-13,2025-06-19,384
+DQ-000435,SUBJ-0017,SITE-002,VISIT-000088,2026-01-17,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Answered,2026-01-20,,
+DQ-000436,SUBJ-0162,SITE-016,VISIT-000876,2025-04-08,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-04-09,2025-04-13,120
+DQ-000437,SUBJ-0103,SITE-010,,2024-11-30,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-12-09,2024-12-13,312
+DQ-000438,SUBJ-0113,SITE-011,VISIT-000604,2025-03-14,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2025-03-19,2025-03-20,144
+DQ-000439,SUBJ-0166,SITE-016,VISIT-000896,2024-12-08,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000440,SUBJ-0016,SITE-002,VISIT-000084,2026-04-08,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000441,SUBJ-0119,SITE-012,VISIT-000642,2025-02-19,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Answered,2025-03-06,,
+DQ-000442,SUBJ-0157,SITE-015,VISIT-000848,2024-08-17,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000443,SUBJ-0166,SITE-016,VISIT-000899,2025-03-03,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2025-03-05,,
+DQ-000444,SUBJ-0119,SITE-012,VISIT-000642,2025-03-10,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-03-25,2025-03-27,408
+DQ-000445,SUBJ-0107,SITE-011,VISIT-000572,2025-09-17,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-10-02,2025-10-07,480
+DQ-000446,SUBJ-0051,SITE-005,,2026-03-17,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000447,SUBJ-0090,SITE-009,VISIT-000473,2025-09-12,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-09-23,,
+DQ-000448,SUBJ-0174,SITE-017,VISIT-000948,2025-03-04,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-08,2025-03-08,96
+DQ-000449,SUBJ-0127,SITE-012,VISIT-000687,2024-12-29,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-01-13,,
+DQ-000450,SUBJ-0084,SITE-008,VISIT-000439,2024-11-04,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-11-18,2024-11-25,504
+DQ-000451,SUBJ-0062,SITE-006,VISIT-000327,2025-04-06,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-13,2025-04-13,168
+DQ-000452,SUBJ-0200,SITE-019,VISIT-001090,2024-09-13,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-09-20,2024-09-27,336
+DQ-000453,SUBJ-0031,SITE-003,VISIT-000166,2025-11-25,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-11-27,,
+DQ-000454,SUBJ-0167,SITE-016,,2025-03-10,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-17,2025-03-20,240
+DQ-000455,SUBJ-0186,SITE-017,VISIT-001020,2025-02-17,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000456,SUBJ-0091,SITE-009,VISIT-000479,2025-03-17,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-19,2025-03-22,120
+DQ-000457,SUBJ-0153,SITE-015,VISIT-000828,2024-09-14,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2024-09-28,,
+DQ-000458,SUBJ-0055,SITE-005,VISIT-000300,2026-04-16,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000459,SUBJ-0078,SITE-008,VISIT-000412,2025-07-05,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-07-11,2025-07-17,288
+DQ-000460,SUBJ-0143,SITE-014,VISIT-000772,2025-10-31,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-11-02,2025-11-08,192
+DQ-000461,SUBJ-0013,SITE-001,VISIT-000068,2025-09-19,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-20,2025-09-26,168
+DQ-000462,SUBJ-0070,SITE-007,VISIT-000374,2025-09-07,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-09-11,,
+DQ-000463,SUBJ-0039,SITE-004,,2026-01-17,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-01-24,2026-01-24,168
+DQ-000464,SUBJ-0128,SITE-012,VISIT-000693,2025-03-25,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-04-08,,
+DQ-000465,SUBJ-0038,SITE-004,,2025-08-14,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-21,2025-08-25,264
+DQ-000466,SUBJ-0080,SITE-008,,2024-10-14,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-10-25,2024-10-31,408
+DQ-000467,SUBJ-0001,SITE-001,VISIT-000005,2026-04-18,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2026-05-03,,
+DQ-000468,SUBJ-0088,SITE-009,VISIT-000462,2025-04-07,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000469,SUBJ-0069,SITE-007,VISIT-000367,2025-08-13,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-08-28,2025-08-31,432
+DQ-000470,SUBJ-0135,SITE-013,VISIT-000725,2025-09-02,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-09-15,,
+DQ-000471,SUBJ-0078,SITE-008,,2025-04-13,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-17,2025-04-24,264
+DQ-000472,SUBJ-0171,SITE-016,VISIT-000928,2024-12-26,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000473,SUBJ-0014,SITE-002,,2026-01-24,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2026-02-06,2026-02-12,456
+DQ-000474,SUBJ-0005,SITE-001,VISIT-000029,2025-10-15,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-10-17,,
+DQ-000475,SUBJ-0106,SITE-011,VISIT-000562,2025-04-10,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-04-17,,
+DQ-000476,SUBJ-0144,SITE-014,VISIT-000779,2025-06-30,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-07-07,2025-07-11,264
+DQ-000477,SUBJ-0029,SITE-003,VISIT-000157,2026-02-06,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2026-02-14,2026-02-21,360
+DQ-000478,SUBJ-0053,SITE-005,VISIT-000284,2025-11-03,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-11-07,,
+DQ-000479,SUBJ-0125,SITE-012,VISIT-000677,2025-02-03,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-02-16,2025-02-18,360
+DQ-000480,SUBJ-0120,SITE-012,VISIT-000647,2025-04-09,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-04-21,2025-04-28,456
+DQ-000481,SUBJ-0201,SITE-019,VISIT-001096,2025-04-29,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-05-12,,
+DQ-000482,SUBJ-0193,SITE-018,VISIT-001054,2024-10-30,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000483,SUBJ-0179,SITE-017,,2025-01-18,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-01-31,,
+DQ-000484,SUBJ-0038,SITE-004,VISIT-000198,2025-12-27,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000485,SUBJ-0094,SITE-009,VISIT-000494,2025-06-27,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Answered,2025-06-28,,
+DQ-000486,SUBJ-0099,SITE-010,VISIT-000525,2024-12-27,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000487,SUBJ-0149,SITE-014,,2025-05-10,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000488,SUBJ-0131,SITE-013,VISIT-000707,2025-10-04,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-10-09,,
+DQ-000489,SUBJ-0072,SITE-007,VISIT-000386,2025-09-22,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Answered,2025-09-28,,
+DQ-000490,SUBJ-0089,SITE-009,,2025-02-17,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-02-20,2025-02-22,120
+DQ-000491,SUBJ-0102,SITE-010,VISIT-000547,2025-08-07,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Closed,2025-08-10,2025-08-14,168
+DQ-000492,SUBJ-0037,SITE-004,VISIT-000192,2025-12-16,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-12-26,2025-12-28,288
+DQ-000493,SUBJ-0004,SITE-001,VISIT-000021,2025-11-07,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-11-21,,
+DQ-000494,SUBJ-0035,SITE-003,VISIT-000184,2026-06-01,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000495,SUBJ-0167,SITE-016,VISIT-000902,2025-02-14,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Answered,2025-02-25,,
+DQ-000496,SUBJ-0046,SITE-004,VISIT-000243,2026-02-16,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000497,SUBJ-0039,SITE-004,VISIT-000201,2026-02-27,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-03-10,2026-03-13,336
+DQ-000498,SUBJ-0006,SITE-001,VISIT-000036,2026-03-27,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-04-02,2026-04-06,240
+DQ-000499,SUBJ-0170,SITE-016,,2024-10-03,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000500,SUBJ-0140,SITE-014,VISIT-000750,2025-03-12,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-03-24,2025-03-29,408
+DQ-000501,SUBJ-0057,SITE-005,VISIT-000307,2025-11-10,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2025-11-22,2025-11-25,360
+DQ-000502,SUBJ-0177,SITE-017,VISIT-000966,2025-01-14,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-01-16,2025-01-18,96
+DQ-000503,SUBJ-0066,SITE-006,VISIT-000348,2025-05-10,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-05-17,2025-05-20,240
+DQ-000504,SUBJ-0189,SITE-018,VISIT-001030,2024-05-18,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2024-06-01,2024-06-03,384
+DQ-000505,SUBJ-0069,SITE-007,,2025-05-29,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-06-13,2025-06-15,408
+DQ-000506,SUBJ-0058,SITE-005,VISIT-000309,2026-02-19,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-02-22,,
+DQ-000507,SUBJ-0188,SITE-018,VISIT-001026,2024-07-19,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-08-03,2024-08-10,528
+DQ-000508,SUBJ-0132,SITE-013,VISIT-000712,2025-07-11,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000509,SUBJ-0015,SITE-002,VISIT-000079,2026-05-14,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2026-05-24,2026-05-28,336
+DQ-000510,SUBJ-0060,SITE-006,VISIT-000320,2024-12-05,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000511,SUBJ-0171,SITE-016,VISIT-000931,2025-03-13,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-03-16,,
+DQ-000512,SUBJ-0173,SITE-016,VISIT-000943,2025-04-11,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000513,SUBJ-0129,SITE-013,,2025-04-23,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-04-29,,
+DQ-000514,SUBJ-0043,SITE-004,VISIT-000226,2026-03-10,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2026-03-15,2026-03-18,192
+DQ-000515,SUBJ-0194,SITE-018,,2024-09-15,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000516,SUBJ-0117,SITE-011,VISIT-000628,2025-06-22,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2025-07-02,,
+DQ-000517,SUBJ-0095,SITE-009,VISIT-000502,2025-04-18,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-04-29,2025-05-05,408
+DQ-000518,SUBJ-0076,SITE-008,VISIT-000401,2025-03-22,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-05,2025-04-09,432
+DQ-000519,SUBJ-0150,SITE-014,VISIT-000813,2025-10-12,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000520,SUBJ-0067,SITE-007,VISIT-000357,2025-07-26,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000521,SUBJ-0177,SITE-017,VISIT-000966,2025-02-02,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-08,2025-02-14,288
+DQ-000522,SUBJ-0012,SITE-001,,2025-06-25,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-04,2025-07-09,336
+DQ-000523,SUBJ-0148,SITE-014,VISIT-000799,2025-07-28,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000524,SUBJ-0094,SITE-009,VISIT-000496,2025-07-28,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-08-02,2025-08-05,192
+DQ-000525,SUBJ-0055,SITE-005,VISIT-000299,2026-03-21,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2026-04-05,,
+DQ-000526,SUBJ-0020,SITE-002,VISIT-000104,2026-05-31,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2026-06-06,2026-06-13,312
+DQ-000527,SUBJ-0159,SITE-015,VISIT-000864,2024-12-29,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2024-12-31,,
+DQ-000528,SUBJ-0192,SITE-018,VISIT-001051,2024-08-14,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-08-20,2024-08-25,264
+DQ-000529,SUBJ-0062,SITE-006,VISIT-000329,2025-05-10,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-05-21,2025-05-28,432
+DQ-000530,SUBJ-0148,SITE-014,,2025-07-28,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-31,2025-08-07,240
+DQ-000531,SUBJ-0198,SITE-019,VISIT-001086,2025-03-01,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-03-13,2025-03-17,384
+DQ-000532,SUBJ-0121,SITE-012,VISIT-000655,2025-07-24,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-07-27,2025-08-02,216
+DQ-000533,SUBJ-0012,SITE-001,VISIT-000067,2026-01-20,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-01-29,2026-01-29,216
+DQ-000534,SUBJ-0128,SITE-012,VISIT-000693,2025-03-10,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000535,SUBJ-0190,SITE-018,VISIT-001040,2024-10-27,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-10-31,2024-11-06,240
+DQ-000536,SUBJ-0148,SITE-014,VISIT-000799,2025-08-18,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000537,SUBJ-0007,SITE-001,VISIT-000038,2025-11-28,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000538,SUBJ-0077,SITE-008,VISIT-000402,2025-03-23,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-04-01,2025-04-01,216
+DQ-000539,SUBJ-0043,SITE-004,VISIT-000227,2026-04-05,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000540,SUBJ-0027,SITE-003,,2026-04-27,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-05-01,2026-05-01,96
+DQ-000541,SUBJ-0037,SITE-004,VISIT-000192,2026-01-05,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000542,SUBJ-0006,SITE-001,VISIT-000033,2026-01-18,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000543,SUBJ-0052,SITE-005,,2025-11-16,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Answered,2025-11-20,,
+DQ-000544,SUBJ-0009,SITE-001,VISIT-000053,2025-12-23,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000545,SUBJ-0198,SITE-019,,2025-01-10,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-01-13,2025-01-16,144
+DQ-000546,SUBJ-0018,SITE-002,VISIT-000096,2026-06-18,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000547,SUBJ-0101,SITE-010,,2025-03-18,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-03-26,,
+DQ-000548,SUBJ-0022,SITE-002,VISIT-000114,2026-04-19,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-04-29,2026-04-29,240
+DQ-000549,SUBJ-0097,SITE-010,VISIT-000513,2024-12-29,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-01-07,,
+DQ-000550,SUBJ-0174,SITE-017,,2024-12-24,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000551,SUBJ-0036,SITE-003,VISIT-000187,2026-02-04,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-02-19,2026-02-26,528
+DQ-000552,SUBJ-0131,SITE-013,,2025-09-21,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-09-25,2025-09-29,192
+DQ-000553,SUBJ-0055,SITE-005,VISIT-000295,2025-12-21,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2025-12-28,,
+DQ-000554,SUBJ-0137,SITE-013,VISIT-000737,2025-11-17,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-11-29,2025-12-05,432
+DQ-000555,SUBJ-0182,SITE-017,VISIT-000997,2024-11-21,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-12-05,2024-12-08,408
+DQ-000556,SUBJ-0196,SITE-019,VISIT-001074,2024-12-25,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-01-04,2025-01-11,408
+DQ-000557,SUBJ-0059,SITE-006,VISIT-000319,2025-05-21,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-06-01,2025-06-03,312
+DQ-000558,SUBJ-0151,SITE-014,VISIT-000818,2025-08-28,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-09-06,2025-09-09,288
+DQ-000559,SUBJ-0181,SITE-017,VISIT-000987,2025-01-03,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000560,SUBJ-0040,SITE-004,VISIT-000206,2026-01-24,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-02-08,2026-02-10,408
+DQ-000561,SUBJ-0135,SITE-013,VISIT-000725,2025-08-31,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-09-13,,
+DQ-000562,SUBJ-0108,SITE-011,VISIT-000577,2025-05-02,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000563,SUBJ-0066,SITE-006,VISIT-000346,2025-03-12,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-03-26,2025-03-26,336
+DQ-000564,SUBJ-0152,SITE-015,VISIT-000825,2024-11-05,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000565,SUBJ-0054,SITE-005,VISIT-000292,2026-03-01,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-03-12,2026-03-18,408
+DQ-000566,SUBJ-0080,SITE-008,VISIT-000420,2024-10-18,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-10-27,2024-10-27,216
+DQ-000567,SUBJ-0122,SITE-012,,2025-03-22,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Answered,2025-03-28,,
+DQ-000568,SUBJ-0152,SITE-015,VISIT-000827,2024-12-30,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2024-12-31,,
+DQ-000569,SUBJ-0016,SITE-002,VISIT-000086,2026-06-05,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Answered,2026-06-20,,
+DQ-000570,SUBJ-0100,SITE-010,VISIT-000534,2025-09-25,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000571,SUBJ-0089,SITE-009,VISIT-000466,2025-03-08,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-03-19,2025-03-26,432
+DQ-000572,SUBJ-0035,SITE-003,,2026-02-26,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-03-11,2026-03-11,312
+DQ-000573,SUBJ-0185,SITE-017,VISIT-001015,2025-06-07,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-06-15,2025-06-15,192
+DQ-000574,SUBJ-0115,SITE-011,VISIT-000616,2025-06-11,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-06-22,,
+DQ-000575,SUBJ-0060,SITE-006,VISIT-000320,2024-12-24,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-01-02,2025-01-09,384
+DQ-000576,SUBJ-0165,SITE-016,VISIT-000891,2024-11-30,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000577,SUBJ-0083,SITE-008,VISIT-000438,2024-10-19,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2024-10-27,,
+DQ-000578,SUBJ-0056,SITE-005,,2025-12-03,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-12-15,,
+DQ-000579,SUBJ-0010,SITE-001,VISIT-000058,2025-12-26,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000580,SUBJ-0054,SITE-005,,2025-12-16,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2025-12-18,2025-12-18,48
+DQ-000581,SUBJ-0172,SITE-016,,2025-02-22,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-03-01,2025-03-05,264
+DQ-000582,SUBJ-0115,SITE-011,VISIT-000619,2025-09-21,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2025-10-03,2025-10-07,384
+DQ-000583,SUBJ-0136,SITE-013,VISIT-000729,2025-11-16,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-11-23,2025-11-28,288
+DQ-000584,SUBJ-0144,SITE-014,VISIT-000776,2025-04-01,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-04-16,,
+DQ-000585,SUBJ-0045,SITE-004,VISIT-000235,2025-12-21,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000586,SUBJ-0057,SITE-005,VISIT-000307,2025-11-02,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-11-05,2025-11-08,144
+DQ-000587,SUBJ-0042,SITE-004,VISIT-000222,2026-06-18,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000588,SUBJ-0201,SITE-019,VISIT-001092,2025-01-19,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2025-01-26,2025-01-28,216
+DQ-000589,SUBJ-0118,SITE-012,VISIT-000638,2025-06-17,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Answered,2025-07-01,,
+DQ-000590,SUBJ-0156,SITE-015,VISIT-000843,2025-01-24,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-02-01,,
+DQ-000591,SUBJ-0152,SITE-015,VISIT-000825,2024-11-09,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-11-22,2024-11-22,312
+DQ-000592,SUBJ-0200,SITE-019,VISIT-001090,2024-09-02,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2024-09-17,,
+DQ-000593,SUBJ-0027,SITE-003,VISIT-000146,2026-07-19,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2026-08-01,2026-08-01,312
+DQ-000594,SUBJ-0064,SITE-006,VISIT-000343,2025-10-04,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-10-18,2025-10-19,360
+DQ-000595,SUBJ-0130,SITE-013,VISIT-000703,2025-05-17,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-05-20,2025-05-25,192
+DQ-000596,SUBJ-0134,SITE-013,,2025-09-07,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000597,SUBJ-0184,SITE-017,,2024-12-08,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2024-12-22,2024-12-27,456
+DQ-000598,SUBJ-0151,SITE-014,,2025-08-06,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-08,2025-08-14,192
+DQ-000599,SUBJ-0079,SITE-008,VISIT-000415,2024-12-16,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2024-12-28,2024-12-30,336
+DQ-000600,SUBJ-0136,SITE-013,VISIT-000729,2025-11-09,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-11-12,,
+DQ-000601,SUBJ-0119,SITE-012,VISIT-000642,2025-02-28,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-03-14,,
+DQ-000602,SUBJ-0002,SITE-001,VISIT-000008,2025-10-15,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000603,SUBJ-0143,SITE-014,VISIT-000768,2025-08-22,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-09-05,,
+DQ-000604,SUBJ-0054,SITE-005,,2025-12-13,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-12-22,2025-12-28,360
+DQ-000605,SUBJ-0072,SITE-007,VISIT-000387,2025-10-19,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-10-28,2025-11-04,384
+DQ-000606,SUBJ-0185,SITE-017,VISIT-001010,2025-02-04,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000607,SUBJ-0129,SITE-013,,2025-04-23,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-04-24,2025-04-24,24
+DQ-000608,SUBJ-0190,SITE-018,VISIT-001037,2024-08-20,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000609,SUBJ-0029,SITE-003,VISIT-000158,2026-03-02,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-03-11,2026-03-14,288
+DQ-000610,SUBJ-0037,SITE-004,VISIT-000192,2025-12-14,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-12-25,2025-12-27,312
+DQ-000611,SUBJ-0146,SITE-014,VISIT-000787,2025-08-18,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-08-22,2025-08-23,120
+DQ-000612,SUBJ-0073,SITE-007,VISIT-000391,2025-04-13,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-04-27,2025-04-28,360
+DQ-000613,SUBJ-0059,SITE-006,VISIT-000314,2025-01-23,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-01-31,2025-02-03,264
+DQ-000614,SUBJ-0159,SITE-015,VISIT-000859,2024-08-22,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2024-09-01,,
+DQ-000615,SUBJ-0074,SITE-007,VISIT-000399,2025-08-10,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2025-08-13,2025-08-17,168
+DQ-000616,SUBJ-0118,SITE-012,VISIT-000634,2025-02-24,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000617,SUBJ-0165,SITE-016,VISIT-000895,2025-03-26,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-04-10,2025-04-16,504
+DQ-000618,SUBJ-0132,SITE-013,VISIT-000712,2025-06-15,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000619,SUBJ-0078,SITE-008,VISIT-000412,2025-07-18,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2025-07-26,2025-07-28,240
+DQ-000620,SUBJ-0087,SITE-009,VISIT-000457,2025-01-25,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-02-01,,
+DQ-000621,SUBJ-0117,SITE-011,VISIT-000627,2025-06-28,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-07-01,,
+DQ-000622,SUBJ-0143,SITE-014,,2025-08-07,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-08-08,2025-08-13,144
+DQ-000623,SUBJ-0065,SITE-006,VISIT-000345,2025-03-23,Clarification,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-04-06,,
+DQ-000624,SUBJ-0051,SITE-005,VISIT-000275,2026-06-06,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-06-19,2026-06-22,384
+DQ-000625,SUBJ-0148,SITE-014,VISIT-000799,2025-07-24,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000626,SUBJ-0162,SITE-016,,2025-01-18,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-01-30,2025-02-05,432
+DQ-000627,SUBJ-0071,SITE-007,VISIT-000378,2025-06-10,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-06-20,2025-06-23,312
+DQ-000628,SUBJ-0145,SITE-014,VISIT-000784,2025-08-26,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-09-06,2025-09-11,384
+DQ-000629,SUBJ-0015,SITE-002,VISIT-000075,2026-02-24,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000630,SUBJ-0084,SITE-008,VISIT-000440,2024-11-09,Inconsistent,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-11-13,2024-11-19,240
+DQ-000631,SUBJ-0154,SITE-015,VISIT-000834,2025-04-09,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-04-12,2025-04-15,144
+DQ-000632,SUBJ-0069,SITE-007,VISIT-000366,2025-07-01,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000633,SUBJ-0160,SITE-015,VISIT-000866,2024-08-06,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-08-07,2024-08-13,168
+DQ-000634,SUBJ-0031,SITE-003,VISIT-000166,2025-11-16,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-11-28,,
+DQ-000635,SUBJ-0130,SITE-013,,2025-03-29,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-04-01,2025-04-05,168
+DQ-000636,SUBJ-0007,SITE-001,VISIT-000037,2025-12-14,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-12-20,2025-12-23,216
+DQ-000637,SUBJ-0073,SITE-007,VISIT-000388,2025-02-14,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-24,2025-02-25,264
+DQ-000638,SUBJ-0083,SITE-008,VISIT-000438,2024-10-29,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2024-11-05,2024-11-06,192
+DQ-000639,SUBJ-0115,SITE-011,VISIT-000616,2025-06-18,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-06-21,,
+DQ-000640,SUBJ-0150,SITE-014,VISIT-000815,2025-12-09,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-12-22,2025-12-25,384
+DQ-000641,SUBJ-0168,SITE-016,,2024-09-05,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2024-09-10,,
+DQ-000642,SUBJ-0019,SITE-002,VISIT-000099,2026-02-04,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-02-11,2026-02-14,240
+DQ-000643,SUBJ-0145,SITE-014,VISIT-000780,2025-05-29,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000644,SUBJ-0199,SITE-019,,2024-06-28,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2024-07-11,2024-07-13,360
+DQ-000645,SUBJ-0079,SITE-008,VISIT-000419,2025-04-26,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000646,SUBJ-0119,SITE-012,VISIT-000643,2025-04-06,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-04-13,,
+DQ-000647,SUBJ-0164,SITE-016,,2024-10-27,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2024-11-02,,
+DQ-000648,SUBJ-0171,SITE-016,VISIT-000927,2024-12-15,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2024-12-28,,
+DQ-000649,SUBJ-0143,SITE-014,VISIT-000773,2025-12-01,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Answered,2025-12-11,,
+DQ-000650,SUBJ-0147,SITE-014,VISIT-000795,2025-05-16,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-05-22,2025-05-24,192
+DQ-000651,SUBJ-0142,SITE-014,VISIT-000766,2025-09-18,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2025-09-23,,
+DQ-000652,SUBJ-0197,SITE-019,VISIT-001080,2024-11-11,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2024-11-25,2024-11-29,432
+DQ-000653,SUBJ-0099,SITE-010,VISIT-000526,2025-02-03,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-06,2025-02-10,168
+DQ-000654,SUBJ-0115,SITE-011,VISIT-000617,2025-07-01,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-07-05,2025-07-09,192
+DQ-000655,SUBJ-0140,SITE-014,,2025-02-21,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000656,SUBJ-0098,SITE-010,VISIT-000521,2025-07-01,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-07-02,2025-07-06,120
+DQ-000657,SUBJ-0142,SITE-014,VISIT-000762,2025-06-15,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000658,SUBJ-0148,SITE-014,VISIT-000802,2025-10-27,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-11-01,2025-11-04,192
+DQ-000659,SUBJ-0029,SITE-003,VISIT-000157,2026-01-15,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000660,SUBJ-0022,SITE-002,VISIT-000112,2026-03-25,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000661,SUBJ-0142,SITE-014,VISIT-000762,2025-07-06,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Closed,2025-07-11,2025-07-11,120
+DQ-000662,SUBJ-0163,SITE-016,VISIT-000881,2025-02-17,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-28,2025-03-07,432
+DQ-000663,SUBJ-0097,SITE-010,VISIT-000512,2024-12-11,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Answered,2024-12-16,,
+DQ-000664,SUBJ-0123,SITE-012,VISIT-000663,2025-05-08,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Closed,2025-05-13,2025-05-20,288
+DQ-000665,SUBJ-0006,SITE-001,VISIT-000034,2026-02-18,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-03-03,2026-03-03,312
+DQ-000666,SUBJ-0022,SITE-002,VISIT-000117,2026-07-26,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2026-08-07,2026-08-11,384
+DQ-000667,SUBJ-0132,SITE-013,VISIT-000712,2025-07-10,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000668,SUBJ-0059,SITE-006,,2025-01-24,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000669,SUBJ-0038,SITE-004,,2025-08-10,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-08-11,2025-08-14,96
+DQ-000670,SUBJ-0033,SITE-003,VISIT-000171,2026-02-18,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-03-01,2026-03-06,384
+DQ-000671,SUBJ-0100,SITE-010,VISIT-000535,2025-10-25,Clarification,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-11-06,2025-11-13,456
+DQ-000672,SUBJ-0029,SITE-003,VISIT-000155,2025-12-11,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000673,SUBJ-0155,SITE-015,,2024-08-17,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000674,SUBJ-0037,SITE-004,VISIT-000192,2025-12-21,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Answered,2026-01-02,,
+DQ-000675,SUBJ-0056,SITE-005,VISIT-000301,2025-12-04,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000676,SUBJ-0095,SITE-009,VISIT-000503,2025-05-04,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000677,SUBJ-0076,SITE-008,VISIT-000401,2025-04-08,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-04-10,,
+DQ-000678,SUBJ-0105,SITE-010,VISIT-000557,2025-02-25,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-03-05,,
+DQ-000679,SUBJ-0141,SITE-014,VISIT-000756,2025-06-27,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Answered,2025-07-11,,
+DQ-000680,SUBJ-0093,SITE-009,VISIT-000488,2025-03-24,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-03-26,2025-03-29,120
+DQ-000681,SUBJ-0032,SITE-003,VISIT-000167,2026-03-21,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000682,SUBJ-0037,SITE-004,VISIT-000193,2025-12-27,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-01-04,2026-01-09,312
+DQ-000683,SUBJ-0184,SITE-017,,2024-11-18,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000684,SUBJ-0122,SITE-012,VISIT-000661,2025-06-19,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-06-29,,
+DQ-000685,SUBJ-0079,SITE-008,VISIT-000415,2024-12-30,Inconsistent,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-01-11,2025-01-17,432
+DQ-000686,SUBJ-0029,SITE-003,VISIT-000157,2026-01-21,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000687,SUBJ-0029,SITE-003,VISIT-000158,2026-03-04,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-03-05,2026-03-07,72
+DQ-000688,SUBJ-0029,SITE-003,VISIT-000155,2025-12-05,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-12-16,,
+DQ-000689,SUBJ-0093,SITE-009,VISIT-000493,2025-07-01,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-07-13,2025-07-18,408
+DQ-000690,SUBJ-0092,SITE-009,VISIT-000487,2025-07-29,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-08-11,2025-08-13,360
+DQ-000691,SUBJ-0085,SITE-009,,2025-05-29,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000692,SUBJ-0049,SITE-005,VISIT-000262,2026-04-24,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000693,SUBJ-0003,SITE-001,VISIT-000013,2025-10-08,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2025-10-15,2025-10-16,192
+DQ-000694,SUBJ-0125,SITE-012,VISIT-000676,2024-12-19,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000695,SUBJ-0172,SITE-016,VISIT-000934,2025-03-22,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-04-06,2025-04-09,432
+DQ-000696,SUBJ-0155,SITE-015,VISIT-000840,2025-01-04,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-01-19,2025-01-21,408
+DQ-000697,SUBJ-0193,SITE-018,VISIT-001056,2024-12-20,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-01-04,,
+DQ-000698,SUBJ-0121,SITE-012,VISIT-000655,2025-07-25,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-07-26,2025-07-30,120
+DQ-000699,SUBJ-0127,SITE-012,VISIT-000687,2024-12-23,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-01-04,2025-01-05,312
+DQ-000700,SUBJ-0185,SITE-017,VISIT-001014,2025-05-07,Outlier,vital_sign_value,High,Please verify the outlying vital-sign value against the source record.,Closed,2025-05-09,2025-05-11,96
+DQ-000701,SUBJ-0179,SITE-017,,2025-01-31,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-02-14,2025-02-21,504
+DQ-000702,SUBJ-0185,SITE-017,,2025-01-24,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000703,SUBJ-0021,SITE-002,VISIT-000108,2025-11-26,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000704,SUBJ-0063,SITE-006,,2025-04-20,Inconsistent,treatment_arm,High,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000705,SUBJ-0103,SITE-010,,2024-12-01,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000706,SUBJ-0142,SITE-014,VISIT-000764,2025-08-04,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-08-15,2025-08-20,384
+DQ-000707,SUBJ-0054,SITE-005,VISIT-000293,2026-03-31,Inconsistent,treatment_arm,High,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-04-05,2026-04-08,192
+DQ-000708,SUBJ-0195,SITE-018,VISIT-001069,2024-09-21,Missing,procedure_status,Medium,Please confirm whether the required procedure was completed.,Answered,2024-10-02,,
+DQ-000709,SUBJ-0138,SITE-013,VISIT-000742,2025-06-22,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-07-04,2025-07-06,336
+DQ-000710,SUBJ-0091,SITE-009,VISIT-000481,2025-04-27,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-05-08,2025-05-09,288
+DQ-000711,SUBJ-0044,SITE-004,,2025-11-11,Inconsistent,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-11-22,,
+DQ-000712,SUBJ-0169,SITE-016,VISIT-000918,2025-02-11,Missing,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-02-15,2025-02-21,240
+DQ-000713,SUBJ-0130,SITE-013,VISIT-000705,2025-07-13,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000714,SUBJ-0150,SITE-014,VISIT-000814,2025-11-16,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-11-20,2025-11-24,192
+DQ-000715,SUBJ-0047,SITE-004,VISIT-000249,2025-11-24,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000716,SUBJ-0124,SITE-012,VISIT-000670,2025-07-10,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-07-20,2025-07-26,384
+DQ-000717,SUBJ-0051,SITE-005,VISIT-000276,2026-07-19,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000718,SUBJ-0070,SITE-007,VISIT-000374,2025-08-26,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000719,SUBJ-0120,SITE-012,,2025-03-31,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-04-08,2025-04-15,360
+DQ-000720,SUBJ-0062,SITE-006,VISIT-000331,2025-07-24,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Answered,2025-08-06,,
+DQ-000721,SUBJ-0041,SITE-004,VISIT-000212,2025-10-26,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-11-07,2025-11-11,384
+DQ-000722,SUBJ-0034,SITE-003,VISIT-000175,2026-02-10,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2026-02-16,2026-02-18,192
+DQ-000723,SUBJ-0094,SITE-009,VISIT-000495,2025-06-08,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-06-18,2025-06-19,264
+DQ-000724,SUBJ-0138,SITE-013,,2025-04-13,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-14,2025-04-21,192
+DQ-000725,SUBJ-0006,SITE-001,VISIT-000031,2025-11-29,Clarification,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-12-01,,
+DQ-000726,SUBJ-0050,SITE-005,VISIT-000267,2026-03-23,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-04-03,2026-04-06,336
+DQ-000727,SUBJ-0083,SITE-008,,2024-09-27,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Open,,,
+DQ-000728,SUBJ-0033,SITE-003,VISIT-000171,2026-02-11,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000729,SUBJ-0180,SITE-017,VISIT-000983,2024-12-22,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2024-12-25,,
+DQ-000730,SUBJ-0045,SITE-004,VISIT-000240,2026-04-22,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2026-04-27,2026-05-01,216
+DQ-000731,SUBJ-0026,SITE-003,VISIT-000137,2026-03-01,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2026-03-05,2026-03-09,192
+DQ-000732,SUBJ-0024,SITE-003,VISIT-000124,2026-02-16,Missing,visit_date,High,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-02-21,2026-02-27,264
+DQ-000733,SUBJ-0003,SITE-001,VISIT-000015,2025-10-30,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Answered,2025-11-06,,
+DQ-000734,SUBJ-0136,SITE-013,VISIT-000726,2025-09-06,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-09-20,2025-09-23,408
+DQ-000735,SUBJ-0093,SITE-009,VISIT-000489,2025-03-15,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-03-17,,
+DQ-000736,SUBJ-0203,SITE-019,VISIT-001106,2024-10-06,Outlier,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2024-10-13,2024-10-14,192
+DQ-000737,SUBJ-0154,SITE-015,VISIT-000829,2024-12-25,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-12-29,2025-01-01,168
+DQ-000738,SUBJ-0033,SITE-003,,2025-12-25,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000739,SUBJ-0147,SITE-014,VISIT-000795,2025-05-31,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-06-14,2025-06-17,408
+DQ-000740,SUBJ-0058,SITE-005,,2026-02-27,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Closed,2026-03-09,2026-03-09,240
+DQ-000741,SUBJ-0149,SITE-014,VISIT-000804,2025-04-26,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-04-28,2025-05-03,168
+DQ-000742,SUBJ-0013,SITE-001,VISIT-000068,2025-10-06,Missing,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-10-13,2025-10-14,192
+DQ-000743,SUBJ-0145,SITE-014,VISIT-000780,2025-05-27,Inconsistent,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000744,SUBJ-0080,SITE-008,VISIT-000423,2024-12-14,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000745,SUBJ-0070,SITE-007,VISIT-000374,2025-09-10,Missing,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-09-23,2025-09-28,432
+DQ-000746,SUBJ-0028,SITE-003,VISIT-000153,2026-02-17,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000747,SUBJ-0131,SITE-013,,2025-10-03,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Answered,2025-10-15,,
+DQ-000748,SUBJ-0014,SITE-002,,2026-02-06,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2026-02-21,2026-02-25,456
+DQ-000749,SUBJ-0182,SITE-017,VISIT-000994,2024-09-16,Missing,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-09-30,2024-10-03,408
+DQ-000750,SUBJ-0054,SITE-005,VISIT-000294,2026-05-03,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2026-05-18,2026-05-18,360
+DQ-000751,SUBJ-0136,SITE-013,VISIT-000727,2025-09-23,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-09-25,2025-09-26,72
+DQ-000752,SUBJ-0020,SITE-002,VISIT-000104,2026-06-03,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Answered,2026-06-13,,
+DQ-000753,SUBJ-0096,SITE-009,VISIT-000508,2025-02-14,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-02-23,2025-02-26,288
+DQ-000754,SUBJ-0125,SITE-012,VISIT-000680,2025-04-11,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2025-04-18,2025-04-21,240
+DQ-000755,SUBJ-0138,SITE-013,VISIT-000740,2025-05-27,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000756,SUBJ-0006,SITE-001,VISIT-000036,2026-04-14,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2026-04-29,2026-05-05,504
+DQ-000757,SUBJ-0168,SITE-016,,2024-09-05,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000758,SUBJ-0051,SITE-005,,2026-04-05,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Closed,2026-04-14,2026-04-17,288
+DQ-000759,SUBJ-0060,SITE-006,VISIT-000320,2024-12-24,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-01-07,2025-01-10,408
+DQ-000760,SUBJ-0085,SITE-009,VISIT-000447,2025-06-27,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Closed,2025-07-01,2025-07-01,96
+DQ-000761,SUBJ-0176,SITE-017,VISIT-000960,2024-12-05,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2024-12-13,2024-12-17,288
+DQ-000762,SUBJ-0202,SITE-019,VISIT-001099,2024-10-14,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Answered,2024-10-26,,
+DQ-000763,SUBJ-0161,SITE-016,VISIT-000871,2025-01-31,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Answered,2025-02-06,,
+DQ-000764,SUBJ-0195,SITE-018,VISIT-001065,2024-06-27,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000765,SUBJ-0160,SITE-015,VISIT-000868,2024-09-19,Clarification,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2024-09-26,2024-09-29,240
+DQ-000766,SUBJ-0132,SITE-013,VISIT-000712,2025-06-22,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-06-26,2025-07-02,240
+DQ-000767,SUBJ-0063,SITE-006,VISIT-000338,2025-09-08,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-09-22,2025-09-27,456
+DQ-000768,SUBJ-0096,SITE-009,,2025-01-09,Outlier,vital_sign_value,Medium,Please verify the outlying vital-sign value against the source record.,Closed,2025-01-10,2025-01-10,24
+DQ-000769,SUBJ-0173,SITE-016,VISIT-000943,2025-04-07,Inconsistent,treatment_arm,Medium,Please reconcile the recorded treatment arm with the randomization record.,Answered,2025-04-16,,
+DQ-000770,SUBJ-0116,SITE-011,VISIT-000621,2025-02-06,Clarification,procedure_status,Medium,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000771,SUBJ-0177,SITE-017,VISIT-000967,2025-02-04,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-02-12,2025-02-12,192
+DQ-000772,SUBJ-0068,SITE-007,VISIT-000359,2025-01-30,Missing,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000773,SUBJ-0199,SITE-019,VISIT-001089,2024-10-26,Inconsistent,ae_outcome,High,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-10-29,2024-11-01,144
+DQ-000774,SUBJ-0113,SITE-011,VISIT-000604,2025-03-24,Clarification,procedure_status,High,Please confirm whether the required procedure was completed.,Open,,,
+DQ-000775,SUBJ-0098,SITE-010,VISIT-000521,2025-06-09,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Open,,,
+DQ-000776,SUBJ-0174,SITE-017,VISIT-000948,2025-03-31,Clarification,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-04-13,2025-04-16,384
+DQ-000777,SUBJ-0084,SITE-008,VISIT-000440,2024-11-13,Missing,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Open,,,
+DQ-000778,SUBJ-0033,SITE-003,VISIT-000170,2026-01-12,Missing,procedure_status,High,Please confirm whether the required procedure was completed.,Closed,2026-01-16,2026-01-22,240
+DQ-000779,SUBJ-0018,SITE-002,VISIT-000093,2026-04-21,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000780,SUBJ-0129,SITE-013,VISIT-000699,2025-09-07,Clarification,visit_date,Low,Please confirm the visit date; it falls outside the protocol window.,Closed,2025-09-21,2025-09-28,504
+DQ-000781,SUBJ-0080,SITE-008,,2024-10-18,Outlier,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Open,,,
+DQ-000782,SUBJ-0082,SITE-008,VISIT-000435,2025-05-27,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-06-07,2025-06-09,312
+DQ-000783,SUBJ-0194,SITE-018,VISIT-001060,2024-09-30,Inconsistent,dosing_record,High,Please clarify the dosing record and confirm the administration time.,Answered,2024-10-02,,
+DQ-000784,SUBJ-0102,SITE-010,VISIT-000545,2025-06-07,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-06-12,2025-06-14,168
+DQ-000785,SUBJ-0184,SITE-017,VISIT-001009,2025-03-11,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Open,,,
+DQ-000786,SUBJ-0064,SITE-006,VISIT-000339,2025-07-11,Missing,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Answered,2025-07-17,,
+DQ-000787,SUBJ-0099,SITE-010,VISIT-000528,2025-03-11,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Closed,2025-03-22,2025-03-26,360
+DQ-000788,SUBJ-0155,SITE-015,VISIT-000835,2024-09-07,Missing,ae_outcome,Low,Please clarify the adverse event outcome and update the record if resolved.,Closed,2024-09-17,2024-09-21,336
+DQ-000789,SUBJ-0007,SITE-001,VISIT-000041,2026-02-20,Inconsistent,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-02-28,2026-03-03,264
+DQ-000790,SUBJ-0179,SITE-017,VISIT-000976,2025-02-26,Missing,lab_value,Low,Please verify the laboratory value and unit against the source record.,Answered,2025-03-12,,
+DQ-000791,SUBJ-0001,SITE-001,VISIT-000003,2026-02-02,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2026-02-04,2026-02-10,192
+DQ-000792,SUBJ-0086,SITE-009,VISIT-000453,2025-06-15,Inconsistent,dosing_record,Medium,Please clarify the dosing record and confirm the administration time.,Closed,2025-06-16,2025-06-22,168
+DQ-000793,SUBJ-0062,SITE-006,VISIT-000330,2025-06-06,Clarification,lab_value,Medium,Please verify the laboratory value and unit against the source record.,Closed,2025-06-14,2025-06-16,240
+DQ-000794,SUBJ-0110,SITE-011,VISIT-000587,2025-04-14,Clarification,procedure_status,Low,Please confirm whether the required procedure was completed.,Closed,2025-04-19,2025-04-22,192
+DQ-000795,SUBJ-0077,SITE-008,VISIT-000407,2025-07-12,Inconsistent,dosing_record,Low,Please clarify the dosing record and confirm the administration time.,Closed,2025-07-14,2025-07-17,120
+DQ-000796,SUBJ-0038,SITE-004,VISIT-000198,2025-12-25,Inconsistent,treatment_arm,Low,Please reconcile the recorded treatment arm with the randomization record.,Open,,,
+DQ-000797,SUBJ-0063,SITE-006,VISIT-000335,2025-05-19,Outlier,lab_value,High,Please verify the laboratory value and unit against the source record.,Closed,2025-05-28,2025-06-02,336
+DQ-000798,SUBJ-0016,SITE-002,VISIT-000083,2026-03-02,Clarification,visit_date,Medium,Please confirm the visit date; it falls outside the protocol window.,Closed,2026-03-15,2026-03-20,432
+DQ-000799,SUBJ-0134,SITE-013,VISIT-000722,2025-11-05,Clarification,ae_outcome,Medium,Please clarify the adverse event outcome and update the record if resolved.,Closed,2025-11-15,2025-11-21,384
+DQ-000800,SUBJ-0039,SITE-004,VISIT-000200,2026-01-27,Outlier,vital_sign_value,Low,Please verify the outlying vital-sign value against the source record.,Answered,2026-02-11,,

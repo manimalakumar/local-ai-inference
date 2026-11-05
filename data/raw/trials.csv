@@ -1,0 +1,5 @@
+trial_id,phase,indication,start_date,target_enrollment
+TRIAL-001,Phase I,Rheumatoid Arthritis,2025-05-07,118
+TRIAL-002,Phase IV,Type 2 Diabetes,2024-08-08,116
+TRIAL-003,Phase IV,Type 2 Diabetes,2024-09-30,127
+TRIAL-004,Phase III,Type 2 Diabetes,2024-02-25,131

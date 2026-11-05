@@ -1,0 +1,86 @@
+subject_id,event_term,severity,serious,onset_date,outcome
+SUBJ-0001,Upper Respiratory Tract Infection,Mild,False,2026-04-19,Unknown
+SUBJ-0002,Upper Respiratory Tract Infection,Moderate,False,2025-11-16,Ongoing
+SUBJ-0002,Nausea,Moderate,False,2025-11-19,Unknown
+SUBJ-0004,Dizziness,Mild,False,2026-01-22,Unknown
+SUBJ-0004,Upper Respiratory Tract Infection,Moderate,False,2025-11-18,Ongoing
+SUBJ-0005,Nausea,Moderate,False,2025-08-03,Recovered
+SUBJ-0006,Injection Site Reaction,Moderate,False,2026-03-26,Ongoing
+SUBJ-0006,Headache,Moderate,False,2026-03-10,Recovering
+SUBJ-0009,Injection Site Reaction,Moderate,False,2025-11-16,Unknown
+SUBJ-0009,Upper Respiratory Tract Infection,Moderate,False,2025-09-20,Recovered
+SUBJ-0011,Fatigue,Mild,False,2025-12-05,Recovered
+SUBJ-0011,Dizziness,Moderate,False,2026-02-18,Recovering
+SUBJ-0015,Injection Site Reaction,Mild,False,2026-05-30,Recovering
+SUBJ-0025,Nausea,Moderate,False,2026-01-13,Recovering
+SUBJ-0026,Upper Respiratory Tract Infection,Mild,False,2026-03-29,Ongoing
+SUBJ-0027,Fatigue,Mild,False,2026-06-15,Unknown
+SUBJ-0027,Headache,Moderate,False,2026-07-23,Recovering
+SUBJ-0033,Injection Site Reaction,Moderate,False,2026-03-31,Ongoing
+SUBJ-0037,Rash,Moderate,False,2026-01-03,Unknown
+SUBJ-0037,Rash,Moderate,False,2026-01-17,Recovered
+SUBJ-0042,Headache,Moderate,False,2026-03-06,Recovering
+SUBJ-0043,Injection Site Reaction,Mild,False,2026-03-13,Unknown
+SUBJ-0044,Headache,Moderate,False,2025-11-25,Recovered
+SUBJ-0045,Injection Site Reaction,Mild,False,2026-02-25,Recovering
+SUBJ-0046,Rash,Mild,False,2026-03-18,Unknown
+SUBJ-0046,Upper Respiratory Tract Infection,Mild,False,2026-02-21,Unknown
+SUBJ-0047,Rash,Moderate,False,2025-10-25,Recovered
+SUBJ-0048,Rash,Mild,False,2026-05-27,Recovered
+SUBJ-0051,Fatigue,Severe,False,2026-03-29,Recovering
+SUBJ-0051,Rash,Severe,False,2026-05-09,Unknown
+SUBJ-0053,Upper Respiratory Tract Infection,Mild,False,2025-12-25,Recovering
+SUBJ-0053,Nausea,Mild,False,2026-01-22,Recovering
+SUBJ-0058,Injection Site Reaction,Mild,False,2026-02-26,Ongoing
+SUBJ-0059,Fatigue,Moderate,False,2025-03-02,Recovered
+SUBJ-0062,Dizziness,Mild,False,2025-07-25,Unknown
+SUBJ-0063,Injection Site Reaction,Moderate,False,2025-07-23,Recovering
+SUBJ-0063,Injection Site Reaction,Moderate,False,2025-07-11,Recovered
+SUBJ-0081,Injection Site Reaction,Moderate,False,2025-03-19,Unknown
+SUBJ-0094,Fatigue,Moderate,False,2025-08-02,Ongoing
+SUBJ-0094,Injection Site Reaction,Moderate,False,2025-09-12,Unknown
+SUBJ-0097,Rash,Mild,False,2025-02-28,Recovering
+SUBJ-0102,Rash,Moderate,False,2025-07-22,Recovered
+SUBJ-0104,Nausea,Moderate,False,2025-08-04,Recovering
+SUBJ-0106,Fatigue,Mild,False,2025-04-19,Recovered
+SUBJ-0106,Insomnia,Mild,False,2025-04-23,Ongoing
+SUBJ-0110,Injection Site Reaction,Moderate,False,2025-06-28,Ongoing
+SUBJ-0111,Injection Site Reaction,Mild,False,2025-05-24,Ongoing
+SUBJ-0113,Fatigue,Moderate,False,2025-04-26,Recovered
+SUBJ-0114,Rash,Moderate,False,2025-01-08,Recovering
+SUBJ-0117,Headache,Mild,False,2025-09-09,Unknown
+SUBJ-0117,Nausea,Severe,False,2025-10-10,Unknown
+SUBJ-0118,Headache,Mild,False,2025-03-02,Recovering
+SUBJ-0123,Nausea,Mild,False,2025-07-26,Unknown
+SUBJ-0137,Rash,Mild,False,2025-08-29,Ongoing
+SUBJ-0137,Nausea,Mild,False,2025-10-13,Unknown
+SUBJ-0142,Insomnia,Severe,True,2025-06-24,Recovered
+SUBJ-0142,Headache,Moderate,False,2025-08-20,Unknown
+SUBJ-0143,Fatigue,Moderate,False,2025-08-10,Recovered
+SUBJ-0147,Rash,Moderate,False,2025-06-04,Recovering
+SUBJ-0148,Fatigue,Mild,False,2025-10-15,Unknown
+SUBJ-0148,Injection Site Reaction,Severe,True,2025-10-09,Recovered
+SUBJ-0149,Fatigue,Mild,False,2025-06-13,Unknown
+SUBJ-0149,Nausea,Mild,False,2025-05-19,Recovered
+SUBJ-0150,Headache,Mild,False,2025-10-26,Recovering
+SUBJ-0150,Upper Respiratory Tract Infection,Mild,False,2025-11-24,Ongoing
+SUBJ-0151,Fatigue,Mild,False,2025-11-03,Recovered
+SUBJ-0151,Dizziness,Mild,False,2025-09-14,Unknown
+SUBJ-0160,Nausea,Mild,False,2024-09-26,Recovering
+SUBJ-0160,Upper Respiratory Tract Infection,Mild,False,2024-09-05,Unknown
+SUBJ-0166,Headache,Moderate,False,2024-12-26,Recovering
+SUBJ-0167,Rash,Moderate,False,2025-04-03,Recovered
+SUBJ-0167,Insomnia,Mild,False,2025-03-08,Unknown
+SUBJ-0178,Injection Site Reaction,Mild,False,2024-12-29,Recovered
+SUBJ-0178,Injection Site Reaction,Mild,False,2024-11-23,Recovering
+SUBJ-0182,Rash,Mild,False,2024-11-14,Unknown
+SUBJ-0183,Rash,Moderate,False,2024-12-06,Ongoing
+SUBJ-0188,Fatigue,Mild,False,2024-09-08,Recovered
+SUBJ-0188,Upper Respiratory Tract Infection,Mild,False,2024-06-08,Recovered
+SUBJ-0189,Nausea,Mild,False,2024-05-12,Recovered
+SUBJ-0193,Nausea,Mild,False,2024-12-13,Unknown
+SUBJ-0194,Dizziness,Moderate,False,2024-09-10,Recovering
+SUBJ-0195,Injection Site Reaction,Mild,False,2024-08-16,Ongoing
+SUBJ-0196,Fatigue,Mild,False,2024-11-20,Ongoing
+SUBJ-0197,Headache,Mild,False,2024-10-23,Recovering
+SUBJ-0197,Insomnia,Severe,True,2024-12-26,Recovering

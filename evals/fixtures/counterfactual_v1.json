@@ -1,0 +1,7 @@
+{
+  "scorer_version": "counterfactual-v1",
+  "built_at_utc": "2026-09-26T19:44:41.011490+00:00",
+  "calendar_month": "2026-09",
+  "base_database_sha256": "f1a7100697b0980b56359632fde49d042fb147260da03931a53a3cbfa7f6830e",
+  "fixture_sha256": "fbec356b073c9547c8076af5b210752f077e40089cc0f05209a24b40300a2c6b"
+}

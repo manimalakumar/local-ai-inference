@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "description": "Run each engine sequentially on the same GPU and frozen HF snapshot. No GPU results recorded yet.",
+  "runtimes": ["vllm", "sglang"],
+  "profiles": ["full", "retrieved"],
+  "serving": {"concurrency": [1, 2, 4], "repeats": 3, "warmups": 1, "max_tokens": 1024},
+  "quality": {"concurrency": [1], "repeats": 1, "warmups": 1, "max_tokens": 1024, "max_repairs": 1},
+  "launch": {"context": 8192, "tp": 1, "dtype": "bfloat16", "prefix_cache": false}
+}

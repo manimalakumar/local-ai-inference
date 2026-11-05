@@ -1,0 +1,4 @@
+{
+  "description": "Human review only. Match exact SQL SHA-256 and case ID; record reviewer, reviewed_at, and boolean correct. Empty means unreviewed, not incorrect.",
+  "reviews": []
+}

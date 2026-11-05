@@ -1,0 +1,101 @@
+screen_failure_id,subject_id,site_id,screening_date,failure_category,criterion_code,failure_reason,rescreen_allowed,notes
+SF-000001,SUBJ-0012,SITE-001,2025-12-23,Consent,CON-01,Informed consent was not completed before screening procedures.,False,Operation city he actually employee lot.
+SF-000002,SUBJ-0013,SITE-001,2025-09-19,Lab,LAB-03,Hematology results were outside protocol limits.,True,And in day respond raise others quickly call agree class.
+SF-000003,SUBJ-0019,SITE-002,2026-02-04,Consent,CON-01,Informed consent was not completed before screening procedures.,False,
+SF-000004,SUBJ-0031,SITE-003,2025-10-30,Inclusion,INC-01,Age was outside the protocol-defined range.,False,
+SF-000005,SUBJ-0032,SITE-003,2026-02-27,Lab,LAB-03,Hematology results were outside protocol limits.,False,
+SF-000006,SUBJ-0038,SITE-004,2025-12-01,Consent,CON-02,Consent was withdrawn before enrollment.,False,Mind nation degree station region billion hot energy him ever part.
+SF-000007,SUBJ-0057,SITE-005,2025-10-26,Lab,LAB-03,Hematology results were outside protocol limits.,True,
+SF-000008,SUBJ-0060,SITE-006,2024-11-30,Consent,CON-02,Consent was withdrawn before enrollment.,True,Sign need doctor expert fear science show type close.
+SF-000009,SUBJ-0065,SITE-006,2025-03-20,Exclusion,EXC-02,A disallowed comorbidity was present.,True,Congress serve design draw feeling.
+SF-000010,SUBJ-0075,SITE-008,2024-12-31,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,Five a few red late country eat threat while maintain.
+SF-000011,SUBJ-0076,SITE-008,2025-03-19,Lab,LAB-01,Renal function was outside protocol limits.,False,
+SF-000012,SUBJ-0083,SITE-008,2024-09-30,Consent,CON-01,Informed consent was not completed before screening procedures.,False,
+SF-000013,SUBJ-0087,SITE-009,2025-01-07,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000014,SUBJ-0103,SITE-010,2024-12-30,Exclusion,EXC-03,Recent participation in another investigational study was identified.,True,
+SF-000015,SUBJ-0128,SITE-012,2025-03-10,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,True,
+SF-000016,SUBJ-0132,SITE-013,2025-06-14,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,False,
+SF-000017,SUBJ-0135,SITE-013,2025-08-20,Lab,LAB-03,Hematology results were outside protocol limits.,False,Young account kitchen gun name note list bad note establish.
+SF-000018,SUBJ-0153,SITE-015,2024-09-10,Inclusion,INC-01,Age was outside the protocol-defined range.,False,
+SF-000019,SUBJ-0161,SITE-016,2025-01-07,Consent,CON-01,Informed consent was not completed before screening procedures.,False,
+SF-000020,SUBJ-0187,SITE-018,2024-05-06,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000021,SUBJ-0199,SITE-019,2024-10-19,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,False,Dark treat indicate use evening great same weight action want north.
+SF-000022,SUBJ-0200,SITE-019,2024-08-22,Exclusion,EXC-02,A disallowed comorbidity was present.,False,
+SF-000023,SUBJ-0012,SITE-001,2025-12-23,Inclusion,INC-03,Disease criteria were not met at screening.,False,
+SF-000024,SUBJ-0013,SITE-001,2025-09-19,Inclusion,INC-03,Disease criteria were not met at screening.,False,I get age at push.
+SF-000025,SUBJ-0019,SITE-002,2026-02-04,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,Network whether ever travel about Congress find figure.
+SF-000026,SUBJ-0031,SITE-003,2025-10-30,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,
+SF-000027,SUBJ-0032,SITE-003,2026-02-27,Inclusion,INC-01,Age was outside the protocol-defined range.,False,
+SF-000028,SUBJ-0038,SITE-004,2025-12-01,Inclusion,INC-01,Age was outside the protocol-defined range.,False,Relate hear various great thought training image head blue.
+SF-000029,SUBJ-0057,SITE-005,2025-10-26,Lab,LAB-01,Renal function was outside protocol limits.,False,
+SF-000030,SUBJ-0060,SITE-006,2024-11-30,Consent,CON-01,Informed consent was not completed before screening procedures.,False,Heart room team military together debate protect daughter.
+SF-000031,SUBJ-0065,SITE-006,2025-03-20,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000032,SUBJ-0075,SITE-008,2024-12-31,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,False,
+SF-000033,SUBJ-0076,SITE-008,2025-03-19,Consent,CON-01,Informed consent was not completed before screening procedures.,True,
+SF-000034,SUBJ-0083,SITE-008,2024-09-30,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,Option fact I determine house upon.
+SF-000035,SUBJ-0087,SITE-009,2025-01-07,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,
+SF-000036,SUBJ-0103,SITE-010,2024-12-30,Inclusion,INC-01,Age was outside the protocol-defined range.,False,Approach save wife the vote test different tax music of choice person.
+SF-000037,SUBJ-0128,SITE-012,2025-03-10,Lab,LAB-03,Hematology results were outside protocol limits.,False,Imagine find moment style every economy.
+SF-000038,SUBJ-0132,SITE-013,2025-06-14,Consent,CON-01,Informed consent was not completed before screening procedures.,False,Work seek set just tonight degree night top PM test.
+SF-000039,SUBJ-0135,SITE-013,2025-08-20,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,False,Likely able address church young if discuss.
+SF-000040,SUBJ-0153,SITE-015,2024-09-10,Lab,LAB-03,Hematology results were outside protocol limits.,False,Play level figure product such miss peace.
+SF-000041,SUBJ-0161,SITE-016,2025-01-07,Inclusion,INC-03,Disease criteria were not met at screening.,False,
+SF-000042,SUBJ-0187,SITE-018,2024-05-06,Exclusion,EXC-01,A prohibited concomitant medication was identified.,False,
+SF-000043,SUBJ-0199,SITE-019,2024-10-19,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,True,
+SF-000044,SUBJ-0200,SITE-019,2024-08-22,Lab,LAB-01,Renal function was outside protocol limits.,True,
+SF-000045,SUBJ-0012,SITE-001,2025-12-23,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,True,
+SF-000046,SUBJ-0013,SITE-001,2025-09-19,Lab,LAB-01,Renal function was outside protocol limits.,False,
+SF-000047,SUBJ-0019,SITE-002,2026-02-04,Lab,LAB-03,Hematology results were outside protocol limits.,True,
+SF-000048,SUBJ-0031,SITE-003,2025-10-30,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000049,SUBJ-0032,SITE-003,2026-02-27,Inclusion,INC-03,Disease criteria were not met at screening.,False,
+SF-000050,SUBJ-0038,SITE-004,2025-12-01,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000051,SUBJ-0057,SITE-005,2025-10-26,Consent,CON-01,Informed consent was not completed before screening procedures.,False,Fire itself even stop pressure thing.
+SF-000052,SUBJ-0060,SITE-006,2024-11-30,Lab,LAB-03,Hematology results were outside protocol limits.,False,Girl check challenge strong small store peace operation single painting.
+SF-000053,SUBJ-0065,SITE-006,2025-03-20,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,False,While north eat manager little me boy daughter off.
+SF-000054,SUBJ-0075,SITE-008,2024-12-31,Exclusion,EXC-01,A prohibited concomitant medication was identified.,False,
+SF-000055,SUBJ-0076,SITE-008,2025-03-19,Inclusion,INC-03,Disease criteria were not met at screening.,True,
+SF-000056,SUBJ-0083,SITE-008,2024-09-30,Consent,CON-02,Consent was withdrawn before enrollment.,False,Force quality bar environment reason build size issue study.
+SF-000057,SUBJ-0087,SITE-009,2025-01-07,Inclusion,INC-01,Age was outside the protocol-defined range.,False,Free less describe be mouth expert change kind possible black indeed.
+SF-000058,SUBJ-0103,SITE-010,2024-12-30,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,False,
+SF-000059,SUBJ-0128,SITE-012,2025-03-10,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000060,SUBJ-0132,SITE-013,2025-06-14,Lab,LAB-03,Hematology results were outside protocol limits.,False,
+SF-000061,SUBJ-0135,SITE-013,2025-08-20,Lab,LAB-01,Renal function was outside protocol limits.,True,
+SF-000062,SUBJ-0153,SITE-015,2024-09-10,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,False,
+SF-000063,SUBJ-0161,SITE-016,2025-01-07,Exclusion,EXC-03,Recent participation in another investigational study was identified.,True,
+SF-000064,SUBJ-0187,SITE-018,2024-05-06,Consent,CON-02,Consent was withdrawn before enrollment.,False,
+SF-000065,SUBJ-0199,SITE-019,2024-10-19,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,False,
+SF-000066,SUBJ-0200,SITE-019,2024-08-22,Inclusion,INC-03,Disease criteria were not met at screening.,True,Argue even consumer health act garden maybe.
+SF-000067,SUBJ-0012,SITE-001,2025-12-23,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000068,SUBJ-0013,SITE-001,2025-09-19,Exclusion,EXC-03,Recent participation in another investigational study was identified.,True,Culture woman actually strong much room describe experience among.
+SF-000069,SUBJ-0019,SITE-002,2026-02-04,Lab,LAB-01,Renal function was outside protocol limits.,True,
+SF-000070,SUBJ-0031,SITE-003,2025-10-30,Exclusion,EXC-01,A prohibited concomitant medication was identified.,False,
+SF-000071,SUBJ-0032,SITE-003,2026-02-27,Exclusion,EXC-02,A disallowed comorbidity was present.,False,
+SF-000072,SUBJ-0038,SITE-004,2025-12-01,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,False,Would say smile report much political likely specific run probably cause big.
+SF-000073,SUBJ-0057,SITE-005,2025-10-26,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,True,
+SF-000074,SUBJ-0060,SITE-006,2024-11-30,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,
+SF-000075,SUBJ-0065,SITE-006,2025-03-20,Exclusion,EXC-01,A prohibited concomitant medication was identified.,False,
+SF-000076,SUBJ-0075,SITE-008,2024-12-31,Inclusion,INC-03,Disease criteria were not met at screening.,False,Too generation window voice expert hit off happy since call key.
+SF-000077,SUBJ-0076,SITE-008,2025-03-19,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,
+SF-000078,SUBJ-0083,SITE-008,2024-09-30,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,False,
+SF-000079,SUBJ-0087,SITE-009,2025-01-07,Lab,LAB-03,Hematology results were outside protocol limits.,False,
+SF-000080,SUBJ-0103,SITE-010,2024-12-30,Exclusion,EXC-01,A prohibited concomitant medication was identified.,False,
+SF-000081,SUBJ-0128,SITE-012,2025-03-10,Inclusion,INC-01,Age was outside the protocol-defined range.,False,
+SF-000082,SUBJ-0132,SITE-013,2025-06-14,Lab,LAB-02,Hepatic laboratory values exceeded protocol limits.,False,
+SF-000083,SUBJ-0135,SITE-013,2025-08-20,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,False,Picture language fall explain specific morning reality yeah pattern identify.
+SF-000084,SUBJ-0153,SITE-015,2024-09-10,Inclusion,INC-03,Disease criteria were not met at screening.,True,
+SF-000085,SUBJ-0161,SITE-016,2025-01-07,Exclusion,EXC-02,A disallowed comorbidity was present.,True,
+SF-000086,SUBJ-0187,SITE-018,2024-05-06,Inclusion,INC-01,Age was outside the protocol-defined range.,False,Respond produce range lead specific represent true our.
+SF-000087,SUBJ-0199,SITE-019,2024-10-19,Lab,LAB-03,Hematology results were outside protocol limits.,False,
+SF-000088,SUBJ-0200,SITE-019,2024-08-22,Exclusion,EXC-01,A prohibited concomitant medication was identified.,False,
+SF-000089,SUBJ-0012,SITE-001,2025-12-23,Inclusion,INC-01,Age was outside the protocol-defined range.,False,
+SF-000090,SUBJ-0013,SITE-001,2025-09-19,Exclusion,EXC-02,A disallowed comorbidity was present.,False,
+SF-000091,SUBJ-0019,SITE-002,2026-02-04,Exclusion,EXC-02,A disallowed comorbidity was present.,False,
+SF-000092,SUBJ-0031,SITE-003,2025-10-30,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,True,Necessary attorney couple too least might attorney one nor away as.
+SF-000093,SUBJ-0032,SITE-003,2026-02-27,Consent,CON-01,Informed consent was not completed before screening procedures.,False,Second but role turn together far apply.
+SF-000094,SUBJ-0038,SITE-004,2025-12-01,Lab,LAB-03,Hematology results were outside protocol limits.,True,
+SF-000095,SUBJ-0057,SITE-005,2025-10-26,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000096,SUBJ-0060,SITE-006,2024-11-30,Exclusion,EXC-01,A prohibited concomitant medication was identified.,True,
+SF-000097,SUBJ-0065,SITE-006,2025-03-20,Withdrawal,WDR-01,The candidate withdrew before eligibility confirmation.,True,Fish attack girl these discuss position three some.
+SF-000098,SUBJ-0075,SITE-008,2024-12-31,Consent,CON-02,Consent was withdrawn before enrollment.,False,Various hit cause act true option national outside that end.
+SF-000099,SUBJ-0076,SITE-008,2025-03-19,Exclusion,EXC-03,Recent participation in another investigational study was identified.,False,
+SF-000100,SUBJ-0083,SITE-008,2024-09-30,Inclusion,INC-02,Disease duration did not meet the minimum requirement.,False,Avoid wide professor certainly industry evidence campaign pattern tree piece.

@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-05",
+  "python": "3.11.15",
+  "system": "Darwin",
+  "architecture": "arm64",
+  "packages": {
+    "duckdb": "1.5.6",
+    "Faker": "40.39.0",
+    "langchain-core": "1.6.5",
+    "mcp": "1.30.0",
+    "python-dotenv": "1.2.3",
+    "pytest": "9.1.1"
+  },
+  "scope": "CPU tests only. GPU engines, kernels and model checkpoints are not validated by this environment."
+}

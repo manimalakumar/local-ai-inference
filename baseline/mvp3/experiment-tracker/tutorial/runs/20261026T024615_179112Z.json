@@ -1,0 +1,766 @@
+{
+  "run_id": "20261026T024615_179112Z",
+  "experiment": "MVP1/full",
+  "runtime": "llama_cpp",
+  "hardware": "Mac M4 Pro",
+  "configuration": {
+    "experiment": "MVP1/full",
+    "runtime": "llama_cpp",
+    "host": "mac",
+    "hardware": "Mac M4 Pro",
+    "model": "clinical-trial-tutorial",
+    "base_url": "http://127.0.0.1:8080",
+    "provenance": "experiment-tracker/tutorial/provenance/llama_cpp.json",
+    "context": 8192,
+    "dtype": "Q4_K_M",
+    "profile": "full",
+    "concurrency": 1,
+    "repeats": 2
+  },
+  "inputs": {
+    "dataset_sha256": "a9bfd3e02ecfe71746fb453d552e3998b21ea9b77a3c9842e9b23f8089e2c07a",
+    "source_sha256": "5631eba3d109815034809b17cf58f58510347c23bbd1a20f4dc3d2e3e70561e6",
+    "case_ids": [
+      "eval_001",
+      "eval_002",
+      "eval_005",
+      "eval_007"
+    ],
+    "contexts_sha256": "3881682b4b8f2f3987dc786f260323e222e2395d57266cfa27640ddf6ff195e4",
+    "prompts_sha256": "31814fa55e165bbcebc907e116f49e982f74def80ea034f044d28135bb707274",
+    "cache_sha256": null
+  },
+  "status": "completed",
+  "evidence": "hardware",
+  "quality": {
+    "cases": 4,
+    "reference_scored": 4,
+    "result_equivalent": 2,
+    "first_pass_correct": 2,
+    "behavior_scored": 0,
+    "behavior_correct": 0,
+    "latency_p50_seconds": 26.884340312506538,
+    "latency_p95_seconds": 36.349925076772344,
+    "sql_executed": 2,
+    "semantic": {
+      "correct": 0,
+      "reviewed": 0,
+      "total": 4
+    }
+  },
+  "serving": {
+    "requests": 8,
+    "successful": 8,
+    "failed": 0,
+    "slo_successful": 4,
+    "measurement_seconds": 53.367036874988116,
+    "requests_per_second": 0.14990526865375606,
+    "slo_requests_per_second": 0.07495263432687803,
+    "output_tokens_per_second": 49.24388075275887,
+    "ttft_p50_seconds": 4.6349264169693924,
+    "ttft_p95_seconds": 6.822190700011561,
+    "e2e_p50_seconds": 6.5609956459957175,
+    "e2e_p95_seconds": 9.22531355622632,
+    "mean_prompt_tokens": 2426
+  },
+  "memory": {
+    "peak_bytes": 5089263616.0,
+    "scope": "server process RSS; not unified GPU memory",
+    "sample_count": 1461,
+    "sampling_interval_seconds": 0.1,
+    "error": null
+  },
+  "records": {
+    "quality": [
+      {
+        "case_id": "eval_001",
+        "repeat": 0,
+        "expected_behavior": "answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled','Randomized') GROUP BY treatment_arm;\",\n  \"rationale\": \"The question asks for the number of subjects that are Enrolled or Randomized, grouped by treatment arm. We count distinct subject_id per treatment_arm where screening_status is in ('Enrolled','Randomized').\"\n}",
+            "sql": "SELECT treatment_arm, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled','Randomized') GROUP BY treatment_arm;",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": true,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": true,
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled','Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "enrolled_subjects": 40
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "enrolled_subjects": 38
+                },
+                {
+                  "treatment_arm": "Placebo",
+                  "enrolled_subjects": 44
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "enrolled_subjects": 48
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "error": null,
+            "inference_seconds": 8.560868834028952,
+            "query_seconds": 0.7383713329909369,
+            "privacy_check_seconds": 0.0002109999768435955,
+            "model_metrics": {
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled','Randomized') GROUP BY treatment_arm;\",\n  \"rationale\": \"The question asks for the number of subjects that are Enrolled or Randomized, grouped by treatment arm. We count distinct subject_id per treatment_arm where screening_status is in ('Enrolled','Randomized').\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 6.826398833014537,
+              "e2e_seconds": 8.560652250016574,
+              "prompt_tokens": 2523,
+              "output_tokens": 241,
+              "decode_tokens_per_second": 138.38807964690784
+            }
+          }
+        ],
+        "plan": {
+          "population": "subjects where screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL",
+          "measure": "COUNT(DISTINCT subject_id)",
+          "grouping": "treatment_arm",
+          "time_window": "none",
+          "filters": "screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [],
+        "question_timeout_seconds": 180,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"subjects where screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL\",\n  \"measure\": \"COUNT(DISTINCT subject_id)\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nHow many subjects are Enrolled or Randomized by treatment arm?\n\nJSON:",
+        "plan_inference_seconds": 11.581816709018312,
+        "plan_model_metrics": {
+          "success": true,
+          "content": "{\n  \"population\": \"subjects where screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL\",\n  \"measure\": \"COUNT(DISTINCT subject_id)\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 9.527601041016169,
+          "e2e_seconds": 11.581115457986016,
+          "prompt_tokens": 2517,
+          "output_tokens": 396,
+          "decode_tokens_per_second": 192.3531662284892
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL\", \"grouping\": \"treatment_arm\", \"measure\": \"COUNT(DISTINCT subject_id)\", \"needs_clarification\": false, \"population\": \"subjects where screening_status IN ('Enrolled','Randomized') AND treatment_arm IS NOT NULL\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[]\n\nQuestion:\nHow many subjects are Enrolled or Randomized by treatment arm?\n\nJSON:",
+        "repair_prompt": null,
+        "schema_selection": {
+          "mode": "full",
+          "tables": [
+            "trials",
+            "sites",
+            "subjects",
+            "visits",
+            "adverse_events",
+            "screen_failures",
+            "protocol_deviations",
+            "lab_results",
+            "data_queries",
+            "site_monitoring"
+          ]
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "get_schema",
+          "execute_readonly_sql"
+        ],
+        "latency_seconds": 20.8902264169883,
+        "inference_seconds": 20.142685543047264,
+        "query_seconds": 0.7383713329909369,
+        "privacy_check_seconds": 0.0003149169497191906,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": true,
+          "schema_compliance": true,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 0,
+        "expected_behavior": "answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT st.site_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\\nFROM sites AS st\\nLEFT JOIN subjects AS sub ON st.site_id = sub.site_id AND sub.screening_status IN ('Enrolled', 'Randomized')\\nGROUP BY st.site_id;\",\n  \"rationale\": \"The question asks for the number of enrolled subjects at each site. Enrolled subjects are defined as those with screening_status IN ('Enrolled','Randomized'). We count distinct subject_id per site. To include sites with zero enrolled subjects, we start from the sites table and use a LEFT JOIN to subjects, grouping by site_id.\"\n}",
+            "sql": "SELECT st.site_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\nFROM sites AS st\nLEFT JOIN subjects AS sub ON st.site_id = sub.site_id AND sub.screening_status IN ('Enrolled', 'Randomized')\nGROUP BY st.site_id;",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": true,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": true,
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT st.site_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\nFROM sites AS st\nLEFT JOIN subjects AS sub ON st.site_id = sub.site_id AND sub.screening_status IN ('Enrolled', 'Randomized')\nGROUP BY st.site_id) AS readonly_result LIMIT 100",
+              "columns": [
+                "site_id",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "site_id": "SITE-009",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-012",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-016",
+                  "enrolled_subjects": 12
+                },
+                {
+                  "site_id": "SITE-004",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-001",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-010",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-014",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-018",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-019",
+                  "enrolled_subjects": 5
+                },
+                {
+                  "site_id": "SITE-002",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-007",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-017",
+                  "enrolled_subjects": 13
+                },
+                {
+                  "site_id": "SITE-005",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-003",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-013",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-011",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-008",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-015",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-006",
+                  "enrolled_subjects": 6
+                }
+              ],
+              "row_count": 19,
+              "error": null
+            },
+            "error": null,
+            "inference_seconds": 7.350546707981266,
+            "query_seconds": 0.46505950001301244,
+            "privacy_check_seconds": 0.00024387502344325185,
+            "model_metrics": {
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT st.site_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\\nFROM sites AS st\\nLEFT JOIN subjects AS sub ON st.site_id = sub.site_id AND sub.screening_status IN ('Enrolled', 'Randomized')\\nGROUP BY st.site_id;\",\n  \"rationale\": \"The question asks for the number of enrolled subjects at each site. Enrolled subjects are defined as those with screening_status IN ('Enrolled','Randomized'). We count distinct subject_id per site. To include sites with zero enrolled subjects, we start from the sites table and use a LEFT JOIN to subjects, grouping by site_id.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 4.769619790953584,
+              "e2e_seconds": 7.350315666000824,
+              "prompt_tokens": 2526,
+              "output_tokens": 345,
+              "decode_tokens_per_second": 133.29738049575602
+            }
+          }
+        ],
+        "plan": {
+          "population": "subjects where screening_status IN ('Enrolled', 'Randomized')",
+          "measure": "COUNT(DISTINCT subject_id)",
+          "grouping": "site",
+          "time_window": "none",
+          "filters": "screening_status IN ('Enrolled', 'Randomized')",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [
+          "zero_groups: Include every sites group, including zero qualifying rows; start from the parent table with outer joins."
+        ],
+        "question_timeout_seconds": 180,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"subjects where screening_status IN ('Enrolled', 'Randomized')\",\n  \"measure\": \"COUNT(DISTINCT subject_id)\",\n  \"grouping\": \"site\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nHow many subjects have enrolled at each site?\n\nJSON:",
+        "plan_inference_seconds": 6.209809292049613,
+        "plan_model_metrics": {
+          "success": true,
+          "content": "{\n  \"population\": \"subjects where screening_status IN ('Enrolled', 'Randomized')\",\n  \"measure\": \"COUNT(DISTINCT subject_id)\",\n  \"grouping\": \"site\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 4.469567749998532,
+          "e2e_seconds": 6.209329333039932,
+          "prompt_tokens": 2513,
+          "output_tokens": 283,
+          "decode_tokens_per_second": 162.09117545118795
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\", \"grouping\": \"site\", \"measure\": \"COUNT(DISTINCT subject_id)\", \"needs_clarification\": false, \"population\": \"subjects where screening_status IN ('Enrolled', 'Randomized')\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[\"zero_groups: Include every sites group, including zero qualifying rows; start from the parent table with outer joins.\"]\n\nQuestion:\nHow many subjects have enrolled at each site?\n\nJSON:",
+        "repair_prompt": null,
+        "schema_selection": {
+          "mode": "full",
+          "tables": [
+            "trials",
+            "sites",
+            "subjects",
+            "visits",
+            "adverse_events",
+            "screen_failures",
+            "protocol_deviations",
+            "lab_results",
+            "data_queries",
+            "site_monitoring"
+          ]
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "get_schema",
+          "execute_readonly_sql"
+        ],
+        "latency_seconds": 14.033755124954041,
+        "inference_seconds": 13.560356000030879,
+        "query_seconds": 0.46505950001301244,
+        "privacy_check_seconds": 0.000252292025834322,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": true,
+          "schema_compliance": true,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 0,
+        "expected_behavior": "answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT COUNT(visit_id) AS missed_visits\\nFROM visits\\nWHERE status = 'Missed'\\n  AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month'\\n  AND actual_date < DATE_TRUNC('month', CURRENT_DATE);\",\n  \"rationale\": \"The query counts all visits with status 'Missed' whose actual_date falls within the previous calendar month (inclusive start, exclusive current month start), providing the total number of scheduled visits missed last month.\"\n}",
+            "sql": "SELECT COUNT(visit_id) AS missed_visits\nFROM visits\nWHERE status = 'Missed'\n  AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month'\n  AND actual_date < DATE_TRUNC('month', CURRENT_DATE);",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": false,
+            "intent_contract_violations": [
+              "previous_calendar_month: Filter visits.planned_date from date_trunc('month', CURRENT_DATE) - INTERVAL 1 MONTH (inclusive) to date_trunc('month', CURRENT_DATE) (exclusive); do not use actual_date or a rolling cutoff."
+            ],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "Question-intent contract violation: previous_calendar_month: Filter visits.planned_date from date_trunc('month', CURRENT_DATE) - INTERVAL 1 MONTH (inclusive) to date_trunc('month', CURRENT_DATE) (exclusive); do not use actual_date or a rolling cutoff.",
+            "inference_seconds": 7.251802999991924,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.00025512499269098043,
+            "model_metrics": {
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT COUNT(visit_id) AS missed_visits\\nFROM visits\\nWHERE status = 'Missed'\\n  AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month'\\n  AND actual_date < DATE_TRUNC('month', CURRENT_DATE);\",\n  \"rationale\": \"The query counts all visits with status 'Missed' whose actual_date falls within the previous calendar month (inclusive start, exclusive current month start), providing the total number of scheduled visits missed last month.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 5.011214500002097,
+              "e2e_seconds": 7.25155583297601,
+              "prompt_tokens": 2578,
+              "output_tokens": 328,
+              "decode_tokens_per_second": 145.9599013717825
+            }
+          },
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT COUNT(visit_id) AS missed_visits FROM visits WHERE status = 'Missed' AND planned_date BETWEEN DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND DATE_TRUNC('month', CURRENT_DATE);\",\n  \"rationale\": \"The question asks for the number of scheduled visits missed last month. We count visits where status is 'Missed' and the planned_date falls within the calendar month ending today. The query uses the planned_date column (not actual_date) to respect the calendar month window, aggregates with COUNT, and returns a single overall result.\"\n}",
+            "sql": "SELECT COUNT(visit_id) AS missed_visits FROM visits WHERE status = 'Missed' AND planned_date BETWEEN DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND DATE_TRUNC('month', CURRENT_DATE);",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": false,
+            "intent_contract_violations": [
+              "previous_calendar_month: Filter visits.planned_date from date_trunc('month', CURRENT_DATE) - INTERVAL 1 MONTH (inclusive) to date_trunc('month', CURRENT_DATE) (exclusive); do not use actual_date or a rolling cutoff."
+            ],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "Question-intent contract violation: previous_calendar_month: Filter visits.planned_date from date_trunc('month', CURRENT_DATE) - INTERVAL 1 MONTH (inclusive) to date_trunc('month', CURRENT_DATE) (exclusive); do not use actual_date or a rolling cutoff.",
+            "inference_seconds": 10.758080207975581,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.00018637499306350946,
+            "model_metrics": {
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT COUNT(visit_id) AS missed_visits FROM visits WHERE status = 'Missed' AND planned_date BETWEEN DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND DATE_TRUNC('month', CURRENT_DATE);\",\n  \"rationale\": \"The question asks for the number of scheduled visits missed last month. We count visits where status is 'Missed' and the planned_date falls within the calendar month ending today. The query uses the planned_date column (not actual_date) to respect the calendar month window, aggregates with COUNT, and returns a single overall result.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 8.221107791992836,
+              "e2e_seconds": 10.757859791978262,
+              "prompt_tokens": 2682,
+              "output_tokens": 509,
+              "decode_tokens_per_second": 200.25607548665317
+            }
+          }
+        ],
+        "plan": {
+          "population": "visits where status='Missed' and actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)",
+          "measure": "COUNT(visit_id)",
+          "grouping": "overall",
+          "time_window": "actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)",
+          "filters": "status='Missed'",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [
+          "previous_calendar_month: Count Missed visits by planned_date in the entire previous calendar month, with inclusive start and exclusive current-month start."
+        ],
+        "question_timeout_seconds": 180,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"visits where status='Missed' and actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\",\n  \"measure\": \"COUNT(visit_id)\",\n  \"grouping\": \"overall\",\n  \"time_window\": \"actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\",\n  \"filters\": \"status='Missed'\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nHow many scheduled visits were missed last month?\n\nJSON:",
+        "plan_inference_seconds": 14.867665042052977,
+        "plan_model_metrics": {
+          "success": true,
+          "content": "{\n  \"population\": \"visits where status='Missed' and actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\",\n  \"measure\": \"COUNT(visit_id)\",\n  \"grouping\": \"overall\",\n  \"time_window\": \"actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\",\n  \"filters\": \"status='Missed'\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 12.221071999985725,
+          "e2e_seconds": 14.867319000011776,
+          "prompt_tokens": 2513,
+          "output_tokens": 724,
+          "decode_tokens_per_second": 273.217125987439
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"status='Missed'\", \"grouping\": \"overall\", \"measure\": \"COUNT(visit_id)\", \"needs_clarification\": false, \"population\": \"visits where status='Missed' and actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\", \"ranking\": \"none\", \"time_window\": \"actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[\"previous_calendar_month: Count Missed visits by planned_date in the entire previous calendar month, with inclusive start and exclusive current-month start.\"]\n\nQuestion:\nHow many scheduled visits were missed last month?\n\nJSON:",
+        "repair_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nAnswer plan (repair any field that conflicts with the error below):\n{\"clarification_question\": \"\", \"filters\": \"status='Missed'\", \"grouping\": \"overall\", \"measure\": \"COUNT(visit_id)\", \"needs_clarification\": false, \"population\": \"visits where status='Missed' and actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\", \"ranking\": \"none\", \"time_window\": \"actual_date between DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' and DATE_TRUNC('month', CURRENT_DATE)\"}\n\nThe prior SQL failed. Repair it once.\n\nQuestion:\nHow many scheduled visits were missed last month?\n\nFailed SQL:\nSELECT COUNT(visit_id) AS missed_visits\nFROM visits\nWHERE status = 'Missed'\n  AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month'\n  AND actual_date < DATE_TRUNC('month', CURRENT_DATE);\n\nError:\nQuestion-intent contract violation: previous_calendar_month: Filter visits.planned_date from date_trunc('month', CURRENT_DATE) - INTERVAL 1 MONTH (inclusive) to date_trunc('month', CURRENT_DATE) (exclusive); do not use actual_date or a rolling cutoff.\n\nReturn JSON only with keys \"sql\" and \"rationale\".\nJSON:",
+        "schema_selection": {
+          "mode": "full",
+          "tables": [
+            "trials",
+            "sites",
+            "subjects",
+            "visits",
+            "adverse_events",
+            "screen_failures",
+            "protocol_deviations",
+            "lab_results",
+            "data_queries",
+            "site_monitoring"
+          ]
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "get_schema"
+        ],
+        "latency_seconds": 32.87845420802478,
+        "inference_seconds": 32.87754825002048,
+        "query_seconds": 0.0,
+        "privacy_check_seconds": 0.0004487499827519059,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": true,
+          "schema_compliance": null,
+          "sql_execution_success": false,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 1,
+          "repair_success": false,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 0,
+        "expected_behavior": "qualified_answer",
+        "attempts": [
+          {
+            "raw_model_response": null,
+            "sql": null,
+            "sql_safety": null,
+            "semantic_filter_check": null,
+            "intent_contract_check": null,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "Model invocation failed: ValueError: Incomplete or empty completion stream",
+            "inference_seconds": 20.307700958044734,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.0,
+            "model_metrics": {}
+          }
+        ],
+        "plan": {
+          "population": "subjects with at least one serious adverse event (adverse_events.severity any, serious=true) and enrolled (screening_status IN ('Enrolled','Randomized'))",
+          "measure": "proportion of enrolled subjects with at least one serious adverse event per treatment arm (numerator = distinct subjects with serious AE, denominator = distinct enrolled subjects per arm)",
+          "grouping": "treatment_arm",
+          "time_window": "none",
+          "filters": "adverse_events.severity any, serious=true, screening_status IN ('Enrolled','Randomized')",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [],
+        "question_timeout_seconds": 180,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"subjects with at least one serious adverse event (adverse_events.severity any, serious=true) and enrolled (screening_status IN ('Enrolled','Randomized'))\",\n  \"measure\": \"proportion of enrolled subjects with at least one serious adverse event per treatment arm (numerator = distinct subjects with serious AE, denominator = distinct enrolled subjects per arm)\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"adverse_events.severity any, serious=true, screening_status IN ('Enrolled','Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nCompare serious adverse-event rates across treatment arms.\n\nJSON:",
+        "plan_inference_seconds": 16.654754125047475,
+        "plan_model_metrics": {
+          "success": true,
+          "content": "{\n  \"population\": \"subjects with at least one serious adverse event (adverse_events.severity any, serious=true) and enrolled (screening_status IN ('Enrolled','Randomized'))\",\n  \"measure\": \"proportion of enrolled subjects with at least one serious adverse event per treatment arm (numerator = distinct subjects with serious AE, denominator = distinct enrolled subjects per arm)\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"adverse_events.severity any, serious=true, screening_status IN ('Enrolled','Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 13.726318541972432,
+          "e2e_seconds": 16.654132541967556,
+          "prompt_tokens": 2513,
+          "output_tokens": 828,
+          "decode_tokens_per_second": 282.46329855700446
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema:\n\nTable: trials\n- trial_id VARCHAR: Primary trial identifier.\n- phase VARCHAR: Clinical phase, such as Phase I through Phase IV.\n- indication VARCHAR: Disease or therapeutic area being studied.\n- start_date DATE: Trial start date.\n- target_enrollment INTEGER: Planned total enrollment for the trial.\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- trial_id VARCHAR: Foreign key to trials.trial_id.\n- region VARCHAR: Geographic region for the site.\n- activation_date DATE: Date the site was activated.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nTable: screen_failures\n- screen_failure_id VARCHAR: Primary screen-failure record identifier.\n- subject_id VARCHAR: Foreign key to a Screen Failed subject. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- screening_date DATE: Screening date after site activation.\n- failure_category VARCHAR: Inclusion, Exclusion, Lab, Consent, or Withdrawal.\n- criterion_code VARCHAR: Controlled protocol criterion code.\n- failure_reason VARCHAR: Controlled clinical reason for screen failure.\n- rescreen_allowed BOOLEAN: Whether protocol-guided rescreening is allowed.\n- notes VARCHAR: Optional synthetic note.\n\nTable: protocol_deviations\n- deviation_id VARCHAR: Primary protocol-deviation identifier.\n- subject_id VARCHAR: Optional foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- deviation_date DATE: Date the deviation occurred.\n- detected_date DATE: Date detected; same day or later than deviation_date.\n- category VARCHAR: Visit Window, Consent, Dosing, Eligibility, or Procedure.\n- severity VARCHAR: Minor, Major, or Critical.\n- description VARCHAR: Controlled template-based deviation description.\n- reported_to_irb BOOLEAN: Whether the deviation was reported to the IRB.\n- corrective_action VARCHAR: Controlled corrective action.\n- status VARCHAR: Open, Investigating, or Resolved.\n- resolved_date DATE: Resolution date for resolved deviations only.\n\nTable: lab_results\n- lab_result_id VARCHAR: Primary laboratory-result identifier.\n- subject_id VARCHAR: Foreign key to an enrolled subject. Treat as private.\n- visit_id VARCHAR: Foreign key to visits.visit_id.\n- collection_date DATE: Collection date within two days of the actual visit.\n- test_code VARCHAR: ALT, AST, HGB, WBC, or CREAT.\n- test_name VARCHAR: Controlled test name mapped from test_code.\n- result_value DOUBLE: Synthetic numeric result sampled around the test range.\n- unit VARCHAR: Controlled unit mapped from test_code.\n- reference_low DOUBLE: Test-specific synthetic reference lower bound.\n- reference_high DOUBLE: Test-specific synthetic reference upper bound.\n- abnormal_flag VARCHAR: Low, Normal, or High, derived from the stored range.\n- clinically_significant BOOLEAN: Rare synthetic clinical-significance flag.\n- reviewed BOOLEAN: Whether the result was reviewed.\n\nTable: data_queries\n- query_id VARCHAR: Primary data-query identifier.\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- site_id VARCHAR: Foreign key to the subject's site.\n- visit_id VARCHAR: Optional foreign key to visits.visit_id.\n- opened_date DATE: Date opened, on or after the source-data date.\n- query_type VARCHAR: Missing, Inconsistent, Outlier, or Clarification.\n- field_name VARCHAR: Controlled queried field name.\n- priority VARCHAR: Low, Medium, or High.\n- query_text VARCHAR: Controlled template-based clinical query.\n- status VARCHAR: Open, Answered, or Closed.\n- response_date DATE: Response date for answered or closed queries.\n- closed_date DATE: Closure date for closed queries.\n- resolution_hours INTEGER: Whole hours from opened_date to closed_date.\n\nTable: site_monitoring\n- monitoring_visit_id VARCHAR: Primary monitoring-visit identifier.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- visit_date DATE: Monitoring date after site activation.\n- visit_type VARCHAR: Initiation, Interim, For-cause, or Closeout.\n- monitor_id VARCHAR: Synthetic monitor identifier.\n- risk_rating VARCHAR: Low, Medium, or High.\n- findings_count INTEGER: Total findings, usually zero through eight.\n- critical_findings INTEGER: Critical findings; no more than findings_count.\n- open_actions INTEGER: Open actions; no more than findings_count.\n- report_date DATE: Report date one through ten days after visit_date.\n- next_visit_date DATE: Optional next visit date 30 through 120 days later.\n- status VARCHAR: Planned, Completed, or Report Pending.\n- notes VARCHAR: Controlled summary with optional synthetic detail.\n\nRelationships:\n- sites.trial_id -> trials.trial_id\n- subjects.site_id -> sites.site_id\n- visits.subject_id -> subjects.subject_id\n- adverse_events.subject_id -> subjects.subject_id\n- screen_failures.subject_id -> subjects.subject_id\n- screen_failures.site_id -> sites.site_id\n- protocol_deviations.subject_id -> subjects.subject_id (nullable)\n- protocol_deviations.site_id -> sites.site_id\n- lab_results.subject_id -> subjects.subject_id\n- lab_results.visit_id -> visits.visit_id\n- data_queries.subject_id -> subjects.subject_id\n- data_queries.site_id -> sites.site_id\n- data_queries.visit_id -> visits.visit_id (nullable)\n- site_monitoring.site_id -> sites.site_id\n\nPrivacy note: subject_id is a subject-level identifier. Prefer aggregate results. If subject_id appears in query results, the MCP server pseudonymizes it before display.\n\nJoin map (use these keys; do not invent a shortcut column):\n- sites.trial_id = trials.trial_id\n- subjects.site_id = sites.site_id\n- visits.subject_id = subjects.subject_id; a visit's site or region requires visits -> subjects -> sites. visits has NO site_id.\n- adverse_events.subject_id = subjects.subject_id; its treatment_arm requires adverse_events -> subjects.\n- screen_failures.subject_id = subjects.subject_id; screen_failures.site_id = sites.site_id. A subject can have several criterion-level failure records.\n- protocol_deviations.site_id = sites.site_id; its optional subject_id can join subjects.subject_id.\n- lab_results.visit_id = visits.visit_id; lab_results.subject_id = subjects.subject_id.\n- data_queries.site_id = sites.site_id; data_queries.subject_id = subjects.subject_id; its visit_id can join visits.visit_id.\n- site_monitoring.site_id = sites.site_id. The visit type column is visit_type; the date column is visit_date.\n\nBusiness definitions for this synthetic operational dataset:\n- Unless the user supplies another definition, \"enrolled subjects\" includes screening_status IN ('Enrolled', 'Randomized'); count subjects, not visit or adverse-event rows. The interactive app may ask for clarification first.\n- A screen-failed subject has screening_status = 'Screen Failed'. Count DISTINCT subject_id from screen_failures because one subject may have multiple failed criteria. A site screen-failure rate uses distinct failed subjects divided by all screened subjects at that site; state the denominator.\n- For a site ranking such as \"which sites have the longest\", return the sites with their metric ordered highest first. Use LIMIT only when the user asks for a top N or one site.\n- \"Overall\" asks for one result row. Do not GROUP BY site, trial, arm, or month unless the question asks \"by\" or \"for each\" that dimension.\n- The phrase \"Site 17\" refers to site_id = 'SITE-017' in this synthetic dataset. Do not infer a cause of poor performance from operational correlations.\n- To compare a rate, report the numerator and denominator used. Put aggregate filters in HAVING or an outer query, never WHERE.\n\nIllustrative DuckDB patterns (adapt to the question; do not copy extra columns or filters):\n1. Join a visit to its region:\n   SELECT st.region, COUNT(v.visit_id) AS completed_visits\n   FROM visits AS v JOIN subjects AS sub ON v.subject_id = sub.subject_id\n   JOIN sites AS st ON sub.site_id = st.site_id\n   WHERE v.status = 'Completed' GROUP BY st.region;\n2. Preserve zero-subject trials while counting enrolled people:\n   SELECT t.trial_id, COUNT(DISTINCT sub.subject_id) AS enrolled_subjects\n   FROM trials AS t LEFT JOIN sites AS st ON t.trial_id = st.trial_id\n   LEFT JOIN subjects AS sub ON st.site_id = sub.site_id\n     AND sub.screening_status IN ('Enrolled', 'Randomized')\n   GROUP BY t.trial_id;\n3. Return an overall average without a site grouping:\n   SELECT ROUND(AVG(resolution_hours), 2) AS overall_resolution_hours\n   FROM data_queries WHERE status = 'Closed' AND resolution_hours IS NOT NULL;\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"adverse_events.severity any, serious=true, screening_status IN ('Enrolled','Randomized')\", \"grouping\": \"treatment_arm\", \"measure\": \"proportion of enrolled subjects with at least one serious adverse event per treatment arm (numerator = distinct subjects with serious AE, denominator = distinct enrolled subjects per arm)\", \"needs_clarification\": false, \"population\": \"subjects with at least one serious adverse event (adverse_events.severity any, serious=true) and enrolled (screening_status IN ('Enrolled','Randomized'))\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[]\n\nQuestion:\nCompare serious adverse-event rates across treatment arms.\n\nJSON:",
+        "repair_prompt": null,
+        "schema_selection": {
+          "mode": "full",
+          "tables": [
+            "trials",
+            "sites",
+            "subjects",
+            "visits",
+            "adverse_events",
+            "screen_failures",
+            "protocol_deviations",
+            "lab_results",
+            "data_queries",
+            "site_monitoring"
+          ]
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "get_schema"
+        ],
+        "latency_seconds": 36.96253758302191,
+        "inference_seconds": 36.96245508309221,
+        "query_seconds": 0.0,
+        "privacy_check_seconds": 4.542001988738775e-06,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": false,
+          "sql_safety": null,
+          "schema_compliance": null,
+          "sql_execution_success": false,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      }
+    ],
+    "serving": [
+      {
+        "case_id": "eval_001",
+        "repeat": 0,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm;\",\n  \"rationale\": \"The question asks for the number of subjects that are Enrolled or Randomized, grouped by treatment arm. We count distinct subject_id per treatment_arm where screening_status is in ('Enrolled','Randomized').\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 2.3528862909879535,
+        "e2e_seconds": 4.104377082956489,
+        "prompt_tokens": 2429,
+        "output_tokens": 214,
+        "decode_tokens_per_second": 121.6106878647104
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 0,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id;\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. Enrolled subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We count distinct subject_id per site to avoid double\u2011counting subjects with multiple records. The query returns site_id and the count, which matches the requirement.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 2.541608500003349,
+        "e2e_seconds": 4.665577374980785,
+        "prompt_tokens": 2425,
+        "output_tokens": 222,
+        "decode_tokens_per_second": 104.05048897072365
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 0,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT COUNT(*) AS missed_visits FROM visits WHERE status = 'Missed' AND planned_date >= DATEADD('month', -1, CURRENT_DATE) AND planned_date < CURRENT_DATE;\",\n  \"rationale\": \"The query counts all visits with status 'Missed' whose planned date falls within the previous calendar month, providing the total number of scheduled visits missed last month.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 6.842203875014093,
+        "e2e_seconds": 8.534663167025428,
+        "prompt_tokens": 2425,
+        "output_tokens": 421,
+        "decode_tokens_per_second": 248.15958763821598
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 0,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm,\\n       ROUND(COUNT(DISTINCT subject_id) FILTER (WHERE serious) * 100.0 / COUNT(DISTINCT subject_id) FILTER (WHERE treatment_arm IS NOT NULL), 2) AS serious_adverse_event_rate_percent\\nFROM subjects\\nWHERE treatment_arm IS NOT NULL\\nGROUP BY treatment_arm;\",\n  \"rationale\": \"The query counts distinct subjects with serious adverse events per treatment arm and divides by the total number of subjects assigned to that arm (excluding those without a treatment arm) to compute the serious adverse\u2011event rate as a percentage. This provides a direct comparison across arms.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 6.593871875025798,
+        "e2e_seconds": 9.27464662498096,
+        "prompt_tokens": 2425,
+        "output_tokens": 457,
+        "decode_tokens_per_second": 170.1000802128664
+      },
+      {
+        "case_id": "eval_001",
+        "repeat": 1,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm;\",\n  \"rationale\": \"The question asks for the number of subjects that are Enrolled or Randomized, grouped by treatment arm. We count distinct subject_id per treatment_arm where screening_status is in ('Enrolled','Randomized').\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 2.7833622919861227,
+        "e2e_seconds": 4.529661500011571,
+        "prompt_tokens": 2429,
+        "output_tokens": 214,
+        "decode_tokens_per_second": 121.97222504661185
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 1,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(DISTINCT subject_id) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id;\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. Enrolled subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We count distinct subject_id per site to avoid double\u2011counting subjects with multiple records. The query returns site_id and the count, which matches the requirement.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 2.5508842500275932,
+        "e2e_seconds": 4.680526792013552,
+        "prompt_tokens": 2425,
+        "output_tokens": 222,
+        "decode_tokens_per_second": 103.77328384598785
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 1,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT COUNT(*) AS missed_visits FROM visits WHERE status = 'Missed' AND planned_date >= DATEADD('month', -1, CURRENT_DATE) AND planned_date < CURRENT_DATE;\",\n  \"rationale\": \"The query counts all visits with status 'Missed' whose planned date falls within the previous calendar month, providing the total number of scheduled visits missed last month.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 6.785023375006858,
+        "e2e_seconds": 8.441464499977883,
+        "prompt_tokens": 2425,
+        "output_tokens": 421,
+        "decode_tokens_per_second": 253.55564630004392
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 1,
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm,\\n       ROUND(COUNT(DISTINCT subject_id) FILTER (WHERE serious) * 100.0 / COUNT(DISTINCT subject_id) FILTER (WHERE treatment_arm IS NOT NULL), 2) AS serious_adverse_event_rate_percent\\nFROM subjects\\nWHERE treatment_arm IS NOT NULL\\nGROUP BY treatment_arm;\",\n  \"rationale\": \"The query counts distinct subjects with serious adverse events per treatment arm and divides by the total number of subjects assigned to that arm (excluding those without a treatment arm) to compute the serious adverse\u2011event rate as a percentage. This provides a direct comparison across arms.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 6.486490541952662,
+        "e2e_seconds": 9.133694999967702,
+        "prompt_tokens": 2425,
+        "output_tokens": 457,
+        "decode_tokens_per_second": 172.2571895115059
+      }
+    ]
+  },
+  "server": {
+    "hardware": "Apple M4 Pro",
+    "model_sha256": "be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2",
+    "evidence": "hardware",
+    "identity_scope": "verified identical GGUF weights/tokenizer; server chat templates may differ",
+    "launch_settings": {
+      "context": 8192,
+      "dtype": "Q4_K_M",
+      "cache_policy": "server default, warmed"
+    },
+    "runtime": "llama_cpp",
+    "model": "clinical-trial-tutorial",
+    "server_pid": 5741,
+    "engine_version": "version: 0.7.0-dev (build 11887, commit 6050b467c)\nbuilt with AppleClang 21.0.0.21000101 for Darwin arm64"
+  },
+  "database_sha256": "f1a7100697b0980b56359632fde49d042fb147260da03931a53a3cbfa7f6830e",
+  "evaluation_date": "2026-10-25",
+  "finding": "Inspect execution match, semantic review coverage, and latency together."
+}

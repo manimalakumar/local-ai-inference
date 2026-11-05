@@ -1,0 +1,8 @@
+# CPU/Mac dependencies for the inherited clinical stack and MVP4 unit tests.
+# Engine packages live in separate Linux GPU environments.
+duckdb>=1.1.0
+Faker>=24.0.0
+langchain-core>=0.3.0
+mcp>=1.6.0,<2.0.0
+python-dotenv>=1.0.0
+pytest>=8.0.0

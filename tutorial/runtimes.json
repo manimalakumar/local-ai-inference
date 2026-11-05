@@ -1,0 +1,73 @@
+{
+  "mac_llama": {
+    "experiment": "MVP1/retrieved",
+    "runtime": "llama_cpp",
+    "host": "mac",
+    "hardware": "Mac M4 Pro",
+    "model": "clinical-trial-tutorial",
+    "base_url": "http://127.0.0.1:8080",
+    "provenance": "experiment-tracker/tutorial/provenance/llama_cpp.json",
+    "context": 8192,
+    "dtype": "Q4_K_M",
+    "profile": "retrieved",
+    "concurrency": 1,
+    "repeats": 2
+  },
+  "mac_ollama": {
+    "experiment": "MVP2/Ollama",
+    "runtime": "ollama",
+    "host": "mac",
+    "hardware": "Mac M4 Pro",
+    "model": "clinical-trial-mvp2-bench",
+    "base_url": "http://127.0.0.1:11434",
+    "provenance": "experiment-tracker/tutorial/provenance/ollama.json",
+    "context": 8192,
+    "dtype": "Q4_K_M",
+    "profile": "retrieved",
+    "concurrency": 1,
+    "repeats": 2
+  },
+  "rtx_vllm": {
+    "experiment": "MVP3/vLLM",
+    "runtime": "vllm",
+    "host": "cuda",
+    "hardware": "Dell RTX 5000 (verify exact SKU)",
+    "model": "clinical-trial-mvp3",
+    "base_url": "http://127.0.0.1:8000",
+    "provenance": "experiment-tracker/tutorial/provenance/vllm.json",
+    "context": 8192,
+    "dtype": "bfloat16",
+    "prefix_cache": false,
+    "profile": "retrieved",
+    "concurrency": 1,
+    "repeats": 2
+  },
+  "rtx_sglang": {
+    "experiment": "MVP3/SGLang",
+    "runtime": "sglang",
+    "host": "cuda",
+    "hardware": "Dell RTX 5000 (verify exact SKU)",
+    "model": "clinical-trial-mvp3",
+    "base_url": "http://127.0.0.1:8000",
+    "provenance": "experiment-tracker/tutorial/provenance/sglang.json",
+    "context": 8192,
+    "dtype": "bfloat16",
+    "prefix_cache": false,
+    "profile": "retrieved",
+    "concurrency": 1,
+    "repeats": 2
+  },
+  "rtx_nim": {
+    "experiment": "MVP4/NIM",
+    "runtime": "nim",
+    "host": "cuda",
+    "hardware": "Dell RTX 5000 (verify exact SKU)",
+    "model": "SET_FROM_NIM_IMAGE",
+    "base_url": "http://127.0.0.1:8000",
+    "provenance": "experiment-tracker/tutorial/provenance/nim.json",
+    "nim_profile": "tutorial/nim_profile.local.json",
+    "profile": "retrieved",
+    "concurrency": 1,
+    "repeats": 2
+  }
+}

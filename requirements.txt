@@ -1,0 +1,2 @@
+# MVP4 CPU notebook/test dependencies. Install GPU engines separately.
+-r requirements-notebook.txt

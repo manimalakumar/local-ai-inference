@@ -1,0 +1,41 @@
+# Ignore local secrets, caches, model files, and large database snapshots.
+
+.DS_Store
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.local-serving/
+tutorial/*.local.json
+tutorial/*.log
+.venv-*/
+publish/
+
+# Generated archives are release attachments rather than source changes.
+experiment-tracker/code-snapshots/mvp3-*.zip
+experiment-tracker/code-snapshots/mvp3-*.zip.sha256
+
+# Large local model artifacts
+models/
+models/*.gguf
+models/*.bin
+models/*.safetensors
+models/*/
+# Keep the local embedding checkpoint outside Git.
+models/Nemotron-3-Embed-1B-BF16
+llama_cpp/vendor/
+
+# DuckDB transient files
+*.duckdb.wal
+*.duckdb.tmp
+
+# Evaluation JSONL, summaries, manifests, and catalog are historical records.
+# DuckDB snapshots are retained locally by content hash but can become large.
+evals/results/snapshots/databases/
+experiment-tracker/results/snapshots/databases/

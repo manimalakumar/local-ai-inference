@@ -1,0 +1,62 @@
+{
+  "experiment": "ExecuTorch/edge",
+  "runtime": "executorch",
+  "hardware": "Apple M4 Pro / CPU XNNPACK",
+  "status": "completed",
+  "evidence": "hardware",
+  "quality": null,
+  "serving": null,
+  "memory": {
+    "peak_bytes": 1067581440.0,
+    "scope": "server process RSS; not unified GPU memory",
+    "sample_count": 32,
+    "sampling_interval_seconds": 0.1,
+    "error": null
+  },
+  "startup_seconds": 0.076,
+  "single_request_seconds": 0.199,
+  "footprint_bytes": 653888364,
+  "operator_fallback_count": null,
+  "reason": "Startup/inference split is unknown if this runner emits no observer metrics.",
+  "generation": {
+    "prompt": "Once upon a time",
+    "text": ", there was a little girl named Lily. She lived in a big house with her family, but she didn't have many toys to play with. One day",
+    "num_generated_tokens": 31,
+    "num_prompt_tokens": 4
+  },
+  "wall_seconds": 3.4801052500260994,
+  "model_sha256": "eda040c3324e2327cea891f468a9621f65376c07222209839723144b94978910",
+  "tokenizer_sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+  "runner_sha256": "f5a0d213767635b47d8d86ffc33dbad471a8a988d5ed848d0c7d9469e8d73453",
+  "operator_fallback_note": "Unknown until ETDump/ETRecord inspection; delegation is not runtime fallback.",
+  "model_name": "HuggingFaceTB/SmolLM2-135M",
+  "model_revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+  "backend": "XNNPACK / CPU",
+  "dtype": "float32",
+  "max_context_length": 128,
+  "threads": 4,
+  "checkpoint_validation": {
+    "reference": "original HF checkpoint, float32 eager logits",
+    "input_sequences": 2,
+    "max_abs_logit_error": 4.38690185546875e-05,
+    "atol": 0.001,
+    "rtol": 0.001,
+    "passed": true
+  },
+  "source_weight_sha256": "80521b40281d6ce74e35c9282c22539e75aa0ac8578892b2a59955ef78d55da1",
+  "export_config_sha256": "e66e5e3a1e49a88c299dca66de14d57982d37160c58e11839134ebf0fc2af6e3",
+  "versions": {
+    "executorch": "1.5.1",
+    "torch": "2.15.0",
+    "torchvision": "0.29.2",
+    "transformers": "5.22.0",
+    "torchao": "0.18.0"
+  },
+  "platform": {
+    "os": "Darwin",
+    "os_version": "26.7.1",
+    "arch": "arm64"
+  },
+  "measured_at": "2026-10-29T16:15:10.033270+00:00",
+  "limitations": "One warm-filesystem portability smoke run, not a clinical or serving benchmark. Model+tokenizer footprint excludes the Python/PyTorch runtime. Operator fallback is unreviewed. Native runner token counts are retained as reported."
+}
