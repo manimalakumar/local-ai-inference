@@ -1,0 +1,23 @@
+{
+  "model_key": "nemotron",
+  "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+  "model": "clinical-trial-mvp4-nim-nemotron",
+  "model_revision": "SET_EXACT_BASE_REVISION",
+  "image": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:SET_EXACT_DIGEST",
+  "backend": "vllm",
+  "snapshot": "models/nemotron-3-nano-4b-frozen",
+  "gpu_device": "0",
+  "hardware": "",
+  "gpu_uuid": "",
+  "profile_id": "",
+  "discovery_output": "",
+  "launch_settings": {
+    "context": 8192,
+    "dtype": "float16",
+    "prefix_cache": false,
+    "quantization": null,
+    "max_num_seqs": 4,
+    "mamba_ssm_cache_dtype": "float32",
+    "trust_remote_code": true
+  }
+}

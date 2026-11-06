@@ -69,7 +69,7 @@ def validate_provenance(spec, server):
 
 
 def serve_and_benchmark(spec, *, execute=False, root=ROOT, case_ids=TUTORIAL_CASES,
-                        client=None, server=None, memory=None):
+                        client=None, server=None, memory=None, nim_profile=None):
     """Attach to one prestarted server, run serial clinical quality then concurrent serving.
 
     Default is a no-network plan. Injected clients are test evidence, never hardware results.
@@ -93,7 +93,7 @@ def serve_and_benchmark(spec, *, execute=False, root=ROOT, case_ids=TUTORIAL_CAS
     try:
         if spec["runtime"] == "nim":
             path = root / spec.get("nim_profile", "tutorial/nim_profile.example.json")
-            profile = json.loads(path.read_text()) if path.exists() else {}
+            profile = nim_profile if nim_profile is not None else (json.loads(path.read_text()) if path.exists() else {})
             allowed, reason = nim_gate(profile, model=spec["model"], hardware=spec["hardware"],
                                        enabled=True, system=platform.system())
             if not allowed:

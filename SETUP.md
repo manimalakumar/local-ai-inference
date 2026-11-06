@@ -1,5 +1,8 @@
 # Setup and GPU execution
 
+For the two additional NIM notebooks, follow [the NIM-specific deployment guide](tutorial/NIM_MVP4.md).
+The vLLM setup and optimization workflows below remain unchanged.
+
 Start from this repository root. Python 3.11 is the tested CPU interpreter. Install
 `requirements-notebook.txt` into `.venv` and run `python -m pytest -q` there before moving
 to GPU execution. The included synthetic database is ready; no database rebuild is needed.

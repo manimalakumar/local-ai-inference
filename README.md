@@ -11,10 +11,14 @@ reference scorer and four-question smoke workload. The initial repository state 
 |---|---|
 | [Qwen3-4B](notebooks/local%20AI%20optimization%20-%20Qwen.ipynb) | Existing FP16/AWQ W4A16 × cache off/on strategy; AWQ compatibility smoke first; separate cold/warm requests |
 | [Nemotron 3 Nano 4B](notebooks/local%20AI%20optimization%20-%20Nemotron.ipynb) | Core FP16 baseline, prefix caching, full/retrieved schema, client concurrency, scheduler capacity, reasoning and output caps; optional validated AWQ stretch |
+| [NIM Qwen3-4B](notebooks/local%20AI%20optimization%20-%20NIM%20Qwen.ipynb) | Exact Qwen model/profile discovery, deployment, SQL smoke, full/retrieved schema and concurrency 1/2/4 |
+| [NIM Nemotron 3 Nano 4B](notebooks/local%20AI%20optimization%20-%20NIM%20Nemotron.ipynb) | Exact Nemotron model/profile discovery with hybrid-state checks, deployment, SQL smoke, context and concurrency |
 
 **GPU measurements are pending.** Unit tests run on CPU with fake model transports and
 real read-only SQL scoring. They do not establish kernel, checkpoint or GPU compatibility.
-Both notebooks execute offline by default and record actual GPU evidence only after live runs.
+All four notebooks execute offline by default and record actual GPU evidence only after live runs.
+The additional NIM notebooks have a [model-specific run guide](tutorial/NIM_MVP4.md). They do
+not imply that a compatible NIM profile for either model has already been validated on the Dell.
 
 ## Start
 
@@ -62,7 +66,7 @@ each iteration. Selected original reports and GPU evidence are retained under `b
 
 `src/clinical_trial_mvp/` contains the inherited clinical pipeline and the MVP4 study helpers.
 `scripts/serving/` provides offline previews and explicit launches; `scripts/tutorial/` rebuilds
-the two notebooks. `tests/` checks the packaged workload and both study strategies.
+the vLLM and NIM notebook pairs. `tests/` checks the packaged workload and both serving paths.
 `SOURCE_LINEAGE.json` records hashes at the time source files were inherited; it is not a
 checksum manifest of the modified final files. `VALIDATION.md` records the local checks.
 

@@ -1,0 +1,21 @@
+{
+  "model_key": "qwen",
+  "model_id": "Qwen/Qwen3-4B",
+  "model": "clinical-trial-mvp4-nim-qwen",
+  "model_revision": "SET_EXACT_BASE_REVISION",
+  "image": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:SET_EXACT_DIGEST",
+  "backend": "vllm",
+  "snapshot": "models/qwen3-4b-frozen",
+  "gpu_device": "0",
+  "hardware": "",
+  "gpu_uuid": "",
+  "profile_id": "",
+  "discovery_output": "",
+  "launch_settings": {
+    "context": 8192,
+    "dtype": "float16",
+    "prefix_cache": false,
+    "quantization": null,
+    "max_num_seqs": 4
+  }
+}
