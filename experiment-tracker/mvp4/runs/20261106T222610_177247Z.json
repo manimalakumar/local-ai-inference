@@ -1,0 +1,81 @@
+{
+  "run_id": "20261106T222610_177247Z",
+  "experiment": "MVP4/Optimization/fp16_cache_on",
+  "configuration": {
+    "experiment": "MVP4/Optimization/fp16_cache_on",
+    "runtime": "vllm",
+    "host": "cuda",
+    "hardware": "GPU host (verify SKU)",
+    "model": "clinical-trial-mvp3",
+    "base_url": "http://127.0.0.1:8000",
+    "context": 8192,
+    "dtype": "float16",
+    "quantization": null,
+    "prefix_cache": true,
+    "profile": "full",
+    "concurrency": 1,
+    "repeats": 5,
+    "warmups": 1,
+    "max_tokens": 1024,
+    "cache_regime": "reset_cold_reset_distinct_question_prime_warm_v2",
+    "provenance": "experiment-tracker/mvp4/provenance/qwen-dell-01-fp16_cache_on.json"
+  },
+  "server": {
+    "runtime": "vllm",
+    "engine_version": "0.32.0",
+    "model_sha256": "9d76380658964726b0ebbfd59e23fd141cee771d9a116197b9ea4caaa737b616",
+    "hardware": "GPU-3cef7f0f-cdcd-b01a-ea3d-94c897e1b848, Quadro RTX 5000, 16384 MiB, 595.91.07",
+    "cuda_visible_devices": "all",
+    "torch_version": "2.13.0+cu130",
+    "cuda_version": "13.0",
+    "evidence": "hardware",
+    "gpu_uuid": "3cef7f0f-cdcd-b01a-ea3d-94c897e1b848",
+    "launch_settings": {
+      "context": 8192,
+      "tp": 1,
+      "dtype": "float16",
+      "quantization": null,
+      "prefix_cache": true
+    },
+    "command": [
+      "python",
+      "-m",
+      "vllm.entrypoints.cli.main",
+      "serve",
+      "./models/qwen3-4b-frozen",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8000",
+      "--served-model-name",
+      "clinical-trial-mvp3",
+      "--dtype",
+      "float16",
+      "--max-model-len",
+      "8192",
+      "--tensor-parallel-size",
+      "1",
+      "--generation-config",
+      "vllm",
+      "--enable-prefix-caching"
+    ],
+    "model": "clinical-trial-mvp3"
+  },
+  "checkpoint_pair": {
+    "base_revision_attestation": "Qwen/Qwen3-4B@1cfa9a7208912126459214e8b04321603b3df60c; Qwen/Qwen3-4B-AWQ@74d4bd2bd4bff9cafc9345221320bffb08b406a3; Qwen/Qwen3-4B-AWQ",
+    "tokenizer_sha256": "474bd5fbea005a66ce82b9342f39bd68c3e202c7c9352cc20df84b8fac3c7565",
+    "fp16_sha256": "9d76380658964726b0ebbfd59e23fd141cee771d9a116197b9ea4caaa737b616",
+    "awq_sha256": "f66cfaa185d8e44cf5b9d75fd89e8f0373004684970a083279dc5bcebbffed8d",
+    "awq_config": {
+      "bits": 4,
+      "group_size": 128,
+      "modules_to_not_convert": null,
+      "quant_method": "awq",
+      "version": "gemm",
+      "zero_point": true
+    }
+  },
+  "status": "failed",
+  "evidence": "none",
+  "reason": "HTTP Error 404: Not Found"
+}

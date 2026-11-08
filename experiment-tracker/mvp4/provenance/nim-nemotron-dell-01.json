@@ -1,0 +1,48 @@
+{
+  "runtime": "nim",
+  "status": "ready",
+  "evidence": "hardware",
+  "model": "clinical-trial-mvp4-nim-nemotron",
+  "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+  "model_revision": "dfaf35de3e30f1867dd8dbc38a7fc9fb52d3914f",
+  "model_sha256": "0203d8c079915865dc7338922c3f01f4ba31ecac6386cf54382109bd74eff6dc",
+  "image": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:edd0c099da0ed712da235b0170742d81cb48beef90afafe1a61621980debdb5a",
+  "profile_id": "d655bc3a760b0d20b2ce2e638bb8212015e1a564bdcdc6f1642fdc4d9619f000",
+  "hardware": "Quadro RTX 5000",
+  "gpu_uuid": "GPU-3cef7f0f-cdcd-b01a-ea3d-94c897e1b848",
+  "backend": "vllm",
+  "engine_version": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:edd0c099da0ed712da235b0170742d81cb48beef90afafe1a61621980debdb5a",
+  "launch_settings": {
+    "context": 8192,
+    "dtype": "float16",
+    "prefix_cache": false,
+    "quantization": null,
+    "max_num_seqs": 4,
+    "mamba_ssm_cache_dtype": "float32",
+    "trust_remote_code": true
+  },
+  "discovery_contract": {
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+    "model_revision": "dfaf35de3e30f1867dd8dbc38a7fc9fb52d3914f",
+    "model_sha256": "0203d8c079915865dc7338922c3f01f4ba31ecac6386cf54382109bd74eff6dc",
+    "image": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:edd0c099da0ed712da235b0170742d81cb48beef90afafe1a61621980debdb5a",
+    "model": "clinical-trial-mvp4-nim-nemotron",
+    "backend": "vllm",
+    "launch_settings": {
+      "context": 8192,
+      "dtype": "float16",
+      "prefix_cache": false,
+      "quantization": null,
+      "max_num_seqs": 4,
+      "mamba_ssm_cache_dtype": "float32",
+      "trust_remote_code": true
+    },
+    "gpu_device": "0"
+  },
+  "discovery_sha256": "fa2d61a0b4b16d06620f651fed7d85796b078c7fcdaacdd391db618bd0a44750",
+  "deployment_sha256": "b0b600aa260a5fb1bc45d50c4578a046cffa3f2c3c9f35bbf60c6ebb337b1de3",
+  "configuration_scope": "Requested explicit CLI settings; retain/review resolved startup logs",
+  "reasoning_control": "common /no_think prompt only; backend template mode unverified",
+  "container_id": "280788f424cb8048fb68cc151787159c6d5ad82bd79522c9b1972cd63a4823ef",
+  "readiness_seconds": 476.5813556330104
+}

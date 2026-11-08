@@ -1,0 +1,43 @@
+{
+  "runtime": "vllm",
+  "engine_version": "0.32.0",
+  "model_sha256": "f66cfaa185d8e44cf5b9d75fd89e8f0373004684970a083279dc5bcebbffed8d",
+  "hardware": "GPU-3cef7f0f-cdcd-b01a-ea3d-94c897e1b848, Quadro RTX 5000, 16384 MiB, 595.91.07",
+  "cuda_visible_devices": "all",
+  "torch_version": "2.13.0+cu130",
+  "cuda_version": "13.0",
+  "evidence": "hardware",
+  "gpu_uuid": "3cef7f0f-cdcd-b01a-ea3d-94c897e1b848",
+  "launch_settings": {
+    "context": 8192,
+    "tp": 1,
+    "dtype": "float16",
+    "quantization": "awq",
+    "prefix_cache": false
+  },
+  "command": [
+    "python",
+    "-m",
+    "vllm.entrypoints.cli.main",
+    "serve",
+    "./models/qwen3-4b-awq-4bit-frozen",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8000",
+    "--served-model-name",
+    "clinical-trial-mvp3",
+    "--dtype",
+    "float16",
+    "--quantization",
+    "awq",
+    "--max-model-len",
+    "8192",
+    "--tensor-parallel-size",
+    "1",
+    "--generation-config",
+    "vllm",
+    "--no-enable-prefix-caching"
+  ],
+  "model": "clinical-trial-mvp3"
+}
