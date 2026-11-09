@@ -30,14 +30,8 @@ def load_configurations(root=ROOT):
 
 def semantic_scores(records, reviews):
     """Match human judgements to exact SQL; execution match never implies semantic correctness."""
-    index = {}
-    for item in reviews:
-        if not item.get("reviewer") or not item.get("reviewed_at") or type(item.get("correct")) is not bool:
-            raise ValueError("Semantic reviews require reviewer, reviewed_at, and a boolean verdict")
-        key = item["case_id"], item["sql_sha256"]
-        if key in index:
-            raise ValueError("Duplicate semantic review")
-        index[key] = item["correct"]
+    from clinical_trial_mvp.tutorial.reviews import validate_reviews
+    index = {key: review['correct'] for key, review in validate_reviews(reviews).items()}
     judgements = []
     for record in records:
         attempts = record.get("attempts", [])

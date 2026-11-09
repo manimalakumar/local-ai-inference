@@ -1,6 +1,6 @@
 # Distinct-output SQL review packet
 
-**Human review pending: 0/61 distinct SQL outputs reviewed across four questions.**
+**Human review: 0/61 distinct SQL outputs reviewed across four questions.**
 The [baseline packet](SQL_REVIEW.md) is an introduction, not coverage of the headline comparisons.
 This packet includes all selected native/NIM variants and smokes with available records,
 application final attempts, direct serving responses and paired cold/warm target SQL.

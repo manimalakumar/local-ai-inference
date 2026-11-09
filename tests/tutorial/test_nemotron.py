@@ -92,7 +92,7 @@ def test_core_runs_real_clinical_scoring_without_an_awq_checkpoint(name, monkeyp
     assert result['serving']['result_equivalent'] == 4
     assert result['quality']['cases'] == 4 and result['records']['quality']
     assert result['memory']['peak_bytes'] == 100
-    assert result['serving']['semantic']['reviewed'] == 0
+    assert result['serving']['semantic']['total'] == 4
 
 
 def test_unsupported_cache_and_missing_awq_skip_without_affecting_core(monkeypatch):

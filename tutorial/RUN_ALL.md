@@ -103,8 +103,10 @@ Re-run Replay to inspect the fixed original archive; live failures never trigger
 
 ## Preserve, review and share
 
-Builder scripts are the source of notebook prose and cells. They replace learner notebooks,
-so archive newly executed outputs before rebuilding. The unchanged original Dell archive and
+Builder scripts are the source of notebook prose and cells. They preserve outputs for
+byte-identical code cells, including repeated cells in order; changed code is left unexecuted.
+Historical outputs are not validation of edited prose or a new live run. Archive newly
+executed outputs before rebuilding when they are required as complete session evidence. The unchanged original Dell archive and
 its checksums remain under `notebooks/history/dell-2026-11-07`. Keep failures and required
 provenance. Never regenerate the frozen database just to refresh outputs.
 

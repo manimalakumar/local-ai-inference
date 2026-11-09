@@ -6,7 +6,9 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'src'))
 from clinical_trial_mvp.tutorial.edge_notebook import FILENAME, notebook_document
 
+from clinical_trial_mvp.tutorial.notebook_io import write_notebook
+
 if __name__ == '__main__':
     path = ROOT / 'notebooks' / FILENAME
-    path.write_text(json.dumps(notebook_document(), indent=1) + '\n')
+    write_notebook(path, notebook_document())
     print(path.name)

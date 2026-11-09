@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'src'))
 from clinical_trial_mvp.agent.analyst import ClinicalTrialAnalystAgent
 from clinical_trial_mvp.tutorial.replay import RecordedStudy
+from clinical_trial_mvp.tutorial.reviews import validate_reviews
 
 
 def build(root=ROOT):
@@ -51,8 +52,13 @@ def build(root=ROOT):
             for i, row in enumerate(result.get('cache_study', {}).get('records', [])):
                 add(row, dict(study=study, variant=name, source=source,
                     pointer=f'/cache_study/records/{i}', path='paired-target', phase=row['phase']))
+    allowed = set(entries)
+    reviews = json.loads((root / 'tutorial/semantic_reviews.json').read_text())['reviews']
+    reviewed = validate_reviews(reviews, allowed=allowed)
+    for key, review in reviewed.items():
+        entries[key].update({field: review[field] for field in ('reviewer', 'reviewed_at', 'correct', 'rationale')})
     return dict(description='Human-review queue, not judgments. Exact final SQL after outer whitespace stripping; deduplicated only by case ID + SHA-256. All occurrences retain their source JSON pointers. No-SQL/parse failures remain explicit.',
-                reviewed_outputs=0, distinct_outputs=len(entries),
+                reviewed_outputs=len(reviewed), distinct_outputs=len(entries),
                 case_ids=sorted({key[0] for key in entries}),
                 outputs=sorted(entries.values(), key=lambda e:(e['case_id'],e['sql_sha256'])),
                 no_sql_outputs=no_sql)
@@ -61,7 +67,7 @@ def build(root=ROOT):
 def render(packet):
     text = f'''# Distinct-output SQL review packet
 
-**Human review pending: 0/{packet['distinct_outputs']} distinct SQL outputs reviewed across four questions.**
+**Human review: {packet['reviewed_outputs']}/{packet['distinct_outputs']} distinct SQL outputs reviewed across four questions.**
 The [baseline packet](SQL_REVIEW.md) is an introduction, not coverage of the headline comparisons.
 This packet includes all selected native/NIM variants and smokes with available records,
 application final attempts, direct serving responses and paired cold/warm target SQL.
@@ -94,7 +100,8 @@ This generator only rebuilds the queue/packet and never changes submitted judgme
                  f"**Generated final SQL:**\n\n```sql\n{e['sql']}\n```\n\n"
                  f"**Reference SQL:**\n\n```sql\n{e['reference_sql']}\n```\n\n"
                  f"Reference assumptions: {e['reference_assumptions']}\n\n"
-                 "**Human judgment and rationale:** pending.\n\n")
+                 + (f"**Human judgment:** {e['correct']}; reviewer: {e['reviewer']}; date: {e['reviewed_at']}.\n\nRationale: {e['rationale']}\n\n"
+                  if e['correct'] is not None else "**Human judgment and rationale:** pending.\n\n"))
     return text.rstrip() + '\n'
 
 
@@ -102,4 +109,4 @@ if __name__ == '__main__':
     packet=build()
     (ROOT/'tutorial/sql_review_distinct.json').write_text(json.dumps(packet,indent=2)+'\n')
     (ROOT/'tutorial/SQL_REVIEW_DISTINCT.md').write_text(render(packet))
-    print(f"Prepared {packet['distinct_outputs']} distinct SQL outputs; {len(packet['no_sql_outputs'])} no-SQL outputs; no judgments entered")
+    print(f"Prepared {packet['distinct_outputs']} distinct SQL outputs; {len(packet['no_sql_outputs'])} no-SQL outputs; {packet['reviewed_outputs']} supplied human reviews")

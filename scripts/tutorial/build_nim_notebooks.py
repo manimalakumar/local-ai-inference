@@ -17,8 +17,10 @@ def notebook_document(key):
     return build('nim', key)
 
 
+from clinical_trial_mvp.tutorial.notebook_io import write_notebook
+
 if __name__ == '__main__':
     for key, filename in FILENAMES.items():
-        (ROOT / 'notebooks' / filename).write_text(json.dumps(notebook_document(key), indent=1) + '\n')
+        write_notebook(ROOT / 'notebooks' / filename, notebook_document(key))
         (ROOT / 'tutorial' / f'nim_{key}.example.json').write_text(json.dumps(template(key), indent=2) + '\n')
         print(filename)

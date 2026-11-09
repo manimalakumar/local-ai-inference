@@ -1,5 +1,38 @@
 # Validation record
 
+## November 9, 2026 — iterative source review; final clean run deferred
+
+The supplied working-directory ZIP was inspected: **22,689 entries**, including **21,670
+environment entries** and **602 Git-internal entries** (directory entries included). It is
+not a release source package. The missing working directory was restored from its source
+and repository files without importing that environment or the caches. The original ZIP
+was left unchanged. A separate committed-file source export is used for the review artifact.
+
+Fixes: valid human judgments no longer fail an empty-review assertion; review entry validates
+exact case/hash, date, attribution and rationale, rejects duplicate/unknown entries atomically,
+and refreshes packet coverage without rewriting measurements. Builders retain outputs only
+for byte-identical code cells. All six chapters now receive static builder/source checks;
+CI additionally rejects drift in the generated JSON/review packet. The exporter rejects
+tracked local configs, raw logs and nested ZIPs as well as environments/weights/Git internals.
+
+**93 affected tests passed in 43.14 seconds** using the existing isolated Python 3.11.15 CPU
+environment. After adding an attributed-response overlay check, all **18 focused review/export/
+builder regressions passed in 1.76 seconds**; this subset overlaps the affected-test run. The six notebook schema/link/builder checks passed in `--check-only` mode; no
+kernels or servers were started by that check. All 65 historical and 26 foundation file
+hashes match. Commands:
+
+```bash
+python -m pytest -q tests/tutorial/test_review_gaps.py tests/tutorial/test_harness.py tests/tutorial/test_replay.py tests/tutorial/test_edge_review.py tests/tutorial/test_nemotron.py tests/tutorial/test_nim_study.py
+python scripts/tutorial/validate_notebooks.py --check-only
+python scripts/tutorial/review_sql.py
+```
+
+The Python used was `/tmp/local-ai-inference-clean-20261109/.venv/bin/python`; this reused
+an existing environment, not a new clean install. Review coverage remains **0/61**; no
+human judgment was invented. **No final clean clone, full-suite run, Replay/Plan kernel run,
+new hosted CI or GPU experiment was performed for this revision.** These remain scoped final
+checks. See the [current rubric and explicit gaps](tutorial/PUBLICATION.md#current-iterative-review--november-9-2026).
+
 ## November 9, 2026 — private commit, hosted CI and fresh remote clone
 
 Tested source commit: **`56feab13f6d5e7feb3cb3988658040b1fc81497b`**

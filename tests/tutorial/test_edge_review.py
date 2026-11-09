@@ -49,12 +49,17 @@ def test_review_packet_covers_all_distinct_sources_without_entering_judgments():
     packet=module.build()
     assert packet == json.loads((ROOT/'tutorial/sql_review_distinct.json').read_text())
     assert packet['distinct_outputs'] == 61 and len(packet['no_sql_outputs']) == 5
-    assert packet['reviewed_outputs'] == 0 and len(packet['case_ids']) == 4
+    assert len(packet['case_ids']) == 4
+    from clinical_trial_mvp.tutorial.reviews import validate_reviews
+    allowed = {(e['case_id'], e['sql_sha256']) for e in packet['outputs']}
+    reviews = validate_reviews(json.loads((ROOT/'tutorial/semantic_reviews.json').read_text())['reviews'], allowed=allowed)
+    assert packet['reviewed_outputs'] == len(reviews)
     scopes=set()
     phases=set()
     for e in packet['outputs']:
         assert hashlib.sha256(e['sql'].encode()).hexdigest() == e['sql_sha256']
-        assert all(e[k] is None for k in ('reviewer','reviewed_at','correct','rationale'))
+        if (e['case_id'], e['sql_sha256']) not in reviews:
+            assert all(e[k] is None for k in ('reviewer','reviewed_at','correct','rationale'))
         for occurrence in e['occurrences']:
             scopes.add(occurrence['study'])
             if 'phase' in occurrence:
@@ -65,4 +70,4 @@ def test_review_packet_covers_all_distinct_sources_without_entering_judgments():
             assert record['case_id'] == e['case_id']
     assert scopes == {'vllm-qwen','vllm-nemotron','nim-qwen','nim-nemotron'}
     assert phases == {'cold','warm','cache_off'}
-    assert json.loads((ROOT/'tutorial/semantic_reviews.json').read_text())['reviews'] == []
+    validate_reviews(json.loads((ROOT/'tutorial/semantic_reviews.json').read_text())['reviews'], allowed=allowed)

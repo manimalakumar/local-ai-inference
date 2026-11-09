@@ -181,3 +181,23 @@ SELECT sub.treatment_arm, COUNT(DISTINCT ae.subject_id) AS affected_subjects, CO
 ```
 
 **Human judgment:** pending.
+
+## Enter an actual human judgment
+
+Inspect the SQL and its source plan/repair, then create a JSON object in a local file, e.g.
+`/tmp/sql-review-entry.json`, with `case_id`, the packet's full `sql_sha256`, `reviewer`,
+ISO `reviewed_at`, boolean `correct` and a substantive `rationale`. Supply your real review;
+the tool does not generate a judgment or establish the reviewer's identity.
+
+```bash
+.venv/bin/python scripts/tutorial/review_sql.py
+.venv/bin/python scripts/tutorial/review_sql.py --record /tmp/sql-review-entry.json
+.venv/bin/python scripts/tutorial/build_sql_review_packet.py
+```
+
+The first command only reports coverage. Recording rejects unknown case/hash pairs, missing
+attribution/rationale, invalid dates and duplicate reviews before atomically updating
+`semantic_reviews.json`. It never alters the frozen result records. Rebuild the packet after
+recording reviews to update its coverage and attributed judgments. Tests accept valid human
+reviews; they do not require the file to remain empty. A wrong SQL verdict can still be
+`correct: false` even when the archived reference-result bit is true.

@@ -47,7 +47,7 @@ def test_common_harness_uses_existing_clinical_path_and_excludes_fake_hardware_r
     assert result["status"] == "completed"
     assert result["quality"]["result_equivalent"] == 1 and result["quality"]["sql_executed"] == 1
     assert result["serving"]["mean_prompt_tokens"] == 12
-    assert result["quality"]["semantic"]["reviewed"] == 0
+    assert result["quality"]["semantic"]["total"] == 1
     assert result["evidence"] == "test_or_unverified"
     assert "1/1 match" not in summary_markdown([result])
 
@@ -70,7 +70,7 @@ def test_semantic_review_is_exact_and_independent_of_result_match():
     sql = "SELECT 1"
     records = [{"case_id": "a", "attempts": [{"sql": sql}], "scores": {"result_equivalence": True}}]
     review = {"case_id": "a", "sql_sha256": hashlib.sha256(sql.encode()).hexdigest(),
-              "reviewer": "reviewer", "reviewed_at": "2026-10-25", "correct": False}
+              "reviewer": "reviewer", "reviewed_at": "2026-10-25", "correct": False, "rationale": "Fixture: result match alone does not prove intent."}
     assert semantic_scores(records, [review]) == {"correct": 0, "reviewed": 1, "total": 1}
     assert semantic_scores(records, []) == {"correct": 0, "reviewed": 0, "total": 1}
     with pytest.raises(ValueError):

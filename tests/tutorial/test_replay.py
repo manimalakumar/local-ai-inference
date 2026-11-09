@@ -105,7 +105,8 @@ def test_review_queue_does_not_invent_human_judgments():
     queue = json.loads((ROOT / 'tutorial/sql_review_queue.json').read_text())
     assert queue['reviewed_cases'] == 0 and len(queue['cases']) == 4
     assert all(c['reviewer'] is None and c['correct'] is None for c in queue['cases'])
-    assert json.loads((ROOT / 'tutorial/semantic_reviews.json').read_text())['reviews'] == []
+    from clinical_trial_mvp.tutorial.reviews import validate_reviews
+    validate_reviews(json.loads((ROOT / 'tutorial/semantic_reviews.json').read_text())['reviews'])
 
 
 def test_front_door_has_no_misplaced_hybrid_or_nim_cleanup_instructions():

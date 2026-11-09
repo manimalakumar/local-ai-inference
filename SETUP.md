@@ -15,8 +15,8 @@ python3.11 -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-The exact CPU pins were tested on macOS arm64, Python 3.11.15. Hosted Linux CI remains
-pending its first push. This environment includes Jupyter, replay, plotting and test tools.
+The exact CPU pins were tested on macOS arm64, Python 3.11.15. Hosted Linux CI passed
+for source commit `56feab1`; see [the scoped validation record](VALIDATION.md). This environment includes Jupyter, replay, plotting and test tools.
 It installs no vLLM, GPU Torch or model weights. See `CPU_NOTEBOOK_ENVIRONMENT.json`.
 
 ## Preserve the synthetic data

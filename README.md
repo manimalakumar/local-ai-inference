@@ -95,7 +95,7 @@ the four SQL questions across all distinct outputs supporting the comparisons. N
 require the full 23-reference-case set. NIM/native comparisons also need matched thinking,
 request contracts and backend settings. No compatible Nemotron AWQ checkpoint was obtained.
 
-[Publication checklist](tutorial/PUBLICATION.md) · [GPU rerun checklist](tutorial/GPU_VALIDATION.md)
+[Current rubric and publication checklist](tutorial/PUBLICATION.md) · [GPU rerun checklist](tutorial/GPU_VALIDATION.md)
 · [SQL review packet](tutorial/SQL_REVIEW.md) · [validation history](VALIDATION.md)
 
 ## Troubleshooting as case studies

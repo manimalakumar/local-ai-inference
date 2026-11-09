@@ -7,9 +7,9 @@ import zipfile
 
 def forbidden(name):
     parts = PurePosixPath(name).parts
-    return (any(p in {'.git', '.pytest_cache', '.cache', '.ruff_cache', '.mypy_cache', '.tox', '__pycache__', '.ipynb_checkpoints', 'models'}
+    return (any(p in {'.git', '.pytest_cache', '.cache', '.ruff_cache', '.mypy_cache', '.tox', '__pycache__', '.ipynb_checkpoints', 'models', '.huggingface', '__MACOSX'}
                 or p.startswith('.venv') for p in parts)
-            or name.endswith(('.pyc', '.pyo', '.gguf', '.safetensors', '.pt', '.pth', '.pte', '.bin', '.DS_Store'))
+            or name.endswith(('.pyc', '.pyo', '.gguf', '.safetensors', '.pt', '.pth', '.pte', '.bin', '.DS_Store', '.local.json', '.log', '.zip'))
             or any(p == '.env' or (p.startswith('.env.') and p != '.env.example') for p in parts))
 
 

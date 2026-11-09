@@ -164,10 +164,12 @@ def test_ready_wrong_model_never_counts_as_success(tmp_path,monkeypatch):
 
 @pytest.fixture
 def run_root(tmp_path):
-    for name in ('data/db/clinical_trials.duckdb','evals/evaluations.json','tutorial/semantic_reviews.json'):
+    for name in ('data/db/clinical_trials.duckdb','evals/evaluations.json'):
         target=tmp_path/name
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(ROOT/name,target)
+    (tmp_path/'tutorial').mkdir(exist_ok=True)
+    (tmp_path/'tutorial/semantic_reviews.json').write_text(json.dumps({'reviews': []}))
     (tmp_path/'src').symlink_to(ROOT/'src',target_is_directory=True)
     return tmp_path
 

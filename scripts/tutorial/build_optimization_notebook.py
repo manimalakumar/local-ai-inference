@@ -47,8 +47,11 @@ def notebook_document(model='qwen'):
     return build('vllm', model)
 
 
+sys.path.insert(0, str(ROOT / 'src'))
+from clinical_trial_mvp.tutorial.notebook_io import write_notebook
+
 if __name__ == '__main__':
     for model, selected in MODELS.items():
         path = ROOT / 'notebooks' / selected['filename']
-        path.write_text(json.dumps(notebook_document(model), indent=1) + '\n')
+        write_notebook(path, notebook_document(model))
         print(path.name)

@@ -80,10 +80,19 @@ def response_example(study, name, case_id='eval_001'):
     if record is None:
         return dict(origin=study.mode, status='No response: this plan has not executed. No SQL or scores fabricated.')
     case = next(c for c in json.loads((study.root / 'evals/evaluations.json').read_text()) if c['id'] == case_id)
+    import hashlib
+    from clinical_trial_mvp.tutorial.reviews import validate_reviews
+    path = study.root / 'tutorial/semantic_reviews.json'
+    reviews = validate_reviews(json.loads(path.read_text())['reviews']) if path.exists() else {}
+    sql = ((record.get('attempts') or [{}])[-1].get('sql') or '').strip()
+    review = reviews.get((case_id, hashlib.sha256(sql.encode()).hexdigest())) if sql else None
+    status = ('human review: ' + ('correct' if review['correct'] else 'incorrect') +
+              ' — ' + review['reviewer'] + ', ' + review['reviewed_at']) if review else (
+              'unreviewed: reference-result match is not human semantic validation')
     return dict(origin=LABEL if result.get('_recorded') else study.mode, case_id=case_id, question=case['question'],
                 plan=record.get('plan'), plan_error=record.get('plan_error'), attempts=record.get('attempts'),
                 reference_sql=case['reference_sql'], recorded_comparison=record.get('scores'),
-                semantic_review='unreviewed: reference-result match is not human semantic validation')
+                semantic_review=status, human_review=review)
 
 
 def interpret(study, name):
@@ -132,7 +141,7 @@ def interpret(study, name):
     if result.get('status') not in ('completed',):
         observation = result.get('reason', 'No measurement has been executed in plan mode.')
     boundary = ('Four distinct questions, not 20 independent clinical tasks. Repeated requests give illustrative latency summaries; '
-                'semantic correctness remains unreviewed. Native VRAM is unavailable. These observations do not generalize to other domains or stacks.')
+                'Human review coverage is separate from machine reference matches; consult the review packet. Native VRAM is unavailable. These observations do not generalize to other domains or stacks.')
     return '\n\n'.join(filter(None, [evidence_links(result), '**Prediction:** ' + prediction,
         '**Observation:** ' + observation, '**Explanation:** ' + explanation,
         '**Limitation:** ' + boundary, '**Decision:** ' + decision]))
