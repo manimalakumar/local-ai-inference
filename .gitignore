@@ -15,6 +15,15 @@ __pycache__/
 tutorial/*.local.json
 tutorial/*.log
 .venv-*/
+.venv-*
+tutorial/config/*.local.json
+*.local.json
+*.zip
+.cache/
+.huggingface/
+experiment-tracker/mvp4/workflow/*.log
+configure_nim*.py
+download_qwen.py
 publish/
 
 # Generated archives are release attachments rather than source changes.

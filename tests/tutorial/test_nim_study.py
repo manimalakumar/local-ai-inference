@@ -246,7 +246,13 @@ def test_model_profile_gpu_mismatch_fails_before_benchmark(run_root,monkeypatch,
 def test_every_nim_notebook_cell_runs_offline_without_docker_gpu_or_network(monkeypatch,key):
     build=builder()
     document=json.loads((ROOT/'notebooks'/build.FILENAMES[key]).read_text())
-    assert document==build.notebook_document(key)
+    source=copy.deepcopy(document)
+    for cell in source['cells']:
+        if cell['cell_type']=='code':
+            cell.update(outputs=[],execution_count=None)
+            cell.get('metadata',{}).pop('execution',None)
+    source['metadata']=build.notebook_document(key)['metadata']
+    assert source==build.notebook_document(key)
     monkeypatch.setattr(n.subprocess,'run',lambda *a,**kw:pytest.fail('offline Docker call'))
     monkeypatch.setattr(n,'get_json',lambda *a,**kw:pytest.fail('offline network call'))
     monkeypatch.setattr(n,'gpu_identity',lambda *a,**kw:pytest.fail('offline GPU call'))
@@ -257,17 +263,19 @@ def test_every_nim_notebook_cell_runs_offline_without_docker_gpu_or_network(monk
     monkeypatch.setattr(builtins,'__import__',guarded)
     display=types.ModuleType('IPython.display')
     display.Markdown=lambda text:text
+    display.JSON=lambda data:data
     display.display=lambda *a,**kw:None
     monkeypatch.setitem(sys.modules,'IPython.display',display)
     monkeypatch.chdir(ROOT/'notebooks')
     namespace={}
     for cell in document['cells']:
         if cell['cell_type']=='code':
-            assert cell['outputs']==[] and cell['execution_count'] is None
             exec(compile(''.join(cell['source']),'nim-cell','exec'),namespace)
-    assert namespace['MODEL_ID']==n.MODELS[key]['model_id']
+    assert namespace['study'].model == key
     assert set(namespace['results'])=={'smoke','baseline','schema_retrieved','concurrency_2','concurrency_4'}
-    assert all(r['status']=='plan_only' and r['evidence']=='none' for r in namespace['results'].values())
+    assert namespace['study'].mode=='replay'
+    assert all(r['status']=='completed' and r['_recorded']['label']=='recorded Dell measurement'
+               for r in namespace['results'].values())
 
 
 def test_cli_init_is_explicit_and_never_overwrites(tmp_path):

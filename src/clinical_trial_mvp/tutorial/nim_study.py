@@ -101,7 +101,7 @@ def commands(profile, *, root=ROOT):
     if profile['model_key'] == 'nemotron':
         args += ['--trust-remote-code', '--mamba-ssm-cache-dtype', 'float32']
     return {'discover': [*common, profile['image'], 'list-model-profiles'],
-            'deploy': [*common, '--detach', '--name', 'clinical-trial-nim-' + profile['model_key'],
+            'deploy': [*common, '--detach', '--name', profile.get('container_name', 'clinical-trial-nim-' + profile['model_key']),
                        '--shm-size=16g', '-p', '127.0.0.1:8000:8000',
                        '-e', 'NIM_MODEL_PROFILE=' + profile.get('profile_id', ''),
                        profile['image'], *args]}

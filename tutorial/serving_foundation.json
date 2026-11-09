@@ -1,0 +1,130 @@
+{
+  "description": "Read-only serving foundation, adapted from the prior serving tutorial without copying the prior application tree. Historical reports and imported notebook summaries retain their limitations.",
+  "adaptation": {
+    "source_notebook": "iterations/mvp3/notebooks/clinical_trial_inference_tutorial.ipynb",
+    "sha256": "54bbf6c7f9a959d2f21da92af9fadaec2ea68a5adf48555747d6169445b2db86",
+    "source_cell_indices": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "scope": "Workload, read-only database, full/retrieved context, Mac serving adapters, Dell engine summaries. Later optimization/deployment/portability/simulation sections are not imported."
+  },
+  "database": {
+    "path": "data/db/clinical_trials.duckdb",
+    "synthetic": true,
+    "origin": "Inherited frozen synthetic clinical-trial database; generation code is src/clinical_trial_mvp/data/synthetic_data.py. Do not regenerate to replay the recorded runs.",
+    "matches_recorded_dell_baseline": true
+  },
+  "files_sha256": {
+    "baseline/mvp1/experiment-tracker/MVP1_Q4_30_CASE_REPORT.md": "6e04f0b2749d032a8e305ec03983246720a1464c401a1a65e3c4f84f0a49dacd",
+    "baseline/mvp2/experiment-tracker/mvp2/serving/MILESTONE_REPORT.md": "4fd639c5c7ce4227246c9fdf04a5c0b8ec12c4d3368f2eed77c22c021ab2b632",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-59a8ea0bece1921f-vllm-c1.json": "b5942562531b31d3dc7446462e81d4713c65faf4b9af7194962b496da2dfba75",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-59a8ea0bece1921f-vllm-c2.json": "bb194f8d321279b2c25bce9913c596d0f1361809f58cbeaedd8868f197017761",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-59a8ea0bece1921f-vllm-c4.json": "0c81ac1e17363f9dcc4b708e1ef69adb1bebf1ed4bdefdcf2e9fa385937e21a0",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c1.json": "5337c543db6b4d6fe3855fd0746083ef01cd06a29779c42139221626860fce5b",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c2.json": "75139009863057c0c4fd72d312f35c58242cfcbf9ae001e98c9df05ff891fd4e",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c4.json": "4314ebef6c984e542cf117f698fcb533f3158afc39f527403b5c07406b040e16",
+    "baseline/mvp3/tutorial/history/gpu/sglang-c93924343847503f.ipynb": "02838dc90ec50523400e770daf6343533323afc327006296b9aad44163f3399d",
+    "baseline/mvp3/tutorial/history/gpu/vllm-59a8ea0bece1921f.ipynb": "318101915d81e9631dffa2fc063986d3e18ff0f16c56c1bada5869e82b483433",
+    "data/db/clinical_trials.duckdb": "f1a7100697b0980b56359632fde49d042fb147260da03931a53a3cbfa7f6830e",
+    "data/raw/adverse_events.csv": "11fc40cfbebf46b6e773b64467556c8f0a30a3e090db77e05abadbf8d46b5406",
+    "data/raw/data_queries.csv": "4d87b57f13a4bab8f6e6e5b4cf28b5a1b0db7a02c48a97a513ed97aebae8b1bb",
+    "data/raw/lab_results.csv": "2ad58cb3864fd5995e79453c620d23c674083cbecef669f1fc3d8ffea126f19f",
+    "data/raw/protocol_deviations.csv": "433e193fa1fb1630362ed77c86aacf67a36a205a456d0d9e8ffbc83467b222c5",
+    "data/raw/screen_failures.csv": "a842bd4a7d512a3c51f5cd9ab0461eef0a2336ac8b3d9773d11924f28a061686",
+    "data/raw/site_monitoring.csv": "84d5027314105c3f641a8036596b7ef14096d10426a4132868305d39d9877bfb",
+    "data/raw/sites.csv": "043c27040de3af592438b17ff0e2c45e8a2f124b7c4382228272e10a02fcd2e8",
+    "data/raw/subjects.csv": "339c3c02de5e544634b6b5184ec0ef9e11de9b66a08980aa7dde33e5983048d2",
+    "data/raw/trials.csv": "8586abb227a71a07cacf2f06fef7228775afb516c35984bd157204e60f646883",
+    "data/raw/visits.csv": "934b8de007e6b01c241d6e87965e829911a8194663317ebf2903535b36b7e88e",
+    "evals/evaluations.json": "a9bfd3e02ecfe71746fb453d552e3998b21ea9b77a3c9842e9b23f8089e2c07a",
+    "experiment-tracker/mvp3/retrieval-cache/current/evaluations.json": "3b3e711a685321de48f1981fbe29d9f107cec7f9b47cf9519b38a6ca303980e9",
+    "src/clinical_trial_mvp/agent/analyst.py": "5b7805f1d7cfae3381a81586cba7bc6decba55e93e4f0196f8b9eac18163ca50",
+    "src/clinical_trial_mvp/data/schema.py": "ccce8ef8bfea525cd794505112e2dee67259668a2c9bdfffec603217dc47a6eb",
+    "src/clinical_trial_mvp/evaluation/scorers.py": "f6391725e5cfcba801e058b259c97f425560ba67399ff5e20192c6a4c3a1de56"
+  },
+  "report_sources": [
+    "baseline/mvp1/experiment-tracker/MVP1_Q4_30_CASE_REPORT.md",
+    "baseline/mvp2/experiment-tracker/mvp2/serving/MILESTONE_REPORT.md"
+  ],
+  "gpu_summaries": [
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-59a8ea0bece1921f-vllm-c1.json",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-59a8ea0bece1921f-vllm-c2.json",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-59a8ea0bece1921f-vllm-c4.json",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c1.json",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c2.json",
+    "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c4.json"
+  ],
+  "context_report_rows": [
+    {
+      "model": "Nemotron Q4",
+      "schema": "Full",
+      "result_match": "10/23",
+      "application_e2e_p50_s": 79.795,
+      "prompt_tokens_per_invocation_p50": 2477
+    },
+    {
+      "model": "Nemotron Q4",
+      "schema": "Retrieved",
+      "result_match": "8/23",
+      "application_e2e_p50_s": 29.5,
+      "prompt_tokens_per_invocation_p50": 555.5
+    },
+    {
+      "model": "Qwen Q4",
+      "schema": "Full",
+      "result_match": "5/23",
+      "application_e2e_p50_s": 62.86,
+      "prompt_tokens_per_invocation_p50": 2402
+    },
+    {
+      "model": "Qwen Q4",
+      "schema": "Retrieved",
+      "result_match": "6/23",
+      "application_e2e_p50_s": 21.146,
+      "prompt_tokens_per_invocation_p50": 551
+    }
+  ],
+  "mac_serving_report_rows": [
+    {
+      "runtime": "llama.cpp",
+      "schema": "Selected",
+      "requests": 3,
+      "ttft_p50_s": 0.4,
+      "request_e2e_p50_s": 1.393,
+      "output_tokens": 53
+    },
+    {
+      "runtime": "Ollama",
+      "schema": "Selected",
+      "requests": 3,
+      "ttft_p50_s": 0.414,
+      "request_e2e_p50_s": 1.404,
+      "output_tokens": 53
+    },
+    {
+      "runtime": "llama.cpp",
+      "schema": "Full",
+      "requests": 3,
+      "ttft_p50_s": 3.453,
+      "request_e2e_p50_s": 4.568,
+      "output_tokens": 59
+    },
+    {
+      "runtime": "Ollama",
+      "schema": "Full",
+      "requests": 3,
+      "ttft_p50_s": 3.669,
+      "request_e2e_p50_s": 4.799,
+      "output_tokens": 59
+    }
+  ]
+}

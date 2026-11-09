@@ -11,6 +11,7 @@ from pathlib import Path
 
 from clinical_trial_mvp.serving.benchmark import snapshot_fingerprint
 from clinical_trial_mvp.serving.portable import display_command, portable_text
+from clinical_trial_mvp.serving.device import gpu_uuid
 
 
 def launch_command(runtime, snapshot, *, port=8000, context=8192, tp=1, dtype="bfloat16", prefix_cache=False, quantization=None,
@@ -63,7 +64,8 @@ def launch(runtime, snapshot: Path, metadata_path: Path, **options):
                 "cuda_visible_devices": os.getenv("CUDA_VISIBLE_DEVICES", "all"),
                 "torch_version": torch.__version__, "cuda_version": torch.version.cuda,
                 "evidence": "hardware",
-                "gpu_uuid": str(getattr(torch.cuda.get_device_properties(0), "uuid", "")) or None,
+                "server_dev_mode": os.getenv("VLLM_SERVER_DEV_MODE") == "1",
+                "gpu_uuid": gpu_uuid(getattr(torch.cuda.get_device_properties(0), "uuid", None)),
                 "launch_settings": {"context": options.get("context", 8192), "tp": options.get("tp", 1),
                                     "dtype": options.get("dtype", "bfloat16"),
                                     "quantization": options.get("quantization"),

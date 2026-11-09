@@ -1,0 +1,23 @@
+{
+  "runtime": "vllm",
+  "model": "nemotron",
+  "mode": "replay",
+  "download_models": false,
+  "base_snapshot": "models/nemotron-3-nano-4b-frozen",
+  "awq_snapshot": "models/nemotron-3-nano-4b-awq-4bit-frozen",
+  "vllm_python": "~/.venv-vllm/bin/python",
+  "run_tag": null,
+  "base_revision": null,
+  "awq_revision": null,
+  "awq_source": null,
+  "awq_derivation": null,
+  "run_awq": false,
+  "prefix_supported": false,
+  "repeats": 5,
+  "readiness_timeout_seconds": 1800,
+  "structured_outputs": false,
+  "nim_image": null,
+  "nim_image_tag": "nvcr.io/nim/nvidia/vllm-model-free-nim:2.1.5",
+  "nim_profile_id": null,
+  "nim_profile_path": "tutorial/nim_nemotron.local.json"
+}

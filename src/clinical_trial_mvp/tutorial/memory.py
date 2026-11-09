@@ -3,11 +3,12 @@
 import subprocess
 import threading
 import math
+from clinical_trial_mvp.serving.device import gpu_uuid as canonical_gpu_uuid
 
 
 class PeakMemory:
     def __init__(self, *, gpu_uuid=None, server_pid=None, interval=.1, reader=None):
-        self.gpu_uuid, self.server_pid, self.interval = gpu_uuid, server_pid, interval
+        self.gpu_uuid, self.server_pid, self.interval = canonical_gpu_uuid(gpu_uuid), server_pid, interval
         self.reader = reader or self._read
         self.values, self.error = [], None
         self.stop = threading.Event()

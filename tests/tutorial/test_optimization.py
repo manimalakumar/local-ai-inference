@@ -165,8 +165,8 @@ def test_confounded_or_failed_comparisons_rejected(path, value):
 
 
 @pytest.mark.parametrize('model,filename', [
-    ('nemotron', 'local AI optimization - Nemotron.ipynb'),
-    ('qwen', 'local AI optimization - Qwen.ipynb'),
+    ('nemotron', '02_nemotron_optimization.ipynb'),
+    ('qwen', '01_qwen_cache_quantization.ipynb'),
 ])
 def test_notebook_matches_builder_and_every_default_cell_runs_offline(monkeypatch, model, filename):
     path = ROOT / "scripts/tutorial/build_optimization_notebook.py"
@@ -174,7 +174,14 @@ def test_notebook_matches_builder_and_every_default_cell_runs_offline(monkeypatc
     builder = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(builder)
     document = json.loads((ROOT / 'notebooks' / filename).read_text())
-    assert document == builder.notebook_document(model)
+    import copy
+    source = copy.deepcopy(document)
+    for cell in source['cells']:
+        if cell['cell_type'] == 'code':
+            cell.update(outputs=[], execution_count=None)
+            cell.get('metadata', {}).pop('execution', None)
+    source['metadata'] = builder.notebook_document(model)['metadata']
+    assert source == builder.notebook_document(model)
     original = builtins.__import__
     def guarded(name, *args, **kwargs):
         assert name.split(".")[0] not in {"torch", "vllm", "sglang", "transformers"}
@@ -182,45 +189,45 @@ def test_notebook_matches_builder_and_every_default_cell_runs_offline(monkeypatc
     monkeypatch.setattr(builtins, "__import__", guarded)
     display_module = types.ModuleType("IPython.display")
     display_module.Markdown = lambda text: text
+    display_module.JSON = lambda data: data
     display_module.display = lambda *a, **kw: None
     monkeypatch.setitem(sys.modules, "IPython.display", display_module)
     monkeypatch.chdir(ROOT / "notebooks")
     namespace = {}
     for cell in document["cells"]:
         if cell["cell_type"] == "code":
-            assert cell["outputs"] == [] and cell["execution_count"] is None
             exec(compile("".join(cell["source"]), "mvp4-cell", "exec"), namespace)
-    assert namespace["current"]["status"] == "plan_only"
-    assert namespace["pair"] is None
-    assert not namespace["RUN_LIVE"] and not namespace["LOAD_SAVED"]
+    study = namespace['study']
+    assert study.pair is None
+    assert not study.live
     selected = builder.MODELS[model]
-    assert namespace['MODEL_ID'] == selected['model_id']
-    assert namespace['FP16_SNAPSHOT'] == ROOT / selected['fp16_snapshot']
-    assert namespace['AWQ_SNAPSHOT'] == ROOT / selected['awq_snapshot']
-    assert namespace['AWQ_SOURCE'] == selected['awq_source']
-    assert namespace['RUN_TAG'] == model + '-run02'
-    assert set(namespace['results']) == set(namespace['VARIANTS'])
-    assert all(r['status'] == 'plan_only' for r in namespace['results'].values())
+    assert study.base == ROOT / selected['fp16_snapshot']
+    assert study.awq == ROOT / selected['awq_snapshot']
+    assert set(namespace['results']) == set(study.configs)
+    assert study.mode == 'replay'
+    assert all(r['status'] == 'completed' and r.get('_recorded') or r['status'] == 'unavailable'
+               for r in namespace['results'].values())
 
 
 
 def test_notebook_scopes_keep_qwen_strategy_and_make_nemotron_awq_optional():
-    nemotron = json.loads((ROOT / 'notebooks/local AI optimization - Nemotron.ipynb').read_text())
-    qwen = json.loads((ROOT / 'notebooks/local AI optimization - Qwen.ipynb').read_text())
+    nemotron = json.loads((ROOT / 'notebooks/02_nemotron_optimization.ipynb').read_text())
+    qwen = json.loads((ROOT / 'notebooks/01_qwen_cache_quantization.ipynb').read_text())
     ntext = '\n'.join(''.join(c['source']) for c in nemotron['cells'])
     qtext = '\n'.join(''.join(c['source']) for c in qwen['cells'])
     for name in ('fp16_baseline', 'schema_retrieved', 'concurrency_2', 'concurrency_4',
                  'batch_capacity_1', 'reasoning_on', 'output_256', 'output_2048'):
         assert name in ntext
-    assert 'RUN_AWQ = False' in ntext
-    assert 'RUN_LIVE = False' in ntext and 'RUN_LIVE = False' in qtext
+    assert 'run_awq' not in ntext  # Flags belong in configuration, not editable notebook cells.
+    assert 'Replay — default' in ntext and 'Replay — default' in qtext
     assert 'AWQ is optional stretch work and never gates core runs' in ntext
-    assert 'awq_smoke(smoke_spec' in qtext  # Retain the Qwen compatibility gate.
-    assert "('cold', 'warm')" in qtext
+    assert 'study.smoke()' in qtext
+    assert 'identical shared schema prefix' in qtext
 
 
 def test_qwen_notebook_is_preserved_from_the_recorded_source():
     import hashlib
     path = Path('notebooks/local AI optimization - Qwen.ipynb')
     lineage = json.loads((ROOT / 'SOURCE_LINEAGE.json').read_text())
-    assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == lineage['inherited_files_sha256'][str(path)]
+    original = ROOT / 'notebooks/history/dell-2026-11-07/source-Qwen-before-Dell.ipynb'
+    assert hashlib.sha256(original.read_bytes()).hexdigest() == lineage['inherited_files_sha256'][str(path)]

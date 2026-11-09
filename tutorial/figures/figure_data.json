@@ -1,0 +1,74 @@
+{
+  "label": "recorded Dell measurement",
+  "distinct_questions": 4,
+  "caching": [
+    {
+      "precision": "FP16",
+      "phase": "cold",
+      "ttft": 2.0191684830024315,
+      "e2e": 6.038373606505047,
+      "matched": 10,
+      "scored": 20,
+      "source": "experiment-tracker/mvp4/runs/20261106T224700_600112Z.json"
+    },
+    {
+      "precision": "FP16",
+      "phase": "warm",
+      "ttft": 0.08277040549728554,
+      "e2e": 4.038951860497036,
+      "matched": 10,
+      "scored": 20,
+      "source": "experiment-tracker/mvp4/runs/20261106T224700_600112Z.json"
+    },
+    {
+      "precision": "AWQ W4A16",
+      "phase": "cold",
+      "ttft": 2.08287023199955,
+      "e2e": 4.27117178449771,
+      "matched": 15,
+      "scored": 20,
+      "source": "experiment-tracker/mvp4/runs/20261106T232408_684730Z.json"
+    },
+    {
+      "precision": "AWQ W4A16",
+      "phase": "warm",
+      "ttft": 0.056981603000167524,
+      "e2e": 2.2580212834982376,
+      "matched": 15,
+      "scored": 20,
+      "source": "experiment-tracker/mvp4/runs/20261106T232408_684730Z.json"
+    }
+  ],
+  "concurrency": [
+    {
+      "clients": 1,
+      "scheduler_capacity": 4,
+      "e2e": 4.251348100500763,
+      "tok_s": 36.622419823773825,
+      "matched": 15,
+      "scored": 20,
+      "application_matches": 2,
+      "source": "experiment-tracker/mvp4/nemotron/20261107T002501_223219Z.json"
+    },
+    {
+      "clients": 2,
+      "scheduler_capacity": 4,
+      "e2e": 5.361960476500826,
+      "tok_s": 56.242646985264756,
+      "matched": 15,
+      "scored": 20,
+      "application_matches": 2,
+      "source": "experiment-tracker/mvp4/nemotron/20261107T025050_224975Z.json"
+    },
+    {
+      "clients": 4,
+      "scheduler_capacity": 4,
+      "e2e": 7.698786492499494,
+      "tok_s": 76.87630618372778,
+      "matched": 15,
+      "scored": 20,
+      "application_matches": 2,
+      "source": "experiment-tracker/mvp4/nemotron/20261107T030851_257660Z.json"
+    }
+  ]
+}

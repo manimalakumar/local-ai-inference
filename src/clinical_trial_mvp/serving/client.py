@@ -84,7 +84,8 @@ class OpenAIClient:
         ).open
         self.clock = clock
 
-    def complete(self, messages: list[dict], schema: dict | None = None) -> Sample:
+    def request_payload(self, messages: list[dict], schema: dict | None = None) -> dict:
+        """Exact request builder, also exposed for the tutorial's under-the-hood cell."""
         cfg = self.generation
         payload = {"model": self.model, "messages": messages, "stream": True,
                    "stream_options": {"include_usage": True}, "max_tokens": cfg.max_tokens,
@@ -95,6 +96,11 @@ class OpenAIClient:
         if schema is not None:
             payload["response_format"] = {"type": "json_schema", "json_schema": {
                 "name": "clinical_trial", "strict": True, "schema": schema}}
+        return payload
+
+    def complete(self, messages: list[dict], schema: dict | None = None) -> Sample:
+        cfg = self.generation
+        payload = self.request_payload(messages, schema)
         request = urllib.request.Request(self.base_url + "/chat/completions",
                                          data=json.dumps(payload).encode(),
                                          headers={"Content-Type": "application/json"}, method="POST")

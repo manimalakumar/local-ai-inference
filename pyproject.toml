@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "local-clinical-trial-mvp4"
 version = "0.5.0"
-description = "Clinical Text-to-SQL inference optimization with Qwen and Nemotron."
+description = "Local AI serving and inference optimization lab with application-quality checks."
 requires-python = ">=3.10"
 
 [tool.setuptools.packages.find]

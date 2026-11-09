@@ -1,0 +1,41 @@
+{
+  "description": "Explicit selected completed Dell records. Selection does not imply that a failed attempt did not occur. Missing measurements are never synthesized.",
+  "studies": {
+    "vllm-qwen": {
+      "fp16_cache_off": "experiment-tracker/mvp4/runs/20261106T221400_918883Z.json",
+      "fp16_cache_on": "experiment-tracker/mvp4/runs/20261106T224700_600112Z.json",
+      "awq_w4a16_cache_off": "experiment-tracker/mvp4/runs/20261106T230608_780309Z.json",
+      "awq_w4a16_cache_on": "experiment-tracker/mvp4/runs/20261106T232408_684730Z.json",
+      "smoke": "experiment-tracker/mvp4/smoke/20261106T192028_337342Z.json"
+    },
+    "vllm-nemotron": {
+      "fp16_baseline": "experiment-tracker/mvp4/nemotron/20261107T002501_223219Z.json",
+      "prefix_cache": "experiment-tracker/mvp4/nemotron/20261107T023148_583457Z.json",
+      "schema_retrieved": "experiment-tracker/mvp4/nemotron/20261107T024417_765664Z.json",
+      "concurrency_2": "experiment-tracker/mvp4/nemotron/20261107T025050_224975Z.json",
+      "concurrency_4": "experiment-tracker/mvp4/nemotron/20261107T030851_257660Z.json",
+      "batch_capacity_1": "experiment-tracker/mvp4/nemotron/20261107T031845_031809Z.json",
+      "reasoning_on": "experiment-tracker/mvp4/nemotron/20261107T033328_571911Z.json",
+      "output_256": "experiment-tracker/mvp4/nemotron/20261107T034418_092327Z.json",
+      "output_2048": "experiment-tracker/mvp4/nemotron/20261107T035411_952257Z.json"
+    },
+    "nim-qwen": {
+      "smoke": "experiment-tracker/mvp4/nim/runs/20261107T215439_693958Z.json",
+      "baseline": "experiment-tracker/mvp4/nim/runs/20261107T215646_526562Z.json",
+      "schema_retrieved": "experiment-tracker/mvp4/nim/runs/20261107T220801_623823Z.json",
+      "concurrency_2": "experiment-tracker/mvp4/nim/runs/20261107T220932_908954Z.json",
+      "concurrency_4": "experiment-tracker/mvp4/nim/runs/20261107T221207_165140Z.json"
+    },
+    "nim-nemotron": {
+      "smoke": "experiment-tracker/mvp4/nim/runs/20261107T204145_046415Z.json",
+      "baseline": "experiment-tracker/mvp4/nim/runs/20261107T204614_919475Z.json",
+      "schema_retrieved": "experiment-tracker/mvp4/nim/runs/20261107T205138_075077Z.json",
+      "concurrency_2": "experiment-tracker/mvp4/nim/runs/20261107T205602_380125Z.json",
+      "concurrency_4": "experiment-tracker/mvp4/nim/runs/20261107T205940_074402Z.json"
+    }
+  },
+  "failures": {
+    "cache-reset-404": "experiment-tracker/mvp4/runs/20261106T222539_364377Z.json",
+    "qwen-nim-unconstrained": "experiment-tracker/mvp4/nim/runs/20261107T213636_946106Z.json"
+  }
+}
