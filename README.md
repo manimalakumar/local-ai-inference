@@ -60,8 +60,9 @@ for Plan/Live, optional pinned model downloads and profile discovery.
 ## Hardware and software
 
 Replay/Plan require Python 3.11 and the pinned CPU notebook environment. Pins were installed
-and tested on macOS arm64 with Python 3.11.15; Linux CI is provided but its first hosted run
-remains pending. GPU engines are deliberately separate from those CPU constraints.
+and tested on macOS arm64 with Python 3.11.15. A fresh remote clone passed Replay/Plan
+and 204 tests; [hosted Linux CI passed](https://github.com/manimalakumar/local-ai-inference/actions/runs/42666644695)
+for source commit `56feab1`. GPU engines are deliberately separate from those CPU constraints.
 See [exact installed package metadata](CPU_NOTEBOOK_ENVIRONMENT.json) and the
 [validation record](VALIDATION.md).
 

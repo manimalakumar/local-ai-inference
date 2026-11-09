@@ -1,5 +1,40 @@
 # Validation record
 
+## November 9, 2026 — private commit, hosted CI and fresh remote clone
+
+Tested source commit: **`56feab13f6d5e7feb3cb3988658040b1fc81497b`**
+(`Build replay-first inference lab chapters and preserve GPU evidence`). It was pushed to
+`manimalakumar/local-ai-inference` on `main`; GitHub API metadata confirmed the repository
+remains **private**. No public release or source ZIP was published.
+
+The [hosted CPU workflow passed](https://github.com/manimalakumar/local-ai-inference/actions/runs/42666644695)
+on that exact commit. Its Linux job installed the CPU constraints, ran the suite, executed
+Replay and Plan, rebuilt figures/token analysis/review packet and checked whitespace.
+
+A new HTTPS clone at `/tmp/local-ai-inference-clean-20261109` resolved to the same full SHA.
+From that clean directory, the README environment/install path was exercised:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r requirements-notebook.txt -c constraints/cpu-notebook-py311.txt
+.venv/bin/python scripts/tutorial/validate_notebooks.py --mode replay
+.venv/bin/python scripts/tutorial/validate_notebooks.py --mode plan
+.venv/bin/python -m pip check
+.venv/bin/python -m pytest -q
+git status --short
+```
+
+The interpreter used to create the new venv was the installed Python 3.11.15. Local kernel
+checks additionally set `IPYTHONDIR=/tmp/local-ai-clean-ipython` and
+`JUPYTER_RUNTIME_DIR=/tmp/local-ai-clean-jupyter` to isolate Jupyter state. All six notebooks
+passed real-kernel execution in both modes; dependencies were compatible; **204 tests passed
+in 47.40 seconds**; tracked files remained unchanged. No model/GPU/edge inference ran.
+
+Human review of the distinct SQL outputs, fresh Dell execution of automated chapters 01–04
+and native VRAM validation remain pending. Native memory-savings claims remain excluded.
+License work is deferred. This entry records validation of the source commit above; a later
+documentation-only commit records the outcome without claiming new GPU evidence.
+
 ## November 9, 2026 — review follow-up and optional CPU portability
 
 **204 tests pass in 51.41 seconds**. All six chapters (00–05) pass schema/link checks
