@@ -1,4 +1,7 @@
-# Fresh GPU validation of the automated workflow — pending
+# Fresh GPU validation of the automated workflow — deferred
+
+**Deferred by the owner for this iteration.** Existing manual GPU experiments are completed;
+this checklist concerns the updated automation and telemetry only. No new run is requested now.
 
 The archived manual Dell runs are not validation of the later automated lifecycle. CPU tests
 and replay cannot establish kernel compatibility, GPU cleanup or working native memory sampling.

@@ -1,5 +1,40 @@
 # Validation record
 
+## November 9, 2026 — final local CPU readiness check
+
+Source under test: **`7e0bd8ff0568fc2b93ef7d68a32820beadce84f3`**, with the owner's
+documentation-only deferral changes applied. **222 tests passed in 43.29 seconds.** All six
+notebooks passed schema, local-link and builder-source checks and complete real Jupyter
+execution in both Replay and Plan modes. No executed notebook outputs or original records
+were rewritten. The resumed full test run replaced an earlier user-interrupted attempt;
+the interrupted attempt is not counted as a pass.
+
+Commands used the existing pinned Python 3.11.15 environment:
+
+```bash
+/tmp/local-ai-inference-clean-20261109/.venv/bin/python -m pytest -q
+/tmp/local-ai-inference-clean-20261109/.venv/bin/python scripts/tutorial/validate_notebooks.py --mode replay
+/tmp/local-ai-inference-clean-20261109/.venv/bin/python scripts/tutorial/validate_notebooks.py --mode plan
+```
+
+Jupyter checks isolated runtime state with `IPYTHONDIR=/tmp/local-ai-final-ipython` and
+`JUPYTER_RUNTIME_DIR=/tmp/local-ai-final-jupyter`. This was final local CPU validation,
+not another clean dependency installation or a new hosted CI run. The earlier fresh-install,
+remote-clone and hosted Linux CI results remain explicitly scoped to `56feab1` below.
+Before changing repository visibility, push the final candidate and confirm CI on that commit.
+Human SQL review and fresh GPU-automation/native-memory validation remain deferred; no new
+GPU or model experiment ran. License work remains deferred. A documentation-only commit
+records this outcome and exports the source candidate without environments or Git internals.
+
+## November 9, 2026 — owner defers two follow-up validations
+
+At the owner's request, human semantic review and fresh validation of the updated automated
+GPU lifecycle/native memory sampling are parked to save time. They are excluded from the
+current educational/replay polish rating and are not treated as completed checks. Original
+manual GPU results, the 0/61 review status, missing native VRAM and both future checklists
+remain intact. No model, experiment, scoring verdict or notebook result changed. The final
+CPU clean run remains a separate end-of-polish activity. This update changes documentation only.
+
 ## November 9, 2026 — iterative source review; final clean run deferred
 
 The supplied working-directory ZIP was inspected: **22,689 entries**, including **21,670

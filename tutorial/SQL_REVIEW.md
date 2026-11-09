@@ -1,5 +1,8 @@
 # Four-case SQL review packet
 
+**Deferred by the owner for this iteration.** The packet and entry tool are retained for
+later use; completing them is not part of the current educational/replay polish.
+
 **Human semantic review: pending, 0/4 cases reviewed.** The following are recorded Dell application outputs from the Qwen full-schema baseline. Machine execution and reference-result scores are shown as evidence, not human judgments. Repetition of these cases is not broader coverage.
 
 A reviewer should compare the question, plan, final SQL and reference definition, including grouping, denominator, date window, serious-versus-severe distinctions and required zero-count groups. Enter a named reviewer, date, exact SQL hash and boolean judgment in `tutorial/semantic_reviews.json` only after review. Do not copy the automated match bit as a human verdict.

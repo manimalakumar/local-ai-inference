@@ -89,11 +89,12 @@ Read [the concise results page](tutorial/RESULTS.md). Paired cache phases are in
 separately from supplemental warmed summaries. Twenty serving requests repeat four clinical
 questions. Reference-result match is distinct from human-reviewed semantic correctness.
 
-**Outstanding validation:** fresh GPU validation of the new automated lifecycle;
-native VRAM telemetry rerun; and human review of
-the four SQL questions across all distinct outputs supporting the comparisons. No native memory-reduction conclusion is supported. Wider quality claims
-require the full 23-reference-case set. NIM/native comparisons also need matched thinking,
-request contracts and backend settings. No compatible Nemotron AWQ checkpoint was obtained.
+**Deferred follow-up validation:** human semantic review and fresh checks of the updated
+GPU automation/native VRAM sampling are parked for this iteration. Your completed Dell GPU
+experiments remain available as recorded evidence. These follow-ups are not prerequisites
+for reading or replaying the tutorial. Native memory-reduction conclusions remain unsupported;
+wider quality claims require broader evaluation and review. NIM/native comparisons still
+need matched settings, and no compatible Nemotron AWQ checkpoint was obtained.
 
 [Current rubric and publication checklist](tutorial/PUBLICATION.md) · [GPU rerun checklist](tutorial/GPU_VALIDATION.md)
 · [SQL review packet](tutorial/SQL_REVIEW.md) · [validation history](VALIDATION.md)
