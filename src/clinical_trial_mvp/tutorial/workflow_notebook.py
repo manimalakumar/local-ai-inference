@@ -101,7 +101,7 @@ display(Markdown(interpret(study, '{name}')))''')
         if name==first:
             md('mechanism','''### Inspect the serving call and answer
 
-The experiment above invoked the model through the OpenAI-compatible `/v1/chat/completions` API. Inspect the launch command, request shape, generated plan/SQL and execution checks below. Request inspection reconstructs the payload from this session's prompt and request builder; it is not a captured wire payload. In Plan, it previews the selected schema/configuration. A reference-result match is separate from human semantic review.
+The experiment above calls the model through the OpenAI-compatible `/v1/chat/completions` API. Inspect the launch command, request, generated plan/SQL and execution checks below. The request is constructed from the experiment prompt, schema profile and generation settings. In Plan, these details preview the configured call. The response shows the generated answer and its reference-result check.
 
 [Request transport](../src/clinical_trial_mvp/serving/client.py) · [plan and SQL execution](../src/clinical_trial_mvp/serving/agent.py)''')
             code('inspect-current-request',f"display(JSON(server_example(study, '{first}')))\ndisplay(JSON(request_example(study, '{first}')))\ndisplay(JSON(response_example(study, '{first}')))")

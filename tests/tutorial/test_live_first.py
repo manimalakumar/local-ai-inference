@@ -77,8 +77,8 @@ def test_every_live_display_excludes_old_and_archived_rows(monkeypatch):
     assert 'No controlled' in study.cache_report()
     assert '999' not in interpret(study,'fp16_cache_off')
     assert 'No response' in response_example(study,'fp16_cache_off')['status']
-    assert 'planned argv' in server_example(study,'fp16_cache_off')['command_origin']
-    assert 'Reconstructed' in request_example(study,'fp16_cache_off')['note']
+    assert 'Constructed from selected launch settings' in server_example(study,'fp16_cache_off')['command_origin']
+    assert 'Constructed' in request_example(study,'fp16_cache_off')['note']
     from clinical_trial_mvp.tutorial.token_analysis import analyze
     from clinical_trial_mvp.tutorial.session_figures import figure
     assert analyze(study.current_results())['rows']==[]

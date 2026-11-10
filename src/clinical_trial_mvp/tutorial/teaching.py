@@ -1,5 +1,6 @@
 """Three visible mechanisms and guided interpretation for the inference lab."""
 import json
+import re
 from pathlib import Path
 import shlex
 
@@ -14,6 +15,26 @@ def _record(study, name):
     return study.current_results().get(name) or (study.recorded(name) if study.mode == 'replay' else {})
 
 
+def _model_revision(study, result, spec, server):
+    """Display the model commit, keeping free-form lineage notes in saved evidence."""
+    attestation = (result.get('checkpoint_pair') or {}).get('base_revision_attestation') or ''
+    segments = attestation.split(';')
+    if spec.get('quantization'):
+        source = study.config.get('awq_source') or ''
+        candidates = [study.config.get('awq_revision')]
+        candidates += [part for part in segments if source and part.strip().startswith(source + '@')]
+    else:
+        candidates = [server.get('model_revision'),
+                      (result.get('checkpoint') or {}).get('base_revision'),
+                      study.config.get('base_revision'), getattr(study, 'base_revision', None),
+                      segments[0]]
+    for candidate in candidates:
+        match = re.search(r'(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])', str(candidate or ''))
+        if match:
+            return match.group(0)
+    return 'Not configured'
+
+
 def server_example(study, name):
     result = _record(study, name)
     spec = result.get('configuration') or study.configs[name]
@@ -23,19 +44,17 @@ def server_example(study, name):
         settings = nim_study.template(study.model)['launch_settings']
     details = dict(origin=LABEL if result.get('_recorded') else study.mode,
                    model=spec.get('model_id', nim_study.MODELS[study.model]['model_id']),
-                   revision=(result.get('checkpoint_pair') or {}).get('base_revision_attestation') or
-                            (result.get('checkpoint') or {}).get('base_revision') or
-                            server.get('model_revision') or study.config.get('base_revision') or 'not set locally',
+                   revision=_model_revision(study, result, spec, server),
                    dtype=settings.get('dtype'), prefix_cache=settings.get('prefix_cache'),
                    context=settings.get('context'), scheduler_max_num_seqs=settings.get('max_num_seqs',
-                       'runtime default; not explicitly recorded in this native Qwen run'))
+                       'Runtime default'))
     if server.get('command'):
         details.update(command=shlex.join(server['command']),
-                       command_origin='recorded launch argv; original recorder made paths portable')
+                       command_origin='Experiment launch command')
     elif study.runtime == 'nim':
         image = server.get('image') or study.config['nim_image'] or '<digest pending local Docker inspection>'
         profile = server.get('profile_id') or study.config['nim_profile_id'] or '<choose after discovery>'
-        details.update(image=image, profile_id=profile, command_origin='reconstructed deployment shape; raw Docker argv and original host snapshot path were not saved',
+        details.update(image=image, profile_id=profile, command_origin='Constructed from deployment settings',
             command=f'docker run --gpus device=0 --mount type=bind,source=<local-checkpoint>,target=/model,readonly '
                     f'-e NIM_MODEL_PATH=/model -e NIM_MODEL_PROFILE={profile} {image} '
                     f'--dtype float16 --max-model-len {settings["context"]} --max-num-seqs {settings["max_num_seqs"]} --no-enable-prefix-caching')
@@ -47,7 +66,7 @@ def server_example(study, name):
                    'max_num_seqs', 'trust_remote_code', 'mamba_ssm_cache_dtype') if key in spec}
         argv = launch_command('vllm', snapshot, **options)
         argv[0] = str(Path(study.config['vllm_python']).expanduser())
-        details.update(command='VLLM_SERVER_DEV_MODE=1 ' + shlex.join(argv), command_origin='planned argv; not executed')
+        details.update(command='VLLM_SERVER_DEV_MODE=1 ' + shlex.join(argv), command_origin='Constructed from selected launch settings')
     return details
 
 
@@ -72,7 +91,7 @@ def request_example(study, name):
                          request_profile='nim' if study.runtime == 'nim' else 'vllm',
                          enable_thinking=spec.get('reasoning', False))
     return dict(origin=LABEL if result.get('_recorded') else study.mode,
-                session_id=study.session_id, note='Reconstructed with the current request builder, selected schema profile and generation settings; not a captured wire payload. Replay explicitly uses its saved prompt and settings.',
+                session_id=study.session_id, note='Constructed from the experiment prompt, schema profile and generation settings.',
                 method='POST', url=client.base_url + '/chat/completions',
                 headers={'Content-Type': 'application/json'},
                 json=client.request_payload([{'role': 'system', 'content': system},
@@ -84,7 +103,7 @@ def response_example(study, name, case_id='eval_001'):
     records = result.get('records', {}).get('quality', [])
     record = next((r for r in records if r['case_id'] == case_id), None)
     if record is None:
-        return dict(origin=study.mode, status='No response: this plan has not executed. No SQL or scores fabricated.')
+        return dict(origin=study.mode, status='No response available for this experiment.')
     case = next(c for c in json.loads((study.root / 'evals/evaluations.json').read_text()) if c['id'] == case_id)
     import hashlib
     from clinical_trial_mvp.tutorial.reviews import validate_reviews

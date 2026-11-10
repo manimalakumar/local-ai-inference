@@ -72,7 +72,7 @@ def test_three_visible_paths_match_saved_contract(runtime, model, name):
     assert server['origin'] == LABEL and server['dtype'] == 'float16'
     if runtime == 'nim':
         assert server['scheduler_max_num_seqs'] == 4
-        assert 'reconstructed' in server['command_origin']
+        assert 'Constructed' in server['command_origin']
     request = request_example(study, name)
     assert request['method'] == 'POST'
     assert request['json']['max_tokens'] == 1024
@@ -133,3 +133,20 @@ def test_clean_export_contains_only_committed_source_not_worktree_caches(tmp_pat
     with zipfile.ZipFile(output) as archive:
         assert archive.namelist() == ['local-ai-inference/', 'local-ai-inference/README.md']
     assert module.forbidden('.git/config') and module.forbidden('x/__pycache__/bad.pyc')
+
+
+@pytest.mark.parametrize('name,revision', [
+    ('fp16_cache_off','1cfa9a7208912126459214e8b04321603b3df60c'),
+    ('awq_w4a16_cache_off','74d4bd2bd4bff9cafc9345221320bffb08b406a3'),
+])
+def test_inspection_displays_model_commit_without_free_form_lineage_notes(name,revision):
+    study=w.Study('vllm','qwen',root=ROOT,mode='replay')
+    result=study.run(name)
+    result['checkpoint_pair']['base_revision_attestation'] += '; pinned original Dell experiment note'
+    original=result['checkpoint_pair']['base_revision_attestation']
+    shown=server_example(study,name)
+    assert shown['revision']==revision
+    assert result['checkpoint_pair']['base_revision_attestation']==original
+    request=request_example(study,name)
+    assert request['note']=='Constructed from the experiment prompt, schema profile and generation settings.'
+    assert 'reconstruct' not in request['note'].lower()
