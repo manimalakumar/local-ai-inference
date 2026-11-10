@@ -58,9 +58,46 @@ def configurations(*, run_tag="run01", hardware="GPU host (verify SKU)", context
         "context": context, "dtype": "float16", "quantization": "awq" if name.startswith("awq") else None,
         "prefix_cache": name.endswith("_on"), "profile": "full", "concurrency": concurrency,
         "repeats": repeats, "warmups": 1, "max_tokens": 1024,
+        "max_num_seqs": 4, "reasoning": False,
         "cache_regime": "reset_cold_reset_distinct_question_prime_warm_v2",
         "provenance": f"experiment-tracker/mvp4/provenance/{run_tag}-{name}.json",
     } for name in VARIANTS}
+
+
+# The original four precision/cache variants retain their paired measurement path.
+# Additional controls hold FP16/cache-off fixed and vary one request/server control.
+def study_configurations(**kwargs):
+    specs = configurations(**kwargs)
+    baseline = specs['fp16_cache_off']
+    deltas = {
+        'schema_retrieved': {'profile': 'retrieved'},
+        'concurrency_2': {'concurrency': 2},
+        'concurrency_4': {'concurrency': 4},
+        'batch_capacity_1': {'concurrency': 4, 'max_num_seqs': 1},
+        'batch_capacity_2': {'concurrency': 4, 'max_num_seqs': 2},
+        'reasoning_on': {'reasoning': True},
+        'output_256': {'max_tokens': 256},
+        'output_2048': {'max_tokens': 2048},
+    }
+    for name, delta in deltas.items():
+        specs[name] = {**baseline, **delta, 'model_id': 'Qwen/Qwen3-4B',
+                       'experiment': 'MVP4/Optimization/' + name,
+                       'provenance': baseline['provenance'].replace('fp16_cache_off.json', name + '.json')}
+    return specs
+
+
+def run_control(spec, pair=None, *, smoke=None, execute=False, root=ROOT):
+    """Run Qwen controls with the same clinical scoring and thinking handling as Nemotron."""
+    from clinical_trial_mvp.tutorial import nemotron
+    if execute:
+        server = validated_server(spec, pair, root)
+        check_smoke(smoke, pair, server)
+    else:
+        server = None
+    result = nemotron.run(spec, {'model_sha256': pair['fp16_sha256']} if pair else None,
+                          execute=execute, root=root, server=server)
+    result['checkpoint_pair'] = pair
+    return result
 
 
 def checkpoint_pair(fp16, awq, *, base_revision):
@@ -96,6 +133,8 @@ def launch_preview(spec, snapshot, *, python=".venv-vllm/bin/python"):
     command = [python, "scripts/serving/compare_vllm_sglang.py", "launch", "--runtime", "vllm",
                "--snapshot", str(snapshot), "--dtype", "float16", "--context", str(spec["context"]),
                "--metadata", spec["provenance"], "--execute"]
+    if spec.get("max_num_seqs") is not None:
+        command += ["--max-num-seqs", str(spec["max_num_seqs"])]
     if spec["quantization"]:
         command += ["--quantization", spec["quantization"]]
     if spec["prefix_cache"]:
@@ -111,6 +150,8 @@ def validated_server(spec, pair, root):
     expected = pair["awq_sha256" if spec["quantization"] == "awq" else "fp16_sha256"]
     if server["model_sha256"] != expected:
         raise ValueError("Server checkpoint fingerprint differs from validated pair")
+    if "max_num_seqs" in spec and server["launch_settings"].get("max_num_seqs") != spec["max_num_seqs"]:
+        raise ValueError("Server scheduling capacity differs from the requested max_num_seqs")
     if platform.system() != "Linux":
         raise ValueError("Live execution requires the Linux GPU host")
     if not server.get("gpu_uuid"):

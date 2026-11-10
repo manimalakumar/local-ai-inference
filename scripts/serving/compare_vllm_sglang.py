@@ -29,6 +29,7 @@ def main(argv=None):
     start.add_argument("--snapshot", type=Path, required=True)
     start.add_argument("--port", type=int, default=8000)
     start.add_argument("--context", type=int, default=8192)
+    start.add_argument("--max-num-seqs", type=int)
     start.add_argument("--tp", type=int, default=1)
     start.add_argument("--dtype", choices=["bfloat16", "float16"], default="bfloat16")
     start.add_argument("--prefix-cache", action="store_true")
@@ -60,7 +61,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "launch":
-            options = {key: getattr(args, key) for key in ("port", "context", "tp", "dtype", "prefix_cache", "quantization")}
+            options = {key: getattr(args, key) for key in ("port", "context", "tp", "dtype", "prefix_cache", "quantization", "max_num_seqs")}
             if args.execute:
                 if args.metadata is None:
                     raise ValueError("--execute requires a new --metadata path")

@@ -151,7 +151,7 @@ def interpret(study, name):
         observation += f' Baseline application result match: {baseline_quality.get("result_equivalent", "—")}/{baseline_quality.get("reference_scored", "—")}.'
         explanation = 'Context reduction changes the information available to the model, not just compute cost.'
         decision = 'Retain needed clinical definitions; accept reduced context only with adequate task quality.'
-    elif name.startswith('concurrency') or name == 'batch_capacity_1':
+    elif name.startswith('concurrency') or name.startswith('batch_capacity_'):
         prediction = 'More overlapping clients may improve aggregate throughput while increasing per-request latency.'
         explanation = 'Client overlap and scheduler capacity are separate controls; these records do not show achieved batch occupancy.'
         decision = 'Choose concurrency using both latency limits and correctly completed work.'

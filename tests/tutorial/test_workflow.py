@@ -218,3 +218,100 @@ def test_nemotron_optional_experiments_skip_without_server(tmp_path, monkeypatch
     assert obj.run('prefix_cache')['status'] == 'skipped'
     assert obj.run('awq_stretch')['status'] == 'skipped'
     assert len(list((tmp_path / 'experiment-tracker/mvp4/workflow/skipped').glob('*.json'))) == 2
+
+
+@pytest.mark.parametrize('name', ['schema_retrieved', 'concurrency_2', 'concurrency_4',
+                                'batch_capacity_1', 'batch_capacity_2', 'reasoning_on',
+                                'output_256', 'output_2048'])
+def test_qwen_new_cells_dispatch_to_control_runner_with_smoke_and_pair(tmp_path, monkeypatch, name):
+    from contextlib import contextmanager
+    obj = study(tmp_path)
+    obj.smoke_result = {'status':'completed'}
+    obj.pair = {'fp16_sha256':'base'}
+    @contextmanager
+    def server(spec, snapshot):
+        assert snapshot == obj.base
+        yield
+    monkeypatch.setattr(obj, '_native_server', server)
+    calls = []
+    def run(spec, pair, **kwargs):
+        calls.append((spec, pair, kwargs))
+        return {'status':'completed', 'configuration':spec}
+    monkeypatch.setattr(w.optimization, 'run_control', run)
+    monkeypatch.setattr(w.optimization, 'run_variant', lambda *a, **k: pytest.fail('factorial cache path used for concurrent controls'))
+    assert obj.run(name)['status'] == 'completed'
+    assert calls[0][1] == obj.pair and calls[0][2]['smoke'] == obj.smoke_result
+    assert calls[0][2]['execute'] is True
+
+
+def test_nemotron_failed_awq_smoke_is_retried_before_benchmark(tmp_path, monkeypatch):
+    obj = study(tmp_path, model='nemotron')
+    obj.config['run_awq'] = True
+    obj.results['fp16_baseline'] = {'status':'completed'}
+    obj.smoke_result = {'status':'failed'}
+    def retry():
+        raise RuntimeError('compatibility smoke retried')
+    monkeypatch.setattr(obj, '_stretch_smoke', retry)
+    monkeypatch.setattr(obj, '_native_server', lambda *a: pytest.fail('must not benchmark failed smoke'))
+    with pytest.raises(RuntimeError, match='smoke retried'):
+        obj.run('awq_stretch')
+    assert obj.results['awq_stretch']['status'] == 'failed'
+    assert obj.results['fp16_baseline']['status'] == 'completed'
+
+
+def test_nemotron_awq_rejects_unpinned_source_before_download(tmp_path, monkeypatch):
+    obj = study(tmp_path, model='nemotron')
+    obj.config.update(run_awq=True, awq_source='example/checkpoint', awq_revision='main', awq_derivation='recipe')
+    monkeypatch.setattr(obj, '_native_server', lambda *a: pytest.fail('must validate before startup'))
+    with pytest.raises(ValueError, match='exact compatible source'):
+        obj._stretch_smoke()
+
+
+@pytest.mark.parametrize('smoke_status', ['completed', 'failed'])
+def test_nemotron_awq_validates_pair_and_smokes_before_benchmark(tmp_path, monkeypatch, smoke_status):
+    from contextlib import contextmanager
+    obj = study(tmp_path, model='nemotron')
+    obj.config.update(run_awq=True, awq_source='example/validated-awq',
+                      awq_revision='b'*40, awq_derivation='documented conversion from base')
+    obj.base_revision = 'a'*40
+    obj.results['fp16_baseline'] = {'status':'completed'}
+    config = {'model_type':'nemotron_h', 'architectures':['NemotronHForCausalLM'],
+              'hidden_size':16, 'num_hidden_layers':2, 'vocab_size':100}
+    for folder in (obj.base, obj.awq):
+        folder.mkdir(parents=True)
+        (folder/'config.json').write_text(json.dumps(config))
+        (folder/'tokenizer.json').write_text('{"same":true}')
+        (folder/'model.safetensors').write_bytes(folder.name.encode())
+    config['quantization_config'] = {'quant_method':'awq','bits':4}
+    (obj.awq/'config.json').write_text(json.dumps(config))
+    events = []
+    @contextmanager
+    def server(spec, snapshot):
+        assert snapshot == obj.awq and spec['mamba_ssm_cache_dtype'] == 'float32'
+        events.append('start')
+        yield
+        events.append('stop')
+    monkeypatch.setattr(obj, '_native_server', server)
+    def smoke(spec, pair, **kwargs):
+        assert pair['awq_config']['quant_method'] == 'awq'
+        assert pair['fp16_sha256'] != pair['awq_sha256']
+        assert kwargs['execute'] is True
+        events.append('smoke')
+        return {'status':smoke_status,'configuration':spec}
+    monkeypatch.setattr(w.optimization, 'awq_smoke', smoke)
+    def benchmark(spec, checkpoint, **kwargs):
+        assert kwargs['smoke']['status'] == 'completed'
+        assert kwargs['pair'] == obj.pair
+        events.append('benchmark')
+        return {'status':'completed','configuration':spec}
+    monkeypatch.setattr(w.nemotron, 'run', benchmark)
+    if smoke_status == 'completed':
+        assert obj.run('awq_stretch')['status'] == 'completed'
+        assert events == ['start','smoke','stop','start','benchmark','stop']
+    else:
+        with pytest.raises(RuntimeError, match='AWQ smoke failed'):
+            obj.run('awq_stretch')
+        assert events == ['start','smoke','stop']
+        assert obj.results['awq_stretch']['status'] == 'failed'
+    assert obj.results['fp16_baseline']['status'] == 'completed'
+    assert obj.results['smoke']['session_id'] == obj.session_id

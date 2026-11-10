@@ -38,6 +38,7 @@ def configurations(run_tag='nemotron-run01', *, repeats=5):
         'concurrency_2': {'concurrency': 2},
         'concurrency_4': {'concurrency': 4},
         'batch_capacity_1': {'concurrency': 4, 'max_num_seqs': 1},
+        'batch_capacity_2': {'concurrency': 4, 'max_num_seqs': 2},
         'reasoning_on': {'reasoning': True},
         'output_256': {'max_tokens': 256},
         'output_2048': {'max_tokens': 2048},
@@ -118,10 +119,12 @@ def validate_server(spec, checkpoint, server):
     if server['model_sha256'] != checkpoint['model_sha256']:
         raise ValueError('Server fingerprint differs from the validated checkpoint')
     for key in ('max_num_seqs', 'mamba_ssm_cache_dtype', 'trust_remote_code'):
+        if key not in spec:
+            continue
         if server['launch_settings'].get(key) != spec[key]:
             raise ValueError('Server setting mismatch: ' + key)
     match = re.match(r'^(\d+)\.(\d+)\.(\d+)', server['engine_version'])
-    if not match or tuple(map(int, match.groups())) < (0, 15, 1):
+    if spec.get('model_id') == MODEL_ID and (not match or tuple(map(int, match.groups())) < (0, 15, 1)):
         raise ValueError('Nemotron model card requires vLLM >= 0.15.1')
     if not server.get('gpu_uuid'):
         raise ValueError('Record the actual GPU UUID for memory sampling')
@@ -129,6 +132,8 @@ def validate_server(spec, checkpoint, server):
 
 def run(spec, checkpoint=None, *, execute=False, root=ROOT, prefix_supported=False,
         pair=None, smoke=None, client=None, server=None, memory_factory=None):
+    # Shared clinical scoring also serves Qwen's single-control interventions.
+    category = 'nemotron' if spec.get('model_id') == MODEL_ID else 'qwen-controls'
     root = Path(root)
     workload = Workload(profile=spec['profile'], concurrency=spec['concurrency'],
                         repeats=spec['repeats'], warmups=spec['warmups'])
@@ -142,11 +147,11 @@ def run(spec, checkpoint=None, *, execute=False, root=ROOT, prefix_supported=Fal
     # An unsupported cache experiment never blocks the remaining core runs.
     if spec['prefix_cache'] and not prefix_supported:
         result.update(status='skipped', reason='Verify hybrid prefix-cache support on the installed build/backend first')
-        save_record(root, 'nemotron', result)
+        save_record(root, category, result)
         return result
     if spec['quantization'] and (not pair or not smoke):
         result.update(status='skipped', reason='AWQ stretch needs a validated compatible checkpoint pair and successful smoke')
-        save_record(root, 'nemotron', result)
+        save_record(root, category, result)
         return result
     injected = client is not None
     try:
@@ -208,5 +213,5 @@ def run(spec, checkpoint=None, *, execute=False, root=ROOT, prefix_supported=Fal
     except (OSError, ValueError, RuntimeError, KeyError) as exc:
         result.update(status='failed', reason=str(exc))
     if not injected:
-        save_record(root, 'nemotron', result)
+        save_record(root, category, result)
     return portable_value(result)

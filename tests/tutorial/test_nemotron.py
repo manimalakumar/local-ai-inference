@@ -190,3 +190,43 @@ def test_launcher_records_distinct_scheduler_capacity_and_fp32_ssm():
     assert cmd[cmd.index('--max-num-seqs')+1] == '1'
     assert '--trust-remote-code' in cmd
     assert cmd[cmd.index('--mamba-ssm-cache-dtype')+1] == 'float32'
+
+
+@pytest.mark.parametrize('model', ['qwen', 'nemotron'])
+def test_capacity_series_changes_only_scheduler_limit_at_four_clients(model):
+    from clinical_trial_mvp.tutorial import optimization
+    configs = optimization.study_configurations() if model == 'qwen' else n.configurations()
+    reference = configs['concurrency_4']
+    ignored = {'experiment', 'provenance', 'max_num_seqs'}
+    for name, capacity in [('batch_capacity_1', 1), ('batch_capacity_2', 2), ('concurrency_4', 4)]:
+        spec = configs[name]
+        assert spec['concurrency'] == 4 and spec['max_num_seqs'] == capacity
+        assert {k:v for k,v in spec.items() if k not in ignored} == {k:v for k,v in reference.items() if k not in ignored}
+
+
+@pytest.mark.parametrize('name', ['schema_retrieved', 'concurrency_2', 'concurrency_4',
+                                'batch_capacity_1', 'batch_capacity_2', 'reasoning_on',
+                                'output_256', 'output_2048'])
+def test_qwen_controls_score_real_clinical_workload_without_hybrid_requirements(name):
+    from clinical_trial_mvp.tutorial import optimization
+    spec = optimization.study_configurations(repeats=1)[name]
+    class ThinkingFake(Fake):
+        reasoning = spec['reasoning']
+        def complete(self, *args, **kwargs):
+            sample = super().complete(*args, **kwargs)
+            if self.reasoning:
+                sample.content = 'thought</think>' + sample.content
+            return sample
+    metadata = {'runtime': 'vllm', 'model': spec['model'], 'engine_version': '0.32.0',
+                'model_sha256': 'a'*64, 'hardware': 'test GPU', 'gpu_uuid': 'GPU-test',
+                'evidence': 'hardware', 'launch_settings': {k: spec[k] for k in
+                    ('context','dtype','prefix_cache','quantization','max_num_seqs')}}
+    result = n.run(spec, {'model_sha256':'a'*64}, execute=True, root=ROOT,
+                   client=ThinkingFake(), server=metadata,
+                   memory_factory=lambda: PeakMemory(reader=lambda: 100))
+    assert result['status'] == 'completed', result.get('reason')
+    assert result['serving']['result_equivalent'] == 4
+    assert result['quality']['result_equivalent'] == 4
+    assert result['memory']['peak_bytes'] == 100
+    if spec['reasoning']:
+        assert all(r['content'].startswith('thought') for r in result['records']['serving'])

@@ -219,7 +219,7 @@ def test_notebook_scopes_keep_qwen_strategy_and_make_nemotron_awq_optional():
     for name in ('fp16_baseline', 'schema_retrieved', 'concurrency_2', 'concurrency_4',
                  'batch_capacity_1', 'reasoning_on', 'output_256', 'output_2048'):
         assert name in ntext
-    assert 'run_awq' not in ntext  # Flags belong in configuration, not editable notebook cells.
+    assert all('run_awq' not in ''.join(c['source']) for c in nemotron['cells'] if c['cell_type'] == 'code')  # Flags are documented in Markdown; machine values stay in configuration.
     assert 'MODE = "live"' in ntext and 'MODE = "live"' in qtext
     assert 'AWQ is optional stretch work' in ' '.join(ntext.split())
     assert 'study.smoke()' in qtext
@@ -232,3 +232,27 @@ def test_qwen_notebook_is_preserved_from_the_recorded_source():
     lineage = json.loads((ROOT / 'SOURCE_LINEAGE.json').read_text())
     original = ROOT / 'notebooks/history/dell-2026-11-07/source-Qwen-before-Dell.ipynb'
     assert hashlib.sha256(original.read_bytes()).hexdigest() == lineage['inherited_files_sha256'][str(path)]
+
+
+def test_qwen_scheduler_capacity_reaches_engine_cli(capsys):
+    import importlib.util
+    module_spec = importlib.util.spec_from_file_location('compare_cli', ROOT / 'scripts/serving/compare_vllm_sglang.py')
+    module = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(module)
+    spec = opt.study_configurations()['batch_capacity_2']
+    command = shlex.split(opt.launch_preview(spec, 'models/checkpoint'))
+    assert command[command.index('--max-num-seqs') + 1] == '2'
+    args = command[2:]
+    args.remove('--execute')
+    assert module.main(args) == 0
+    engine = shlex.split(capsys.readouterr().out.strip())
+    assert engine[engine.index('--max-num-seqs') + 1] == '2'
+
+
+def test_new_qwen_plan_rows_have_no_cache_reset_or_network(monkeypatch):
+    monkeypatch.setattr(opt, 'validated_server', lambda *a: pytest.fail('Plan consulted server'))
+    monkeypatch.setattr(opt, 'measure_requests', lambda *a, **k: pytest.fail('concurrent control ran serial cache study'))
+    for name, spec in opt.study_configurations().items():
+        if name not in opt.VARIANTS:
+            result = opt.run_control(spec, root=ROOT)
+            assert result['status'] == 'plan_only' and result['serving'] is None

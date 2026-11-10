@@ -628,3 +628,53 @@ The [edge guide](../tutorial/EXECUTORCH_MAC.md) preserves the previous Qwen nati
 ''',
     },
 }
+
+# Shared controls for the two native vLLM studies. NIM/edge chapters keep their scope.
+OPTIMIZATION_CONTROLS = '''| Control | What it changes |
+|---|---|
+| Schema context | Compare the full schema with a smaller retrieved selection. |
+| Prefix caching | Reuse processing of an identical shared schema prefix; report cold and warm requests separately. |
+| Concurrency | Change how many client requests overlap: 1, 2 or 4. |
+| Scheduling capacity | Allow 1, 2 or 4 sequences in the server scheduler, keeping four client requests concurrent; actual batch occupancy is not measured. |
+| Reasoning | Compare reasoning disabled and enabled; reasoning tokens count within the output budget. |
+| Output limit | Cap generated tokens at 256, 1,024 or 2,048; the context-window limit remains 8,192. |
+| Precision | Compare FP16 with validated AWQ 4-bit weights and FP16 activations (W4A16). |'''
+
+OPTIMIZATION_EXPLANATIONS = {
+    'fp16_cache_off': 'Establish the Qwen FP16 baseline with prefix caching disabled, one client, scheduling capacity 4 and an output limit of 1,024 tokens.',
+    'fp16_baseline': 'Establish the Nemotron FP16 baseline with prefix caching disabled, one client, scheduling capacity 4 and an output limit of 1,024 tokens; Mamba state stays FP32.',
+    'fp16_cache_on': 'Change only prefix caching from fp16_cache_off; compare cold and warm requests using an identical shared schema prefix.',
+    'awq_w4a16_cache_off': 'Change only precision from fp16_cache_off to AWQ W4A16, after the checkpoint passes its compatibility smoke.',
+    'awq_w4a16_cache_on': 'Change only prefix caching from awq_w4a16_cache_off; report cold and warm requests separately.',
+    'prefix_cache': 'Change only prefix caching from fp16_baseline, after verifying hybrid-backend support; report cold and warm requests separately.',
+    'schema_retrieved': 'Replace the full schema with retrieved schema context while keeping the FP16 baseline settings fixed.',
+    'concurrency_2': 'Send two overlapping client requests while keeping server scheduling capacity at 4; compare with the one-client FP16 baseline.',
+    'concurrency_4': 'Send four overlapping client requests with scheduling capacity 4; this also supplies the capacity-4 comparison for the next two experiments.',
+    'batch_capacity_1': 'Keep four clients concurrent but limit scheduling capacity to 1; compare with batch_capacity_2 and concurrency_4 (capacity 4).',
+    'batch_capacity_2': 'Keep four clients concurrent but limit scheduling capacity to 2; compare capacity 1 → 2 → 4, without assuming achieved batch size.',
+    'reasoning_on': 'Enable reasoning while holding the FP16 baseline settings and 1,024-token output limit fixed; TTFT includes reasoning and truncation remains a failure.',
+    'output_256': 'Reduce only the FP16 baseline output limit from 1,024 to 256 generated tokens; keep the context-window limit at 8,192.',
+    'output_2048': 'Increase only the FP16 baseline output limit from 1,024 to 2,048 generated tokens; keep the context-window limit at 8,192.',
+    'awq_stretch': 'Try AWQ W4A16 against the FP16 baseline only after validating the exact checkpoint pair and passing an AWQ SQL smoke; Mamba state stays FP32.',
+}
+
+for _filename in ('01_qwen_cache_quantization.ipynb', '02_nemotron_optimization.ipynb'):
+    _chapter = CHAPTER_PROSE[_filename]
+    _chapter['method'] += '\n' + OPTIMIZATION_CONTROLS + '\n'
+    for _name, _explanation in OPTIMIZATION_EXPLANATIONS.items():
+        if _name in ('fp16_baseline', 'prefix_cache', 'awq_stretch') and _filename.startswith('01'):
+            continue
+        if _name in ('fp16_cache_off', 'fp16_cache_on', 'awq_w4a16_cache_off', 'awq_w4a16_cache_on') and _filename.startswith('02'):
+            continue
+        _chapter['experiment-' + _name] = '### ' + _name.replace('_', ' ') + '\n\n' + _explanation + '\n'
+
+CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['intro'] = CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['intro'].replace(
+    '# Qwen: answer faster with caching and four-bit weights', '# Qwen: context, caching, concurrency and precision').replace(
+    'AWQ compresses weights while keeping activations at FP16.',
+    'AWQ compresses weights while keeping activations at FP16. We then test schema context, concurrency, scheduling capacity, reasoning and output limits against the FP16 cache-off baseline.')
+CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['method'] = CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['method'].replace(
+    'Hold the schema, four questions, seed 42, temperature 0, cap 1024 and context limit 8192 fixed.',
+    'For the first four precision/cache variants, hold the schema, four questions, seed 42, temperature 0, output cap 1,024, scheduling capacity 4 and context limit 8,192 fixed. Subsequent experiments each change one control from fp16_cache_off; capacity experiments keep concurrency at four clients. Compare capacity 1/2/4 using batch_capacity_1, batch_capacity_2 and concurrency_4.')
+CHAPTER_PROSE['02_nemotron_optimization.ipynb']['prepare'] += '''
+For the optional AWQ attempt, edit `tutorial/config/vllm-nemotron.local.json` before starting the notebook: set `run_awq=true`, `awq_source` to a compatible checkpoint repository, `awq_revision` to its exact 40-character commit SHA, `awq_derivation` to the documented link to your exact base revision, and `awq_snapshot` to its local directory. Set `download_models=true` only if you want the pinned checkpoint downloaded. The final AWQ cell validates architecture, tokenizer and 4-bit AWQ metadata, starts the server and runs a SQL smoke before benchmarking. Without a compatible source, leave `run_awq=false`; the core experiments still run. Other four-bit formats are not interchangeable with AWQ.
+'''

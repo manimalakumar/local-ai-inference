@@ -90,7 +90,7 @@ Enable `prefix_supported` only after verifying support for the installed hybrid 
 Keep the NIM deployment fixed while changing full/retrieved schema or client concurrency. TP1/PP1 uses one GPU and one pipeline stage. A runnable profile still needs successful startup and a SQL smoke.
 
 Check response structure as well as HTTP success. Qwen enables schema enforcement by default; Nemotron's setting is explicit in configuration. Compare the request contract before interpreting differences from native vLLM. The owned container stays running between these cells until cleanup.''')
-    names=['baseline','schema_retrieved','concurrency_2','concurrency_4'] if runtime=='nim' else list(nemotron.configurations()) if model=='nemotron' else list(optimization.VARIANTS)
+    names=['baseline','schema_retrieved','concurrency_2','concurrency_4'] if runtime=='nim' else list(nemotron.configurations()) if model=='nemotron' else list(optimization.study_configurations())
     first=names[0]
     for name in names:
         md('experiment-'+name,'### '+name.replace('_',' ')+'\n\nPredict the effect on latency, output work and structured-answer correctness before executing this cell.')

@@ -110,7 +110,7 @@ class Study:
         self.tag = (self.config['run_tag'] or f'{runtime}-{model}') + '-' + self.session_id
         self.configs = (nim_study.configurations(model, run_tag=self.tag) if runtime == 'nim' else
                         nemotron.configurations(self.tag, repeats=self.config['repeats']) if model == 'nemotron' else
-                        optimization.configurations(run_tag=self.tag, repeats=self.config['repeats']))
+                        optimization.study_configurations(run_tag=self.tag, repeats=self.config['repeats']))
         if runtime == 'nim':
             for spec in self.configs.values():
                 spec.update(nim_profile=self.config['nim_profile_path'],
@@ -417,7 +417,7 @@ class Study:
 
     def _stretch_smoke(self):
         source, revision = self.config['awq_source'], self.config['awq_revision']
-        if not source or not revision or not self.config['awq_derivation']:
+        if not source or not revision or not re.fullmatch(r'[0-9a-f]{40}', revision) or not self.config['awq_derivation']:
             raise ValueError('Nemotron AWQ stretch needs an exact compatible source, revision and derivation attestation; completed core records are retained')
         if self.config['download_models']:
             from huggingface_hub import snapshot_download
@@ -427,6 +427,7 @@ class Study:
         spec = dict(self.configs['awq_stretch'])
         with self._native_server(spec, self.awq):
             self.smoke_result = optimization.awq_smoke(spec, self.pair, execute=True, root=self.root)
+        self.smoke_result = self._capture('smoke', self.smoke_result)
         if self.smoke_result['status'] != 'completed':
             raise RuntimeError('Nemotron AWQ smoke failed; completed core records are retained')
 
@@ -455,7 +456,7 @@ class Study:
         if not self.live:
             result = (nim_study.run(spec, root=self.root) if self.runtime == 'nim' else
                       nemotron.run(spec, root=self.root) if self.model == 'nemotron' else
-                      optimization.run_variant(spec, root=self.root))
+                      (optimization.run_variant if name in optimization.VARIANTS else optimization.run_control)(spec, root=self.root))
             self.request_started_at = datetime.now(timezone.utc).isoformat()
             return self._capture(name, result)
         self.prepare()
@@ -481,12 +482,12 @@ class Study:
                     raise RuntimeError('Complete AWQ smoke before the four Qwen variants')
                 if self.model == 'nemotron' and name != 'fp16_baseline' and self.results.get('fp16_baseline', {}).get('status') != 'completed':
                     raise RuntimeError('Complete the Nemotron FP16 baseline before core interventions')
-                if name == 'awq_stretch' and self.smoke_result is None:
+                if name == 'awq_stretch' and (self.smoke_result or {}).get('status') != 'completed':
                     self._stretch_smoke()
                 with self._native_server(spec, self.awq if spec['quantization'] else self.base):
                     result = (nemotron.run(spec, self.checkpoint, execute=True, root=self.root,
                         prefix_supported=self.config['prefix_supported'], pair=self.pair, smoke=self.smoke_result)
-                        if self.model == 'nemotron' else optimization.run_variant(spec, self.pair,
+                        if self.model == 'nemotron' else (optimization.run_variant if name in optimization.VARIANTS else optimization.run_control)(spec, self.pair,
                             smoke=self.smoke_result, execute=True, root=self.root))
             self.results[name] = result
             if result['status'] != 'completed':

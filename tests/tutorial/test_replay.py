@@ -31,7 +31,8 @@ def test_replay_never_launches_downloads_or_calls_network(monkeypatch, runtime, 
     study.smoke()
     for name in study.configs:
         result = study.run(name)
-        if name == 'awq_stretch':
+        archived = json.loads((ROOT / 'tutorial/recorded_runs.json').read_text())['studies'][f'{runtime}-{model}']
+        if name not in archived:
             assert result['status'] == 'unavailable' and not result.get('serving')
         else:
             assert result['_recorded']['label'] == LABEL and result['status'] == 'completed'
