@@ -430,3 +430,10 @@ validated deployment recipes; the initial NIM helper accepts staged unquantized 
 Current edge session records are under `experiment-tracker/tutorial/edge/sessions/`.
 Notebook backups before these changes are under
 `notebooks/history/before-live-first-2026-11-10/` with a SHA-256 manifest.
+
+### Final pre-push check
+
+All **272 tests passed** after adding the Dell launch scripts. All seven notebooks
+passed schema, link and builder-source checks. Shell syntax and launcher dry-runs
+passed. Model weights, virtual environments and local configuration files remain
+excluded from Git. No new Dell GPU execution was performed for this push.

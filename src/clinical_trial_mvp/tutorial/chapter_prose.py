@@ -128,7 +128,7 @@ Now let's see what happened when each model answered using those two kinds of
 context. This experiment used **Nemotron 3 Nano 4B and Qwen3-4B**, each in
 **Q4_K_M GGUF** format through **llama-cpp-python 0.3.35**, on an **Apple M4 Pro
 CPU** with GPU offload disabled. GGUF is the model-file format used by llama.cpp;
-Q4_K_M identifies the quantized weight representation. 
+Q4_K_M identifies the quantized weight representation.
 
 Both models receive the same context selected by Nemotron Embed. This keeps retrieval fixed for the comparison
 
