@@ -169,6 +169,7 @@ def test_confounded_or_failed_comparisons_rejected(path, value):
     ('qwen', '01_qwen_cache_quantization.ipynb'),
 ])
 def test_notebook_matches_builder_and_every_default_cell_runs_offline(monkeypatch, model, filename):
+    monkeypatch.setenv('LOCAL_AI_LAB_MODE','replay')
     path = ROOT / "scripts/tutorial/build_optimization_notebook.py"
     spec = importlib.util.spec_from_file_location("optimization_builder", path)
     builder = importlib.util.module_from_spec(spec)
@@ -219,10 +220,10 @@ def test_notebook_scopes_keep_qwen_strategy_and_make_nemotron_awq_optional():
                  'batch_capacity_1', 'reasoning_on', 'output_256', 'output_2048'):
         assert name in ntext
     assert 'run_awq' not in ntext  # Flags belong in configuration, not editable notebook cells.
-    assert 'Replay — default' in ntext and 'Replay — default' in qtext
-    assert 'AWQ is optional stretch work and never gates core runs' in ntext
+    assert 'MODE = "live"' in ntext and 'MODE = "live"' in qtext
+    assert 'AWQ is optional stretch work' in ' '.join(ntext.split())
     assert 'study.smoke()' in qtext
-    assert 'identical shared schema prefix' in qtext
+    assert 'shared schema prefix' in qtext
 
 
 def test_qwen_notebook_is_preserved_from_the_recorded_source():

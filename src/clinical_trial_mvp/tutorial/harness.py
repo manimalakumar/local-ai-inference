@@ -63,7 +63,8 @@ def validate_provenance(spec, server):
 
 
 def serve_and_benchmark(spec, *, execute=False, root=ROOT, case_ids=TUTORIAL_CASES,
-                        client=None, server=None, memory=None, nim_profile=None):
+                        client=None, server=None, memory=None, nim_profile=None,
+                        include_policy_cases=False):
     """Attach to one prestarted server, run serial clinical quality then concurrent serving.
 
     Default is a no-network plan. Injected clients are test evidence, never hardware results.
@@ -77,10 +78,16 @@ def serve_and_benchmark(spec, *, execute=False, root=ROOT, case_ids=TUTORIAL_CAS
     generation = Generation(max_tokens=spec.get("max_tokens", 1024), seed=42,
                             timeout_seconds=spec.get("timeout_seconds", 180))
     cases, contexts, prompts, inputs = prepare(root, workload, case_ids)
+    quality_cases, quality_contexts, quality_inputs = cases, contexts, inputs
+    if include_policy_cases:
+        quality_cases, quality_contexts, _, quality_inputs = prepare(
+            root, replace(workload, mode="quality", concurrency=1), case_ids)
     result = {"run_id": run_id, "experiment": spec["experiment"], "runtime": spec["runtime"],
               "hardware": spec["hardware"], "configuration": spec, "inputs": inputs,
               "status": "plan_only", "evidence": "none", "quality": None, "serving": None,
               "memory": {"peak_bytes": None, "scope": "unmeasured"}, "records": {}}
+    if include_policy_cases:
+        result["quality_inputs"] = quality_inputs
     if not execute:
         result["reason"] = "Planned only; enable this hardware group after starting its server."
         return result
@@ -111,7 +118,7 @@ def serve_and_benchmark(spec, *, execute=False, root=ROOT, case_ids=TUTORIAL_CAS
         quality_records, serving_records = [], []
         memory = memory or PeakMemory(gpu_uuid=server.get("gpu_uuid"), server_pid=server.get("server_pid"))
         with memory:
-            result["quality"] = run_quality(client, settings, cases, contexts,
+            result["quality"] = run_quality(client, settings, quality_cases, quality_contexts,
                 replace(workload, mode="quality", concurrency=1, repeats=1, warmups=0), quality_records.append)
             result["serving"] = run_serving(client, cases, prompts, workload, serving_records.append)
         result["memory"] = memory.result()

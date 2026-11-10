@@ -7,6 +7,7 @@ import math
 import time
 import urllib.request
 from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from typing import Callable
 from urllib.parse import urlsplit
 
@@ -37,6 +38,7 @@ class Generation:
 
 @dataclass
 class Sample:
+    request_started_at: str | None = None
     success: bool = False
     content: str = ""
     error: str | None = None
@@ -104,7 +106,7 @@ class OpenAIClient:
         request = urllib.request.Request(self.base_url + "/chat/completions",
                                          data=json.dumps(payload).encode(),
                                          headers={"Content-Type": "application/json"}, method="POST")
-        sample = Sample()
+        sample = Sample(request_started_at=datetime.now(timezone.utc).isoformat())
         started = self.clock()
         done = False
         try:

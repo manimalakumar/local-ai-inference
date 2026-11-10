@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / 'src'))
 from clinical_trial_mvp.tutorial.workflow_notebook import FILENAMES
 from clinical_trial_mvp.tutorial.serving_notebook import FILENAME as FOUNDATION
 from clinical_trial_mvp.tutorial.edge_notebook import FILENAME as EDGE
+from clinical_trial_mvp.tutorial.nemotron_edge_notebook import FILENAME as NEMOTRON_EDGE, notebook_document as nemotron_edge_document
 from clinical_trial_mvp.tutorial.notebook_io import sources
 from clinical_trial_mvp.tutorial.serving_notebook import notebook_document as foundation_document
 from clinical_trial_mvp.tutorial.edge_notebook import notebook_document as edge_document
@@ -39,12 +40,13 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.write_replay and (args.mode != 'replay' or args.check_only):
         parser.error('--write-replay requires replay execution, without --check-only')
-    for name in (FOUNDATION, *FILENAMES.values(), EDGE):
+    for name in (FOUNDATION, *FILENAMES.values(), EDGE, NEMOTRON_EDGE):
         path = ROOT / 'notebooks' / name
         notebook = nbformat.read(path, as_version=4)
         nbformat.validate(notebook)
         local_links(notebook, path)
         expected = (foundation_document() if name == FOUNDATION else edge_document() if name == EDGE else
+                    nemotron_edge_document() if name == NEMOTRON_EDGE else
                     workflow_document(*next(key for key, filename in FILENAMES.items() if filename == name)))
         if sources(notebook) != sources(expected):
             raise ValueError('Chapter source differs from builder: ' + name)
@@ -58,7 +60,9 @@ def main(argv=None):
                             'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1'})
         nbformat.validate(notebook)
         text = json.dumps(notebook)
-        if args.mode == 'replay' and (('recorded Mac CPU portability measurement' if name == EDGE else 'recorded Dell measurement') not in text):
+        label = ('Loading results.' if name == FOUNDATION else 'recorded local compatibility probe' if name == NEMOTRON_EDGE else
+                 'recorded Mac CPU portability measurement' if name == EDGE else 'recorded Dell measurement')
+        if args.mode == 'replay' and label not in text:
             raise ValueError('Replay did not expose recorded-measurement labels: ' + name)
         if args.write_replay:
             nbformat.write(notebook, path)

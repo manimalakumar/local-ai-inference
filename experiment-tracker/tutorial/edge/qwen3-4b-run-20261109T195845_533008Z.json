@@ -1,0 +1,111 @@
+{
+  "model_id": "Qwen/Qwen3-4B",
+  "model_name": "Qwen/Qwen3-4B",
+  "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "stage": "run",
+  "hardware": "Apple arm64 / CPU XNNPACK",
+  "dtype": "INT4 linear weights / dynamic INT8 activations",
+  "measured_at": "2026-11-09T19:58:36.663654+00:00",
+  "runtime": "executorch",
+  "status": "completed",
+  "evidence": "hardware",
+  "backend": "XNNPACK / CPU",
+  "quantization": "8da4w: dynamic INT8 activations / INT4 linear weights; INT8 embeddings",
+  "context": 4096,
+  "threads": 4,
+  "versions": {
+    "executorch": "1.5.1",
+    "torch": "2.15.0",
+    "torchao": "0.18.0",
+    "transformers": "5.22.0"
+  },
+  "generation": {
+    "question": "How many subjects are Enrolled or Randomized by treatment arm?",
+    "prompt": "<|im_start|>user\nWrite only DuckDB SQL, without Markdown or explanation.\nTable subjects(subject_id VARCHAR PRIMARY KEY, treatment_arm VARCHAR, screening_status VARCHAR).\nHow many subjects are Enrolled or Randomized by treatment arm?<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+    "text": "SELECT treatment_arm, COUNT(*) AS count\nFROM subjects\nWHERE screening_status IN ('Enrolled', 'Randomized')\nGROUP BY treatment_arm;<|im_end|>",
+    "observer": {
+      "prefill_token_per_sec": 266.667,
+      "decode_token_per_sec": 42.5844,
+      "prompt_tokens": 52,
+      "generated_tokens": 29,
+      "model_load_start_ms": 1794254322076,
+      "model_load_end_ms": 1794254323764,
+      "inference_start_ms": 1794254323764,
+      "inference_end_ms": 1794254324640,
+      "model_execution_start_ms": 1794254324617,
+      "model_execution_end_ms": 1794254324640,
+      "prompt_eval_end_ms": 1794254323959,
+      "first_token_ms": 1794254323959,
+      "aggregate_sampling_time_ms": 3,
+      "aggregate_model_execution_time_ms": 870,
+      "SCALING_FACTOR_UNITS_PER_SECOND": 1000
+    },
+    "num_prompt_tokens": 52,
+    "num_generated_tokens": 29
+  },
+  "native_observer": {
+    "prefill_token_per_sec": 266.667,
+    "decode_token_per_sec": 42.5844,
+    "prompt_tokens": 52,
+    "generated_tokens": 29,
+    "model_load_start_ms": 1794254322076,
+    "model_load_end_ms": 1794254323764,
+    "inference_start_ms": 1794254323764,
+    "inference_end_ms": 1794254324640,
+    "model_execution_start_ms": 1794254324617,
+    "model_execution_end_ms": 1794254324640,
+    "prompt_eval_end_ms": 1794254323959,
+    "first_token_ms": 1794254323959,
+    "aggregate_sampling_time_ms": 3,
+    "aggregate_model_execution_time_ms": 870,
+    "SCALING_FACTOR_UNITS_PER_SECOND": 1000
+  },
+  "artifact_lineage": {
+    "model_id": "Qwen/Qwen3-4B",
+    "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "context": 4096,
+    "qmode": "8da4w",
+    "files_sha256": {
+      "qwen3-4b.pth": "4fcf55ffe74047a86cfad9fa6f2357f745a9c5b91fdc7023d187966b7d6c22b4",
+      "params.json": "23c89697ae2039c085fe028d067199acd53c067605d40b1194a4ba8ce56b6904",
+      "validation.json": "0f8572d50c33e5613a6e9c58e9801f456294480a958108f98f7d1e12268637d2",
+      "export.yaml": "c7ad1920f881f6e8e04237d7f9cfbe5a47d443bddcb152c24f4a6cd01d42f175",
+      "qwen3-4b-xnnpack.pte": "9555592b7b3f28b79e059c9a72d2600eb36c9b5e43cdef73b7d8922c695810b0"
+    }
+  },
+  "startup_seconds": 1.688,
+  "single_request_seconds": 0.876,
+  "footprint_bytes": 2480823486,
+  "model_sha256": "9555592b7b3f28b79e059c9a72d2600eb36c9b5e43cdef73b7d8922c695810b0",
+  "tokenizer_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+  "checkpoint_validation": {
+    "passed": true,
+    "input_sequences": 2,
+    "dtype": "float32",
+    "max_abs_logit_error": 4.482269287109375e-05,
+    "atol": 0.001,
+    "rtol": 0.001,
+    "scope": "Unquantized mapped model vs original HF; does not validate quantized clinical task quality."
+  },
+  "conversion": {
+    "model_id": "Qwen/Qwen3-4B",
+    "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "source_keys": 398,
+    "converted_keys": 399,
+    "converter": "executorch.examples.models.qwen3.convert_weights.qwen_3_tune_to_meta",
+    "converter_sha256": "d8201eb745ed0e0ffde3fea6ae2f5d06d2867a05d1b6e22653ab470ed3b9bbdb",
+    "note": "Official Qwen3 mapping preserves Q/K normalization and tied output embeddings."
+  },
+  "quality": null,
+  "serving": null,
+  "operator_fallback_count": null,
+  "limitation": "One short-schema direct SQL portability smoke; not the full plan/repair workload, not a latency benchmark; file checks warm the filesystem cache. Native tokens retained as reported; operator fallback unreviewed.",
+  "memory": {
+    "peak_bytes": 5272551424,
+    "scope": "whole runner-process RSS, including Python/runtime imports; not GPU memory",
+    "sample_count": 81,
+    "sampling_interval_seconds": 0.1,
+    "error": null
+  },
+  "wall_seconds": 8.869296374963596
+}

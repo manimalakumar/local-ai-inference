@@ -1,0 +1,20 @@
+{
+  "model_id": "Qwen/Qwen3-4B",
+  "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "stage": "reference",
+  "measured_at": "2026-11-09T19:50:22.987209+00:00",
+  "runtime": "executorch",
+  "status": "completed",
+  "evidence": "local_artifact",
+  "backend": "XNNPACK / CPU",
+  "quantization": "8da4w: dynamic INT8 activations / INT4 linear weights; INT8 embeddings",
+  "context": 4096,
+  "threads": 4,
+  "versions": {
+    "executorch": "1.5.1",
+    "torch": "2.15.0",
+    "torchao": "0.18.0",
+    "transformers": "5.22.0"
+  },
+  "wall_seconds": 18.59925116598606
+}

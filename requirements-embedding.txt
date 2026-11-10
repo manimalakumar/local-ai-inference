@@ -1,0 +1,2 @@
+# Optional notebook 00 local embedding inference (baseline version).
+sentence-transformers==6.1.0

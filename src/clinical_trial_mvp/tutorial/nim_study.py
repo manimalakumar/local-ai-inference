@@ -91,7 +91,7 @@ def validate(profile, *, root=ROOT):
 def commands(profile, *, root=ROOT):
     snapshot = validate(profile, root=root)
     settings = profile['launch_settings']
-    common = ['docker', 'run', '--rm', '--gpus', 'device=' + str(profile['gpu_device']),
+    common = ['docker', 'run', '--rm', '--pull=never', '--gpus', 'device=' + str(profile['gpu_device']),
               '-e', 'NGC_API_KEY', '-e', 'HF_TOKEN', '-e', 'NIM_MODEL_PATH=/model',
               '-e', 'HF_HUB_OFFLINE=1', '-e', 'TRANSFORMERS_OFFLINE=1',
               '--mount', f'type=bind,source={snapshot},target=/model,readonly']

@@ -1,0 +1,8 @@
+{
+  "mode": "live",
+  "edge_python": ".venv-edge/bin/python",
+  "download_models": false,
+  "reuse_export": true,
+  "artifact_dir": "models/edge-qwen3-4b",
+  "nemotron_config": "models/edge-nemotron-4b/source/config.json"
+}

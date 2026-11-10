@@ -129,3 +129,25 @@ and failure history remain in [the detailed findings](DELL_RESULTS.md).
 
 These are experiment-selection lessons. No combined Nemotron “best configuration” was measured;
 changing one factor at a time does not validate a combination of those factors.
+
+## Qwen CPU portability — a separate deployment example
+
+At the owner's request, the same Qwen3-4B base revision was tried through ExecuTorch on
+Apple Silicon CPU. The full base snapshot fingerprint matches the Dell FP16 baseline.
+The **8da4w** XNNPACK program exported and ran natively; one short-schema eval_001 SQL
+query executed and matched its reference after native timing. The initial missing
+quantized-embedding registration failure and successful retry are preserved.
+
+This is a portability/SQL smoke, not another cell in the vLLM FP16/AWQ matrix: precision,
+prompt, hardware, runtime and request path differ. See [chapter 05](../notebooks/05_edge_portability_executorch.ipynb)
+and [the exact scope and reproduction stages](EXECUTORCH_MAC.md). SmolLM2 remains historical.
+
+## Nemotron ExecuTorch compatibility
+
+[Chapter 06](../notebooks/06_nemotron_executorch.ipynb) records a config-only probe
+of the pinned Dell Nemotron 4B revision against the installed ExecuTorch 1.5.1 LLM
+export configuration. Both Nemotron model-class candidates were rejected.
+No native generation, SQL correctness, request timings or memory measurements
+are available from this probe. This does not demonstrate that a custom port is
+impossible; it identifies the missing validated hybrid model adapter.
+[Raw probe](../experiment-tracker/tutorial/edge/nemotron-4b-compatibility-20261109.json).

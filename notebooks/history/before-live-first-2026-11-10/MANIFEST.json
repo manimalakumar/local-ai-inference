@@ -1,0 +1,11 @@
+{
+  "scope": "Notebook copies before live-first changes; outputs preserved unchanged",
+  "files_sha256": {
+    "01_qwen_cache_quantization.ipynb": "de5841de999217a8df2dfe0962aa1121aae86fd5cc9e164446f56c1a60080950",
+    "02_nemotron_optimization.ipynb": "08a0e64d6dff7098c92240c7030282ce2e96162db9c680216d7088e940bafaed",
+    "03_qwen_nim.ipynb": "999a94cf6781c496ea836313e6fb7254a9e5413ef3b29ba57c3493b20e44ee94",
+    "04_nemotron_nim.ipynb": "9bd9b485143dd0886db083362514a2d9889fb8de187ea9de72d775249e43f276",
+    "05_edge_portability_executorch.ipynb": "bdaa09f30e39e2f1a07e7d60dd1ffa87cc0ce398ff765e2e96e0f6f558cae7c6",
+    "06_nemotron_executorch.ipynb": "a2efea997a65cc4f10a6829b1886785ac447e43f20de296f3b9902ddeec5ed60"
+  }
+}

@@ -11,7 +11,7 @@ from clinical_trial_mvp.tutorial.replay import LABEL, evidence_links
 
 
 def _record(study, name):
-    return study.results.get(name) or (study.recorded(name) if study.mode == 'replay' else {})
+    return study.current_results().get(name) or (study.recorded(name) if study.mode == 'replay' else {})
 
 
 def server_example(study, name):
@@ -57,7 +57,13 @@ def request_example(study, name):
     quality = result.get('records', {}).get('quality', [])
     prompt = quality[0].get('plan_prompt') if quality else None
     cases = json.loads((study.root / 'evals/evaluations.json').read_text())
-    prompt = prompt or build_plan_prompt(cases[0]['question'])
+    if not prompt:
+        from clinical_trial_mvp.serving.benchmark import Workload, prepare
+        case_id = cases[0]['id']
+        selected, contexts, _, _ = prepare(study.root, Workload(profile=spec.get('profile', 'full')), [case_id])
+        question = selected[0]['question']
+        schema_text, _, guidance = contexts[question]
+        prompt = build_plan_prompt(question, schema_text, guidance)
     system = PLAN_CHAT_SYSTEM_MESSAGE
     schema = PLAN_JSON_SCHEMA if study.runtime == 'vllm' or spec.get('structured_outputs') else None
     if spec.get('reasoning'):
@@ -66,7 +72,7 @@ def request_example(study, name):
                          request_profile='nim' if study.runtime == 'nim' else 'vllm',
                          enable_thinking=spec.get('reasoning', False))
     return dict(origin=LABEL if result.get('_recorded') else study.mode,
-                note='Built with the same payload builder used by the transport. In replay the saved prompt and recorded flags reconstruct the request; the raw wire payload was not captured.',
+                session_id=study.session_id, note='Reconstructed with the current request builder, selected schema profile and generation settings; not a captured wire payload. Replay explicitly uses its saved prompt and settings.',
                 method='POST', url=client.base_url + '/chat/completions',
                 headers={'Content-Type': 'application/json'},
                 json=client.request_payload([{'role': 'system', 'content': system},
@@ -141,7 +147,7 @@ def interpret(study, name):
     if result.get('status') not in ('completed',):
         observation = result.get('reason', 'No measurement has been executed in plan mode.')
     boundary = ('Four distinct questions, not 20 independent clinical tasks. Repeated requests give illustrative latency summaries; '
-                'Human review coverage is separate from machine reference matches; consult the review packet. Native VRAM is unavailable. These observations do not generalize to other domains or stacks.')
+                'Human review coverage is separate from machine reference matches; consult the review packet. Memory conclusions require valid telemetry. These observations do not generalize to other domains or stacks.')
     return '\n\n'.join(filter(None, [evidence_links(result), '**Prediction:** ' + prediction,
         '**Observation:** ' + observation, '**Explanation:** ' + explanation,
         '**Limitation:** ' + boundary, '**Decision:** ' + decision]))

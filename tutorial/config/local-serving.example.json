@@ -1,0 +1,26 @@
+{
+  "mode": "live",
+  "case_ids": [
+    "eval_001",
+    "eval_002",
+    "eval_005",
+    "eval_007"
+  ],
+  "repeats": 3,
+  "warmups": 1,
+  "max_tokens": 1024,
+  "context_server": "nemotron",
+  "local_servers": [
+    "nemotron"
+  ],
+  "servers": {
+    "nemotron": {
+      "runtime": "llama_cpp",
+      "model": "clinical-trial-local",
+      "base_url": "http://127.0.0.1:8080",
+      "provenance": "REPLACE_WITH_NEW_LOCAL_SERVER_METADATA.json",
+      "context": 8192,
+      "dtype": "Q4_K_M"
+    }
+  }
+}

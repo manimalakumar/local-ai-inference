@@ -1,43 +1,54 @@
-# Local AI Inference Lab: Serving, Optimization and Application Quality
+# Local AI Inference Lab
 
-How do we make local AI faster and more efficient without losing useful task performance?
+## Serving, optimization, and application quality
 
-A hands-on study of local serving on constrained hardware. Using Qwen and Nemotron, we
-explore caching, quantization, context and concurrency through vLLM and NVIDIA NIM.
-Clinical-trial analytics is the executable example workload: it checks whether a faster
-response still produces a useful answer. We have not evaluated multiple application domains.
+Getting a model to run locally is a useful first step. The next questions are harder:
+what makes it faster, what changes when several users arrive at once, and does the
+application still get the right answer?
 
-## What you will learn
+This lab follows those questions from local serving to inference optimization and
+packaged deployment. We use Qwen and Nemotron with vLLM and NVIDIA NIM, building on
+earlier llama.cpp and Ollama experiments. A small clinical-trial analytics workflow
+gives us something executable to evaluate: the model writes SQL, the application
+checks it, and DuckDB runs it against synthetic data.
 
-- Distinguish prefill, decode and application work before choosing an optimization.
-- Read latency and aggregate throughput beside SQL execution and result-match counts.
-- Diagnose serving compatibility, request contracts and missing telemetry.
-- Reproduce recorded findings without a GPU, then plan or run your own experiments.
+The point isn't to crown a runtime or model. It's to learn how to explain a measured
+trade-off—and decide whether it helps the application.
 
-**A faster response is not necessarily a better answer.** Different optimizations change
-different parts of inference.
+## What you'll learn
 
-## Three measured findings
+- Separate input processing, token generation, and application work before tuning them.
+- Test prefix caching, weight quantization, shorter context, and concurrent requests.
+- Read first-token latency and throughput alongside executable SQL and result matches.
+- Diagnose failures involving profiles, request schemas, cache resets, and telemetry.
+- Inspect recorded results without a GPU, then plan or run your own experiments.
 
-These are **recorded Dell measurements** from a Quadro RTX 5000 with 16 GiB VRAM.
-They describe four distinct questions, not a general benchmark or clinical validation.
-
-| Observation | What to investigate |
-|---|---|
-| Qwen FP16 paired cold/warm TTFT: **2.019 → 0.083 s**; request E2E: **6.038 → 4.039 s**. Direct result matches stayed **10/20** in both phases. | Prefix reuse avoids repeated prefill, while generation time remains. |
-| Nemotron retrieved-schema application result match: **1/4**, versus **2/4** with full schema. | Fewer tokens can remove information needed by the application. |
-| Qwen NIM transport succeeded **4/4**, but the original smoke executed **0/4** application SQL queries; schema enforcement rerun executed **3/4**. | Endpoint success is not application success; request contracts matter. |
-
-[Sources, both main figures and boundaries](tutorial/RESULTS.md) · [full evidence tables](tutorial/DELL_RESULTS.md)
+You should be comfortable reading Python and running a Jupyter notebook. You don't
+need clinical expertise; the workload and schema are introduced in chapter 00.
 
 ## Start here
 
-**New to local serving? Start at [00 — Serving foundations and recorded comparisons](notebooks/00_local_serving.ipynb).**
-**Already familiar? Start at [01 — Qwen: cache and quantization](notebooks/01_qwen_cache_quantization.ipynb).**
+New to local serving? Start at **00**. Already familiar? Start at **01** for optimization.
+Each notebook begins with this workflow and highlights **You are here**.
 
-Install once, then select your chapter in Jupyter's file browser. Chapter 00 is historical
-and read-only; it does not reproduce fresh llama.cpp/Ollama/vLLM/SGLang runs. Chapters 01–04
-support Replay, Plan and Live. Saved outputs are clearly labeled recorded evidence:
+| **Step** | **Notebook** | **Purpose** |
+|---|---|---|
+| 0. Understand the request | [00 — How a local AI request works](notebooks/00_local_serving.ipynb) | Follow a question through schema context, model serving and generated SQL, then evaluate the results to establish a quality baseline. |
+| 1. Qwen optimization | [01 — Qwen: caching and quantization](notebooks/01_qwen_cache_quantization.ipynb) | Compare FP16/AWQ W4A16 and prefix caching, with cold and warm requests reported separately. |
+| 2. Nemotron optimization | [02 — Nemotron optimization](notebooks/02_nemotron_optimization.ipynb) | Test schema context, supported prefix caching, concurrent requests, scheduler capacity and output budgets. |
+| 3. Qwen NIM (optional) | [03 — Qwen through NIM](notebooks/03_qwen_nim.ipynb) | Deploy Qwen in a container, check the plan format, and compare schema context and concurrent requests. |
+| 4. Nemotron NIM (optional) | [04 — Nemotron through NIM](notebooks/04_nemotron_nim.ipynb) | Deploy the hybrid model through NIM and compare schema context and request concurrency. |
+| 5. CPU portability (optional) | [05 — Qwen with ExecuTorch](notebooks/05_edge_portability_executorch.ipynb) | Follow Qwen3-4B conversion and CPU export, then inspect a generated SQL answer and its timing. |
+| 6. Compatibility study (optional) | [06 — Nemotron with ExecuTorch](notebooks/06_nemotron_executorch.ipynb) | Check whether the installed exporter accepts Nemotron and identify what a working port still needs. |
+
+Follow **00 → 01 → 02** to understand the request and then optimize the two models. Chapters **03/04**
+are optional NIM extensions for the two models. Chapters **05/06** form a separate CPU portability branch: Qwen has a native CPU
+smoke result; Nemotron records the unresolved export-recipe compatibility check.
+
+## Try it without a GPU
+
+From a checkout of this repository, create a Python 3.11 environment and install
+the notebook dependencies:
 
 ```bash
 python3.11 -m venv .venv
@@ -45,75 +56,106 @@ python3.11 -m venv .venv
 .venv/bin/python -m jupyter lab notebooks/
 ```
 
-Choose **Run All**. Default replay needs no GPU, model download, Docker or credentials.
-The notebook exposes the server command, request construction and an evaluated SQL response.
+Chapter 00 defaults to **Live model calls**: follow its [local-server setup](SETUP.md#notebook-00-replay-or-run-from-scratch) before choosing **Run All**.
+For explicitly selected Replay in chapters 00–06, the included synthetic database
+and recorded results need no model download, GPU, Docker, or credentials.
+Keep the repository layout intact: the notebooks import shared code and load results
+from neighboring folders, so downloading an `.ipynb` alone isn't enough.
+
+For the Dell, use the [Jupyter and manual engine launch scripts](tutorial/DELL_START.md).
+
+Chapters 01–06 expose `MODE` in their first configuration cell:
 
 | Mode | What happens |
 |---|---|
-| **Replay — default (01–04)** | Load specific checksum-verified archived runs; every result is labeled **recorded Dell measurement**. |
-| Plan (01–04) | Show configuration and launch commands without contacting a server. |
-| Live (01–04) | Launch, benchmark, preserve new evidence and clean up owned processes. A failure never falls back to replay. |
+| **Live — default** | Configure the target environment and run cells in order to collect new measurements. |
+| **Plan** | Inspect the proposed configuration and launch commands without contacting an inference server. |
+| **Replay — explicit** | Read the preserved measurements and rebuild their tables without inference. |
 
-Mode and machine settings live in a local configuration file. Follow [setup and configuration](tutorial/RUN_ALL.md)
-for Plan/Live, optional pinned model downloads and profile discovery.
+For configuration, preflight and execution, follow the [configuration guide](tutorial/RUN_ALL.md). Change your
+machine settings in the local JSON configuration, not scattered notebook cells.
+Replay continues to describe the archived configuration; changing a setting doesn't
+change the historical results. A failed Live run never silently falls back to Replay.
 
-## Hardware and software
+Chapter 00 defaults to **local GGUF baselines from scratch**: prepare llama.cpp,
+start a server and Run All to collect new SQL-quality and serving measurements.
+Follow [notebook 00's two setup options](SETUP.md#notebook-00-replay-or-run-from-scratch).
+Its Replay mode remains available without a model or GPU. Qwen CPU conversion/export and fresh generation are explicit cells in chapter 05; chapter 06 runs a fresh Nemotron compatibility probe. See the
+[ExecuTorch guide](tutorial/EXECUTORCH_MAC.md). Replay must be selected explicitly.
 
-Replay/Plan require Python 3.11 and the pinned CPU notebook environment. Pins were installed
-and tested on macOS arm64 with Python 3.11.15. A fresh remote clone passed Replay/Plan
-and 204 tests; [hosted Linux CI passed](https://github.com/manimalakumar/local-ai-inference/actions/runs/42666644695)
-for source commit `56feab1`. GPU engines are deliberately separate from those CPU constraints.
-See [exact installed package metadata](CPU_NOTEBOOK_ENVIRONMENT.json) and the
-[validation record](VALIDATION.md).
+## A few results worth investigating
 
-The archived live study used a **Quadro RTX 5000, 16 GiB**, driver **595.91.07**, native
-**vLLM 0.32.0**, and a digest-pinned **NIM 2.1.5** model-free image. Models were Qwen3-4B and
-NVIDIA Nemotron 3 Nano 4B, loaded as FP16. Nemotron retained FP32 SSM state. Compatibility
-must be checked on your actual hardware/build; these observations do not establish support
-for every 16 GB GPU. NIM requires system Docker and NVIDIA Container Toolkit.
+These observations come from an NVIDIA Quadro RTX 5000 with 16 GiB VRAM. The compact
+optimization workload contains **four distinct questions**. Repeated requests help
+us inspect timing; they do not turn four questions into a broad quality benchmark.
 
-## Experiment map
+| What happened | Why it matters |
+|---|---|
+| With Qwen FP16 caching enabled, paired cold/warm median TTFT fell from **2.019 to 0.083 s**. Request completion time fell from **6.038 to 4.039 s**; direct reference matches stayed **10/20** in both phases. | Reusing input-prefix work can improve the first response much more than the complete request. |
+| Nemotron's retrieved-schema application result matches were **1/4**, versus **2/4** with full schema. | Sending fewer tokens can also remove information the model needs. |
+| The first Qwen NIM smoke returned all four responses but executed **0/4** application SQL queries. A schema-constrained rerun executed **3/4**. | A working endpoint and a working application are different milestones. |
 
-| Order | Chapter | Role |
-|---|---|---|
-| Foundation | [00 — Local serving](notebooks/00_local_serving.ipynb) | Workload/evaluation, full/retrieved context, historical llama.cpp/Ollama and vLLM/SGLang serving |
-| Optimization | [01 — Qwen/vLLM](notebooks/01_qwen_cache_quantization.ipynb) | FP16/AWQ W4A16 × prefix cache off/on, with paired cold/warm interpretation |
-| Next | [02 — Nemotron/vLLM](notebooks/02_nemotron_optimization.ipynb) | Hybrid caching, context, concurrency/capacity, reasoning and output budgets |
-| Optional extension | [03 — Qwen/NIM](notebooks/03_qwen_nim.ipynb) | Packaging, profiles and structured-output compatibility |
-| Optional extension | [04 — Nemotron/NIM](notebooks/04_nemotron_nim.ipynb) | Deploying the hybrid model through NIM |
-| Optional CPU portability | [05 — ExecuTorch](notebooks/05_edge_portability_executorch.ipynb) | Recorded SmolLM2 export/run; separate from clinical-model rankings |
+Read the [results and decision guide](tutorial/RESULTS.md) for interpretation, figures,
+and source records. The [GPU run results and troubleshooting report](tutorial/DELL_RESULTS.md) retains the
+successful runs, failures, and troubleshooting history.
 
-## Results and limitations
+## Running on your own GPU
 
-Read [the concise results page](tutorial/RESULTS.md). Paired cache phases are interpreted
-separately from supplemental warmed summaries. Twenty serving requests repeat four clinical
-questions. Reference-result match is distinct from human-reviewed semantic correctness.
+The recorded study used native **vLLM 0.32.0** and a digest-pinned **NIM 2.1.5**
+model-free image on a **Quadro RTX 5000, 16 GiB**, with driver **595.91.07**.
+Qwen3-4B and NVIDIA Nemotron 3 Nano 4B were loaded as FP16; Nemotron retained FP32
+Mamba SSM state. NIM used a vLLM backend—it was not automatically a TensorRT conversion.
 
-**Deferred follow-up validation:** human semantic review and fresh checks of the updated
-GPU automation/native VRAM sampling are parked for this iteration. Your completed Dell GPU
-experiments remain available as recorded evidence. These follow-ups are not prerequisites
-for reading or replaying the tutorial. Native memory-reduction conclusions remain unsupported;
-wider quality claims require broader evaluation and review. NIM/native comparisons still
-need matched settings, and no compatible Nemotron AWQ checkpoint was obtained.
+GPU runtimes are separate from the CPU notebook environment. Start with
+[installation prerequisites](SETUP.md), then [configuration and execution](tutorial/RUN_ALL.md).
+NIM also requires Docker, NVIDIA Container Toolkit, and a profile selected for your
+model/image/GPU combination. Compatibility on the recorded laptop doesn't establish
+compatibility on every 16 GB GPU.
 
-[Current rubric and publication checklist](tutorial/PUBLICATION.md) · [GPU rerun checklist](tutorial/GPU_VALIDATION.md)
-· [SQL review packet](tutorial/SQL_REVIEW.md) · [validation history](VALIDATION.md)
+The CPU environment was pinned and tested on macOS arm64 with Python 3.11.15.
+The supplied validation record reports a fresh-clone Replay/Plan check and **204 tests**;
+[hosted Linux CI passed](https://github.com/manimalakumar/local-ai-inference/actions/runs/42666644695)
+for commit `56feab1`. See [package metadata](CPU_NOTEBOOK_ENVIRONMENT.json) and
+[validation history](VALIDATION.md) for the scope of those checks.
 
-## Troubleshooting as case studies
+## What these experiments can tell us
 
-- [Cache-reset 404](tutorial/CASE_STUDIES.md#cache-reset-404): a running server did not expose the endpoint needed by the experiment.
-- [Qwen NIM contract failure](tutorial/CASE_STUDIES.md#qwen-nim-contract-failure): valid transport and plausible JSON violated the application schema.
-- [Missing VRAM telemetry](tutorial/CASE_STUDIES.md#missing-vram-telemetry): the experiment ran but its measurement path was wrong.
+The dataset is synthetic and contains no patient data. We use clinical analytics as
+one concrete workload, not as evidence of performance across application domains.
 
-The [detailed journal](tutorial/DELL_RESULTS.md#troubleshooting-journal) retains environment,
-symlink, Docker, profile-selection and Git lessons without putting them in the quick start.
+- SQL execution, matching reference rows, and human-reviewed semantic correctness
+  are different outcomes. Human semantic review is still a follow-up.
+- Native VRAM sampling failed in the archived runs. Those records do not support
+  a claim about memory savings. Keep missing readings as unavailable, not zero.
+- NIM/native comparisons need matching model, prompts, request contracts, backend
+  settings, and thinking behavior before attributing a difference to deployment.
+- We did not obtain a validated Nemotron AWQ checkpoint. Qwen's AWQ experiment does
+  not establish that the same path works for Nemotron.
+- The later automated GPU lifecycle and corrected native-memory sampler still need
+  fresh GPU validation. The completed GPU runs and offline notebook replay verify different parts of the workflow.
 
-## Licensing and contributions
+These follow-ups don't prevent reading or replaying the study. They limit what we
+can claim about a fresh Live run. Details are in the [publication checklist](tutorial/PUBLICATION.md),
+[GPU validation guide](tutorial/GPU_VALIDATION.md), and [SQL review packet](tutorial/SQL_REVIEW.md).
 
-License work is deferred for this iteration. Existing [third-party notes](THIRD_PARTY.md)
-remain intact; no license terms have been changed.
+## When something goes wrong
 
-For private review, run the CPU suite and notebook/replay checks:
+Three short case studies explain problems that changed the reusable workflow:
+
+- [Cache-reset 404](tutorial/CASE_STUDIES.md#cache-reset-404): the server was running,
+  but the experimental reset endpoint wasn't available.
+- [Qwen NIM plan-schema failure](tutorial/CASE_STUDIES.md#qwen-nim-contract-failure):
+  plausible JSON didn't satisfy the application's contract.
+- [Missing VRAM readings](tutorial/CASE_STUDIES.md#missing-vram-telemetry): inference
+  worked, but the telemetry path passed the wrong GPU identifier.
+
+The [longer troubleshooting journal](tutorial/DELL_RESULTS.md#troubleshooting-journal)
+also covers Python environments, Docker access, profiles, and provenance.
+
+## Check your changes
+
+The CPU suite checks the shared logic and recorded-evidence paths without making
+GPU performance claims:
 
 ```bash
 .venv/bin/python -m pytest -q
@@ -121,17 +163,21 @@ For private review, run the CPU suite and notebook/replay checks:
 .venv/bin/python scripts/tutorial/validate_notebooks.py --mode plan
 ```
 
-A [CPU CI workflow](.github/workflows/cpu.yml) performs these checks. It makes no GPU claims.
-Create release ZIPs only from a reviewed committed revision with
-`python scripts/tutorial/export_tracked.py --output /tmp/local-ai-inference.zip`.
-Uncommitted changes are not included; `.git`, caches, bytecode and model weights are excluded.
+See the [CI workflow](.github/workflows/cpu.yml). For a source ZIP, use
+`python scripts/tutorial/export_tracked.py --output /tmp/local-ai-inference.zip`
+after reviewing and committing your changes. It exports the committed revision,
+not untracked files or uncommitted edits, and excludes Git internals, caches and weights.
 
-## Evidence, lineage and history
+## Follow the history
 
-The project continues the cumulative work tagged `mvp4`; historical iteration labels remain
-in records and source paths. [Baseline history](BASELINE.md), [source hashes](SOURCE_LINEAGE.json)
-and the [unchanged Dell notebook archive](notebooks/history/dell-2026-11-07) provide audit context.
-The archive manifest checksums notebooks, successes, failures and provenance. New runs never
-overwrite them. The old `clinical-trial-mvp3` served alias remains for harness compatibility;
-model revision/fingerprints establish identity. [ExecuTorch](tutorial/EXECUTORCH_MAC.md) is a
-separate SmolLM2 FP32 CPU portability case, not a comparable clinical GPU experiment.
+The [baseline guide](BASELINE.md) explains the earlier context and serving work.
+[Source lineage](SOURCE_LINEAGE.json) records inherited inputs; the
+[executed Dell notebooks](notebooks/history/dell-2026-11-07) and their manifest
+preserve the original measurements and failures. Fresh runs add records rather
+than overwrite that archive. Legacy labels such as `mvp4` and the served alias
+`clinical-trial-mvp3` remain in the code for continuity; revisions and fingerprints,
+not aliases alone, establish model identity.
+
+Model weights and environments are not included. Dependencies and separately
+downloaded models retain their own terms; see [third-party notes](THIRD_PARTY.md).
+No project license is added or changed in this update.

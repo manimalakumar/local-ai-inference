@@ -1,0 +1,9 @@
+{
+  "source": "experiment-tracker/tutorial/edge/qwen3-4b-run-20261109T195758_399022Z.json",
+  "observed_error": "Missing operator: quantized_decomposed::embedding_byte.dtype_out",
+  "diagnosis": "The initial runner registered LLM custom ops but not quantized embedding kernels.",
+  "correction": "Import executorch.kernels.quantized before constructing TextLLMRunner, as in the upstream native runner.",
+  "successful_retry": "experiment-tracker/tutorial/edge/qwen3-4b-run-20261109T195845_533008Z.json",
+  "export_repeated": false,
+  "log_sha256": "a4f752be6457782f8b93a0385e156fbf6301c30f20fbb46edd108256fde9a690"
+}

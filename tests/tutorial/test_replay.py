@@ -25,7 +25,7 @@ def test_replay_never_launches_downloads_or_calls_network(monkeypatch, runtime, 
     monkeypatch.setattr(w.subprocess, 'run', lambda *a, **k: pytest.fail('replay subprocess'))
     monkeypatch.setattr(w.subprocess, 'Popen', lambda *a, **k: pytest.fail('replay launch'))
     monkeypatch.setattr(w.nim_study, 'get_json', lambda *a, **k: pytest.fail('replay HTTP'))
-    study = w.Study(runtime, model, root=ROOT)
+    study = w.Study(runtime, model, root=ROOT, mode='replay')
     assert study.mode == 'replay'
     study.prepare()
     study.smoke()
@@ -51,21 +51,22 @@ def test_checksum_mismatch_does_not_silently_replay_other_record(tmp_path):
         archive.result('vllm', 'qwen', 'fp16_cache_on')
 
 
-def test_live_failure_never_uses_recorded_fallback(monkeypatch):
+def test_live_failure_never_uses_recorded_fallback(monkeypatch, tmp_path):
     config = w.template('nim', 'qwen')
     config['mode'] = 'live'
-    study = w.Study('nim', 'qwen', root=ROOT, config=config)
+    study = w.Study('nim', 'qwen', root=tmp_path, config=config)
     study.prepared = True
     monkeypatch.setattr(study, '_nim_start', lambda: (_ for _ in ()).throw(RuntimeError('live startup failed')))
     monkeypatch.setattr(study, 'recorded', lambda *a: pytest.fail('silent replay fallback'))
     with pytest.raises(RuntimeError, match='live startup failed'):
         study.run('smoke')
-    assert study.results == {}
+    assert study.results['smoke']['status'] == 'failed'
+    assert study.results['smoke']['session_id'] == study.session_id
 
 
 @pytest.mark.parametrize('runtime,model,name', [('vllm','qwen','fp16_cache_off'),('nim','qwen','baseline'),('nim','nemotron','baseline')])
 def test_three_visible_paths_match_saved_contract(runtime, model, name):
-    study = w.Study(runtime, model, root=ROOT)
+    study = w.Study(runtime, model, root=ROOT, mode='replay')
     study.run(name)
     server = server_example(study, name)
     assert server['origin'] == LABEL and server['dtype'] == 'float16'
@@ -84,7 +85,7 @@ def test_three_visible_paths_match_saved_contract(runtime, model, name):
 
 
 def test_guided_cache_interpretation_uses_paired_phase_not_warmed_summary():
-    study = w.Study('vllm', 'qwen', root=ROOT)
+    study = w.Study('vllm', 'qwen', root=ROOT, mode='replay')
     study.run('fp16_cache_on')
     prose = interpret(study, 'fp16_cache_on')
     assert '2.019 → 0.083' in prose and '6.038 → 4.039' in prose
@@ -114,7 +115,7 @@ def test_front_door_has_no_misplaced_hybrid_or_nim_cleanup_instructions():
     text = '\n'.join(''.join(c['source']) for c in notebook_document('vllm', 'qwen')['cells'])
     assert 'FP32 SSM' not in text
     assert 'pausing between successful live NIM' not in text
-    assert 'Replay — default' in text and 'request_example' in text and 'response_example' in text
+    assert 'MODE = "live"' in text and 'request_example' in text and 'response_example' in text
 
 
 def test_clean_export_contains_only_committed_source_not_worktree_caches(tmp_path):

@@ -1,7 +1,7 @@
 {
   "runtime": "vllm",
   "model": "qwen",
-  "mode": "replay",
+  "mode": "live",
   "download_models": false,
   "base_snapshot": "models/qwen3-4b-frozen",
   "awq_snapshot": "models/qwen3-4b-awq-4bit-frozen",

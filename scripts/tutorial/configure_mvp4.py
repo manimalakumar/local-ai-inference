@@ -20,7 +20,7 @@ def main(argv=None):
     if not path.exists():
         with path.open('x') as stream:
             config = template(args.runtime, args.model)
-            config.pop('execute')  # Legacy flag is accepted, but new users choose mode explicitly.
+            config.pop('execute', None)  # Legacy flag is accepted, but new users choose mode explicitly.
             json.dump(config, stream, indent=2)
             stream.write('\n')
     print('Configuration:', path)
@@ -28,9 +28,9 @@ def main(argv=None):
         if args.runtime != 'nim':
             parser.error('--discover requires --runtime nim')
         study = Study(args.runtime, args.model, root=ROOT)
-        study.config['execute'] = True
         study.config['mode'] = 'live'
         try:
+            study.preflight(require_profile=False)
             print(study.prepare())
         except ValueError as exc:
             print(exc)

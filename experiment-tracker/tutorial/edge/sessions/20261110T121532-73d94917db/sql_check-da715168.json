@@ -1,0 +1,79 @@
+{
+  "case_id": "eval_001",
+  "question": "How many subjects are Enrolled or Randomized by treatment arm?",
+  "source": "experiment-tracker/tutorial/edge/sessions/20261110T121532-73d94917db/run-c0fa578c.json",
+  "source_sha256": "887792b8d564d87058a62f0b16a04668ae441dd16e6223af568b41cffbd5e2e0",
+  "raw_generated_text": "SELECT treatment_arm, COUNT(*) AS count\nFROM subjects\nWHERE screening_status IN ('Enrolled', 'Randomized')\nGROUP BY treatment_arm;<|im_end|>",
+  "normalization": "Removed only the terminal Qwen <|im_end|> token before SQL execution; raw output preserved.",
+  "sql": "SELECT treatment_arm, COUNT(*) AS count\nFROM subjects\nWHERE screening_status IN ('Enrolled', 'Randomized')\nGROUP BY treatment_arm;",
+  "sql_sha256": "20430b609bc2bab8ac6abfcb41f10b248079e4200b3a406dca03ccf5f1f729b2",
+  "reference_sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm ORDER BY treatment_arm",
+  "generated_query": {
+    "ok": true,
+    "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS count\nFROM subjects\nWHERE screening_status IN ('Enrolled', 'Randomized')\nGROUP BY treatment_arm) AS readonly_result LIMIT 100",
+    "columns": [
+      "treatment_arm",
+      "count"
+    ],
+    "rows": [
+      {
+        "treatment_arm": "Investigational Drug Low Dose",
+        "count": 48
+      },
+      {
+        "treatment_arm": "Placebo",
+        "count": 44
+      },
+      {
+        "treatment_arm": "Investigational Drug High Dose",
+        "count": 40
+      },
+      {
+        "treatment_arm": "Standard of Care",
+        "count": 38
+      }
+    ],
+    "row_count": 4,
+    "error": null
+  },
+  "reference_query": {
+    "ok": true,
+    "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm ORDER BY treatment_arm) AS readonly_result LIMIT 100",
+    "columns": [
+      "treatment_arm",
+      "subject_count"
+    ],
+    "rows": [
+      {
+        "treatment_arm": "Investigational Drug High Dose",
+        "subject_count": 40
+      },
+      {
+        "treatment_arm": "Investigational Drug Low Dose",
+        "subject_count": 48
+      },
+      {
+        "treatment_arm": "Placebo",
+        "subject_count": 44
+      },
+      {
+        "treatment_arm": "Standard of Care",
+        "subject_count": 38
+      }
+    ],
+    "row_count": 4,
+    "error": null
+  },
+  "execution_success": true,
+  "result_equivalence": true,
+  "database_sha256": "f1a7100697b0980b56359632fde49d042fb147260da03931a53a3cbfa7f6830e",
+  "base_snapshot_sha256": "9d76380658964726b0ebbfd59e23fd141cee771d9a116197b9ea4caaa737b616",
+  "recorded_dell_base_snapshot_sha256": "9d76380658964726b0ebbfd59e23fd141cee771d9a116197b9ea4caaa737b616",
+  "matches_dell_base_snapshot": true,
+  "scope": "One direct short-schema SQL smoke; no plan, repair, full workload or human semantic review. SQL checks occur after native timing.",
+  "status": "completed",
+  "session_id": "20261110T121532-73d94917db",
+  "mode": "live",
+  "measured_at": "2026-11-10T12:20:30.158312+00:00",
+  "session_evidence_path": "experiment-tracker/tutorial/edge/sessions/20261110T121532-73d94917db/sql_check-da715168.json"
+}

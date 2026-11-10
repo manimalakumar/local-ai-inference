@@ -133,7 +133,7 @@ def test_response_inspection_shows_supplied_review_without_rewriting_recorded_sc
                 rationale='Fixture: identical rows need not satisfy the intended definition.')
     (tmp_path/'tutorial/semantic_reviews.json').write_text(json.dumps({'reviews':[review]}))
     result=dict(records={'quality':[dict(case_id='fixture',attempts=[dict(sql=sql)],scores={'result_equivalence':True})]})
-    study=SimpleNamespace(root=tmp_path,mode='live',results={'baseline':result})
+    study=SimpleNamespace(root=tmp_path,mode='live',results={'baseline':result},current_results=lambda:{'baseline':result})
     response=response_example(study,'baseline','fixture')
     assert response['human_review']==review
     assert response['semantic_review'].startswith('human review: incorrect')

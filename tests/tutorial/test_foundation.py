@@ -48,6 +48,7 @@ def test_imported_engine_history_stays_summary_evidence():
 
 
 def test_all_foundation_cells_run_offline_without_new_runtime(monkeypatch):
+    monkeypatch.setenv('LOCAL_AI_LAB_MODE', 'replay')
     monkeypatch.setattr('subprocess.run', lambda *a, **k: pytest.fail('foundation launched a process'))
     monkeypatch.setattr('subprocess.Popen', lambda *a, **k: pytest.fail('foundation started server'))
     display = types.ModuleType('IPython.display')
@@ -58,13 +59,29 @@ def test_all_foundation_cells_run_offline_without_new_runtime(monkeypatch):
     monkeypatch.chdir(ROOT / 'notebooks')
     document = notebook_document()
     text = '\n'.join(''.join(c['source']) for c in document['cells'])
-    assert 'ExecuTorch' not in text and 'DLSIM' not in text
-    assert 'llama.cpp' in text and 'Ollama' in text and 'SGLang' in text
+    body = '\n'.join(''.join(c['source']) for c in document['cells'][1:])
+    assert 'ExecuTorch' not in body and 'DLSIM' not in text  # Navigation may link to optional chapter 05.
+    assert 'llama.cpp' in text and 'Ollama' in text
+    code = '\n'.join(''.join(c['source']) for c in document['cells'] if c['cell_type']=='code')
+    assert 'gpu_history(' not in code and 'gpu_rows(' not in code and "Study('vllm'" not in code
     namespace = {}
     for cell in document['cells']:
         if cell['cell_type'] == 'code':
             exec(compile(''.join(cell['source']), 'foundation-cell', 'exec'), namespace)
-    assert namespace['example'].mode == 'replay'
+    assert namespace['study'].mode == 'replay'
+    assert namespace['answer']['origin'] == 'Nemotron 3 Nano 4B Q4_K_M / llama.cpp'
+
+
+def test_local_worked_answer_uses_original_gguf_record_and_matching_database():
+    example=foundation.local_answer_example(ROOT)
+    assert example['model_sha256']=='be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2'
+    record=example['application_record']
+    assert record['id']=='eval_001'
+    assert record['attempts'][-1]['execution_success'] is True
+    assert record['scores']['result_equivalence'] is True
+    rows=record['attempts'][-1]['query_result']['rows']
+    assert sum(r['enrolled_subjects'] for r in rows)==170
+    assert 'Structured answer' in foundation.structured_answer_markdown(example)
 
 
 def test_token_audit_uses_paired_targets_and_keeps_missing_counts_unknown():
@@ -85,9 +102,21 @@ def test_token_audit_uses_paired_targets_and_keeps_missing_counts_unknown():
     assert 'unavailable' in table(unknown)
 
 
-def test_all_learner_chapters_begin_with_learning_requirements_and_outputs():
-    from clinical_trial_mvp.tutorial.workflow_notebook import notebook_document as chapter
-    for runtime in ('vllm', 'nim'):
-        for model in ('qwen', 'nemotron'):
-            source = ''.join(chapter(runtime, model)['cells'][0]['source'])
-            assert all(word in source for word in ('**Learn:', '**Requirements:', '**Expected outputs:'))
+def test_all_learner_chapters_show_the_shared_workflow_and_current_location():
+    from clinical_trial_mvp.tutorial.workflow_notebook import notebook_document as chapter, FILENAMES
+    from clinical_trial_mvp.tutorial.edge_notebook import notebook_document as edge, FILENAME as EDGE
+    from clinical_trial_mvp.tutorial.nemotron_edge_notebook import notebook_document as nemotron_edge, FILENAME as NEMOTRON_EDGE
+    from clinical_trial_mvp.tutorial.serving_notebook import FILENAME as FOUNDATION
+    from clinical_trial_mvp.tutorial.navigation import CHAPTERS, workflow_table
+    documents = {FOUNDATION: notebook_document(), EDGE: edge(), NEMOTRON_EDGE: nemotron_edge()}
+    documents.update({name: chapter(*key) for key, name in FILENAMES.items()})
+    assert workflow_table() in (ROOT / 'README.md').read_text()
+    for filename, document in documents.items():
+        source = ''.join(document['cells'][0]['source'])
+        assert source.count('**You are here →') == 1
+        assert source.count('(current)**') == 1
+        assert workflow_table(filename, prefix='') in source
+        row = next(row for row in CHAPTERS if row[1] == filename)
+        assert f'**You are here → {row[2]}.**' in source
+        assert document['cells'][0]['cell_type'] == 'markdown'
+        assert '../SETUP.md' in source

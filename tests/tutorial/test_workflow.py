@@ -45,8 +45,8 @@ def test_configuration_is_offline_and_model_specific_by_default(tmp_path):
     for runtime in ('vllm', 'nim'):
         for model in ('qwen', 'nemotron'):
             config = w.read_config(runtime, model, root=tmp_path)
-            assert not config['execute'] and not config['download_models']
-            assert config['mode'] == 'replay'
+            assert 'execute' not in config and not config['download_models']
+            assert config['mode'] == 'live'
             assert config['run_awq'] == (runtime == 'vllm' and model == 'qwen')
             assert config['structured_outputs'] == (model == 'qwen')
             assert config['nim_profile_id'] is None
@@ -66,7 +66,7 @@ def test_config_rejects_mistyped_or_invalid_controls(tmp_path, delta):
 def test_offline_prepare_never_calls_platform_downloads_or_docker(tmp_path, monkeypatch):
     monkeypatch.setattr(w.platform, 'system', lambda: pytest.fail('offline platform probe'))
     monkeypatch.setattr(w.subprocess, 'run', lambda *a, **k: pytest.fail('offline Docker'))
-    obj = w.Study('nim', 'qwen', root=tmp_path)
+    obj = w.Study('nim', 'qwen', root=tmp_path, mode='replay')
     assert 'Replay' in obj.prepare()
     assert not (tmp_path / 'experiment-tracker').exists()
 

@@ -1,0 +1,34 @@
+{
+  "runtime": "llama_cpp",
+  "model": "clinical-trial-local",
+  "engine_version": "llama.cpp b11887",
+  "model_sha256": "be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2",
+  "hardware": "Apple M4 Pro / macOS arm64 / CPU",
+  "server_pid": 36391,
+  "evidence": "hardware",
+  "command": [
+    "/Users/manimalak/Documents/Codex/local_clinical_trial/iterations/mvp3/llama_cpp/vendor/b11887/llama-b11887/llama-server",
+    "-m",
+    "/Users/manimalak/Documents/Codex/local_clinical_trial/iterations/mvp3/models/NVIDIA-Nemotron3-Nano-4B-Q4_K_M.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--alias",
+    "clinical-trial-local",
+    "--ctx-size",
+    "8192",
+    "--gpu-layers",
+    "0",
+    "--seed",
+    "42",
+    "--parallel",
+    "1"
+  ],
+  "launch_settings": {
+    "context": 8192,
+    "dtype": "Q4_K_M",
+    "gpu_layers": 0,
+    "seed": 42
+  }
+}

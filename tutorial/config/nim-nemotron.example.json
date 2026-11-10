@@ -1,7 +1,7 @@
 {
   "runtime": "nim",
   "model": "nemotron",
-  "mode": "replay",
+  "mode": "live",
   "download_models": false,
   "base_snapshot": "models/nemotron-3-nano-4b-frozen",
   "awq_snapshot": "models/nemotron-3-nano-4b-awq-4bit-frozen",

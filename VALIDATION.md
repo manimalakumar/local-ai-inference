@@ -1,5 +1,158 @@
 # Validation record
 
+## November 9, 2026 — notebook 00 local-serving scope and readable results
+
+Removed the vLLM/SGLang concurrency section, its execution cell and saved GPU
+table from chapter 00. The remaining walkthrough covers context selection,
+llama.cpp/Ollama serving and a structured answer, followed by baseline metrics.
+The applicable review TODOs were retained; later notebook-only prose/TODO edits
+were synchronized without restoring notes the owner had removed.
+
+Schema-context and local-serving results now render as Markdown tables rather
+than nested JSON. Measurements are unchanged. The worked answer now comes from
+the actual `eval_001` Nemotron Q4_K_M/llama.cpp record found in MVP3, replacing
+the vLLM answer previously displayed in this chapter. Its source JSONL and manifest
+were copied byte-for-byte into `baseline/mvp1/experiment-tracker/local-answer-example/`.
+The JSONL SHA-256, GGUF artifact identity and matching database fingerprint are
+checked before loading. The displayed aggregate answer contains 44/48/40/38
+subjects and retains the original execution/reference-result scores. No new
+model inference or human semantic judgment is claimed.
+
+Chapter 00's default/example Live configuration and SETUP instructions now use
+a local CPU GGUF endpoint. New local configuration and foreground launch helpers
+record artifact identity, runtime version, command and process PID. The starter
+pins the original Nemotron Q4_K_M SHA-256 and rejects other files, occupied ports
+and reused metadata. Its native end-to-end Live run has not been performed here;
+the helper/config rejection paths are tested without launching an engine.
+
+## November 9, 2026 — chapter 00 Replay and fresh baseline options
+
+Chapter 00 now branches on `replay`, `live` or optional `plan`. Replay remains
+offline and uses the identified supplied results. Live attaches to explicitly
+configured, already running local endpoints and calls the existing clinical
+benchmark; it never substitutes archived tables or SQL for a failed fresh row.
+The previous executed notebook, including review TODOs and outputs, is preserved
+as `notebooks/history/00_local_serving-before-live.ipynb`.
+
+The starter setup downloads the pinned Qwen3-4B base revision and prints an explicit
+foreground vLLM launch command. It uses a separate GPU interpreter, rejects an
+occupied port/existing metadata filename, and retains new launch provenance.
+Fresh notebook baselines cover full/retrieved schema, configured concurrency,
+application quality and a worked answer from the new full-schema record. Optional
+llama.cpp/Ollama sections stay visibly unselected unless endpoints are supplied.
+The caller starts/stops its server; startup is outside request timing. Frozen data
+and retrieval remain unchanged, so “from scratch” means new inference on fixed inputs.
+
+Settings live in `tutorial/config/local-serving.local.json`, with a committed
+example and Replay/Live instructions in SETUP.md. Live rows and failures are
+saved under session-specific `experiment-tracker/tutorial/foundation/` paths.
+The shared benchmark's optional `include_policy_cases` flag lets this baseline
+evaluate all 30 selected quality cases while timing the 26 answerable serving
+cases; the earlier callers' default behavior is unchanged. Default chapter-00
+selection remains the four compact questions.
+
+**243 tests passed in 44.37 seconds.** These include new tests for mode isolation,
+failed-row persistence, current-session answer reuse, complete quality-case
+selection, config/launch guards and non-overwriting setup. Notebook 00 passed real
+offline Jupyter Replay and Plan execution with final sources; Replay outputs were
+saved. All seven schema/link/builder checks passed. All 13 owner TODOs remain.
+No fresh GPU or optional local-serving hardware execution was performed; Live
+end-to-end validation remains pending. No new GPU measurements are claimed.
+
+## November 9, 2026 — notebook prose review using the owner's TODOs
+
+Read the accessible full history of the ChatGPT thread “Local AI Career Path”
+and the owner's 13 TODO notes in chapter 00. Revised 58 Markdown cells across
+chapters 00–06 to explain the application, each experiment's purpose, its hardware
+and timing scope, and what to inspect in the next cell. The shared workflow now
+calls chapter 00 “How a local AI request works.” Mode descriptions distinguish
+reading saved measurements from running new inference. NIM chapters explain
+containers, profiles, and the difference between database schema and plan JSON schema.
+
+All 13 original TODO notes remain visible beside the corresponding revised prose;
+only trailing whitespace was normalized. Chapter 00–05 prose and these review notes
+are preserved in `chapter_prose.py`; chapter 06 text remains in its builder.
+README workflow labels were synchronized. Reconstruction details were moved out
+of the teaching narrative into the already ignored `.local-serving/notes.md`;
+existing output origin fields, source records and audit documents remain intact.
+
+Compared every code-cell object against a snapshot taken before the edits:
+code, saved outputs, execution counts and code-cell metadata are unchanged in all
+seven notebooks. All seven schema/local-link/builder-source checks passed, along
+with **78 relevant existing tests in 2.21 seconds**. No new inference or notebook
+kernel execution was needed for this prose-only revision. Changes remain local.
+
+## November 9, 2026 — separate Nemotron ExecuTorch compatibility chapter
+
+Added chapter 06 using the exact Dell model ID and revision:
+`nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16@dfaf35de3e30f1867dd8dbc38a7fc9fb52d3914f`.
+Reused the MVP3 edge environment without modification. Downloaded only pinned
+`config.json`; the installed ExecuTorch 1.5.1/OmegaConf LLM export configuration
+rejected both `nemotron_h` and `nemotron_3_nano_4b`. The original exceptions,
+configuration, source checksum and installed model-class inventory are saved in
+`experiment-tracker/tutorial/edge/nemotron-4b-compatibility-20261109.json`.
+Chapter replay checks that record's SHA256 and exact model/revision.
+
+This establishes a limitation of the installed standard recipe, not impossibility
+of a custom port. We did not download weights, execute model repository code,
+convert weights, capture a graph, export a PTE or run native Nemotron inference.
+SQL correctness, TTFT, request latency and memory remain unavailable. No Qwen
+adapter, smaller model or other runtime was substituted as Nemotron evidence.
+
+README and all seven chapter introductions share the updated workflow. The
+validator includes chapter 06 in schema/source checks and Replay/Plan execution.
+All **227 unit tests passed in 47.28 seconds**; all seven chapter schema/link/builder
+checks passed. Chapter 06 also passed real offline Jupyter Replay and Plan runs;
+Replay outputs were saved. Other existing inference outputs were preserved.
+No new GPU automation, human semantic reviews, hosted CI or clean installation
+is claimed by these checks. Changes remain local and unpushed.
+
+## November 9, 2026 — requested Qwen3-4B ExecuTorch attempt
+
+At the owner's explicit request, the Qwen model from the GPU chapters was attempted on
+ExecuTorch CPU. The existing edge environment was found in MVP3's published copy and reused
+without modification. A separate MVP4 environment setup had been interrupted; it was not the
+successful runtime. Installed versions used were ExecuTorch 1.5.1, Torch 2.15.0, TorchAO 0.18.0,
+Transformers 5.22.0; the host is Apple arm64 with 48 GiB RAM. This is a new edge experiment,
+not the deferred native-vLLM/NIM GPU lifecycle rerun or human semantic review.
+
+Pinned Qwen3-4B revision: `1cfa9a7208912126459214e8b04321603b3df60c`. The complete base snapshot
+fingerprint matches the recorded Dell FP16 model. Official Qwen3 conversion passed two HF
+FP32 reference-logit checks at atol=rtol=0.001 (maximum absolute error 0.000044823).
+The 4096-context XNNPACK 8da4w export completed in about five minutes. This uses dynamic INT8
+activations/INT4 linear weights and INT8 embeddings, not AWQ W4A16.
+
+The first native load failed due to missing `quantized_decomposed::embedding_byte.dtype_out`.
+Adding `executorch.kernels.quantized` registration fixed the same PTE without re-export.
+The successful native run recorded model load 1.688 s, first token 0.195 s, inference 0.876 s,
+52 prompt/29 generated tokens, 2,480,823,486 bytes PTE+tokenizer and sampled peak process RSS
+5,272,551,424 bytes. Native observer timings exclude Python startup; whole-process time
+includes imports and artifact checking. One warm-filesystem sample is not a latency benchmark.
+
+Generated eval_001 SQL executed and matched the existing frozen-database reference, after
+stripping only the terminal Qwen `<|im_end|>` marker outside timing. This short-schema direct
+smoke has no answer-plan/repair loop or human semantic verdict. No controlled CPU/GPU gain,
+full clinical-task quality or reviewed operator-fallback conclusion is claimed.
+
+Results/failure/SQL evidence and the previous SmolLM2 chapter are indexed by
+`experiment-tracker/tutorial/edge/qwen3-4b-manifest.json`. The original 65 Dell hashes remain
+unchanged. Chapter 05 now defaults to checksum-verified Qwen replay; SmolLM2 history is retained.
+**97 relevant tests passed in 11.23 seconds**, all six static schema/link/builder checks pass,
+and chapter 05 executed in a real CPU Jupyter kernel with replay outputs saved. No Torch or
+model download is needed for that replay. Fresh export/run uses the explicit documented stages.
+
+## November 9, 2026 — shared workflow and notebook location
+
+README now uses a shared Step / Notebook / Purpose table under Start here. The first
+Markdown block of every learner notebook (00–05) contains the same linked workflow and
+one highlighted current location. The map separates the main serving/optimization path
+from optional NIM and CPU-portability extensions.
+
+The working notebooks' newer prose was preserved in the builder source. All six notebooks'
+code cells, saved outputs, execution counts and code metadata matched their pre-change
+hashes after regeneration. Static schema/link/builder checks passed for all six chapters;
+**95 relevant tests passed in 10.11 seconds**. No model/server or new GPU run was used.
+
 ## November 9, 2026 — final local CPU readiness check
 
 Source under test: **`7e0bd8ff0568fc2b93ef7d68a32820beadce84f3`**, with the owner's
@@ -252,3 +405,28 @@ NIM container/image access, runnable profiles for these exact models on the Dell
 backend support and effective precision/thinking settings still require actual target-host
 verification. Cold/warm caching and AWQ are conditional extensions requiring separately
 validated deployment recipes; the initial NIM helper accepts staged unquantized FP16 only.
+
+
+## November 10, 2026 — live-first notebooks 01–06
+
+- All seven learner notebooks passed schema, link and builder-source validation.
+- All seven executed successfully in real CPU kernels in explicitly selected **Plan**
+  and **Replay** modes. Those checks did not overwrite saved notebook outputs.
+- **264 unit tests passed**, including mode precedence over stale local Replay,
+  fresh inference dispatch, session-only reports/inspection/figures, failed reruns,
+  unique evidence files, non-inference Plan/Replay and owned-server cleanup.
+- Notebook 05 completed a genuine new Qwen CPU generation and SQL check. It
+  explicitly reused a hash-verified export; it did not claim a fresh conversion/export.
+  Session `20261110T121532-73d94917db`: generated SQL executed and matched its reference.
+- Notebook 06 completed a fresh installed-exporter configuration probe.
+  Session `20261110T122034-8766f89a12`: `blocked_compatibility`; no weights loaded,
+  exported program, native inference or generation timing was claimed.
+- Revised notebooks 01–04 have no saved outputs. Their existing Dell evidence and
+  executed archives are preserved; no old Replay output was relabeled as Live.
+  The new Linux GPU orchestration still needs a Dell run if fresh Live outputs for
+  these revised notebooks are desired. Existing measurements remain usable through
+  explicit Replay and the reference links without rerunning the GPU workload.
+
+Current edge session records are under `experiment-tracker/tutorial/edge/sessions/`.
+Notebook backups before these changes are under
+`notebooks/history/before-live-first-2026-11-10/` with a SHA-256 manifest.

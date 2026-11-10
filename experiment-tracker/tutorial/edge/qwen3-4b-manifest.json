@@ -1,0 +1,15 @@
+{
+  "description": "Qwen3-4B ExecuTorch attempt: stage results, first native registration failure, successful retry and separate SQL smoke. SmolLM2 evidence retained unchanged; raw logs/weights remain ignored.",
+  "files_sha256": {
+    "experiment-tracker/tutorial/edge/qwen3-4b-export-20261109T195704_846275Z.json": "f7b368c10aebf6f9bcbf7eb1ddbdb57592b1771287c243800a173c329972159a",
+    "experiment-tracker/tutorial/edge/qwen3-4b-kernel-registration-diagnosis.json": "e1ffab0e5ffc868a9979d26f81341d7b6364660ccb381a9e02eccd7c33f2f8ed",
+    "experiment-tracker/tutorial/edge/qwen3-4b-prepare-20261109T195022_469964Z.json": "c648e4067c8c9a967a8f68c098cd9f5392e7be51460b0adb10cb2249e6fe2848",
+    "experiment-tracker/tutorial/edge/qwen3-4b-reference-20261109T195041_586584Z.json": "4e5dfd69e193b881813dfe77697a7a46be7b5b5ebf11727ed2cd0da5143ce255",
+    "experiment-tracker/tutorial/edge/qwen3-4b-run-20261109T195758_399022Z.json": "bc91ea552292a9643ba5a03bf891deafd3165cdb435b89011edb4807e1dadbd1",
+    "experiment-tracker/tutorial/edge/qwen3-4b-run-20261109T195845_533008Z.json": "9716935d2ea971f14927b3f6b157a816dc45a1d1e15d4de2a4aec83362a43014",
+    "experiment-tracker/tutorial/edge/qwen3-4b-sql-smoke-20261109.json": "da3a170b16581d07e6a6c4526f4527d156d19cb3eaccbf6dd062c280118ccc52",
+    "experiment-tracker/tutorial/edge/qwen3-4b-validate-20261109T195136_996514Z.json": "ae9273e7994123725197cad18112201f2e7196b73ad65375b9bace6fa1de46be",
+    "notebooks/history/edge-smollm2-before-qwen.ipynb": "bcaed21fea4a4193d82b37275388e694c74c26245d0f08a4803c44a3f127f144",
+    "experiment-tracker/tutorial/edge/20261029T161510_034051Z.json": "04076d8f693e18a503335da98f296d5af854a539389027f705b8b602f2d36982"
+  }
+}

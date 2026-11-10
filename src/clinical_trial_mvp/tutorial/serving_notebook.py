@@ -1,186 +1,43 @@
-"""Chapter 00 adapts the existing serving tutorial; it adds no benchmark/runtime."""
-import hashlib
+"""Chapter 00: local serving, context and structured-answer quality.
 
-
+Teaching Markdown lives in chapter_prose.py. Runtime implementations are shared.
+"""
 FILENAME = '00_local_serving.ipynb'
+
+CELLS = [
+    ('markdown', '7b5e354b23e7', ''),
+    ('code', 'c73045dd566e', "from pathlib import Path\nimport os\nimport sys\nROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())\nsys.path.insert(0, str(ROOT / 'src'))\nfrom IPython.display import JSON, Markdown, display\nfrom clinical_trial_mvp.tutorial.foundation import inventory, contexts, mac_history\nfrom clinical_trial_mvp.tutorial.foundation_study import FoundationStudy\nstudy = FoundationStudy(ROOT)\nprint('Chapter 00 mode:', study.mode)\nprint('Live: run embedding inference and call your local model server.' if study.mode == 'live' else\n      'Replay: display the supplied results.' if study.mode == 'replay' else\n      'Plan: inspect the configuration.')\n"),
+    ('markdown', 'af1ac4f75873', ''),
+    ('markdown', 'b937d0a634e6', ''),
+    ('code', '786a85ecedf7', 'database = inventory(ROOT)\ndisplay(JSON(database))\n'),
+    ('markdown', 'ac6979b6039b', ''),
+    ('code', '5472cf0d7885', "context = contexts(ROOT)\ndisplay(JSON({'note': context['note'], 'cases': [\n    {key: value for key, value in row.items() if key not in ('full_prompt', 'retrieved_prompt')}\n    for row in context['rows']]}))\ndisplay(JSON({'full_prompt': context['rows'][0]['full_prompt'],\n              'retrieved_prompt': context['rows'][0]['retrieved_prompt']}))\n"),
+    ('markdown', 'embedding-invocation-explanation', ''),
+    ('code', 'embedding-model-call', "# Fresh local embedding inference; no chat-completions API is used here.\nif study.mode == 'live':\n    from sentence_transformers import SentenceTransformer\n    from clinical_trial_mvp.data.embedding_retrieval import SchemaRetriever\n\n    embedding_path = Path(study.config.get(\n        'embedding_model_path', 'models/Nemotron-3-Embed-1B-BF16')).expanduser()\n    if not embedding_path.is_absolute():\n        embedding_path = ROOT / embedding_path\n    if not embedding_path.is_dir():\n        raise FileNotFoundError('Download the embedding model first: see SETUP.md#notebook-00-embedding-model')\n    embedding_model = SentenceTransformer(\n        str(embedding_path), device='cpu', local_files_only=True, trust_remote_code=False)\n\n    class NotebookEmbedder:\n        def encode(self, texts):\n            # Inputs already carry passage: or query: prefixes from SchemaRetriever.\n            return embedding_model.encode(\n                texts, batch_size=8, normalize_embeddings=True,\n                show_progress_bar=False).tolist()\n\n    # Construction embeds schema facts; retrieve() embeds the question.\n    retriever = SchemaRetriever(NotebookEmbedder(), top_k=12, max_seed_tables=4)\n    embedding_question = context['rows'][0]['question']\n    selected_context = retriever.retrieve(embedding_question)\n    display(Markdown('**Question:** ' + embedding_question))\n    display(JSON({\n        'embedding_model': 'nvidia/Nemotron-3-Embed-1B-BF16',\n        'selected_tables': selected_context.tables,\n        'ranked_facts': [\n            {'fact': fact.text, 'similarity': selected_context.scores[fact.fact_id]}\n            for fact in sorted(\n                (fact for fact in retriever.facts if fact.fact_id in selected_context.scores),\n                key=lambda fact: selected_context.scores[fact.fact_id], reverse=True)],\n    }))\n    print('Retrieved schema text:')\n    print(selected_context.prompt)\nelse:\n    print('Select Live mode to invoke the embedding model; Replay uses the supplied selection.')\n"),
+    ('markdown', 'first-api-explanation', ''),
+    ('code', 'first-model-api-call', "# First model inference: an OpenAI-compatible chat-completions request.\nimport json\nimport urllib.request\nfrom clinical_trial_mvp.agent.analyst import (\n    PLAN_CHAT_SYSTEM_MESSAGE, PLAN_JSON_SCHEMA, build_plan_prompt,\n)\nfrom clinical_trial_mvp.serving.benchmark import Workload, prepare\nfrom clinical_trial_mvp.serving.client import Generation, OpenAIClient\n\nif study.mode == 'live':\n    endpoint = study.config['servers'][study.config['context_server']]\n    if endpoint['runtime'] not in {'llama_cpp', 'vllm', 'sglang'}:\n        raise ValueError('Select an OpenAI-compatible endpoint for this example; see SETUP.md.')\n    cases, schema_contexts, _, _ = prepare(\n        ROOT, Workload(profile='full'), study.config['case_ids'])\n    first_question = cases[0]['question']\n    schema_text, _, definitions = schema_contexts[first_question]\n    messages = [\n        {'role': 'system', 'content': PLAN_CHAT_SYSTEM_MESSAGE},\n        {'role': 'user', 'content': build_plan_prompt(first_question, schema_text, definitions)},\n    ]\n    # The same request settings and local-only transport as the benchmark.\n    api = OpenAIClient(endpoint['base_url'], endpoint['model'],\n        Generation(max_tokens=study.config['max_tokens'], seed=42),\n        request_profile=endpoint['runtime'])\n    api_url = api.base_url + '/chat/completions'\n    payload = api.request_payload(messages, PLAN_JSON_SCHEMA)\n    payload['stream'] = False\n    payload.pop('stream_options', None)\n    display(Markdown('**Question:** ' + first_question))\n    print('POST', api_url)\n    display(JSON(payload))\n\n    # This line contacts the running model server. It does not load a saved answer.\n    request = urllib.request.Request(\n        api_url, data=json.dumps(payload).encode('utf-8'),\n        headers={'Content-Type': 'application/json'}, method='POST')\n    with api.opener(request, timeout=180) as response:\n        api_response = json.load(response)\n    choice = api_response['choices'][0]\n    if choice.get('finish_reason') != 'stop':\n        raise RuntimeError('Model response did not finish normally: ' + str(choice.get('finish_reason')))\n    model_reply = choice['message']['content']\n    if not isinstance(model_reply, str) or not model_reply.strip():\n        raise RuntimeError('The model returned an empty answer plan.')\n    print('Model response:')\n    print(model_reply)\n    if api_response.get('usage'):\n        display(JSON(api_response['usage']))\nelse:\n    print('Select Live mode and start the server to execute this API example (see SETUP.md).')\n"),
+    ('markdown', '0a756f9a063f', ''),
+    ('code', 'e73102b7d644', "if study.mode == 'replay':\n    from clinical_trial_mvp.tutorial.foundation import context_results_table\n    history = mac_history(ROOT)\n    print('Loading results.')\n    display(Markdown(context_results_table(history['context'])))\nelse:\n    context_runs = study.context_rows()\n    display(Markdown(study.table(context_runs)))\n"),
+    ('markdown', 'dd5f0ec80102', ''),
+    ('markdown', '90c6cb614df5', ''),
+    ('code', '310ff65dd9d8', "if study.mode == 'replay':\n    from clinical_trial_mvp.tutorial.foundation import local_serving_results_table\n    print('Loading results.')\n    display(Markdown(local_serving_results_table(history['serving'])))\nelse:\n    local_runs = study.local_rows()\n    display(Markdown(study.table(local_runs)))\n"),
+    ('markdown', '552eb017d529', ''),
+    ('markdown', '18c915d61247', ''),
+    ('code', '5476bdc88385', "from clinical_trial_mvp.tutorial.foundation import local_answer_example, structured_answer_markdown\nif study.mode == 'replay':\n    answer = local_answer_example(ROOT)\nelse:\n    answer = study.answer()\ndisplay(Markdown(structured_answer_markdown(answer)))\n"),
+    ('markdown', 'db1301631036', ''),
+    ('code', 'baseline-summary', "from clinical_trial_mvp.tutorial.foundation import baseline_results_summary\nbaseline_history = history if study.mode == 'replay' else None\ndisplay(Markdown(baseline_results_summary(study, baseline_history, answer)))\n"),
+ ]
 
 
 def notebook_document():
-    cells = []
-    def add(kind, text):
-        source = text.strip() + '\n'
-        cell = dict(cell_type=kind, id=hashlib.sha256((str(len(cells)) + source).encode()).hexdigest()[:12],
-                    metadata={}, source=source.splitlines(keepends=True))
-        if kind == 'code':
-            cell.update(execution_count=None, outputs=[])
+    cells=[]
+    for kind, slot, source in CELLS:
+        cell=dict(cell_type=kind,id=slot,metadata={},source=source.splitlines(keepends=True))
+        if kind=='code':
+            cell.update(execution_count=None,outputs=[])
         cells.append(cell)
-    md = lambda text: add('markdown', text)
-    code = lambda text: add('code', text)
-    md('''# Serving foundations and recorded comparisons
-
-*Local AI Inference Lab: Serving, Optimization and Application Quality*
-
-**Learn:** follow a question through schema selection, model serving, plan/SQL validation,
-read-only execution and result scoring; distinguish application quality from transport speed.
-Understand the earlier llama.cpp/Ollama and vLLM/SGLang serving paths before optimizing them.
-
-**Requirements:** the [CPU notebook environment](../SETUP.md), included frozen synthetic
-database and archived evidence. No GPU, model download, Docker or credentials are needed.
-
-**Expected outputs:** a verified read-only table inventory, full/retrieved prompt examples,
-clearly labeled historical serving tables, and one recorded SQL example with evaluation.
-
-This adapts the existing serving tutorial's workload/context/runtime sections. It reuses
-the shared schema, retrieval cache, adapters and scorer; it does not import a duplicate app.
-[Adaptation and data fingerprints](../tutorial/serving_foundation.json) identify the source.
-**Historical/read-only:** this chapter does not provide fresh llama.cpp/Ollama/vLLM/SGLang
-reproduction. It has no Live serving support. Fresh optimization runs are supported in chapters 01–04. Historical report values and rounded notebook summaries are distinct evidence.
-''')
-    code('''from pathlib import Path
-import os
-import sys
-ROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())
-sys.path.insert(0, str(ROOT / 'src'))
-from IPython.display import JSON, Markdown, display
-from clinical_trial_mvp.tutorial.foundation import inventory, contexts, mac_history, gpu_history, history_table
-print('Read-only foundation; mode:', os.environ.get('LOCAL_AI_LAB_MODE', 'replay'))
-print('Historical evidence is labeled; no fresh model calls are made.')
-''')
-    md('''### Model and hardware map before reading the results
-
-| Experiment | Model/artifact from archived evidence | Hardware | Evidence limitation |
-|---|---|---|---|
-| Context selection | Nemotron 3 Nano 4B and Qwen3 4B, Q4_K_M GGUF; llama-cpp-python 0.3.35, context 8192, seed 42, cap 1024; exact file hashes not included in this report | M4 Pro, CPU-only (`gpu_layers=0`) | Historical application measurements; retrieval was precomputed |
-| llama.cpp/Ollama | Same Nemotron 3 Nano 4B Q4_K_M GGUF; SHA-256 `be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2` | M4 Pro, Metal offload | Three requests per prompt/runtime; direct serving screen |
-| vLLM/SGLang | Exact model ID/revision/fingerprint unavailable; alias or directory name is insufficient; FP16 requested | Dell Precision 7740 / Quadro RTX 5000 16 GB | Rounded notebook summaries; incomplete provenance and unverified pairing |
-
-Sources: [context report](../baseline/mvp1/experiment-tracker/MVP1_Q4_30_CASE_REPORT.md),
-[Mac serving report](../baseline/mvp2/experiment-tracker/mvp2/serving/MILESTONE_REPORT.md),
-[GPU evidence limitations](../baseline/mvp3/tutorial/RESULTS_PORTABILITY.md).
-''')
-    md('''## 1. Keep the workload and database fixed
-
-**Question → full/retrieved schema text → model plan → SQL → validation → DuckDB → scorer.**
-
-The ten-table database and CSVs are synthetic. The database fingerprint matches the saved
-Dell optimization baseline. Do not regenerate it to replay results: new rows can change a
-query's reference match. Human-reviewed semantic correctness is separate from matching values
-on one database. The full evaluation set has 30 cases, including 23 reference-SQL questions.
-The later compact experiments reuse four distinct questions with repeated serving requests.
-''')
-    code('''database = inventory(ROOT)
-display(JSON(database))
-''')
-    md('''## 2. Full versus retrieved schema
-
-Retrieval selects schema facts; the generation model still receives text. We reuse the frozen
-retrieval cache, so this inspection loads no embedding model. Inspect the selected tables
-and actual prompts, especially required joins, grouping, denominators and clinical definitions.
-Character lengths below are **not token counts**. Retrieval precomputation is outside the
-historical generation measurements; it is not a full interactive retrieval latency estimate.
-''')
-    code('''context = contexts(ROOT)
-display(JSON({'note': context['note'], 'cases': [
-    {key: value for key, value in row.items() if key not in ('full_prompt', 'retrieved_prompt')}
-    for row in context['rows']]}))
-display(JSON({'full_prompt': context['rows'][0]['full_prompt'],
-              'retrieved_prompt': context['rows'][0]['retrieved_prompt']}))
-''')
-    md('''### Historical context findings
-
-The earlier CPU/GGUF report evaluated 30 cases once per configuration, with 23 reference
-queries. These are **historical Mac report values**, not the later four-case GPU workload.
-Question/application latency includes planning and possible repair; it is not request TTFT.
-''')
-    code('''history = mac_history(ROOT)
-display(JSON({'label': history['origin'], 'context_report': history['context']}))
-''')
-    md('''**Observation:** Nemotron's historical retrieved context reduced median question latency
-from 79.795 to 29.500 s while reference matches changed 10/23 → 8/23. Qwen's matches changed
-5/23 → 6/23. **Explanation:** less input work and less information can occur together.
-**Limitation:** a single small synthetic dataset and precomputed retrieval do not establish
-general accuracy or online retrieval overhead. **Decision:** keep required definitions and
-review SQL semantics before accepting context savings.
-
-[Original context report](../baseline/mvp1/experiment-tracker/MVP1_Q4_30_CASE_REPORT.md).
-''')
-    md('''## 3. Mac serving: llama.cpp and Ollama
-
-Both paths used the same Nemotron Q4_K_M GGUF on M4 Pro. The aligned direct-serving screen
-used the same prompt bytes, seed, cap and zero observed cached prompt tokens. Each prompt
-had three measured requests per runtime. This compares serving packages/APIs around the
-same GGUF, not unrelated models or inference algorithms.
-
-The earlier CPU context report and Metal-offloaded serving screen are separate experiments.
-Do not pool their times. Reuse [the existing adapters](../src/clinical_trial_mvp/tutorial/adapters.py)
-and [common serving harness](../src/clinical_trial_mvp/serving/benchmark.py), rather than copying the app.
-''')
-    code("display(JSON({'label': history['origin'], 'serving_screen': history['serving'], 'limitations': history['limitations']}))")
-    md('''**Observation:** the selected-prompt screen recorded TTFT p50 0.400/0.414 s and E2E
-1.393/1.404 s for llama.cpp/Ollama. Paired output hashes matched in that screen.
-**Explanation:** serving APIs/lifecycle can differ while loading the same model artifact.
-**Limitation:** matching generated text is not proof of clinical SQL correctness; three
-requests do not support a general speed ranking. **Decision:** choose an API/lifecycle for
-the deployment need, then use the shared application-quality path to evaluate useful answers.
-
-[Original serving report](../baseline/mvp2/experiment-tracker/mvp2/serving/MILESTONE_REPORT.md).
-''')
-    md('''## 4. Dell serving: vLLM and SGLang
-
-GPU serving used frozen Hugging Face checkpoints, not the Mac GGUF. The earlier notebook
-outputs cover concurrency 1/2/4. They are **rounded historical notebook summaries**, with
-missing raw requests and incomplete model/database/date provenance. Pairing is unverified.
-Values are replayed only after checking the imported JSON and source notebook checksums.
-''')
-    code('''gpu = gpu_history(ROOT)
-display(Markdown(history_table(gpu)))
-''')
-    md('''**Observation:** both imported runtime tables report 3/4 SQL executions and 2/4 result
-matches. **Explanation:** serial application scoring and concurrent serving characterize
-different work. **Limitation:** the rounded summaries cannot independently prove a controlled
-engine-speed comparison; peak VRAM was not captured. **Decision:** preserve them as context,
-then use complete raw records and matching provenance for fresh optimization decisions.
-
-[Imported evidence limitations](../baseline/mvp3/tutorial/RESULTS_PORTABILITY.md).
-''')
-    md('''## 5. Inspect a request and an evaluated answer
-
-The older engine summaries lack raw SQL. The example below therefore uses the **recorded
-Dell Qwen optimization baseline from November 6**, explicitly labeled, through the same
-application path. It does not pretend to recover missing SQL from the older summaries.
-
-The request is reconstructed from a saved prompt and flags using the same transport payload
-builder; the archive did not capture raw HTTP packets. No request is sent by inspection.
-[Request construction/timing](../src/clinical_trial_mvp/serving/client.py)
-· [SQL guards and plan validation](../src/clinical_trial_mvp/agent/analyst.py)
-· [result scorer](../src/clinical_trial_mvp/evaluation/scorers.py).
-''')
-    code('''from clinical_trial_mvp.tutorial.workflow import Study, template
-from clinical_trial_mvp.tutorial.teaching import request_example, response_example
-config = template('vllm', 'qwen')
-config['mode'] = 'replay'
-example = Study('vllm', 'qwen', root=ROOT, config=config)
-example.run('fp16_cache_off')
-display(JSON(request_example(example, 'fp16_cache_off')))
-display(JSON(response_example(example, 'fp16_cache_off')))
-''')
-    md('''## 6. Carry these controls into optimization
-
-| Layer | Measure | Do not infer |
-|---|---|---|
-| Transport/serving | first-content TTFT, request E2E, aggregate output tokens/s | SQL correctness from HTTP success |
-| Generation | prompt/output work, stop/truncation, decode-rate estimate | GPU kernel time from client timing |
-| Application | plan contract, SQL safety/execution, reference match, repair | semantic correctness from matching rows alone |
-
-Keep model/tokenizer, database/date, prompts, precision, generation settings and server
-configuration visible. Cache conditions and output lengths can change interpretation.
-Startup stays outside individual request timing. Missing measurements stay unavailable.
-
-Continue to [01 — Qwen cache and quantization](01_qwen_cache_quantization.ipynb), or jump to
-[02 — Nemotron optimization](02_nemotron_optimization.ipynb). NIM extensions follow as
-[03](03_qwen_nim.ipynb) and [04](04_nemotron_nim.ipynb). Shared instructions:
-[install prerequisites](../SETUP.md) → [configure and run](../tutorial/RUN_ALL.md).
-Finish with [What should I choose?](../tutorial/RESULTS.md#what-should-i-choose).
-''')
-    return dict(cells=cells, metadata={'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'},
-                                     'language_info': {'name': 'python', 'version': '3.11'}}, nbformat=4, nbformat_minor=5)
+    document=dict(cells=cells,metadata={
+        'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'},
+        'language_info':{'name':'python','version':'3.11'}},nbformat=4,nbformat_minor=5)
+    from clinical_trial_mvp.tutorial.navigation import apply_chapter_prose
+    return apply_chapter_prose(document,FILENAME)

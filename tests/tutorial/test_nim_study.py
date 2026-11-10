@@ -246,6 +246,9 @@ def test_model_profile_gpu_mismatch_fails_before_benchmark(run_root,monkeypatch,
 
 @pytest.mark.parametrize('key',['qwen','nemotron'])
 def test_every_nim_notebook_cell_runs_offline_without_docker_gpu_or_network(monkeypatch,key):
+    monkeypatch.setenv('LOCAL_AI_LAB_MODE','replay')
+    # Matplotlib may run OS font discovery; that is separate from inference/Docker.
+    import matplotlib.pyplot
     build=builder()
     document=json.loads((ROOT/'notebooks'/build.FILENAMES[key]).read_text())
     source=copy.deepcopy(document)

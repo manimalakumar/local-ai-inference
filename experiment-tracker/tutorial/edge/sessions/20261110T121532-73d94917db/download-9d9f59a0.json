@@ -1,0 +1,9 @@
+{
+  "status": "reused_artifact",
+  "stage": "download",
+  "reason": "Download disabled; using explicit local source",
+  "session_id": "20261110T121532-73d94917db",
+  "mode": "live",
+  "measured_at": "2026-11-10T12:15:33.178059+00:00",
+  "session_evidence_path": "experiment-tracker/tutorial/edge/sessions/20261110T121532-73d94917db/download-9d9f59a0.json"
+}

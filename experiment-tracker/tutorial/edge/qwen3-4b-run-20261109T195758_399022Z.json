@@ -1,0 +1,24 @@
+{
+  "model_id": "Qwen/Qwen3-4B",
+  "model_name": "Qwen/Qwen3-4B",
+  "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "stage": "run",
+  "hardware": "Apple arm64 / CPU XNNPACK",
+  "dtype": "INT4 linear weights / dynamic INT8 activations",
+  "measured_at": "2026-11-09T19:57:50.550945+00:00",
+  "runtime": "executorch",
+  "status": "failed",
+  "evidence": "none",
+  "backend": "XNNPACK / CPU",
+  "quantization": "8da4w: dynamic INT8 activations / INT4 linear weights; INT8 embeddings",
+  "context": 4096,
+  "threads": 4,
+  "versions": {
+    "executorch": "1.5.1",
+    "torch": "2.15.0",
+    "torchao": "0.18.0",
+    "transformers": "5.22.0"
+  },
+  "reason": "RuntimeError: Generation failed",
+  "wall_seconds": 7.848025707993656
+}

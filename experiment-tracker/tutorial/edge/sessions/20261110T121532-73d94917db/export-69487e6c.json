@@ -1,0 +1,22 @@
+{
+  "status": "reused_artifact",
+  "stage": "export",
+  "reason": "Explicit reuse of hash-verified export and conversion validation; no new export claimed",
+  "artifact_lineage": {
+    "model_id": "Qwen/Qwen3-4B",
+    "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "context": 4096,
+    "qmode": "8da4w",
+    "files_sha256": {
+      "qwen3-4b.pth": "4fcf55ffe74047a86cfad9fa6f2357f745a9c5b91fdc7023d187966b7d6c22b4",
+      "params.json": "23c89697ae2039c085fe028d067199acd53c067605d40b1194a4ba8ce56b6904",
+      "validation.json": "0f8572d50c33e5613a6e9c58e9801f456294480a958108f98f7d1e12268637d2",
+      "export.yaml": "c7ad1920f881f6e8e04237d7f9cfbe5a47d443bddcb152c24f4a6cd01d42f175",
+      "qwen3-4b-xnnpack.pte": "9555592b7b3f28b79e059c9a72d2600eb36c9b5e43cdef73b7d8922c695810b0"
+    }
+  },
+  "session_id": "20261110T121532-73d94917db",
+  "mode": "live",
+  "measured_at": "2026-11-10T12:15:37.136798+00:00",
+  "session_evidence_path": "experiment-tracker/tutorial/edge/sessions/20261110T121532-73d94917db/export-69487e6c.json"
+}
