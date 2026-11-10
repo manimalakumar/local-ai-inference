@@ -166,7 +166,7 @@ def test_confounded_or_failed_comparisons_rejected(path, value):
 
 @pytest.mark.parametrize('model,filename', [
     ('nemotron', '02_nemotron_optimization.ipynb'),
-    ('qwen', '01_qwen_cache_quantization.ipynb'),
+    ('qwen', '01_qwen_optimization.ipynb'),
 ])
 def test_notebook_matches_builder_and_every_default_cell_runs_offline(monkeypatch, model, filename):
     monkeypatch.setenv('LOCAL_AI_LAB_MODE','replay')
@@ -213,7 +213,7 @@ def test_notebook_matches_builder_and_every_default_cell_runs_offline(monkeypatc
 
 def test_notebook_scopes_keep_qwen_strategy_and_make_nemotron_awq_optional():
     nemotron = json.loads((ROOT / 'notebooks/02_nemotron_optimization.ipynb').read_text())
-    qwen = json.loads((ROOT / 'notebooks/01_qwen_cache_quantization.ipynb').read_text())
+    qwen = json.loads((ROOT / 'notebooks/01_qwen_optimization.ipynb').read_text())
     ntext = '\n'.join(''.join(c['source']) for c in nemotron['cells'])
     qtext = '\n'.join(''.join(c['source']) for c in qwen['cells'])
     for name in ('fp16_baseline', 'schema_retrieved', 'concurrency_2', 'concurrency_4',

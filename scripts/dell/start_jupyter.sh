@@ -5,7 +5,7 @@ TASK_REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
 TASK_NOTEBOOK_PYTHON="${NOTEBOOK_PYTHON:-$TASK_REPO_ROOT/.venv/bin/python}"
 TASK_VLLM_PYTHON="${VLLM_PYTHON:-$HOME/.venv-vllm/bin/python}"
 TASK_JUPYTER_PORT="${JUPYTER_PORT:-8888}"
-TASK_NOTEBOOK="${1:-notebooks/01_qwen_cache_quantization.ipynb}"
+TASK_NOTEBOOK="${1:-notebooks/01_qwen_optimization.ipynb}"
 cd -- "$TASK_REPO_ROOT"
 if [[ ! -x "$TASK_NOTEBOOK_PYTHON" ]]; then
     echo "Notebook Python missing: $TASK_NOTEBOOK_PYTHON" >&2

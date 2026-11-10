@@ -34,7 +34,7 @@ Each notebook begins with this workflow and highlights **You are here**.
 | **Step** | **Notebook** | **Purpose** |
 |---|---|---|
 | 0. Understand the request | [00 — How a local AI request works](notebooks/00_local_serving.ipynb) | Follow a question through schema context, model serving and generated SQL, then evaluate the results to establish a quality baseline. |
-| 1. Qwen optimization | [01 — Qwen: caching and quantization](notebooks/01_qwen_cache_quantization.ipynb) | Compare FP16/AWQ W4A16 and prefix caching, with cold and warm requests reported separately. |
+| 1. Qwen optimization | [01 — Qwen: caching and quantization](notebooks/01_qwen_optimization.ipynb) | Compare FP16/AWQ W4A16 and prefix caching, with cold and warm requests reported separately. |
 | 2. Nemotron optimization | [02 — Nemotron optimization](notebooks/02_nemotron_optimization.ipynb) | Test schema context, supported prefix caching, concurrent requests, scheduler capacity and output budgets. |
 | 3. Qwen NIM (optional) | [03 — Qwen through NIM](notebooks/03_qwen_nim.ipynb) | Deploy Qwen in a container, check the plan format, and compare schema context and concurrent requests. |
 | 4. Nemotron NIM (optional) | [04 — Nemotron through NIM](notebooks/04_nemotron_nim.ipynb) | Deploy the hybrid model through NIM and compare schema context and request concurrency. |

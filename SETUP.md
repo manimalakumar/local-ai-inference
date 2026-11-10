@@ -2,7 +2,7 @@
 
 One shared installation guide for the existing `local-ai-inference` repository. Read
 [00 — local serving](notebooks/00_local_serving.ipynb) for the foundation or jump directly to
-[01 — Qwen optimization](notebooks/01_qwen_cache_quantization.ipynb). Configuration, modes,
+[01 — Qwen optimization](notebooks/01_qwen_optimization.ipynb). Configuration, modes,
 profile selection, execution and cleanup belong in [RUN_ALL.md](tutorial/RUN_ALL.md).
 
 ## CPU notebook environment — all replay and plan chapters

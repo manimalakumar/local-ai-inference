@@ -2,7 +2,7 @@
 CHAPTERS = (
     ('0. Understand the request', '00_local_serving.ipynb', '00 — How a local AI request works',
      'Follow a question through schema context, model serving and generated SQL, then evaluate the results to establish a quality baseline.'),
-    ('1. Qwen optimization', '01_qwen_cache_quantization.ipynb', '01 — Qwen: caching and quantization',
+    ('1. Qwen optimization', '01_qwen_optimization.ipynb', '01 — Qwen: caching and quantization',
      'Compare FP16/AWQ W4A16 and prefix caching, with cold and warm requests reported separately.'),
     ('2. Nemotron optimization', '02_nemotron_optimization.ipynb', '02 — Nemotron optimization',
      'Test schema context, supported prefix caching, concurrent requests, scheduler capacity and output budgets.'),

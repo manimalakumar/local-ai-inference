@@ -213,7 +213,7 @@ The table below brings together this notebook's schema-context, local-serving
 and structured-answer results. Read each comparison's quality and timing together.
 ''',
     },
-    '01_qwen_cache_quantization.ipynb': {
+    '01_qwen_optimization.ipynb': {
         'intro': r'''# Qwen: answer faster with caching and four-bit weights
 
 We compare FP16 and AWQ W4A16 weights, each with prefix caching off and on. Caching reuses computation for shared instructions and schema; AWQ compresses weights while keeping activations at FP16.
@@ -658,7 +658,7 @@ OPTIMIZATION_EXPLANATIONS = {
     'awq_stretch': 'Try AWQ W4A16 against the FP16 baseline only after validating the exact checkpoint pair and passing an AWQ SQL smoke; Mamba state stays FP32.',
 }
 
-for _filename in ('01_qwen_cache_quantization.ipynb', '02_nemotron_optimization.ipynb'):
+for _filename in ('01_qwen_optimization.ipynb', '02_nemotron_optimization.ipynb'):
     _chapter = CHAPTER_PROSE[_filename]
     _chapter['method'] += '\n' + OPTIMIZATION_CONTROLS + '\n'
     for _name, _explanation in OPTIMIZATION_EXPLANATIONS.items():
@@ -668,11 +668,11 @@ for _filename in ('01_qwen_cache_quantization.ipynb', '02_nemotron_optimization.
             continue
         _chapter['experiment-' + _name] = '### ' + _name.replace('_', ' ') + '\n\n' + _explanation + '\n'
 
-CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['intro'] = CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['intro'].replace(
+CHAPTER_PROSE['01_qwen_optimization.ipynb']['intro'] = CHAPTER_PROSE['01_qwen_optimization.ipynb']['intro'].replace(
     '# Qwen: answer faster with caching and four-bit weights', '# Qwen: context, caching, concurrency and precision').replace(
     'AWQ compresses weights while keeping activations at FP16.',
     'AWQ compresses weights while keeping activations at FP16. We then test schema context, concurrency, scheduling capacity, reasoning and output limits against the FP16 cache-off baseline.')
-CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['method'] = CHAPTER_PROSE['01_qwen_cache_quantization.ipynb']['method'].replace(
+CHAPTER_PROSE['01_qwen_optimization.ipynb']['method'] = CHAPTER_PROSE['01_qwen_optimization.ipynb']['method'].replace(
     'Hold the schema, four questions, seed 42, temperature 0, cap 1024 and context limit 8192 fixed.',
     'For the first four precision/cache variants, hold the schema, four questions, seed 42, temperature 0, output cap 1,024, scheduling capacity 4 and context limit 8,192 fixed. Subsequent experiments each change one control from fp16_cache_off; capacity experiments keep concurrency at four clients. Compare capacity 1/2/4 using batch_capacity_1, batch_capacity_2 and concurrency_4.')
 CHAPTER_PROSE['02_nemotron_optimization.ipynb']['prepare'] += '''

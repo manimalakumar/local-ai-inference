@@ -30,7 +30,7 @@ MODELS = {
         'awq_snapshot': 'models/qwen3-4b-awq-4bit-frozen',
         'base_revision': 'SET_EXACT_QWEN3_4B_BASE_REVISION_AND_AWQ_DERIVATION',
         'awq_source': 'Qwen/Qwen3-4B-AWQ',
-        'filename': '01_qwen_cache_quantization.ipynb',
+        'filename': '01_qwen_optimization.ipynb',
         'description': 'The SQL generator in this notebook is **Qwen3-4B** '
             '([base checkpoint](https://huggingface.co/Qwen/Qwen3-4B)). '
             'It generates clinical SQL from the fixed schema and question through vLLM. '

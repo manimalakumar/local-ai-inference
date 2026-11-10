@@ -3,7 +3,7 @@ import hashlib
 from clinical_trial_mvp.tutorial import nemotron, nim_study, optimization
 
 FILENAMES = {
-    ('vllm','qwen'): '01_qwen_cache_quantization.ipynb',
+    ('vllm','qwen'): '01_qwen_optimization.ipynb',
     ('vllm','nemotron'): '02_nemotron_optimization.ipynb',
     ('nim','qwen'): '03_qwen_nim.ipynb',
     ('nim','nemotron'): '04_nemotron_nim.ipynb',

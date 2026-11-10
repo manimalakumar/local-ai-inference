@@ -13,7 +13,7 @@ This checklist is intentionally incomplete until a new Linux GPU execution suppl
 3. Create each per-notebook local config. Set `mode: "live"`, the actual GPU Python/model
    paths and pinned revisions. For Qwen, record AWQ derivation. For NIM, discover your own
    model/image/GPU profile and set `nim_profile_id`. Do not copy a replay profile ID blindly.
-4. Start with `01_qwen_cache_quantization.ipynb` and Run All. Retain all four fresh native
+4. Start with `01_qwen_optimization.ipynb` and Run All. Retain all four fresh native
    launches, AWQ smoke, reset confirmations, paired cold/warm records, logs and cleanup state.
 5. Run the other chapters in order, one model/server at a time. Enable Nemotron hybrid caching
    only after installed-backend verification; AWQ remains optional and requires its own checkpoint.
