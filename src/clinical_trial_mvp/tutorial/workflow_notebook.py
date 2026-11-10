@@ -69,7 +69,7 @@ Preparation validates local checkpoint identity and precision. It downloads weig
 
 Qwen's vLLM study requires a successful AWQ SQL smoke before all four variants. Nemotron core needs no AWQ checkpoint: its optional stretch remains separate. NIM smoke tests both serving and SQL execution; a failed required smoke blocks dependent experiments.''')
     code('prepare-model',"print(study.prepare())")
-    code('compatibility-smoke',"smoke = study.smoke()\ndisplay(JSON(smoke) if isinstance(smoke, dict) else Markdown(smoke))")
+    code('compatibility-smoke',"smoke = study.smoke()\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(smoke)))")
     if runtime=='vllm' and model=='qwen':
         md('method','''## 4. Individual experiments
 
@@ -95,9 +95,8 @@ Check response structure as well as HTTP success. Qwen enables schema enforcemen
     for name in names:
         md('experiment-'+name,'### '+name.replace('_',' ')+'\n\nPredict the effect on latency, output work and structured-answer correctness before executing this cell.')
         code('run-'+name,f'''result = study.run('{name}')  # Live: launches serving and makes new inference requests.
-display(JSON({{'status': result['status'], 'quality': result.get('quality'),
-    'timing': result.get('serving'), 'evidence_path': result.get('session_evidence_path'),
-    'session': result.get('session_id')}}))
+from clinical_trial_mvp.tutorial.result_display import result_table
+display(Markdown(result_table(result)))
 display(Markdown(interpret(study, '{name}')))''')
         if name==first:
             md('mechanism','''### Inspect the serving call and answer

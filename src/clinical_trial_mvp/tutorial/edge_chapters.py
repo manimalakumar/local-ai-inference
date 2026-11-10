@@ -53,14 +53,14 @@ With `reuse_export=true`, conversion, reference, validation and export cells ver
 
 The native recipe and generation call are in [run_qwen_edge.py](../scripts/tutorial/run_qwen_edge.py).''')
         for stage in ('download','prepare','reference','validate','export'):
-            code('edge-'+stage,f"stage_result = study.stage('{stage}')\ndisplay(JSON(stage_result))")
+            code('edge-'+stage,f"stage_result = study.stage('{stage}')\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(stage_result)))")
         md('edge-inference','''## 4. Invoke the model and check its answer
 
 The next cell starts a **new native generation process** with the verified `.pte` program and tokenizer. The runner calls `TextLLMRunner.generate()` with temperature zero, a short clinical schema and an output cap of 192 tokens. It uses no HTTP serving API and loads no saved answer. Model-load time is separate from inference timing.
 
 The following cell executes the newly generated SQL in DuckDB and compares its rows with the reference. SQL scoring occurs after native timing.''')
-        code('edge-generate',"edge = study.stage('run')\ndisplay(JSON(edge))")
-        code('edge-sql-check',"sql_check = study.stage('sql_check')\ndisplay(JSON(sql_check))")
+        code('edge-generate',"edge = study.stage('run')\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(edge)))")
+        code('edge-sql-check',"sql_check = study.stage('sql_check')\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(sql_check)))")
         md('edge-metrics','''## 5. Read this session's measurements
 
 Compare model loading, first-token time, inference latency, artifact footprint and process RSS. These are one short-question sample, not serving percentiles. RSS is CPU process memory, not GPU memory. Inspect generated SQL and its reference-result check alongside timing.''')
@@ -69,12 +69,13 @@ if current.get('session_id') == study.session_id and current.get('status') == 'c
     observer = current.get('native_observer') or {}
     ttft = ((observer['first_token_ms'] - observer['inference_start_ms']) / 1000
             if 'first_token_ms' in observer and 'inference_start_ms' in observer else None)
-    display(JSON({'session': study.session_id,
+    from clinical_trial_mvp.tutorial.result_display import result_table
+    display(Markdown(result_table({'session': study.session_id,
         'model_load_seconds': current.get('startup_seconds'), 'ttft_seconds': ttft,
         'inference_seconds': current.get('single_request_seconds'),
         'footprint_bytes': current.get('footprint_bytes'), 'memory': current.get('memory'),
         'generation': current.get('generation'),
-        'sql_check': study.results.get('sql_check')}))
+        'sql_check': study.results.get('sql_check')})))
 else:
     print('Native measurements are unavailable until generation completes in this session.')
 display(Markdown(study.report()))''')
@@ -84,16 +85,17 @@ display(Markdown(study.report()))''')
 The next cell invokes [probe_nemotron_edge.py](../scripts/tutorial/probe_nemotron_edge.py) using your installed edge environment. It tests `nemotron_h` and `nemotron_3_nano_4b` against the installed model configuration enum and saves a unique result.
 
 It reports exporter version, accepted model types and each attempt. If a recipe is accepted, conversion and native inference still require validation; acceptance alone supplies no performance result.''')
-        code('edge-probe',"probe = study.probe()\ndisplay(JSON(probe))")
+        code('edge-probe',"probe = study.probe()\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(probe)))")
         md('probe-interpretation','''## 4. Interpret the finding
 
 If the result is **blocked_compatibility**, the installed standard recipe lacks this model configuration. It does not establish that a custom port is impossible. A working port would need validated Mamba state handling, weight conversion, graph capture, supported operators, PTE loading and native generation before SQL or timing could be evaluated.''')
         code('edge-probe-summary', '''display(Markdown(study.report()))
-display(JSON({'native_inference_run': probe.get('native_inference_run', False),
+from clinical_trial_mvp.tutorial.result_display import result_table
+display(Markdown(result_table({'native_inference_run': probe.get('native_inference_run', False),
               'SQL_correctness': probe.get('sql_correctness'),
               'TTFT': probe.get('ttft_seconds'),
               'request_latency': probe.get('end_to_end_seconds'),
-              'peak_memory': probe.get('peak_memory_bytes')}))''')
+              'peak_memory': probe.get('peak_memory_bytes')})))''')
     md('edge-cleanup','''## Cleanup
 
 The edge stages execute in foreground child processes and retain no serving process. Save the notebook to retain genuine current outputs. Failures stay in the session evidence.''')
