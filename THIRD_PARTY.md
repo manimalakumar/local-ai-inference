@@ -11,4 +11,3 @@ The engine licenses are independent of this project. Installing or calling these
 
 Model weights have separate repository-specific licenses and terms. Download them explicitly from their upstream repositories, retain the relevant model notices, and check the terms before redistributing weights. Model files, embedding checkpoints, and vendored native engines are excluded from the Git export.
 
-**Project license:** no project-level license has been selected or found. The export deliberately does not invent a copyright owner or grant a new license. This does not prevent a Git commit. Choose an appropriate project license before offering general public reuse. Engine license information alone does not establish the rights to publish the surrounding project.
