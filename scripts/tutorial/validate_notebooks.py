@@ -13,7 +13,7 @@ from clinical_trial_mvp.tutorial.workflow_notebook import FILENAMES
 from clinical_trial_mvp.tutorial.serving_notebook import FILENAME as FOUNDATION
 from clinical_trial_mvp.tutorial.edge_notebook import FILENAME as EDGE
 from clinical_trial_mvp.tutorial.nemotron_edge_notebook import FILENAME as NEMOTRON_EDGE, notebook_document as nemotron_edge_document
-from clinical_trial_mvp.tutorial.notebook_io import sources
+from clinical_trial_mvp.tutorial.notebook_io import sources, source_text
 from clinical_trial_mvp.tutorial.serving_notebook import notebook_document as foundation_document
 from clinical_trial_mvp.tutorial.edge_notebook import notebook_document as edge_document
 from clinical_trial_mvp.tutorial.workflow_notebook import notebook_document as workflow_document
@@ -29,6 +29,21 @@ def local_links(document, path):
             target = path.parent / unquote(link.split('#')[0])
             if not target.exists():
                 raise ValueError(f'Broken chapter link in {path.name}: {link}')
+
+
+def validate_sources(notebook, expected, name):
+    if sources(notebook) == sources(expected):
+        return
+    actual_cells, expected_cells = notebook['cells'], expected['cells']
+    for index in range(max(len(actual_cells), len(expected_cells))):
+        actual = actual_cells[index] if index < len(actual_cells) else None
+        wanted = expected_cells[index] if index < len(expected_cells) else None
+        if actual is None or wanted is None or (actual['cell_type'], source_text(actual)) != (wanted['cell_type'], source_text(wanted)):
+            actual_id = actual.get('id', '?') if actual else '<missing>'
+            wanted_id = wanted.get('id', '?') if wanted else '<none>'
+            raise ValueError(f'Chapter source differs from builder: {name}; cell {index + 1}: '
+                             f'found {actual_id}, expected {wanted_id}. Update the builder/prose source '
+                             'and regenerate with notebook_io.write_notebook to preserve unchanged live outputs.')
 
 
 def main(argv=None):
@@ -48,8 +63,7 @@ def main(argv=None):
         expected = (foundation_document() if name == FOUNDATION else edge_document() if name == EDGE else
                     nemotron_edge_document() if name == NEMOTRON_EDGE else
                     workflow_document(*next(key for key, filename in FILENAMES.items() if filename == name)))
-        if sources(notebook) != sources(expected):
-            raise ValueError('Chapter source differs from builder: ' + name)
+        validate_sources(notebook, expected, name)
         if args.check_only:
             print(f'{name}: schema, links and builder sources passed (no execution)', flush=True)
             continue

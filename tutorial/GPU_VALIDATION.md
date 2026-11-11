@@ -1,11 +1,13 @@
-# Fresh GPU validation of the automated workflow — deferred
+# Remaining GPU validation checks
 
-**Deferred by the owner for this iteration.** Existing manual GPU experiments are completed;
-this checklist concerns the updated automation and telemetry only. No new run is requested now.
+The November 10–11 Dell sessions now establish automated completed runs for notebooks
+01–03, including native memory samples. See the [validation table](VALIDATION_STATUS.md)
+for session IDs, evidence, source-revision limits and cleanup outcomes. The original
+Nemotron NIM measurements remain valid; notebook 04 currently displays those through Replay.
 
-The archived manual Dell runs are not validation of the later automated lifecycle. CPU tests
-and replay cannot establish kernel compatibility, GPU cleanup or working native memory sampling.
-This checklist is intentionally incomplete until a new Linux GPU execution supplies evidence.
+**Additional GPU validation remains deferred.** CPU CI does not establish GPU kernel
+compatibility or independent cleanup. Use this checklist only when closing the gaps
+identified in the table; presentation/offline fixes do not require repeating inference.
 
 1. Pull the reviewed code to Dell and preserve any local executed notebooks/results first.
 2. Use the working GPU vLLM environment and the documented CPU notebook constraints. Confirm
@@ -27,7 +29,7 @@ This checklist is intentionally incomplete until a new Linux GPU execution suppl
 9. Preserve a new executed copy plus raw records/provenance. Never overwrite the November 6–7
    archive. Report model hashes, GPU UUID, driver, engine/image and request/schema settings.
 
-Only after reviewing these artifacts should the publication status change to GPU validated.
+Only the paths established by the retained artifacts should be described as GPU validated.
 Run the full 23-reference-case workload before making broader application-quality claims;
 human semantic review remains a separate step. No fresh GPU run has been performed by Codex
 on this Mac, and no absent measurements have been inferred from the archive.

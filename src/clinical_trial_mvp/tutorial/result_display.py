@@ -1,6 +1,7 @@
 """Presentation-only tables; retain complete source data in expandable details."""
 from html import escape
 import json
+from urllib.parse import quote
 
 
 def _text(value):
@@ -92,6 +93,11 @@ def result_table(result):
     if provenance:
         text += '\n\n' + _table([key.replace('_', ' ').capitalize() for key, _ in provenance],
                                 [[value for _, value in provenance]])
-    text += ('\n\n<details><summary>Full result details</summary>\n\n<pre>' +
-             escape(json.dumps(result, indent=2, ensure_ascii=False, default=str)) + '</pre>\n</details>')
+    evidence = (result.get('session_evidence_path') or
+                (result.get('_recorded') or {}).get('source') or result.get('evidence_path'))
+    if evidence and str(evidence).startswith('experiment-tracker/') and str(evidence).endswith('.json'):
+        text += '\n\n[Full request and result records](../' + quote(str(evidence), safe='/') + ').'
+    else:
+        text += ('\n\n<details><summary>Full result details</summary>\n\n<pre>' +
+                 escape(json.dumps(result, indent=2, ensure_ascii=False, default=str)) + '</pre>\n</details>')
     return text

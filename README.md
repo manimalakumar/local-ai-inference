@@ -46,7 +46,7 @@ start a server and Run All to collect new SQL-quality and serving measurements. 
 are optional NIM extensions for the two models. Chapters **05/06** form a separate CPU portability branch: Qwen has a native CPU
 smoke result; Nemotron records the unresolved export-recipe compatibility check.
 
-## Try it without a GPU
+## Explore recorded results without a GPU
 
 From a checkout of this repository, create a Python 3.11 environment and install
 the notebook dependencies:
@@ -54,8 +54,27 @@ the notebook dependencies:
 ```bash
 python3.11 -m venv .venv
 .venv/bin/python -m pip install -r requirements-notebook.txt -c constraints/cpu-notebook-py311.txt
+LOCAL_AI_LAB_MODE=replay .venv/bin/python -m jupyter lab notebooks/
+```
+
+Open a notebook and choose **Run All**. This explicit Replay override loads the
+preserved results without model downloads, Docker, or an inference runtime.
+The notebooks keep **Live** as their default when this override is absent.
+
+## Run inference
+
+Install and configure the appropriate runtime using [SETUP.md](SETUP.md): a local
+GGUF server for chapter 00, Linux/NVIDIA vLLM for 01–02, Docker/NIM for 03–04,
+or the separate ExecuTorch environment for 05–06. After configuration, launch
+Jupyter without the Replay override:
+
+```bash
+unset LOCAL_AI_LAB_MODE
 .venv/bin/python -m jupyter lab notebooks/
 ```
+
+Then select **Run All**. Follow [RUN_ALL.md](tutorial/RUN_ALL.md) for checkpoint,
+profile, startup and cleanup settings.
 
 | Mode | What happens |
 |---|---|
@@ -88,11 +107,12 @@ NIM also requires Docker, NVIDIA Container Toolkit, and a profile selected for y
 model/image/GPU combination. Compatibility on the recorded laptop doesn't establish
 compatibility on every 16 GB GPU.
 
-The CPU environment was pinned and tested on macOS arm64 with Python 3.11.15.
-The supplied validation record reports a fresh-clone Replay/Plan check and **204 tests**;
-[hosted Linux CI passed](https://github.com/manimalakumar/local-ai-inference/actions/runs/42666644695)
-for commit `56feab1`. See [package metadata](CPU_NOTEBOOK_ENVIRONMENT.json) and
-[validation history](VALIDATION.md) for the scope of those checks.
+The CPU environment is pinned for Python 3.11.15. Check the
+[current hosted CI](https://github.com/manimalakumar/local-ai-inference/actions)
+for the exact commit being reviewed; an older passing run does not validate a newer commit.
+The [validation table](tutorial/VALIDATION_STATUS.md) distinguishes published Live
+sessions, Replay, compatibility probes and cleanup evidence. See also
+[package metadata](CPU_NOTEBOOK_ENVIRONMENT.json) and [validation history](VALIDATION.md).
 
 ## What these experiments tell us
 
@@ -101,13 +121,17 @@ one concrete workload, not as evidence of performance across application domains
 
 - Structured data execution, matching reference rows, and human-reviewed semantic correctness
   are different outcomes. Human semantic review is still a follow-up.
-- Native VRAM sampling failed in the archived runs. Those records do not support
-  a claim about memory savings. Keep missing readings as unavailable, not zero.
+- Native VRAM sampling failed in the November 6–7 archive. The November 10–11
+  native sessions contain non-null readings and sample counts; these measure the
+  configured server's allocation, not isolated model-weight storage. Keep missing
+  readings as unavailable, not zero.
 - NIM/native comparisons need matching model, prompts, request contracts, backend
   settings, and thinking behavior before attributing a difference to deployment.
 - We did not obtain a validated Nemotron AWQ checkpoint. Qwen's AWQ experiment does
   not establish that the same path works for Nemotron.
-- The later automated GPU lifecycle and corrected native-memory sampler still need
-  fresh GPU validation. The completed GPU runs and offline notebook replay verify different parts of the workflow.
+- Published November 10–11 records establish completed automated runs for 01–03.
+  They do not record an exact tested source SHA or independent post-cleanup GPU
+  checks. Notebook 04 displays the earlier Nemotron NIM measurements through Replay.
+  Read the [validation table](tutorial/VALIDATION_STATUS.md) for these boundaries.
 
 

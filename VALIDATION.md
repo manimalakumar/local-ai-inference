@@ -1,5 +1,40 @@
 # Validation record
 
+## November 11, 2026 — restore the current CI gates and offline quick start
+
+Reproduced the exact `216b9ee` failure from hosted run
+[42966737199](https://github.com/manimalakumar/local-ai-inference/actions/runs/42966737199):
+`ValueError: Chapter source differs from builder: 01_qwen_optimization.ipynb`.
+The validation gate remains in place and now reports the first mismatched cell.
+Notebook 01/02 cleanup edits and removed reference sections were synchronized at
+the prose/builder source. The standalone, unconditional Docker diagnostic was
+removed from notebook 03; Docker version/access diagnostics live exclusively in
+Live-mode `Study.preflight()`. Regression tests execute both NIM notebooks in
+Plan and Replay with Docker unavailable and verify an actionable Live permission error.
+
+Regenerated 01–04 from their builders while preserving outputs and execution
+counts of unchanged code. Visible summary tables, the inspected request/response,
+and embedded figures were retained. Duplicated verbose payloads now link to the
+existing JSON evidence. Notebook 01 decreased from 3,952,281 to 168,533 bytes;
+02 decreased from 2,755,164 to 139,107 bytes. Neither the original evidence JSON
+nor archived notebooks was changed. No new inference was performed.
+
+All seven notebooks passed schema/link/builder validation and actual CPU-kernel
+Replay and Plan execution. Deterministic findings, token-analysis and SQL-review
+reports reproduced without changes. **310 CPU tests passed** locally. These include source-drift diagnostics,
+compact evidence links and the Docker-absent cases. The exact final source commit's
+full test/CI status is available in [GitHub Actions](https://github.com/manimalakumar/local-ai-inference/actions).
+
+README/SETUP now launch the CPU exploration route explicitly with
+`LOCAL_AI_LAB_MODE=replay`; the inference route unsets that override and retains
+Live defaults. The [validation table](tutorial/VALIDATION_STATUS.md) separates
+completed Dell automation, original manual measurements and compatibility probes.
+The November 10–11 artifacts establish automated completed runs for 01–03, but do
+not record the tested source SHA or independent post-cleanup GPU state. Notebook
+04's displayed measurements remain a Replay of the original Nemotron NIM run.
+Human semantic review remains deferred; reference-result matches do not establish
+semantic correctness across other data or workloads.
+
 ## November 9, 2026 — notebook 00 local-serving scope and readable results
 
 Removed the vLLM/SGLang concurrency section, its execution cell and saved GPU

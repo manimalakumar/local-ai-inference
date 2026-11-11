@@ -15,8 +15,17 @@ python3.11 -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-The exact CPU pins were tested on macOS arm64, Python 3.11.15. Hosted Linux CI passed
-for source commit `56feab1`; see [the scoped validation record](VALIDATION.md). This environment includes Jupyter, replay, plotting and test tools.
+Launch the CPU-only exploration route explicitly:
+
+```bash
+LOCAL_AI_LAB_MODE=replay .venv/bin/python -m jupyter lab notebooks/
+```
+
+For fresh inference, configure the appropriate runtime below, then run
+`unset LOCAL_AI_LAB_MODE` before launching Jupyter. Live remains the notebook default.
+The exact CPU pins were tested on macOS arm64, Python 3.11.15. See
+[current CI](https://github.com/manimalakumar/local-ai-inference/actions) and the
+[validation table](tutorial/VALIDATION_STATUS.md) for the exact scope. This environment includes Jupyter, replay, plotting and test tools.
 It installs no vLLM, GPU Torch or model weights. See `CPU_NOTEBOOK_ENVIRONMENT.json`.
 
 ## Notebook 00: Replay or run from scratch
@@ -26,7 +35,7 @@ llama.cpp/Ollama serving and structured-answer quality.
 
 | Option | Setup | Result |
 |---|---|---|
-| **Replay — optional** | Install the notebook environment above and Run All | Read the supplied tables and a checked Nemotron GGUF answer |
+| **Replay — optional** | Install the notebook environment above, launch with `LOCAL_AI_LAB_MODE=replay`, and Run All | Read the supplied tables and a checked Nemotron GGUF answer |
 | **Live — default, run from scratch** | Prepare a local GGUF server using the steps below, then Run All | Generate plans/SQL, execute queries and measure your baseline |
 
 Both use the supplied synthetic database, question set and retrieval selection.

@@ -42,3 +42,15 @@ def test_probe_table_does_not_imply_inference_and_shows_compatibility_attempts()
     assert '| nemotron_h | No | unsupported |' in text
     assert 'Native inference run: **No**' in text
     assert '0.000' not in text
+
+
+def test_evidence_backed_tables_link_raw_records_without_repeating_them():
+    result = dict(status='completed', session_evidence_path='experiment-tracker/mvp4/workflow/example.json',
+                  quality=dict(cases=4,sql_executed=3,result_equivalent=2,reference_scored=4),
+                  records={'serving':[{'content':'verbose-token-stream'}]*20})
+    before = deepcopy(result)
+    text = result_table(result)
+    assert '| 3/4 | 2/4 |' in text
+    assert '[Full request and result records](../experiment-tracker/mvp4/workflow/example.json)' in text
+    assert 'verbose-token-stream' not in text and '<details>' not in text
+    assert result == before

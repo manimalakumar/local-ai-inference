@@ -678,3 +678,14 @@ CHAPTER_PROSE['01_qwen_optimization.ipynb']['method'] = CHAPTER_PROSE['01_qwen_o
 CHAPTER_PROSE['02_nemotron_optimization.ipynb']['prepare'] += '''
 For the optional AWQ attempt, edit `tutorial/config/vllm-nemotron.local.json` before starting the notebook: set `run_awq=true`, `awq_source` to a compatible checkpoint repository, `awq_revision` to its exact 40-character commit SHA, `awq_derivation` to the documented link to your exact base revision, and `awq_snapshot` to its local directory. Set `download_models=true` only if you want the pinned checkpoint downloaded. The final AWQ cell validates architecture, tokenizer and 4-bit AWQ metadata, starts the server and runs a SQL smoke before benchmarking. Without a compatible source, leave `run_awq=false`; the core experiments still run. Other four-bit formats are not interchangeable with AWQ.
 '''
+
+# Synchronize the learner edits with the builders; hardware evidence lives in docs/JSON.
+for _filename in ('01_qwen_optimization.ipynb', '02_nemotron_optimization.ipynb', '03_qwen_nim.ipynb'):
+    CHAPTER_PROSE[_filename].pop('references', None)
+    CHAPTER_PROSE[_filename]['intro'] = CHAPTER_PROSE[_filename]['intro'].replace(
+        'For the previous Dell measurements, use the reference links at the end.',
+        'Full request and result records are linked from each experiment.')
+for _filename in ('01_qwen_optimization.ipynb', '02_nemotron_optimization.ipynb'):
+    CHAPTER_PROSE[_filename]['cleanup'] = (
+        '## 6. Cleanup\n\nSave the notebook to retain Live outputs. Native servers stop after each experiment. '
+        'Cleanup is safe to repeat and only stops servers started by this notebook.\n')

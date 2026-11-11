@@ -122,8 +122,13 @@ def test_nim_preflight_checks_local_image_gpu_and_profile(tmp_path,monkeypatch):
     monkeypatch.setattr(w,'endpoint_busy',lambda:False)
     monkeypatch.setattr(study,'_revisions',lambda **k:('a'*40,None))
     calls=[]
-    monkeypatch.setattr(w.subprocess,'check_output',lambda command,**k:calls.append(command) or 'fixture GPU')
-    assert study.preflight()['selected_profile']=='chosen-profile'
+    def check(command, **kwargs):
+        calls.append(command)
+        return '"29.9.3"' if command[:2] == ['docker', 'info'] else 'fixture GPU'
+    monkeypatch.setattr(w.subprocess, 'check_output', check)
+    details = study.preflight()
+    assert details['selected_profile']=='chosen-profile'
+    assert details['docker_version']=='29.9.3'
     assert any('--pull=never' in command and '--gpus' in command for command in calls)
     assert not any('pull' in command for command in calls)
 
@@ -198,3 +203,53 @@ def test_failed_rerun_drops_earlier_success_records(tmp_path,monkeypatch):
     with pytest.raises(RuntimeError,match='rerun failed'):study.run('fp16_cache_off')
     result=study.results['fp16_cache_off']
     assert result['status']=='failed' and not result.get('records') and not result.get('quality')
+
+
+@pytest.mark.parametrize('mode', ['plan', 'replay'])
+@pytest.mark.parametrize('model', ['qwen', 'nemotron'])
+def test_nim_run_all_without_docker_installed(monkeypatch, mode, model):
+    """Execute the published cells, so a stray unguarded diagnostic cannot hide in JSON."""
+    import IPython.display
+    original = w.subprocess.run
+    original_output = w.subprocess.check_output
+    docker_calls = []
+    def guard(function):
+        def checked(command, *args, **kwargs):
+            if command and str(command[0]) == 'docker':
+                docker_calls.append(command)
+                raise FileNotFoundError('Docker is not installed')
+            return function(command, *args, **kwargs)
+        return checked
+    monkeypatch.setattr(w.subprocess, 'run', guard(original))
+    monkeypatch.setattr(w.subprocess, 'check_output', guard(original_output))
+    monkeypatch.setenv('LOCAL_AI_LAB_MODE', mode)
+    monkeypatch.setenv('MPLBACKEND', 'Agg')
+    monkeypatch.setattr(IPython.display, 'display', lambda *a, **k: None)
+    monkeypatch.chdir(ROOT)
+    name = '03_qwen_nim.ipynb' if model == 'qwen' else '04_nemotron_nim.ipynb'
+    document = json.loads((ROOT / 'notebooks' / name).read_text())
+    namespace = {}
+    for cell in document['cells']:
+        if cell['cell_type'] == 'code':
+            exec(compile(''.join(cell['source']), name, 'exec'), namespace)
+    assert namespace['study'].mode == mode
+    assert not docker_calls
+
+
+def test_live_nim_docker_permission_diagnostic_is_in_preflight(tmp_path, monkeypatch):
+    study = w.Study('nim', 'qwen', root=tmp_path, mode='live')
+    study.base.mkdir(parents=True)
+    (study.base/'config.json').write_text('{}')
+    monkeypatch.setattr(w.platform, 'system', lambda: 'Linux')
+    monkeypatch.setattr(w, 'endpoint_busy', lambda: False)
+    monkeypatch.setattr(study, '_revisions', lambda **k: ('a'*40, None))
+    def output(command, **kwargs):
+        if command[0] == 'nvidia-smi':
+            return 'Test GPU, 16384 MiB, GPU-test'
+        assert command == ['docker', 'info', '--format', '{{json .ServerVersion}}']
+        assert kwargs['stderr'] == w.subprocess.STDOUT
+        raise w.subprocess.CalledProcessError(1, command, output='permission denied at docker.sock')
+    monkeypatch.setattr(w.subprocess, 'check_output', output)
+    with pytest.raises(ValueError, match='start Jupyter from that Docker-enabled terminal') as error:
+        study.preflight()
+    assert 'permission denied' in str(error.value)

@@ -212,7 +212,15 @@ class Study:
                     raise ValueError('CUDA is unavailable in vllm_python')
                 details['runtime'] = info
             else:
-                subprocess.check_output(['docker', 'info', '--format', '{{json .ServerVersion}}'], text=True, timeout=30)
+                try:
+                    version = subprocess.check_output(
+                        ['docker', 'info', '--format', '{{json .ServerVersion}}'],
+                        text=True, timeout=30, stderr=subprocess.STDOUT)
+                except (OSError, subprocess.SubprocessError) as exc:
+                    diagnostic = getattr(exc, 'output', None) or str(exc)
+                    raise ValueError('Docker is unavailable to this notebook kernel. Verify docker info in a terminal, '
+                                     'then start Jupyter from that Docker-enabled terminal. Details: ' + diagnostic.strip()) from exc
+                details['docker_version'] = json.loads(version)
                 profile_path = self.root / self.config['nim_profile_path']
                 profile = json.loads(profile_path.read_text()) if profile_path.exists() else {}
                 saved_image = profile.get('image') or ''

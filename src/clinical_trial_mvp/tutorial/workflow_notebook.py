@@ -124,7 +124,8 @@ The figure uses only successful measured rows selected in this session. Missing 
 
 Save the notebook to retain genuine Live outputs. Native servers stop after each row. Stop the owned NIM container before switching models or pausing. Cleanup is safe to repeat and does not stop external servers.''')
     code('cleanup-owned-servers','print(study.close())')
-    md('references',f'''## Reference: previously measured results
+    if (runtime, model) == ('nim', 'nemotron'):
+        md('references',f'''## Reference: previously measured results
 
 The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](history/dell-2026-11-07/{ARCHIVE_FILENAMES[(runtime,model)].replace(' ','%20')}). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
 
