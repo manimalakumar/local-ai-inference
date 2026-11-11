@@ -7,7 +7,7 @@ This source tree integrates with installed Python packages and separately launch
 | vLLM | Apache License 2.0 | https://github.com/vllm-project/vllm/blob/main/LICENSE |
 | SGLang | Apache License 2.0 | https://github.com/sgl-project/sglang/blob/main/LICENSE |
 
-The engine licenses are independent of this project's license. Installing or calling these engines does not assign their license to the surrounding project. Retain applicable notices if separately redistributing upstream code or distributions. Other Python dependencies remain governed by their upstream licenses; this file is not a complete transitive dependency bill of materials.
+The engine licenses are independent of this project. Installing or calling these engines does not assign their license to the surrounding project. Retain applicable notices if separately redistributing upstream code or distributions. Other Python dependencies remain governed by their upstream licenses; this file is not a complete transitive dependency bill of materials.
 
 Model weights have separate repository-specific licenses and terms. Download them explicitly from their upstream repositories, retain the relevant model notices, and check the terms before redistributing weights. Model files, embedding checkpoints, and vendored native engines are excluded from the Git export.
 
