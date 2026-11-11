@@ -68,9 +68,9 @@ Chapters 01–06 expose `MODE` in their first configuration cell:
 
 | Mode | What happens |
 |---|---|
-| **Live — default** | Configure the target environment and run cells in order to collect new measurements. |
+| **Live – default** | Configure the target environment and run cells in order to collect new measurements. |
 | **Plan** | Inspect the proposed configuration and launch commands without contacting an inference server. |
-| **Replay — explicit** | Read the preserved measurements and rebuild their tables without inference. |
+| **Replay – explicit** | Read the preserved measurements and rebuild their tables without inference. |
 
 For configuration, preflight and execution, follow the [configuration guide](tutorial/RUN_ALL.md). Change your
 machine settings in the local JSON configuration, not scattered notebook cells.
