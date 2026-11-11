@@ -165,8 +165,24 @@ Set `mode` to `replay` and restart the kernel, or start Jupyter with:
 LOCAL_AI_LAB_MODE=replay .venv/bin/python -m jupyter lab notebooks/00_local_serving.ipynb
 ```
 
-Replay needs no model or server. The new local Live starter is covered by CPU
-configuration/guard tests; its end-to-end native run still needs validation.
+Replay needs no model or server.
+
+### Notebook 00 validation scope
+
+**Completed live session:** on 10 November 2026, notebook 00 ran on a Mac CPU
+using the pinned Nemotron Q4_K_M GGUF and an existing native **llama.cpp b11887**
+server. Full/retrieved schema experiments, local serving and a checked structured
+answer completed. See the [execution evidence and limitations](tutorial/VALIDATION_STATUS.md)
+and [actual server provenance](experiment-tracker/tutorial/foundation/live-nb00-20261110T051644_860809Z/server.json).
+
+**Still to validate from a fresh clone:** the complete installation, model
+download, configuration, server launch and Run All sequence documented above,
+including its **llama-cpp-python** starter. The completed session reused local
+artifacts and a native server; it does not establish that this separate setup
+path has completed end to end on a clean machine. Configuration/guard tests and
+CPU Replay/Plan CI cover their respective paths, not fresh Live setup. The optional
+Ollama setup also remains outside that completed live session's validation scope.
+
 Continue to chapters 01–04 for GPU optimization and NIM deployment.
 
 ## Preserve the synthetic data
