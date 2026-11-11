@@ -229,7 +229,7 @@ Verify `docker ps` and the GPU test without sudo. **Restart Jupyter from the gro
 terminal**: a running Jupyter process does not acquire new membership. `--rm` removes only
 the temporary test container, not your files or downloaded Ubuntu image.
 
-## NIM container image — optional prerequisite
+## NIM container image – optional prerequisite
 
 After Docker GPU access works, download the same model-free image used by both NIM chapters:
 
