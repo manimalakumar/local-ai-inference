@@ -678,6 +678,3 @@ CHAPTER_PROSE['01_qwen_optimization.ipynb']['method'] = CHAPTER_PROSE['01_qwen_o
 CHAPTER_PROSE['02_nemotron_optimization.ipynb']['prepare'] += '''
 For the optional AWQ attempt, edit `tutorial/config/vllm-nemotron.local.json` before starting the notebook: set `run_awq=true`, `awq_source` to a compatible checkpoint repository, `awq_revision` to its exact 40-character commit SHA, `awq_derivation` to the documented link to your exact base revision, and `awq_snapshot` to its local directory. Set `download_models=true` only if you want the pinned checkpoint downloaded. The final AWQ cell validates architecture, tokenizer and 4-bit AWQ metadata, starts the server and runs a SQL smoke before benchmarking. Without a compatible source, leave `run_awq=false`; the core experiments still run. Other four-bit formats are not interchangeable with AWQ.
 '''
-
-# Retain the measured Dell NIM results alongside the current live execution path.
-CHAPTER_PROSE['04_nemotron_nim.ipynb']['intro'] += '\n**Live Dell GPU run — 7 November 2026.** The results below come from that run. The default remains `MODE="live"`; Run All collects new measurements on your configured GPU.\n'
