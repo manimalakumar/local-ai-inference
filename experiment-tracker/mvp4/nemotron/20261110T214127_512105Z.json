@@ -1,0 +1,2265 @@
+{
+  "run_id": "20261110T214127_512105Z",
+  "experiment": "MVP4/Nemotron/schema_retrieved",
+  "configuration": {
+    "runtime": "vllm",
+    "host": "cuda",
+    "hardware": "GPU host (verify SKU)",
+    "model": "clinical-trial-mvp3",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+    "base_url": "http://127.0.0.1:8000",
+    "context": 8192,
+    "dtype": "float16",
+    "profile": "retrieved",
+    "quantization": null,
+    "prefix_cache": false,
+    "concurrency": 1,
+    "max_num_seqs": 4,
+    "max_tokens": 1024,
+    "reasoning": false,
+    "repeats": 5,
+    "warmups": 1,
+    "mamba_ssm_cache_dtype": "float32",
+    "trust_remote_code": true,
+    "priority": "core",
+    "experiment": "MVP4/Nemotron/schema_retrieved",
+    "provenance": "experiment-tracker/mvp4/workflow/vllm-nemotron-20261110T213732-bfb86c649c-bfe56230.json"
+  },
+  "runtime": "vllm",
+  "hardware": "GPU host (verify SKU)",
+  "inputs": {
+    "dataset_sha256": "a9bfd3e02ecfe71746fb453d552e3998b21ea9b77a3c9842e9b23f8089e2c07a",
+    "source_sha256": "89de3bf7f24d3467d0d8ccbc6317410ac3773a42c9ee752b71882286287caa11",
+    "case_ids": [
+      "eval_001",
+      "eval_002",
+      "eval_005",
+      "eval_007"
+    ],
+    "contexts_sha256": "28c2d3fd119b99282cb73d4efb0eaef73de8f27830e875cb6a1a2cdac333075b",
+    "prompts_sha256": "f7e93a3ef70ec87d8a24a8fd82360c31c01bb8f40d785cdd3f8415d29f81e3d8",
+    "cache_sha256": "3b3e711a685321de48f1981fbe29d9f107cec7f9b47cf9519b38a6ca303980e9"
+  },
+  "status": "completed",
+  "evidence": "hardware",
+  "quality": {
+    "cases": 4,
+    "reference_scored": 4,
+    "result_equivalent": 1,
+    "first_pass_correct": 1,
+    "behavior_scored": 0,
+    "behavior_correct": 0,
+    "latency_p50_seconds": 8.11391696800274,
+    "latency_p95_seconds": 9.075953946399386,
+    "semantic": {
+      "correct": 0,
+      "reviewed": 0,
+      "total": 4
+    },
+    "sql_executed": 1
+  },
+  "serving": {
+    "requests": 20,
+    "successful": 20,
+    "failed": 0,
+    "slo_successful": 20,
+    "measurement_seconds": 54.213144890993135,
+    "requests_per_second": 0.36891421887098014,
+    "slo_requests_per_second": 0.36891421887098014,
+    "output_tokens_per_second": 46.11427735887252,
+    "ttft_p50_seconds": 0.20534461799252313,
+    "ttft_p95_seconds": 0.2703929777511803,
+    "e2e_p50_seconds": 2.6068926865045796,
+    "e2e_p95_seconds": 3.5532733642481618,
+    "result_equivalent": 10,
+    "reference_scored": 20,
+    "semantic": {
+      "correct": 0,
+      "reviewed": 0,
+      "total": 20
+    }
+  },
+  "memory": {
+    "peak_bytes": 15419310080.0,
+    "scope": "device VRAM (includes idle allocation)",
+    "sample_count": 669,
+    "sampling_interval_seconds": 0.1,
+    "error": null
+  },
+  "records": {
+    "quality": [
+      {
+        "case_id": "eval_001",
+        "repeat": 0,
+        "expected_behavior": "answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query filters for these statuses, groups by treatment_arm, and counts the number of subjects per arm, which matches the intent.\"\n}",
+            "sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": true,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": true,
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "subject_count"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Placebo",
+                  "subject_count": 44
+                },
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "subject_count": 40
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "subject_count": 38
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "subject_count": 48
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "error": null,
+            "inference_seconds": 2.4845977180084446,
+            "query_seconds": 1.3592320640018443,
+            "privacy_check_seconds": 0.0011083730059908703,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:26.910254+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query filters for these statuses, groups by treatment_arm, and counts the number of subjects per arm, which matches the intent.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.26921308900637086,
+              "e2e_seconds": 2.4841715869988548,
+              "prompt_tokens": 542,
+              "output_tokens": 111,
+              "decode_tokens_per_second": 49.662330061578096
+            }
+          }
+        ],
+        "plan": {
+          "population": "subjects where screening_status IN ('Enrolled', 'Randomized')",
+          "measure": "count of subjects",
+          "grouping": "treatment_arm",
+          "time_window": "none",
+          "filters": "screening_status IN ('Enrolled', 'Randomized')",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [],
+        "question_timeout_seconds": 180.0,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"subjects where screening_status IN ('Enrolled', 'Randomized')\",\n  \"measure\": \"count of subjects\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nRelationships:\n\nClinical business definitions:\n- Enrolled subjects: screening_status IN ('Enrolled', 'Randomized'); count subjects, not child rows.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nHow many subjects are Enrolled or Randomized by treatment arm?\n\nJSON:",
+        "plan_inference_seconds": 2.5525596469960874,
+        "plan_model_metrics": {
+          "request_started_at": "2026-11-10T21:42:24.357531+00:00",
+          "success": true,
+          "content": "{\n  \"population\": \"subjects where screening_status IN ('Enrolled', 'Randomized')\",\n  \"measure\": \"count of subjects\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 0.6857259500102373,
+          "e2e_seconds": 2.5521607950067846,
+          "prompt_tokens": 550,
+          "output_tokens": 94,
+          "decode_tokens_per_second": 49.82761667213303
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nRelationships:\n\nClinical business definitions:\n- Enrolled subjects: screening_status IN ('Enrolled', 'Randomized'); count subjects, not child rows.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\", \"grouping\": \"treatment_arm\", \"measure\": \"count of subjects\", \"needs_clarification\": false, \"population\": \"subjects where screening_status IN ('Enrolled', 'Randomized')\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[]\n\nQuestion:\nHow many subjects are Enrolled or Randomized by treatment arm?\n\nJSON:",
+        "repair_prompt": null,
+        "schema_selection": {
+          "mode": "retrieved",
+          "tables": [
+            "subjects"
+          ],
+          "columns": {
+            "subjects": [
+              "subject_id",
+              "treatment_arm",
+              "screening_status",
+              "enrollment_date"
+            ]
+          },
+          "fact_ids": [
+            "definition:enrollment",
+            "column:subjects.treatment_arm",
+            "column:subjects.screening_status",
+            "column:subjects.enrollment_date",
+            "table:subjects",
+            "column:trials.target_enrollment",
+            "column:lab_results.subject_id",
+            "relationship:3",
+            "column:subjects.subject_id",
+            "relationship:8",
+            "column:trials.indication",
+            "relationship:2"
+          ],
+          "scores": {
+            "definition:enrollment": 0.52829,
+            "column:subjects.treatment_arm": 0.48853,
+            "column:subjects.screening_status": 0.41099,
+            "column:subjects.enrollment_date": 0.28449,
+            "table:subjects": 0.28052,
+            "column:trials.target_enrollment": 0.27009,
+            "column:lab_results.subject_id": 0.21569,
+            "relationship:3": 0.21058,
+            "column:subjects.subject_id": 0.193,
+            "relationship:8": 0.18102,
+            "column:trials.indication": 0.17991,
+            "relationship:2": 0.16744
+          },
+          "prompt_chars": 711,
+          "retrieval_seconds": 0.005874458991456777
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "retrieve_schema",
+          "execute_readonly_sql"
+        ],
+        "latency_seconds": 6.418531699004234,
+        "inference_seconds": 5.037157365004532,
+        "query_seconds": 1.3592320640018443,
+        "privacy_check_seconds": 0.0011194200196769089,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": true,
+          "schema_compliance": true,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 0,
+        "expected_behavior": "answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s LEFT JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id\",\n  \"rationale\": \"The question asks for the count of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We use a LEFT JOIN to include sites with zero enrolled subjects, as per the zero_groups rule. We group by site_id to provide a count per site, using COUNT(DISTINCT subject_id) to avoid double-counting. The result includes site_id and subject_count, which are the minimum required columns.\"\n}",
+            "sql": "SELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s LEFT JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": false,
+            "intent_contract_violations": [
+              "zero_groups_filter: Put qualifying child filters in JOIN ON or conditional aggregates, not WHERE, so empty groups survive."
+            ],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "Question-intent contract violation: zero_groups_filter: Put qualifying child filters in JOIN ON or conditional aggregates, not WHERE, so empty groups survive.",
+            "inference_seconds": 3.4572139820083976,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.0010813229891937226,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:32.935645+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s LEFT JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id\",\n  \"rationale\": \"The question asks for the count of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We use a LEFT JOIN to include sites with zero enrolled subjects, as per the zero_groups rule. We group by site_id to provide a count per site, using COUNT(DISTINCT subject_id) to avoid double-counting. The result includes site_id and subject_count, which are the minimum required columns.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.2716918749938486,
+              "e2e_seconds": 3.4568106369988527,
+              "prompt_tokens": 593,
+              "output_tokens": 159,
+              "decode_tokens_per_second": 49.60568562929829
+            }
+          },
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id\",\n  \"rationale\": \"The error occurred because the WHERE clause filtered out sites with no enrolled or randomized subjects, leaving zero groups. To fix this, the join must be placed in the ON clause to include all sites, and the screening_status filter must be applied in the ON clause to ensure only relevant subjects are counted. This ensures no site is excluded due to lack of matching subjects, and the count reflects only subjects with screening_status IN ('Enrolled', 'Randomized').\"\n}",
+            "sql": "SELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": false,
+            "intent_contract_violations": [
+              "zero_groups: Preserve every sites row with LEFT JOIN paths through subjects.",
+              "zero_groups_filter: Put qualifying child filters in JOIN ON or conditional aggregates, not WHERE, so empty groups survive."
+            ],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "Question-intent contract violation: zero_groups: Preserve every sites row with LEFT JOIN paths through subjects. | zero_groups_filter: Put qualifying child filters in JOIN ON or conditional aggregates, not WHERE, so empty groups survive.",
+            "inference_seconds": 3.3637917730084155,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.0009551769908284768,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:36.394423+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id\",\n  \"rationale\": \"The error occurred because the WHERE clause filtered out sites with no enrolled or randomized subjects, leaving zero groups. To fix this, the join must be placed in the ON clause to include all sites, and the screening_status filter must be applied in the ON clause to ensure only relevant subjects are counted. This ensures no site is excluded due to lack of matching subjects, and the count reflects only subjects with screening_status IN ('Enrolled', 'Randomized').\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.2907443339936435,
+              "e2e_seconds": 3.3634317830001237,
+              "prompt_tokens": 660,
+              "output_tokens": 154,
+              "decode_tokens_per_second": 49.79354475167036
+            }
+          }
+        ],
+        "plan": {
+          "population": "subjects with screening_status IN ('Enrolled', 'Randomized')",
+          "measure": "count of distinct subject_id per site",
+          "grouping": "each site",
+          "time_window": "none",
+          "filters": "screening_status IN ('Enrolled', 'Randomized')",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [
+          "zero_groups: Include every sites group, including zero qualifying rows; start from the parent table with outer joins."
+        ],
+        "question_timeout_seconds": 180.0,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"subjects with screening_status IN ('Enrolled', 'Randomized')\",\n  \"measure\": \"count of distinct subject_id per site\",\n  \"grouping\": \"each site\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nRelationships:\n- subjects.site_id -> sites.site_id\n\nClinical business definitions:\n- Enrolled subjects: screening_status IN ('Enrolled', 'Randomized'); count subjects, not child rows.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nHow many subjects have enrolled at each site?\n\nJSON:",
+        "plan_inference_seconds": 2.1592349629936507,
+        "plan_model_metrics": {
+          "request_started_at": "2026-11-10T21:42:30.776179+00:00",
+          "success": true,
+          "content": "{\n  \"population\": \"subjects with screening_status IN ('Enrolled', 'Randomized')\",\n  \"measure\": \"count of distinct subject_id per site\",\n  \"grouping\": \"each site\",\n  \"time_window\": \"none\",\n  \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 0.2524249460111605,
+          "e2e_seconds": 2.1588549920124933,
+          "prompt_tokens": 577,
+          "output_tokens": 96,
+          "decode_tokens_per_second": 49.831358983907656
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nRelationships:\n- subjects.site_id -> sites.site_id\n\nClinical business definitions:\n- Enrolled subjects: screening_status IN ('Enrolled', 'Randomized'); count subjects, not child rows.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\", \"grouping\": \"each site\", \"measure\": \"count of distinct subject_id per site\", \"needs_clarification\": false, \"population\": \"subjects with screening_status IN ('Enrolled', 'Randomized')\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[\"zero_groups: Include every sites group, including zero qualifying rows; start from the parent table with outer joins.\"]\n\nQuestion:\nHow many subjects have enrolled at each site?\n\nJSON:",
+        "repair_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: sites\n- site_id VARCHAR: Primary site identifier.\n- enrollment_target INTEGER: Planned enrollment for the site.\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- site_id VARCHAR: Foreign key to sites.site_id.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n- enrollment_date DATE: Subject enrollment date when available.\n\nRelationships:\n- subjects.site_id -> sites.site_id\n\nClinical business definitions:\n- Enrolled subjects: screening_status IN ('Enrolled', 'Randomized'); count subjects, not child rows.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (repair any field that conflicts with the error below):\n{\"clarification_question\": \"\", \"filters\": \"screening_status IN ('Enrolled', 'Randomized')\", \"grouping\": \"each site\", \"measure\": \"count of distinct subject_id per site\", \"needs_clarification\": false, \"population\": \"subjects with screening_status IN ('Enrolled', 'Randomized')\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nThe prior SQL failed. Repair it once.\n\nQuestion:\nHow many subjects have enrolled at each site?\n\nFailed SQL:\nSELECT s.site_id, COUNT(DISTINCT s.subject_id) AS subject_count FROM sites s LEFT JOIN subjects sub ON s.site_id = sub.site_id WHERE sub.screening_status IN ('Enrolled', 'Randomized') GROUP BY s.site_id\n\nError:\nQuestion-intent contract violation: zero_groups_filter: Put qualifying child filters in JOIN ON or conditional aggregates, not WHERE, so empty groups survive.\n\nReturn JSON only with keys \"sql\" and \"rationale\".\nJSON:",
+        "schema_selection": {
+          "mode": "retrieved",
+          "tables": [
+            "sites",
+            "subjects"
+          ],
+          "columns": {
+            "sites": [
+              "site_id",
+              "enrollment_target"
+            ],
+            "subjects": [
+              "subject_id",
+              "site_id",
+              "screening_status",
+              "enrollment_date"
+            ]
+          },
+          "fact_ids": [
+            "column:subjects.enrollment_date",
+            "column:sites.enrollment_target",
+            "relationship:1",
+            "definition:enrollment",
+            "column:subjects.site_id",
+            "column:subjects.screening_status",
+            "column:data_queries.site_id",
+            "relationship:2",
+            "column:screen_failures.site_id",
+            "table:subjects",
+            "relationship:8",
+            "relationship:3"
+          ],
+          "scores": {
+            "column:subjects.enrollment_date": 0.36913,
+            "column:sites.enrollment_target": 0.36311,
+            "relationship:1": 0.36136,
+            "definition:enrollment": 0.3556,
+            "column:subjects.site_id": 0.34324,
+            "column:subjects.screening_status": 0.29506,
+            "column:data_queries.site_id": 0.28863,
+            "relationship:2": 0.27231,
+            "column:screen_failures.site_id": 0.2592,
+            "table:subjects": 0.24909,
+            "relationship:8": 0.24709,
+            "relationship:3": 0.24563
+          },
+          "prompt_chars": 851,
+          "retrieval_seconds": 0.005007334009860642
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "retrieve_schema"
+        ],
+        "latency_seconds": 8.983089708999614,
+        "inference_seconds": 8.980240718010464,
+        "query_seconds": 0.0,
+        "privacy_check_seconds": 0.0020439619838725775,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": true,
+          "schema_compliance": null,
+          "sql_execution_success": false,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 1,
+          "repair_success": false,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 0,
+        "expected_behavior": "answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')\",\n  \"rationale\": \"The question asks for the count of missed visits (status='Missed') scheduled in the previous calendar month. The SQL filters visits by status='Missed' and planned_date within the inclusive start and exclusive current-month start of the previous calendar month, then counts them. This matches the plan: overall count, no grouping, and uses only necessary columns.\"\n}",
+            "sql": "SELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')",
+            "sql_safety": false,
+            "semantic_filter_check": null,
+            "intent_contract_check": null,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "SQL parser rejected query: Parser Error: Wrong number of arguments provided to DATE function",
+            "inference_seconds": 2.7227477850101423,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.0013788659998681396,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:41.617606+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')\",\n  \"rationale\": \"The question asks for the count of missed visits (status='Missed') scheduled in the previous calendar month. The SQL filters visits by status='Missed' and planned_date within the inclusive start and exclusive current-month start of the previous calendar month, then counts them. This matches the plan: overall count, no grouping, and uses only necessary columns.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.2674544970068382,
+              "e2e_seconds": 2.7220804679964203,
+              "prompt_tokens": 521,
+              "output_tokens": 123,
+              "decode_tokens_per_second": 49.702073326803315
+            }
+          },
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')\",\n  \"rationale\": \"The DATE function in DuckDB requires a single argument; using a tuple like ('now', '-1 month') is invalid. The corrected query uses the proper syntax DATE('now', '-1 month') to compute the start of the last month, ensuring only visits with status 'Missed' and planned dates within the last month are counted.\"\n}",
+            "sql": "SELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')",
+            "sql_safety": false,
+            "semantic_filter_check": null,
+            "intent_contract_check": null,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": null,
+            "execution_success": false,
+            "query_result": null,
+            "error": "SQL parser rejected query: Parser Error: Wrong number of arguments provided to DATE function",
+            "inference_seconds": 2.6613471479940927,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.001018843991914764,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:44.341839+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')\",\n  \"rationale\": \"The DATE function in DuckDB requires a single argument; using a tuple like ('now', '-1 month') is invalid. The corrected query uses the proper syntax DATE('now', '-1 month') to compute the start of the last month, ensuring only visits with status 'Missed' and planned dates within the last month are counted.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.26618863199837506,
+              "e2e_seconds": 2.6608168609964196,
+              "prompt_tokens": 557,
+              "output_tokens": 120,
+              "decode_tokens_per_second": 49.694561585366316
+            }
+          }
+        ],
+        "plan": {
+          "population": "all visits with status='Missed'",
+          "measure": "count of visits",
+          "grouping": "overall",
+          "time_window": "last month",
+          "filters": "status='Missed'",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [
+          "previous_calendar_month: Count Missed visits by planned_date in the entire previous calendar month, with inclusive start and exclusive current-month start."
+        ],
+        "question_timeout_seconds": 180.0,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"all visits with status='Missed'\",\n  \"measure\": \"count of visits\",\n  \"grouping\": \"overall\",\n  \"time_window\": \"last month\",\n  \"filters\": \"status='Missed'\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed. Examples: Completed, Missed, Pending, Screen Failed.\n\nRelationships:\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nHow many scheduled visits were missed last month?\n\nJSON:",
+        "plan_inference_seconds": 1.8578226009994978,
+        "plan_model_metrics": {
+          "request_started_at": "2026-11-10T21:42:39.759478+00:00",
+          "success": true,
+          "content": "{\n  \"population\": \"all visits with status='Missed'\",\n  \"measure\": \"count of visits\",\n  \"grouping\": \"overall\",\n  \"time_window\": \"last month\",\n  \"filters\": \"status='Missed'\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 0.2644540799956303,
+          "e2e_seconds": 1.8570162759860978,
+          "prompt_tokens": 517,
+          "output_tokens": 80,
+          "decode_tokens_per_second": 49.605597947066215
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed. Examples: Completed, Missed, Pending, Screen Failed.\n\nRelationships:\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"status='Missed'\", \"grouping\": \"overall\", \"measure\": \"count of visits\", \"needs_clarification\": false, \"population\": \"all visits with status='Missed'\", \"ranking\": \"none\", \"time_window\": \"last month\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[\"previous_calendar_month: Count Missed visits by planned_date in the entire previous calendar month, with inclusive start and exclusive current-month start.\"]\n\nQuestion:\nHow many scheduled visits were missed last month?\n\nJSON:",
+        "repair_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: visits\n- visit_id VARCHAR: Primary visit identifier.\n- visit_name VARCHAR: Visit label, such as Screening, Baseline, Week 4.\n- planned_date DATE: Planned visit date.\n- actual_date DATE: Actual visit date when completed.\n- status VARCHAR: Visit status: Completed, Missed, Pending, or Screen Failed. Examples: Completed, Missed, Pending, Screen Failed.\n\nRelationships:\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (repair any field that conflicts with the error below):\n{\"clarification_question\": \"\", \"filters\": \"status='Missed'\", \"grouping\": \"overall\", \"measure\": \"count of visits\", \"needs_clarification\": false, \"population\": \"all visits with status='Missed'\", \"ranking\": \"none\", \"time_window\": \"last month\"}\n\nThe prior SQL failed. Repair it once.\n\nQuestion:\nHow many scheduled visits were missed last month?\n\nFailed SQL:\nSELECT COUNT(*) AS count FROM visits WHERE status='Missed' AND planned_date >= DATE('now', '-1 month') AND planned_date < DATE('now', '0 month')\n\nError:\nSQL parser rejected query: Parser Error: Wrong number of arguments provided to DATE function\n\nReturn JSON only with keys \"sql\" and \"rationale\".\nJSON:",
+        "schema_selection": {
+          "mode": "retrieved",
+          "tables": [
+            "visits"
+          ],
+          "columns": {
+            "visits": [
+              "visit_id",
+              "visit_name",
+              "planned_date",
+              "actual_date",
+              "status"
+            ]
+          },
+          "fact_ids": [
+            "column:visits.status",
+            "column:visits.planned_date",
+            "column:visits.visit_name",
+            "column:visits.actual_date",
+            "column:visits.visit_id",
+            "column:site_monitoring.next_visit_date",
+            "table:visits",
+            "relationship:9",
+            "column:lab_results.visit_id",
+            "column:data_queries.visit_id",
+            "relationship:12",
+            "column:site_monitoring.visit_type"
+          ],
+          "scores": {
+            "column:visits.status": 0.37456,
+            "column:visits.planned_date": 0.36402,
+            "column:visits.visit_name": 0.31327,
+            "column:visits.actual_date": 0.28359,
+            "column:visits.visit_id": 0.27303,
+            "column:site_monitoring.next_visit_date": 0.23961,
+            "table:visits": 0.22817,
+            "relationship:9": 0.2193,
+            "column:lab_results.visit_id": 0.21328,
+            "column:data_queries.visit_id": 0.20979,
+            "relationship:12": 0.20729,
+            "column:site_monitoring.visit_type": 0.20278
+          },
+          "prompt_chars": 547,
+          "retrieval_seconds": 0.004965707994415425
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "retrieve_schema"
+        ],
+        "latency_seconds": 7.244744227005867,
+        "inference_seconds": 7.241917534003733,
+        "query_seconds": 0.0,
+        "privacy_check_seconds": 0.002413164998870343,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": false,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 1,
+          "repair_success": false,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 0,
+        "expected_behavior": "qualified_answer",
+        "attempts": [
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. The SQL selects treatment_arm, calculates the rate as the count of serious adverse events divided by total subjects per arm, and filters to include only subjects with valid treatment arms and enrollment status. This provides a rate per arm as required.\"\n}",
+            "sql": "SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": true,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": false,
+            "execution_success": false,
+            "query_result": null,
+            "error": "DuckDB could not bind or plan the SQL: Binder Error: Referenced column \"serious\" not found in FROM clause!\nCandidate bindings: \"screening_status\", \"enrollment_date\", \"site_id\"\n\nLINE 1: EXPLAIN SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_ev...\n                                                      ^^^^^^^",
+            "inference_seconds": 3.0264706169982674,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.0014593159867217764,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:49.512615+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. The SQL selects treatment_arm, calculates the rate as the count of serious adverse events divided by total subjects per arm, and filters to include only subjects with valid treatment arms and enrollment status. This provides a rate per arm as required.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.2812970509985462,
+              "e2e_seconds": 3.0259968849859433,
+              "prompt_tokens": 638,
+              "output_tokens": 137,
+              "decode_tokens_per_second": 49.550044895956546
+            }
+          },
+          {
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The SQL correctly references the 'serious' column from the subjects table, which is required for the CASE condition. The WHERE clause filters subjects with valid treatment arms and enrollment statuses. The aggregation is grouped by treatment_arm as specified, and the rate is calculated as the ratio of serious adverse events to total subjects per arm. The query uses only aggregate functions and adheres to the schema and privacy rules.\"\n}",
+            "sql": "SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "sql_safety": true,
+            "semantic_filter_check": true,
+            "intent_contract_check": true,
+            "intent_contract_violations": [],
+            "timed_out": false,
+            "schema_compliance": false,
+            "execution_success": false,
+            "query_result": null,
+            "error": "DuckDB could not bind or plan the SQL: Binder Error: Referenced column \"serious\" not found in FROM clause!\nCandidate bindings: \"screening_status\", \"enrollment_date\", \"site_id\"\n\nLINE 1: EXPLAIN SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_ev...\n                                                      ^^^^^^^",
+            "inference_seconds": 3.514577157999156,
+            "query_seconds": 0.0,
+            "privacy_check_seconds": 0.0012312089966144413,
+            "model_metrics": {
+              "request_started_at": "2026-11-10T21:42:52.561462+00:00",
+              "success": true,
+              "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The SQL correctly references the 'serious' column from the subjects table, which is required for the CASE condition. The WHERE clause filters subjects with valid treatment arms and enrollment statuses. The aggregation is grouped by treatment_arm as specified, and the rate is calculated as the ratio of serious adverse events to total subjects per arm. The query uses only aggregate functions and adheres to the schema and privacy rules.\"\n}",
+              "error": null,
+              "finish_reason": "stop",
+              "ttft_seconds": 0.3283596109977225,
+              "e2e_seconds": 3.5143606009951327,
+              "prompt_tokens": 798,
+              "output_tokens": 159,
+              "decode_tokens_per_second": 49.59194943631466
+            }
+          }
+        ],
+        "plan": {
+          "population": "subjects where treatment_arm is not 'Not Assigned' and screening_status is 'Enrolled' or 'Randomized'",
+          "measure": "count of adverse_events where serious = true divided by count of subjects in each treatment arm",
+          "grouping": "treatment_arm",
+          "time_window": "none",
+          "filters": "serious = true",
+          "ranking": "none",
+          "needs_clarification": false,
+          "clarification_question": ""
+        },
+        "plan_checks": {
+          "model_requested_clarification": false,
+          "material_ambiguity": false,
+          "clarification_suppressed": false,
+          "removed_unrequested_severe_from_plan": false
+        },
+        "plan_contract_findings": [],
+        "question_timeout_seconds": 180.0,
+        "timed_out": false,
+        "plan_raw_model_response": "{\n  \"population\": \"subjects where treatment_arm is not 'Not Assigned' and screening_status is 'Enrolled' or 'Randomized'\",\n  \"measure\": \"count of adverse_events where serious = true divided by count of subjects in each treatment arm\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"serious = true\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+        "plan_error": null,
+        "plan_prompt": "You are Clinical Trial Analyst. Plan the requested answer before SQL generation.\nReturn only a compact JSON object with the plan fields. Do not write SQL.\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe. Examples: Mild, Moderate, Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nRelationships:\n- adverse_events.subject_id -> subjects.subject_id\n\nClinical business definitions:\n- Serious adverse event means serious = true. Severity = 'Severe' is a different concept.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nBefore writing SQL, fill a compact plan with exactly these fields:\n- population: which rows or subjects are eligible, including zero-count groups where requested.\n- measure: exactly what is counted, averaged, compared, or divided, with any denominator.\n- grouping: the requested output grain (for example each site, each treatment arm, or overall).\n- time_window: the calendar interval and date column, or \"none\".\n- filters: status, severity, seriousness, and other restrictions; do not add unasked filters.\n- ranking: sort and limit requested, or \"none\".\n- needs_clarification: true only when a required measure or meaning is undefined.\n- clarification_question: a short question if clarification is needed, otherwise \"\".\nProceed with answerable analytics when a threshold or window is unspecified. State a\ntransparent operational assumption in the relevant plan field and answer with that qualification.\nClarification is reserved for a missing choice that changes which measure to analyze.\nFor serious adverse events, use serious=true regardless of severity. Never add severity='Severe'\nunless the question explicitly asks for Severe events.\nFor \u201cWhy is Site 17 performing poorly?\u201d, no metric defines \u201cpoorly\u201d. Ask which metric to assess;\ndo not infer a cause. Set needs_clarification=true and provide a clarification_question.\nThe later SQL must implement every plan field. Do not silently replace a serious event with a\nSevere event, change a calendar month to a rolling cutoff, or turn a requested group into an overall answer.\n\nQuestion:\nCompare serious adverse-event rates across treatment arms.\n\nJSON:",
+        "plan_inference_seconds": 2.5081851779978024,
+        "plan_model_metrics": {
+          "request_started_at": "2026-11-10T21:42:47.004329+00:00",
+          "success": true,
+          "content": "{\n  \"population\": \"subjects where treatment_arm is not 'Not Assigned' and screening_status is 'Enrolled' or 'Randomized'\",\n  \"measure\": \"count of adverse_events where serious = true divided by count of subjects in each treatment arm\",\n  \"grouping\": \"treatment_arm\",\n  \"time_window\": \"none\",\n  \"filters\": \"serious = true\",\n  \"ranking\": \"none\",\n  \"needs_clarification\": false,\n  \"clarification_question\": \"\"\n}",
+          "error": null,
+          "finish_reason": "stop",
+          "ttft_seconds": 0.27631030000338797,
+          "e2e_seconds": 2.5075270230008755,
+          "prompt_tokens": 629,
+          "output_tokens": 112,
+          "decode_tokens_per_second": 49.7486411140192
+        },
+        "generation_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe. Examples: Mild, Moderate, Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nRelationships:\n- adverse_events.subject_id -> subjects.subject_id\n\nClinical business definitions:\n- Serious adverse event means serious = true. Severity = 'Severe' is a different concept.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (implement it unless a question-intent check identifies an error):\n{\"clarification_question\": \"\", \"filters\": \"serious = true\", \"grouping\": \"treatment_arm\", \"measure\": \"count of adverse_events where serious = true divided by count of subjects in each treatment arm\", \"needs_clarification\": false, \"population\": \"subjects where treatment_arm is not 'Not Assigned' and screening_status is 'Enrolled' or 'Randomized'\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nQuestion-intent checks (correct any conflicting plan field in SQL):\n[]\n\nQuestion:\nCompare serious adverse-event rates across treatment arms.\n\nJSON:",
+        "repair_prompt": "You are Clinical Trial Analyst, a local-only clinical data analyst.\n\nUse the schema exactly as given. Generate DuckDB SQL only for the available tables.\nRules:\n- Use exactly one read-only SELECT or WITH query.\n- Do not use INSERT, UPDATE, DELETE, CREATE, DROP, COPY, ATTACH, INSTALL, LOAD, SET, or PRAGMA.\n- Do not use SELECT *.\n- Prefer aggregate answers over subject-level listings.\n- Include the minimum columns needed.\n- Use DuckDB-compatible SQL.\n- If the question says \"by X\" or \"for each X\", include X in SELECT and GROUP BY X. Do not replace a group breakdown with an overall total.\n- Treat status values explicitly named in the question as valid values when they appear in the schema description.\n- Write the complete SQL query. Never use placeholders such as `...`.\n- Do not show hidden reasoning. Return the final JSON object only.\n- Return JSON only with keys \"sql\" and \"rationale\".\n\nDuckDB clinical trial schema (retrieved facts):\n\nTable: subjects\n- subject_id VARCHAR: Primary synthetic subject identifier. Treat as private.\n- treatment_arm VARCHAR: Assigned treatment arm or Not Assigned.\n- screening_status VARCHAR: Screening/enrollment status: Enrolled, Randomized, Screen Failed, or Withdrawn. Examples: Enrolled, Randomized, Screen Failed, Withdrawn.\n\nTable: adverse_events\n- subject_id VARCHAR: Foreign key to subjects.subject_id. Treat as private.\n- event_term VARCHAR: Adverse event term.\n- severity VARCHAR: Mild, Moderate, or Severe. Examples: Mild, Moderate, Severe.\n- serious BOOLEAN: Whether the adverse event is serious.\n- onset_date DATE: Adverse event onset date.\n- outcome VARCHAR: Adverse event outcome.\n\nRelationships:\n- adverse_events.subject_id -> subjects.subject_id\n\nClinical business definitions:\n- Serious adverse event means serious = true. Severity = 'Severe' is a different concept.\n\nPrivacy: subject_id is a private join key. Prefer aggregates; the MCP server pseudonymizes subject_id in displayed results.\n\n\n\nAnswer plan (repair any field that conflicts with the error below):\n{\"clarification_question\": \"\", \"filters\": \"serious = true\", \"grouping\": \"treatment_arm\", \"measure\": \"count of adverse_events where serious = true divided by count of subjects in each treatment arm\", \"needs_clarification\": false, \"population\": \"subjects where treatment_arm is not 'Not Assigned' and screening_status is 'Enrolled' or 'Randomized'\", \"ranking\": \"none\", \"time_window\": \"none\"}\n\nThe prior SQL failed. Repair it once.\n\nQuestion:\nCompare serious adverse-event rates across treatment arms.\n\nFailed SQL:\nSELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_event_rate FROM subjects WHERE treatment_arm IS NOT NULL AND treatment_arm <> 'Not Assigned' AND screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\n\nError:\nDuckDB could not bind or plan the SQL: Binder Error: Referenced column \"serious\" not found in FROM clause!\nCandidate bindings: \"screening_status\", \"enrollment_date\", \"site_id\"\n\nLINE 1: EXPLAIN SELECT treatment_arm, COUNT(CASE WHEN serious = true THEN 1 END) / COUNT(*) AS serious_adverse_ev...\n                                                      ^^^^^^^\n\nReturn JSON only with keys \"sql\" and \"rationale\".\nJSON:",
+        "schema_selection": {
+          "mode": "retrieved",
+          "tables": [
+            "subjects",
+            "adverse_events"
+          ],
+          "columns": {
+            "subjects": [
+              "subject_id",
+              "treatment_arm",
+              "screening_status"
+            ],
+            "adverse_events": [
+              "subject_id",
+              "event_term",
+              "severity",
+              "serious",
+              "onset_date",
+              "outcome"
+            ]
+          },
+          "fact_ids": [
+            "definition:serious_events",
+            "column:adverse_events.serious",
+            "table:adverse_events",
+            "column:adverse_events.severity",
+            "column:adverse_events.outcome",
+            "column:adverse_events.event_term",
+            "relationship:3",
+            "column:adverse_events.onset_date",
+            "column:subjects.treatment_arm",
+            "column:adverse_events.subject_id",
+            "column:protocol_deviations.severity",
+            "table:screen_failures"
+          ],
+          "scores": {
+            "definition:serious_events": 0.49431,
+            "column:adverse_events.serious": 0.49351,
+            "table:adverse_events": 0.3384,
+            "column:adverse_events.severity": 0.32704,
+            "column:adverse_events.outcome": 0.29085,
+            "column:adverse_events.event_term": 0.28929,
+            "relationship:3": 0.24612,
+            "column:adverse_events.onset_date": 0.24402,
+            "column:subjects.treatment_arm": 0.24155,
+            "column:adverse_events.subject_id": 0.21072,
+            "column:protocol_deviations.severity": 0.1647,
+            "table:screen_failures": 0.16321
+          },
+          "prompt_chars": 1053,
+          "retrieval_seconds": 0.0049554169963812456
+        },
+        "policy_response": null,
+        "tool_calls": [
+          "retrieve_schema"
+        ],
+        "latency_seconds": 9.092341752999346,
+        "inference_seconds": 9.049232952995226,
+        "query_seconds": 0.0,
+        "privacy_check_seconds": 0.002713858979404904,
+        "model_cold_start_seconds": null,
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": true,
+          "schema_compliance": false,
+          "sql_execution_success": false,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 1,
+          "repair_success": false,
+          "schema_linking_accuracy": null
+        },
+        "behavior_correct": null
+      }
+    ],
+    "serving": [
+      {
+        "case_id": "eval_001",
+        "repeat": 0,
+        "request_started_at": "2026-11-10T21:41:30.030891+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20474402699619532,
+        "e2e_seconds": 2.446163232991239,
+        "prompt_tokens": 462,
+        "output_tokens": 113,
+        "decode_tokens_per_second": 49.96834135285252,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "subject_count"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Placebo",
+                  "subject_count": 44
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "subject_count": 48
+                },
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "subject_count": 40
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "subject_count": 38
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 0,
+        "request_started_at": "2026-11-10T21:41:32.477486+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20712825100054033,
+        "e2e_seconds": 2.0757108029938536,
+        "prompt_tokens": 489,
+        "output_tokens": 94,
+        "decode_tokens_per_second": 49.770345923861974,
+        "attempts": [
+          {
+            "sql": "SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id) AS readonly_result LIMIT 100",
+              "columns": [
+                "site_id",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "site_id": "SITE-010",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-014",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-006",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-012",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-018",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-003",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-013",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-005",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-017",
+                  "enrolled_subjects": 13
+                },
+                {
+                  "site_id": "SITE-008",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-011",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-015",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-002",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-007",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-019",
+                  "enrolled_subjects": 5
+                },
+                {
+                  "site_id": "SITE-001",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-004",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-016",
+                  "enrolled_subjects": 12
+                },
+                {
+                  "site_id": "SITE-009",
+                  "enrolled_subjects": 11
+                }
+              ],
+              "row_count": 19,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 0,
+        "request_started_at": "2026-11-10T21:41:34.553679+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.197738811999443,
+        "e2e_seconds": 2.7598853370000143,
+        "prompt_tokens": 429,
+        "output_tokens": 129,
+        "decode_tokens_per_second": 49.958110807098144,
+        "attempts": [
+          {
+            "sql": "SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name) AS readonly_result LIMIT 100",
+              "columns": [
+                "visit_name",
+                "missed_count"
+              ],
+              "rows": [],
+              "row_count": 0,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 0,
+        "request_started_at": "2026-11-10T21:41:37.313983+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.2702979140012758,
+        "e2e_seconds": 3.550841333999415,
+        "prompt_tokens": 541,
+        "output_tokens": 164,
+        "decode_tokens_per_second": 49.68688998485881,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "serious_adverse_event_count",
+                "serious_adverse_event_count_total",
+                "serious_adverse_event_rate"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "serious_adverse_event_count": 2,
+                  "serious_adverse_event_count_total": 2,
+                  "serious_adverse_event_rate": 1.0
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "serious_adverse_event_count": 1,
+                  "serious_adverse_event_count_total": 1,
+                  "serious_adverse_event_rate": 1.0
+                }
+              ],
+              "row_count": 2,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_001",
+        "repeat": 1,
+        "request_started_at": "2026-11-10T21:41:40.865262+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20457748700573575,
+        "e2e_seconds": 2.4453991220070748,
+        "prompt_tokens": 462,
+        "output_tokens": 113,
+        "decode_tokens_per_second": 49.981666657700345,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "subject_count"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Placebo",
+                  "subject_count": 44
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "subject_count": 48
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "subject_count": 38
+                },
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "subject_count": 40
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 1,
+        "request_started_at": "2026-11-10T21:41:43.310997+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.2090913610009011,
+        "e2e_seconds": 2.074719462005305,
+        "prompt_tokens": 489,
+        "output_tokens": 94,
+        "decode_tokens_per_second": 49.84916337287764,
+        "attempts": [
+          {
+            "sql": "SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id) AS readonly_result LIMIT 100",
+              "columns": [
+                "site_id",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "site_id": "SITE-010",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-014",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-001",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-018",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-006",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-009",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-012",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-002",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-007",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-019",
+                  "enrolled_subjects": 5
+                },
+                {
+                  "site_id": "SITE-003",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-013",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-004",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-016",
+                  "enrolled_subjects": 12
+                },
+                {
+                  "site_id": "SITE-005",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-017",
+                  "enrolled_subjects": 13
+                },
+                {
+                  "site_id": "SITE-008",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-011",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-015",
+                  "enrolled_subjects": 8
+                }
+              ],
+              "row_count": 19,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 1,
+        "request_started_at": "2026-11-10T21:41:45.385935+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.1976207640109351,
+        "e2e_seconds": 2.7630367020028643,
+        "prompt_tokens": 429,
+        "output_tokens": 129,
+        "decode_tokens_per_second": 49.89444327698048,
+        "attempts": [
+          {
+            "sql": "SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name) AS readonly_result LIMIT 100",
+              "columns": [
+                "visit_name",
+                "missed_count"
+              ],
+              "rows": [],
+              "row_count": 0,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 1,
+        "request_started_at": "2026-11-10T21:41:48.149352+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.2670801530039171,
+        "e2e_seconds": 3.5496985290083103,
+        "prompt_tokens": 541,
+        "output_tokens": 164,
+        "decode_tokens_per_second": 49.65548270597443,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "serious_adverse_event_count",
+                "serious_adverse_event_count_total",
+                "serious_adverse_event_rate"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "serious_adverse_event_count": 2,
+                  "serious_adverse_event_count_total": 2,
+                  "serious_adverse_event_rate": 1.0
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "serious_adverse_event_count": 1,
+                  "serious_adverse_event_count_total": 1,
+                  "serious_adverse_event_rate": 1.0
+                }
+              ],
+              "row_count": 2,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_001",
+        "repeat": 2,
+        "request_started_at": "2026-11-10T21:41:51.699373+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20507800999621395,
+        "e2e_seconds": 2.4505506720015546,
+        "prompt_tokens": 462,
+        "output_tokens": 113,
+        "decode_tokens_per_second": 49.878140088322134,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "subject_count"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "subject_count": 40
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "subject_count": 38
+                },
+                {
+                  "treatment_arm": "Placebo",
+                  "subject_count": 44
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "subject_count": 48
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 2,
+        "request_started_at": "2026-11-10T21:41:54.150248+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20788822999747936,
+        "e2e_seconds": 2.0758538090012735,
+        "prompt_tokens": 489,
+        "output_tokens": 94,
+        "decode_tokens_per_second": 49.786784641715876,
+        "attempts": [
+          {
+            "sql": "SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id) AS readonly_result LIMIT 100",
+              "columns": [
+                "site_id",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "site_id": "SITE-010",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-014",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-002",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-007",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-019",
+                  "enrolled_subjects": 5
+                },
+                {
+                  "site_id": "SITE-001",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-008",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-011",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-015",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-006",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-003",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-013",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-018",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-012",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-009",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-004",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-016",
+                  "enrolled_subjects": 12
+                },
+                {
+                  "site_id": "SITE-005",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-017",
+                  "enrolled_subjects": 13
+                }
+              ],
+              "row_count": 19,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 2,
+        "request_started_at": "2026-11-10T21:41:56.226484+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.19782390899490565,
+        "e2e_seconds": 2.7644163749937434,
+        "prompt_tokens": 429,
+        "output_tokens": 129,
+        "decode_tokens_per_second": 49.87157162490399,
+        "attempts": [
+          {
+            "sql": "SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name) AS readonly_result LIMIT 100",
+              "columns": [
+                "visit_name",
+                "missed_count"
+              ],
+              "rows": [],
+              "row_count": 0,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 2,
+        "request_started_at": "2026-11-10T21:41:58.991222+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.26921748800668865,
+        "e2e_seconds": 3.552082166002947,
+        "prompt_tokens": 541,
+        "output_tokens": 164,
+        "decode_tokens_per_second": 49.65175722670643,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "serious_adverse_event_count",
+                "serious_adverse_event_count_total",
+                "serious_adverse_event_rate"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Standard of Care",
+                  "serious_adverse_event_count": 1,
+                  "serious_adverse_event_count_total": 1,
+                  "serious_adverse_event_rate": 1.0
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "serious_adverse_event_count": 2,
+                  "serious_adverse_event_count_total": 2,
+                  "serious_adverse_event_rate": 1.0
+                }
+              ],
+              "row_count": 2,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_001",
+        "repeat": 3,
+        "request_started_at": "2026-11-10T21:42:02.543761+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20428112600347959,
+        "e2e_seconds": 2.4514010779967066,
+        "prompt_tokens": 462,
+        "output_tokens": 113,
+        "decode_tokens_per_second": 49.841576058569736,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "subject_count"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Placebo",
+                  "subject_count": 44
+                },
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "subject_count": 40
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "subject_count": 38
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "subject_count": 48
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 3,
+        "request_started_at": "2026-11-10T21:42:04.995625+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.2056112259888323,
+        "e2e_seconds": 2.0760694419877836,
+        "prompt_tokens": 489,
+        "output_tokens": 94,
+        "decode_tokens_per_second": 49.720437058965096,
+        "attempts": [
+          {
+            "sql": "SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id) AS readonly_result LIMIT 100",
+              "columns": [
+                "site_id",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "site_id": "SITE-018",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-005",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-017",
+                  "enrolled_subjects": 13
+                },
+                {
+                  "site_id": "SITE-010",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-014",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-006",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-004",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-016",
+                  "enrolled_subjects": 12
+                },
+                {
+                  "site_id": "SITE-002",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-007",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-019",
+                  "enrolled_subjects": 5
+                },
+                {
+                  "site_id": "SITE-008",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-011",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-015",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-003",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-013",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-012",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-001",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-009",
+                  "enrolled_subjects": 11
+                }
+              ],
+              "row_count": 19,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 3,
+        "request_started_at": "2026-11-10T21:42:07.071840+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.19687108699872624,
+        "e2e_seconds": 2.7635821159929037,
+        "prompt_tokens": 429,
+        "output_tokens": 129,
+        "decode_tokens_per_second": 49.86926792852082,
+        "attempts": [
+          {
+            "sql": "SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name) AS readonly_result LIMIT 100",
+              "columns": [
+                "visit_name",
+                "missed_count"
+              ],
+              "rows": [],
+              "row_count": 0,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 3,
+        "request_started_at": "2026-11-10T21:42:09.835745+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.272199188999366,
+        "e2e_seconds": 3.5531947819981724,
+        "prompt_tokens": 541,
+        "output_tokens": 164,
+        "decode_tokens_per_second": 49.68004234684728,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "serious_adverse_event_count",
+                "serious_adverse_event_count_total",
+                "serious_adverse_event_rate"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Standard of Care",
+                  "serious_adverse_event_count": 1,
+                  "serious_adverse_event_count_total": 1,
+                  "serious_adverse_event_rate": 1.0
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "serious_adverse_event_count": 2,
+                  "serious_adverse_event_count_total": 2,
+                  "serious_adverse_event_rate": 1.0
+                }
+              ],
+              "row_count": 2,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_001",
+        "repeat": 4,
+        "request_started_at": "2026-11-10T21:42:13.389254+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20415269200748298,
+        "e2e_seconds": 2.453900036009145,
+        "prompt_tokens": 462,
+        "output_tokens": 113,
+        "decode_tokens_per_second": 49.783368029577844,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "subject_count"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Placebo",
+                  "subject_count": 44
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "subject_count": 38
+                },
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "subject_count": 48
+                },
+                {
+                  "treatment_arm": "Investigational Drug High Dose",
+                  "subject_count": 40
+                }
+              ],
+              "row_count": 4,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS subject_count FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks for the count of subjects who are Enrolled or Randomized, grouped by treatment arm. The schema defines 'Enrolled' and 'Randomized' as valid screening_status values. The query uses a single SELECT with GROUP BY treatment_arm to aggregate counts per arm, which matches the intent to provide a breakdown by treatment arm.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_002",
+        "repeat": 4,
+        "request_started_at": "2026-11-10T21:42:15.843467+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.20934449799824506,
+        "e2e_seconds": 2.078775535992463,
+        "prompt_tokens": 489,
+        "output_tokens": 94,
+        "decode_tokens_per_second": 49.74775646165753,
+        "attempts": [
+          {
+            "sql": "SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id) AS readonly_result LIMIT 100",
+              "columns": [
+                "site_id",
+                "enrolled_subjects"
+              ],
+              "rows": [
+                {
+                  "site_id": "SITE-004",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-016",
+                  "enrolled_subjects": 12
+                },
+                {
+                  "site_id": "SITE-008",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-011",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-015",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-001",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-018",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-006",
+                  "enrolled_subjects": 6
+                },
+                {
+                  "site_id": "SITE-012",
+                  "enrolled_subjects": 10
+                },
+                {
+                  "site_id": "SITE-003",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-013",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-009",
+                  "enrolled_subjects": 11
+                },
+                {
+                  "site_id": "SITE-010",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-014",
+                  "enrolled_subjects": 8
+                },
+                {
+                  "site_id": "SITE-005",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-017",
+                  "enrolled_subjects": 13
+                },
+                {
+                  "site_id": "SITE-002",
+                  "enrolled_subjects": 9
+                },
+                {
+                  "site_id": "SITE-007",
+                  "enrolled_subjects": 7
+                },
+                {
+                  "site_id": "SITE-019",
+                  "enrolled_subjects": 5
+                }
+              ],
+              "row_count": 19,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT site_id, COUNT(*) AS enrolled_subjects FROM subjects WHERE screening_status IN ('Enrolled', 'Randomized') GROUP BY site_id\",\n  \"rationale\": \"The question asks for the number of subjects enrolled at each site. 'Enrolled' subjects are defined as those with screening_status IN ('Enrolled', 'Randomized'). We group by site_id to get counts per site, using only the necessary columns.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": true,
+          "first_pass_accuracy": true,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_005",
+        "repeat": 4,
+        "request_started_at": "2026-11-10T21:42:17.922367+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.19703136901080143,
+        "e2e_seconds": 2.7653535950084915,
+        "prompt_tokens": 429,
+        "output_tokens": 129,
+        "decode_tokens_per_second": 49.8379832188997,
+        "attempts": [
+          {
+            "sql": "SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name) AS readonly_result LIMIT 100",
+              "columns": [
+                "visit_name",
+                "missed_count"
+              ],
+              "rows": [],
+              "row_count": 0,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT visit_name, COUNT(*) AS missed_count FROM visits WHERE status = 'Missed' AND actual_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' AND actual_date < DATE_TRUNC('month', CURRENT_DATE) GROUP BY visit_name\",\n  \"rationale\": \"The question asks for the number of missed visits last month, which requires filtering by status='Missed' and actual_date within the previous month. The result is grouped by visit_name to show per-visit counts, as requested by 'for each X'. Only necessary columns are included.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      },
+      {
+        "case_id": "eval_007",
+        "repeat": 4,
+        "request_started_at": "2026-11-10T21:42:20.688020+00:00",
+        "success": true,
+        "content": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+        "error": null,
+        "finish_reason": "stop",
+        "ttft_seconds": 0.2698651590035297,
+        "e2e_seconds": 3.5547664269979578,
+        "prompt_tokens": 541,
+        "output_tokens": 164,
+        "decode_tokens_per_second": 49.62097387466334,
+        "attempts": [
+          {
+            "sql": "SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm",
+            "execution_success": true,
+            "query_result": {
+              "ok": true,
+              "sql": "SELECT * FROM (SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm) AS readonly_result LIMIT 100",
+              "columns": [
+                "treatment_arm",
+                "serious_adverse_event_count",
+                "serious_adverse_event_count_total",
+                "serious_adverse_event_rate"
+              ],
+              "rows": [
+                {
+                  "treatment_arm": "Investigational Drug Low Dose",
+                  "serious_adverse_event_count": 2,
+                  "serious_adverse_event_count_total": 2,
+                  "serious_adverse_event_rate": 1.0
+                },
+                {
+                  "treatment_arm": "Standard of Care",
+                  "serious_adverse_event_count": 1,
+                  "serious_adverse_event_count_total": 1,
+                  "serious_adverse_event_rate": 1.0
+                }
+              ],
+              "row_count": 2,
+              "error": null
+            },
+            "raw_model_response": "{\n  \"sql\": \"SELECT treatment_arm, COUNT(*) AS serious_adverse_event_count, COUNT(*) FILTER (WHERE serious = true) AS serious_adverse_event_count_total, COUNT(*) FILTER (WHERE serious = true) / COUNT(*) AS serious_adverse_event_rate FROM subjects JOIN adverse_events ON subjects.subject_id = adverse_events.subject_id WHERE adverse_events.serious = true GROUP BY treatment_arm\",\n  \"rationale\": \"The question asks to compare serious adverse-event rates across treatment arms. We need to count the number of serious adverse events per treatment arm and calculate the rate. The SQL joins subjects and adverse_events, filters for serious events (serious = true), groups by treatment_arm, and computes the rate as a percentage. This provides a clear, aggregated comparison as requested.\"\n}",
+            "error": null
+          }
+        ],
+        "scores": {
+          "sql_generated": true,
+          "sql_safety": false,
+          "schema_compliance": null,
+          "sql_execution_success": true,
+          "result_equivalence": false,
+          "first_pass_accuracy": false,
+          "repair_count": 0,
+          "repair_success": null,
+          "schema_linking_accuracy": null
+        }
+      }
+    ]
+  },
+  "server": {
+    "runtime": "vllm",
+    "engine_version": "0.32.0",
+    "model_sha256": "0203d8c079915865dc7338922c3f01f4ba31ecac6386cf54382109bd74eff6dc",
+    "hardware": "GPU-3cef7f0f-cdcd-b01a-ea3d-94c897e1b848, Quadro RTX 5000, 16384 MiB, 595.91.07",
+    "cuda_visible_devices": "all",
+    "torch_version": "2.13.0+cu130",
+    "cuda_version": "13.0",
+    "evidence": "hardware",
+    "server_dev_mode": true,
+    "gpu_uuid": "GPU-3cef7f0f-cdcd-b01a-ea3d-94c897e1b848",
+    "launch_settings": {
+      "context": 8192,
+      "tp": 1,
+      "dtype": "float16",
+      "quantization": null,
+      "prefix_cache": false,
+      "max_num_seqs": 4,
+      "trust_remote_code": true,
+      "mamba_ssm_cache_dtype": "float32"
+    },
+    "command": [
+      "python",
+      "-m",
+      "vllm.entrypoints.cli.main",
+      "serve",
+      "./models/nemotron-3-nano-4b-frozen",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8000",
+      "--served-model-name",
+      "clinical-trial-mvp3",
+      "--dtype",
+      "float16",
+      "--max-model-len",
+      "8192",
+      "--tensor-parallel-size",
+      "1",
+      "--generation-config",
+      "vllm",
+      "--no-enable-prefix-caching",
+      "--max-num-seqs",
+      "4",
+      "--trust-remote-code",
+      "--mamba-ssm-cache-dtype",
+      "float32"
+    ],
+    "model": "clinical-trial-mvp3",
+    "status": "ready",
+    "server_pid": 537093,
+    "readiness_seconds": 40.01549273599812,
+    "startup_log": "experiment-tracker/mvp4/workflow/vllm-nemotron-20261110T213732-bfb86c649c-958757a8.log"
+  },
+  "checkpoint": {
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+    "base_revision": "dfaf35de3e30f1867dd8dbc38a7fc9fb52d3914f",
+    "model_sha256": "0203d8c079915865dc7338922c3f01f4ba31ecac6386cf54382109bd74eff6dc"
+  },
+  "database_sha256": "f1a7100697b0980b56359632fde49d042fb147260da03931a53a3cbfa7f6830e",
+  "evaluation_date": "2026-11-10",
+  "ttft_definition": "First generated content, including thought text when reasoning is on; not final-answer TTFT"
+}

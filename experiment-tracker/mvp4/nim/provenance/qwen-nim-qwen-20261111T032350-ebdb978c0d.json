@@ -1,0 +1,44 @@
+{
+  "runtime": "nim",
+  "status": "ready",
+  "evidence": "hardware",
+  "model": "clinical-trial-mvp4-nim-qwen",
+  "model_id": "Qwen/Qwen3-4B",
+  "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "model_sha256": "9d76380658964726b0ebbfd59e23fd141cee771d9a116197b9ea4caaa737b616",
+  "image": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:edd0c099da0ed712da235b0170742d81cb48beef90afafe1a61621980debdb5a",
+  "profile_id": "d655bc3a760b0d20b2ce2e638bb8212015e1a564bdcdc6f1642fdc4d9619f000",
+  "hardware": "Quadro RTX 5000",
+  "gpu_uuid": "GPU-3cef7f0f-cdcd-b01a-ea3d-94c897e1b848",
+  "backend": "vllm",
+  "engine_version": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:edd0c099da0ed712da235b0170742d81cb48beef90afafe1a61621980debdb5a",
+  "launch_settings": {
+    "context": 8192,
+    "dtype": "float16",
+    "prefix_cache": false,
+    "quantization": null,
+    "max_num_seqs": 4
+  },
+  "discovery_contract": {
+    "model_id": "Qwen/Qwen3-4B",
+    "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "model_sha256": "9d76380658964726b0ebbfd59e23fd141cee771d9a116197b9ea4caaa737b616",
+    "image": "nvcr.io/nim/nvidia/vllm-model-free-nim@sha256:edd0c099da0ed712da235b0170742d81cb48beef90afafe1a61621980debdb5a",
+    "model": "clinical-trial-mvp4-nim-qwen",
+    "backend": "vllm",
+    "launch_settings": {
+      "context": 8192,
+      "dtype": "float16",
+      "prefix_cache": false,
+      "quantization": null,
+      "max_num_seqs": 4
+    },
+    "gpu_device": "0"
+  },
+  "discovery_sha256": "df2232e148940aaa99fc2c9d80b0f9140364c6aca9dd3169118b770d975e5023",
+  "deployment_sha256": "8b4f4724a5f582b09a528dc0a4eff6c7a2720c47fa510f9fad66befb9606c83b",
+  "configuration_scope": "Requested explicit CLI settings; retain/review resolved startup logs",
+  "reasoning_control": "common /no_think prompt only; backend template mode unverified",
+  "container_id": "b92d80e9a15b139b80899815c3c7aa3ed0706e122e55c1d9977bfbd7cb44c024",
+  "readiness_seconds": 104.31775362700864
+}

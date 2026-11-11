@@ -1,0 +1,31 @@
+{
+  "run_id": "20261110T220204_294643Z",
+  "experiment": "MVP4/Nemotron/awq_stretch",
+  "configuration": {
+    "runtime": "vllm",
+    "host": "cuda",
+    "hardware": "GPU host (verify SKU)",
+    "model": "clinical-trial-mvp3",
+    "model_id": "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16",
+    "base_url": "http://127.0.0.1:8000",
+    "context": 8192,
+    "dtype": "float16",
+    "profile": "full",
+    "quantization": "awq",
+    "prefix_cache": false,
+    "concurrency": 1,
+    "max_num_seqs": 4,
+    "max_tokens": 1024,
+    "reasoning": false,
+    "repeats": 5,
+    "warmups": 1,
+    "mamba_ssm_cache_dtype": "float32",
+    "trust_remote_code": true,
+    "priority": "stretch",
+    "experiment": "MVP4/Nemotron/awq_stretch",
+    "provenance": "experiment-tracker/mvp4/provenance/vllm-nemotron-20261110T213732-bfb86c649c-awq_stretch.json"
+  },
+  "status": "skipped",
+  "evidence": "none",
+  "reason": "Optional AWQ disabled or hybrid prefix support not verified in configuration"
+}
