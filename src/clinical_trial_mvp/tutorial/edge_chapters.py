@@ -5,6 +5,8 @@ def raw_document(model):
     def md(slot,text):cells.append(dict(cell_type='markdown',id=slot,metadata={},source=(text.strip()+'\n').splitlines(keepends=True)))
     def code(slot,text):cells.append(dict(cell_type='code',id='code-'+slot,metadata={},source=(text.strip()+'\n').splitlines(keepends=True),execution_count=None,outputs=[]))
     qwen=model=='qwen'
+    portable_import = '' if qwen else '\nfrom clinical_trial_mvp.serving.portable import portable_value'
+    config_view = 'study.config' if qwen else 'portable_value(study.config)'
     label='Qwen/Qwen3-4B' if qwen else 'nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16'
     md('edge-intro' if qwen else 'probe-intro', '''# Qwen: export a model and run a structured question on CPU
 
@@ -28,7 +30,7 @@ import sys
 ROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())
 sys.path.insert(0, str(ROOT / 'src'))
 from IPython.display import JSON, Markdown, display
-from clinical_trial_mvp.tutorial.edge_workflow import EdgeStudy
+from clinical_trial_mvp.tutorial.edge_workflow import EdgeStudy{portable_import}
 
 MODE = "live"  # "plan" previews stages; "replay" displays archived results
 MODE = os.environ.get('LOCAL_AI_LAB_MODE', MODE)  # Explicit CPU validation override.
@@ -39,11 +41,11 @@ print('Model:', '{label}')
 print('Hardware target: local CPU / separate ExecuTorch environment')
 print('Session:', study.session_id)
 print('Current-session measurements:', len(study.results))
-display(JSON(study.config))''')
+display(JSON({config_view}))''')
     md('edge-preflight','''## 2. Preflight
 
 Check the configured edge Python and installed runtime before any model work. Qwen requires a pinned source checkpoint and either a validated reusable export or explicit conversion/export. Nemotron needs only its pinned configuration. Missing prerequisites stop with instructions.''')
-    code('edge-preflight-check','display(JSON(study.preflight()))')
+    code('edge-preflight-check', 'display(JSON(study.preflight()))' if qwen else 'display(JSON(portable_value(study.preflight())))')
     if qwen:
         md('edge-export','''## 3. Prepare and validate the CPU program
 
@@ -85,7 +87,7 @@ display(Markdown(study.report()))''')
 The next cell invokes [probe_nemotron_edge.py](../scripts/tutorial/probe_nemotron_edge.py) using your installed edge environment. It tests `nemotron_h` and `nemotron_3_nano_4b` against the installed model configuration enum and saves a unique result.
 
 It reports exporter version, accepted model types and each attempt. If a recipe is accepted, conversion and native inference still require validation; acceptance alone supplies no performance result.''')
-        code('edge-probe',"probe = study.probe()\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(probe)))")
+        code('edge-probe',"probe = study.probe()\nfrom clinical_trial_mvp.tutorial.result_display import result_table\ndisplay(Markdown(result_table(portable_value(probe))))")
         md('probe-interpretation','''## 4. Interpret the finding
 
 If the result is **blocked_compatibility**, the installed standard recipe lacks this model configuration. It does not establish that a custom port is impossible. A working port would need validated Mamba state handling, weight conversion, graph capture, supported operators, PTE loading and native generation before SQL or timing could be evaluated.''')

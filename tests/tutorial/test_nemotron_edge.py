@@ -44,3 +44,32 @@ def test_run_all_reads_evidence_without_starting_processes(monkeypatch):
     assert namespace['probe']['native_inference_run'] is False
     assert namespace['MODE']=='replay'
     assert namespace['probe']['status']=='blocked_compatibility'
+
+
+def test_display_hides_workspace_paths_without_changing_runtime_configuration(monkeypatch):
+    from copy import deepcopy
+    from types import SimpleNamespace
+    import IPython.display
+    from clinical_trial_mvp.tutorial import edge_workflow
+    path = '/Users/example/Documents/Codex/workspace/.venv-edge/bin/python'
+    config = {'edge_python': path}
+    probe = {'status': 'blocked_compatibility', 'native_inference_run': False,
+             'command': [path, '/Users/example/Documents/Codex/workspace/probe.py'],
+             'ttft_seconds': None}
+    original = deepcopy(probe)
+    fake = SimpleNamespace(mode='live', session_id='display-check', results={}, config=config,
+                           preflight=lambda: {'runtime_python': path}, probe=lambda: probe)
+    monkeypatch.setattr(edge_workflow, 'EdgeStudy', lambda *a, **k: fake)
+    displayed = []
+    monkeypatch.setattr(IPython.display, 'display', lambda item: displayed.append(item.data))
+    monkeypatch.chdir(ROOT)
+    namespace = {}
+    selected = {'code-edge-configure', 'code-edge-preflight-check', 'code-edge-probe'}
+    for cell in notebook_document()['cells']:
+        if cell.get('id') in selected:
+            exec(compile(''.join(cell['source']), 'nemotron-display', 'exec'), namespace)
+    assert len(displayed) == 3
+    assert 'Codex' not in json.dumps(displayed)
+    assert 'blocked_compatibility' in json.dumps(displayed)
+    assert fake.config['edge_python'] == path
+    assert probe == original  # Actual executable and raw evidence retain their full paths.
