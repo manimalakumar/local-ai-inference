@@ -42,7 +42,8 @@ import os
 import sys
 ROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())
 sys.path.insert(0, str(ROOT / 'src'))
-from IPython.display import JSON, Markdown, display
+from IPython.display import Markdown, display
+from clinical_trial_mvp.tutorial.notebook_display import JSON
 from clinical_trial_mvp.tutorial.workflow import Study, read_config
 from clinical_trial_mvp.tutorial.teaching import server_example, request_example, response_example, interpret
 

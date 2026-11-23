@@ -6,7 +6,7 @@ FILENAME = '00_local_serving.ipynb'
 
 CELLS = [
     ('markdown', '7b5e354b23e7', ''),
-    ('code', 'c73045dd566e', "from pathlib import Path\nimport os\nimport sys\nROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())\nsys.path.insert(0, str(ROOT / 'src'))\nfrom IPython.display import JSON, Markdown, display\nfrom clinical_trial_mvp.tutorial.foundation import inventory, contexts, mac_history\nfrom clinical_trial_mvp.tutorial.foundation_study import FoundationStudy\nstudy = FoundationStudy(ROOT)\nprint('Chapter 00 mode:', study.mode)\nprint('Live: run embedding inference and call your local model server.' if study.mode == 'live' else\n      'Replay: display the supplied results.' if study.mode == 'replay' else\n      'Plan: inspect the configuration.')\n"),
+    ('code', 'c73045dd566e', "from pathlib import Path\nimport os\nimport sys\nROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())\nsys.path.insert(0, str(ROOT / 'src'))\nfrom IPython.display import Markdown, display\nfrom clinical_trial_mvp.tutorial.notebook_display import JSON\nfrom clinical_trial_mvp.tutorial.foundation import inventory, contexts, mac_history\nfrom clinical_trial_mvp.tutorial.foundation_study import FoundationStudy\nstudy = FoundationStudy(ROOT)\nprint('Chapter 00 mode:', study.mode)\nprint('Live: run embedding inference and call your local model server.' if study.mode == 'live' else\n      'Replay: display the supplied results.' if study.mode == 'replay' else\n      'Plan: inspect the configuration.')\n"),
     ('markdown', 'af1ac4f75873', ''),
     ('markdown', 'b937d0a634e6', ''),
     ('code', '786a85ecedf7', 'database = inventory(ROOT)\ndisplay(JSON(database))\n'),

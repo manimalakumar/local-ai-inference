@@ -29,7 +29,8 @@ import os
 import sys
 ROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/clinical_trial_mvp').is_dir())
 sys.path.insert(0, str(ROOT / 'src'))
-from IPython.display import JSON, Markdown, display
+from IPython.display import Markdown, display
+from clinical_trial_mvp.tutorial.notebook_display import JSON
 from clinical_trial_mvp.tutorial.edge_workflow import EdgeStudy{portable_import}
 
 MODE = "live"  # "plan" previews stages; "replay" displays archived results
