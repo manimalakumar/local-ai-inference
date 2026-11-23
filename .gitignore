@@ -48,3 +48,7 @@ llama_cpp/vendor/
 # DuckDB snapshots are retained locally by content hash but can become large.
 evals/results/snapshots/databases/
 experiment-tracker/results/snapshots/databases/
+
+# Publish learner chapters only; previous notebook versions remain in Git history.
+*.ipynb
+!notebooks/[0-9][0-9]_*.ipynb

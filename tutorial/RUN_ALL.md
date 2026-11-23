@@ -123,8 +123,8 @@ reported honestly, with no SQL or latency measurements. Sessions save new eviden
 ## Reference: previously measured results
 
 Your existing Dell GPU results remain unchanged. See [RESULTS.md](RESULTS.md),
-[the original executed Dell notebooks](../notebooks/history/dell-2026-11-07/),
-and the preserved [notebooks before these changes](../notebooks/history/before-live-first-2026-11-10/).
+[the original executed Dell notebooks](https://github.com/manimalakumar/local-ai-inference/tree/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/dell-2026-11-07/),
+and the preserved [notebooks before these changes](https://github.com/manimalakumar/local-ai-inference/tree/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/before-live-first-2026-11-10/).
 Explicit `MODE="replay"` rebuilds the selected historical tables without GPU work.
 No GPU rerun is needed to read or analyze that existing evidence. A new Dell run is needed
 only to populate genuine Live outputs for the revised execution path.

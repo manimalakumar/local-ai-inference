@@ -4,7 +4,7 @@
 Quadro RTX 5000. Five serving repeats per question/condition give 20 requests, not 20
 independent questions. These observations motivate decisions; they are not universal rankings.
 All sources are [explicitly indexed](recorded_runs.json) and checked against the preserved
-[checksum manifest](../notebooks/history/dell-2026-11-07/MANIFEST.json).
+[checksum manifest](../experiment-tracker/mvp4/recorded_manifest.json).
 
 ## Prefix reuse: prefill is only part of response time
 

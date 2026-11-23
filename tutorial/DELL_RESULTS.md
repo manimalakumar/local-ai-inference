@@ -1,6 +1,6 @@
 # Dell MVP4 findings — November 6–7, 2026
 
-These are saved hardware records from the Quadro RTX 5000 (16 GiB), not new Mac measurements. Native vLLM was 0.32.0; NIM used the digest-pinned 2.1.5 image. Original successes and failures are unchanged. The [archive manifest](../notebooks/history/dell-2026-11-07/MANIFEST.json) records their hashes and source commit.
+These are saved hardware records from the Quadro RTX 5000 (16 GiB), not new Mac measurements. Native vLLM was 0.32.0; NIM used the digest-pinned 2.1.5 image. Original successes and failures are unchanged. The [archive manifest](../experiment-tracker/mvp4/recorded_manifest.json) records their hashes and source commit.
 
 ## Application quality and request timing
 

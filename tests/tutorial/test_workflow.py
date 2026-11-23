@@ -22,8 +22,10 @@ def study(tmp_path, runtime='vllm', model='qwen'):
 
 
 def test_archive_manifest_matches_all_preserved_bytes():
-    manifest = json.loads((ROOT / 'notebooks/history/dell-2026-11-07/MANIFEST.json').read_text())
-    assert len(manifest['files_sha256']) >= 65
+    manifest = json.loads((ROOT / 'experiment-tracker/mvp4/recorded_manifest.json').read_text())
+    assert len(manifest['files_sha256']) + len(manifest['notebook_history_sha256']) >= 65
+    assert len(manifest['notebook_history_commit']) == 40
+    assert all(not p.endswith('.ipynb') for p in manifest['files_sha256'])
     for path, expected in manifest['files_sha256'].items():
         assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected, path
 

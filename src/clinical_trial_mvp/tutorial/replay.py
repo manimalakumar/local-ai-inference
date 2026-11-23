@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 LABEL = 'recorded Dell measurement'
-MANIFEST = 'notebooks/history/dell-2026-11-07/MANIFEST.json'
+MANIFEST = 'experiment-tracker/mvp4/recorded_manifest.json'
 
 
 class RecordedStudy:

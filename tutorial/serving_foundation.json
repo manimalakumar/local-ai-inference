@@ -32,8 +32,6 @@
     "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c1.json": "5337c543db6b4d6fe3855fd0746083ef01cd06a29779c42139221626860fce5b",
     "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c2.json": "75139009863057c0c4fd72d312f35c58242cfcbf9ae001e98c9df05ff891fd4e",
     "baseline/mvp3/experiment-tracker/tutorial/imported/notebook-c93924343847503f-sglang-c4.json": "4314ebef6c984e542cf117f698fcb533f3158afc39f527403b5c07406b040e16",
-    "baseline/mvp3/tutorial/history/gpu/sglang-c93924343847503f.ipynb": "02838dc90ec50523400e770daf6343533323afc327006296b9aad44163f3399d",
-    "baseline/mvp3/tutorial/history/gpu/vllm-59a8ea0bece1921f.ipynb": "318101915d81e9631dffa2fc063986d3e18ff0f16c56c1bada5869e82b483433",
     "data/db/clinical_trials.duckdb": "f1a7100697b0980b56359632fde49d042fb147260da03931a53a3cbfa7f6830e",
     "data/raw/adverse_events.csv": "11fc40cfbebf46b6e773b64467556c8f0a30a3e090db77e05abadbf8d46b5406",
     "data/raw/data_queries.csv": "4d87b57f13a4bab8f6e6e5b4cf28b5a1b0db7a02c48a97a513ed97aebae8b1bb",
@@ -126,5 +124,10 @@
       "request_e2e_p50_s": 4.799,
       "output_tokens": 59
     }
-  ]
+  ],
+  "notebook_history_commit": "ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2",
+  "notebook_history_sha256": {
+    "baseline/mvp3/tutorial/history/gpu/sglang-c93924343847503f.ipynb": "02838dc90ec50523400e770daf6343533323afc327006296b9aad44163f3399d",
+    "baseline/mvp3/tutorial/history/gpu/vllm-59a8ea0bece1921f.ipynb": "318101915d81e9631dffa2fc063986d3e18ff0f16c56c1bada5869e82b483433"
+  }
 }

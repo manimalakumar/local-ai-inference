@@ -31,6 +31,10 @@ New to local serving? Start at **00**.
 Already familiar? Start at **01** for optimization.
 Each notebook begins with this workflow and highlights **You are here**.
 
+The seven chapters (introduction 00 plus experiments 01–06) live together in
+`notebooks/`. Earlier notebook versions are available through Git history;
+measurement JSON files remain under `experiment-tracker/`.
+
 | **Step** | **Notebook** | **Purpose** |
 |---|---|---|
 | 0. Understand the request | [00 — How a local AI request works](notebooks/00_local_serving.ipynb) | Follow a question through schema context, model serving and generated SQL, then evaluate the results to establish a quality baseline. |

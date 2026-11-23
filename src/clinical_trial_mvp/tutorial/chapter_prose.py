@@ -290,7 +290,7 @@ Save the notebook to retain genuine Live outputs. Native servers stop after each
 ''',
         'references': r'''## Reference: previously measured results
 
-The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](history/dell-2026-11-07/local%20AI%20optimization%20-%20Qwen.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
+The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](https://github.com/manimalakumar/local-ai-inference/blob/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/dell-2026-11-07/local%20AI%20optimization%20-%20Qwen.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
 
 [Execution and troubleshooting](../tutorial/RUN_ALL.md) · [SQL review packet](../tutorial/SQL_REVIEW.md)
 ''',
@@ -390,7 +390,7 @@ Save the notebook to retain genuine Live outputs. Native servers stop after each
 ''',
         'references': r'''## Reference: previously measured results
 
-The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](history/dell-2026-11-07/local%20AI%20optimization%20-%20Nemotron.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
+The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](https://github.com/manimalakumar/local-ai-inference/blob/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/dell-2026-11-07/local%20AI%20optimization%20-%20Nemotron.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
 
 [Execution and troubleshooting](../tutorial/RUN_ALL.md) · [SQL review packet](../tutorial/SQL_REVIEW.md)
 ''',
@@ -466,7 +466,7 @@ Save the notebook to retain genuine Live outputs. Native servers stop after each
 ''',
         'references': r'''## Reference: previously measured results
 
-The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](history/dell-2026-11-07/local%20AI%20optimization%20-%20NIM%20Qwen.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
+The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](https://github.com/manimalakumar/local-ai-inference/blob/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/dell-2026-11-07/local%20AI%20optimization%20-%20NIM%20Qwen.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
 
 [Execution and troubleshooting](../tutorial/RUN_ALL.md) · [SQL review packet](../tutorial/SQL_REVIEW.md)
 ''',
@@ -542,7 +542,7 @@ Save the notebook to retain genuine Live outputs. Native servers stop after each
 ''',
         'references': r'''## Reference: previously measured results
 
-The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](history/dell-2026-11-07/local%20AI%20optimization%20-%20NIM%20Nemotron.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
+The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](https://github.com/manimalakumar/local-ai-inference/blob/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/dell-2026-11-07/local%20AI%20optimization%20-%20NIM%20Nemotron.ipynb). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
 
 [Execution and troubleshooting](../tutorial/RUN_ALL.md) · [SQL review packet](../tutorial/SQL_REVIEW.md)
 ''',

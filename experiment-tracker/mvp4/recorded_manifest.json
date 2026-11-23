@@ -1,12 +1,7 @@
 {
   "source_commit": "c9b1ae8047ea2104fc3731f2220217792942a349",
-  "note": "Executed notebooks copied byte-for-byte. Original result files remain at their recorded paths. Hashes cover successes and failures.",
+  "note": "Original result and provenance JSON files remain byte-for-byte at their recorded paths. Duplicate notebooks are retained in Git history at notebook_history_commit; their verified hashes are listed separately.",
   "files_sha256": {
-    "notebooks/history/dell-2026-11-07/local AI optimization - Nemotron.ipynb": "c996da89a3223eade23869b8ca4fb027b265113ad80411a1008438e8736b4c3c",
-    "notebooks/history/dell-2026-11-07/local AI optimization - NIM Qwen.ipynb": "4ee2aa7e2faa1d1b8e07831a3935121ae7bbdaea00af2b45ed0a7eabc850111e",
-    "notebooks/history/dell-2026-11-07/local AI optimization - Qwen.ipynb": "a0b5b90891dd3a03c1a38f16d46189134bea0edd2a247e42465dd51e90904800",
-    "notebooks/history/dell-2026-11-07/local AI optimization - NIM Nemotron.ipynb": "ce3773bbd71d17a7a90239fb05d1e55c507b67279603733257ccd8e249eafdea",
-    "notebooks/history/dell-2026-11-07/source-Qwen-before-Dell.ipynb": "f7e470094dca7855dfcc48eec931721bca69e00404acdbfcd034aadede1bc0ce",
     "experiment-tracker/mvp4/nemotron/20261107T002501_223219Z.json": "3d6c7380e1dfe004d462d8101df2c5a152ad95cdbbd627a1ddc1917a87caa111",
     "experiment-tracker/mvp4/nemotron/20261107T023148_583457Z.json": "07de7babd34712b709bf7da151c0f9b0ae8b8b8f378235736dc99913c24579f1",
     "experiment-tracker/mvp4/nemotron/20261107T024417_765664Z.json": "57b233ed272cb5f4f235f2c0c9d9057bd7adf083a65778a1cac91f13e3a57433",
@@ -67,5 +62,13 @@
     "experiment-tracker/tutorial/runs/20261107T220801_623823Z.json": "efec9cb5d89427d988d84127b5d8afc5467fe00581b80b93df26a86948f9d653",
     "experiment-tracker/tutorial/runs/20261107T220932_908954Z.json": "a36fe32a24076df0d89a87d3ca3b773b8388ec81c00e4b4f818f8f296ad3be47",
     "experiment-tracker/tutorial/runs/20261107T221207_165140Z.json": "bc1d229f54f4d22e921837c5d6d42452fe5210baa44e0c02dd07519fd62e7f48"
+  },
+  "notebook_history_commit": "ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2",
+  "notebook_history_sha256": {
+    "notebooks/history/dell-2026-11-07/local AI optimization - Nemotron.ipynb": "c996da89a3223eade23869b8ca4fb027b265113ad80411a1008438e8736b4c3c",
+    "notebooks/history/dell-2026-11-07/local AI optimization - NIM Qwen.ipynb": "4ee2aa7e2faa1d1b8e07831a3935121ae7bbdaea00af2b45ed0a7eabc850111e",
+    "notebooks/history/dell-2026-11-07/local AI optimization - Qwen.ipynb": "a0b5b90891dd3a03c1a38f16d46189134bea0edd2a247e42465dd51e90904800",
+    "notebooks/history/dell-2026-11-07/local AI optimization - NIM Nemotron.ipynb": "ce3773bbd71d17a7a90239fb05d1e55c507b67279603733257ccd8e249eafdea",
+    "notebooks/history/dell-2026-11-07/source-Qwen-before-Dell.ipynb": "f7e470094dca7855dfcc48eec931721bca69e00404acdbfcd034aadede1bc0ce"
   }
 }

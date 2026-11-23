@@ -226,12 +226,13 @@ def test_notebook_scopes_keep_qwen_strategy_and_make_nemotron_awq_optional():
     assert 'shared schema prefix' in qtext
 
 
-def test_qwen_notebook_is_preserved_from_the_recorded_source():
-    import hashlib
+def test_qwen_original_source_hash_is_retained_with_its_git_history_reference():
     path = Path('notebooks/local AI optimization - Qwen.ipynb')
     lineage = json.loads((ROOT / 'SOURCE_LINEAGE.json').read_text())
-    original = ROOT / 'notebooks/history/dell-2026-11-07/source-Qwen-before-Dell.ipynb'
-    assert hashlib.sha256(original.read_bytes()).hexdigest() == lineage['inherited_files_sha256'][str(path)]
+    manifest = json.loads((ROOT / 'experiment-tracker/mvp4/recorded_manifest.json').read_text())
+    archived = 'notebooks/history/dell-2026-11-07/source-Qwen-before-Dell.ipynb'
+    assert len(manifest['notebook_history_commit']) == 40
+    assert manifest['notebook_history_sha256'][archived] == lineage['inherited_files_sha256'][str(path)]
 
 
 def test_qwen_scheduler_capacity_reaches_engine_cli(capsys):

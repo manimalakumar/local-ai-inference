@@ -127,7 +127,7 @@ Save the notebook to retain genuine Live outputs. Native servers stop after each
     if (runtime, model) == ('nim', 'nemotron'):
         md('references',f'''## Reference: previously measured results
 
-The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](history/dell-2026-11-07/{ARCHIVE_FILENAMES[(runtime,model)].replace(' ','%20')}). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
+The previous Dell measurements remain unchanged in [the results guide](../tutorial/RESULTS.md) and [the original executed notebook](https://github.com/manimalakumar/local-ai-inference/blob/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/dell-2026-11-07/{ARCHIVE_FILENAMES[(runtime,model)].replace(' ','%20')}). Select `MODE="replay"` explicitly to rebuild their tables. They are not measurements from this Live session.
 
 [Execution and troubleshooting](../tutorial/RUN_ALL.md) · [SQL review packet](../tutorial/SQL_REVIEW.md)''')
     return dict(cells=cells,metadata={'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'},'language_info':{'name':'python','version':'3.11'}},nbformat=4,nbformat_minor=5)

@@ -177,9 +177,11 @@ def gpu_history(root):
     for path in manifest['gpu_summaries']:
         result = json.loads(checked(root, path))
         archive = 'baseline/mvp3/' + result['source']['archive']
-        raw = checked(root, archive)
-        if hashlib.sha256(raw).hexdigest() != result['source']['archived_sha256']:
-            raise ValueError('Imported engine notebook checksum mismatch')
+        # Notebook copies live in the pinned Git history. The imported JSON is
+        # still checked byte-for-byte above; retain its original source hash.
+        expected = manifest['notebook_history_sha256'].get(archive)
+        if not expected or expected != result['source']['archived_sha256']:
+            raise ValueError('Imported engine notebook source hash mismatch')
         rows.append(dict(runtime=result['runtime'], clients=result['configuration']['concurrency'],
                          serving=result['serving'], quality=result['quality'],
                          evidence='historical notebook summary — rounded; pairing unverified', source=path))

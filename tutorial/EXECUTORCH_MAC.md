@@ -74,7 +74,7 @@ Package versions are pinned in [requirements-edge.txt](../requirements-edge.txt)
 ## Earlier SmolLM2 work remains historical
 
 The [unchanged SmolLM2-135M record](../experiment-tracker/tutorial/edge/20261029T161510_034051Z.json),
-[previous chapter copy](../notebooks/history/edge-smollm2-before-qwen.ipynb) and
+[previous chapter copy](https://github.com/manimalakumar/local-ai-inference/blob/ff90a9b876c73e8b9bec8f8c8bea89bc617a26a2/notebooks/history/edge-smollm2-before-qwen.ipynb) and
 [historical recipe](../baseline/mvp3/tutorial/EXECUTORCH_MAC.md) are preserved. The originally
 planned Llama 3.2 1B checkpoint lacked access; SmolLM2 supplied the earlier small public model.
 That choice did not establish that Qwen/Nemotron could not run through ExecuTorch. This new
